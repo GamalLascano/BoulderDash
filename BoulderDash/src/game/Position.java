@@ -1,5 +1,5 @@
 package game;
-//ggg
+//gggasd
 public class Position {
 	int posX;
 	int posY;
