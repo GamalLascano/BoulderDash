@@ -1,5 +1,5 @@
-package principal;
-public class Juego
+package game;
+public class Game
 {
-
+	
 }
