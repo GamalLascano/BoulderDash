@@ -5,6 +5,6 @@ public abstract class Cell {
 	Status state;
 	
 	Cell(Status state) {
-	this.state = state;
+		this.state = state;
 	}
 }
