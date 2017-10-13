@@ -1,5 +1,8 @@
-package principal.personajes;
+package game.character;
 
-public class Rockford extends Personaje {
-
+public class Rockford extends Character {
+	int score;
+	int cantDiamonds;
+	int health;
+	
 }

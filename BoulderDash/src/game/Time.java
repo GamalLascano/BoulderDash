@@ -1,5 +1,5 @@
-package principal;
+package game;
 
-public class Tiempo {
+public class Time {
 
 }

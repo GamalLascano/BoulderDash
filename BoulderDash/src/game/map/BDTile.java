@@ -1,4 +1,4 @@
-package principal.mapa;
+package game.map;
 public enum BDTile {
          EMPTY              , 
          DIRT               ,

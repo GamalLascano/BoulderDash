@@ -1,4 +1,4 @@
-package principal.mapa;
+package game.map;
 
 import java.io.*;
 import java.util.*;

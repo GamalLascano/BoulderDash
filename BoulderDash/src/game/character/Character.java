@@ -1,5 +1,5 @@
-package principal.personajes;
+package game.character;
 
-public abstract class Personaje {
-
+public abstract class Character {
+	
 }

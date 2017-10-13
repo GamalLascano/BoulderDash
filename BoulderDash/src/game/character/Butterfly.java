@@ -1,5 +1,5 @@
-package principal.personajes;
+package game.character;
 
-public class Mariposa {
+public class Butterfly extends Enemy {
 
 }

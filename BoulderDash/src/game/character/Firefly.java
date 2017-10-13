@@ -1,5 +1,5 @@
-package principal.personajes;
+package game.character;
 
-public class Luciernaga extends Enemigos {
+public class Firefly extends Enemy {
 
 }

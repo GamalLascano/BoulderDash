@@ -1,5 +1,5 @@
 package game.cell;
 
-public class MagicWall {
+public class Wall {
 
 }

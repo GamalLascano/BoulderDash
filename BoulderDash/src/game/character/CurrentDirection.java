@@ -1,6 +1,6 @@
-package principal.personajes;
+package game.character;
 
-public enum DirActual {
+public enum CurrentDirection {
 	NONE ,
 	UP   ,
 	DOWN ,
