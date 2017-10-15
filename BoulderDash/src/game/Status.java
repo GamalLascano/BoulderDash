@@ -6,18 +6,20 @@ public class Status {
 	boolean expanding;
 	boolean moving;
 	boolean falling;
+	boolean alive;
 
 	public Status(){
 		
 	}
 	
-	public Status(boolean status, boolean exploding, boolean expanding, boolean moving, boolean falling) {
+	public Status(boolean status, boolean exploding, boolean expanding, boolean moving, boolean falling, boolean alive) {
 		super();
 		this.status = status;
 		this.exploding = exploding;
 		this.expanding = expanding;
 		this.moving = moving;
 		this.falling = falling;
+		this.alive = alive;
 	}
 
 	public boolean isExploding() {
@@ -50,6 +52,14 @@ public class Status {
 
 	public void setFalling(boolean falling) {
 		this.falling = falling;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 
 	public boolean getStatus() {
