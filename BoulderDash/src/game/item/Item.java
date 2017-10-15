@@ -26,9 +26,10 @@ public abstract class Item {
 	}
 
 	public void fall() {
-		while(BDLevelReader.field[pos.posX][pos.posY - 1] == BDTile.EMPTY)
+		while(BDLevelReader.field[pos.posX][pos.posY - 1] == BDTile.EMPTY) {
 			pos.setPosY(pos.getPosY() - 1);
 			state.setFalling(true);
+		}
 	}
 	/** poner collect en Rockford?
 	public void collected() {
