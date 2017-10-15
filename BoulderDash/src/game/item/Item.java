@@ -4,6 +4,8 @@ import game.Position;
 import game.Status;
 import game.map.BDLevelReader;
 import game.map.BDTile;
+import game.character.Character;
+import game.character.Rockford;
 
 public abstract class Item {
 	Status state = new Status(false,false,false,false,false);
@@ -28,4 +30,11 @@ public abstract class Item {
 			pos.setPosY(pos.getPosY() - 1);
 			state.setFalling(true);
 	}
+	/** poner collect en Rockford?
+	public void collected() {
+		if ()
+		BDLevelReader.field[pos.posX][pos.posY] = BDTile.EMPTY;
+		
+	}
+	*/
 }
