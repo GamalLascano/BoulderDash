@@ -10,14 +10,16 @@ public abstract class Item {
 	Position pos = new Position();
 	boolean collectable;
 	boolean moveable;
+	boolean fallable;
 	boolean explodable;
 	
-	public Item(Status state, Position pos, boolean collectable, boolean moveable, boolean explodable) {
+	public Item(Status state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable) {
 		super();
 		this.state = state;
 		this.pos = pos;
 		this.collectable = collectable;
 		this.moveable = moveable;
+		this.fallable = fallable;
 		this.explodable = explodable;
 	}
 
