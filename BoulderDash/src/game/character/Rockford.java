@@ -17,12 +17,12 @@ public class Rockford extends Character {
 		this.score = score;
 	}
 
-	public int getCantDiamonds() {
+	public int getDiamonds() {
 		return diamonds;
 	}
 
-	public void setCantDiamonds(int cantDiamonds) {
-		this.diamonds = cantDiamonds;
+	public void setDiamonds(int diamonds) {
+		this.diamonds = diamonds;
 	}
 
 	public boolean save() {
