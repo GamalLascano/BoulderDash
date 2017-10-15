@@ -5,6 +5,7 @@ import game.Status;
 
 public abstract class Item {
 	Status state = new Status(false,false,false,false,false);
+	Sprite sprite;
 	Position pos = new Position();
 	
 	public void fall() {
