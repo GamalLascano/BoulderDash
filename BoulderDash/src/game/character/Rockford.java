@@ -2,7 +2,7 @@ package game.character;
 
 public class Rockford extends Character {
 	int score;
-	int cantDiamonds;
+	int diamonds;
 	
 	public Rockford() {
 		super();
@@ -18,11 +18,11 @@ public class Rockford extends Character {
 	}
 
 	public int getCantDiamonds() {
-		return cantDiamonds;
+		return diamonds;
 	}
 
 	public void setCantDiamonds(int cantDiamonds) {
-		this.cantDiamonds = cantDiamonds;
+		this.diamonds = cantDiamonds;
 	}
 
 	public boolean save() {
