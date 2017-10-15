@@ -9,6 +9,22 @@ public class Rockford extends Character {
 		// TODO Auto-generated constructor stub
 	}
 
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public int getCantDiamonds() {
+		return cantDiamonds;
+	}
+
+	public void setCantDiamonds(int cantDiamonds) {
+		this.cantDiamonds = cantDiamonds;
+	}
+
 	public boolean save() {
 		return true;
 	}
