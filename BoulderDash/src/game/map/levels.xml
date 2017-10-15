@@ -3746,8 +3746,8 @@
 <rock x="5" y="19"/>
 <wall x="9" y="19"/>
 <rock x="12" y="19"/>
-<rock x="14" y="19"/>
-<firefly x="15" y="19"/>
+
+<firefly x="15" y="19"/><rock x="14" y="19" />
 <rock x="22" y="19"/>
 <empty x="26" y="19"/>
 <rock x="27" y="19"/>
