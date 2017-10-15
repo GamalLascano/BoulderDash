@@ -9,13 +9,4 @@ public class Rockford extends Character {
 		return true;
 	}
 	
-	@Override
-	public boolean move() {
-		return true;
-	}
-	
-	@Override
-	public boolean explode() {
-		return true;
-	}
 }
