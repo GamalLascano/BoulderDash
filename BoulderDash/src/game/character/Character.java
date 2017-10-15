@@ -1,36 +1,54 @@
 package game.character;
 import game.CurrentDirection;
 import game.Position;
+import game.map.BDLevelReader;
+import game.map.BDTile;
 
 public abstract class Character {
-	Position coordenada = new Position();
+	Position pos = new Position();
 	
 	/**
 	 * Movimiento en el mapa, poner una direcion como parametro.
 	 * usa game.Position y game.CurrentDirection.
 	 */
-	public boolean move(CurrentDirection direction) {
+	public void move(CurrentDirection direction) {
 		switch (direction) {
 			case UP :
-				coordenada.setPosY(coordenada.getPosY() + 1);
+				pos.setPosY(pos.getPosY() + 1);
 				break;
 			case DOWN :
-				coordenada.setPosY(coordenada.getPosY() - 1);
+				pos.setPosY(pos.getPosY() - 1);
 				break;
 			case LEFT :
-				coordenada.setPosX(coordenada.getPosX() - 1);
+				pos.setPosX(pos.getPosX() - 1);
 				break;
 			case RIGHT :
-				coordenada.setPosX(coordenada.getPosX() + 1);
+				pos.setPosX(pos.getPosX() + 1);
 				break;
 			default :
 				break;
 		}
-		return true;
 	}
 	
-	public boolean explode() {
-		return true;
+	/**
+	 * Explosion, pone celda vacias alrededor del personaje.
+	 * Explosion cuadrada 3x3.
+	 */
+	public void explode() {
+		BDLevelReader.field[pos.getPosX()][pos.getPosY()] = BDTile.EMPTY;
+		
+		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY()] = BDTile.EMPTY;
+		BDLevelReader.field[pos.getPosX() - 1][pos.getPosY()] = BDTile.EMPTY;
+		
+		BDLevelReader.field[pos.getPosX()][pos.getPosY() + 1] = BDTile.EMPTY;
+		BDLevelReader.field[pos.getPosX()][pos.getPosY() - 1] = BDTile.EMPTY;
+		
+		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY() + 1] = BDTile.EMPTY;
+		BDLevelReader.field[pos.getPosX() - 1][pos.getPosY() - 1] = BDTile.EMPTY;
+		
+		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY() - 1] = BDTile.EMPTY;
+		BDLevelReader.field[pos.getPosX() - 1][pos.getPosY() + 1] = BDTile.EMPTY;
+		
 	}
 	
 }
