@@ -1,10 +1,12 @@
 package game.character;
 import game.CurrentDirection;
 import game.Position;
+import game.Status;
 import game.map.BDLevelReader;
 import game.map.BDTile;
 
 public abstract class Character {
+	Status state = new Status();
 	Position pos = new Position();
 	
 	/**
@@ -15,19 +17,24 @@ public abstract class Character {
 		switch (direction) {
 			case UP :
 				pos.setPosY(pos.getPosY() + 1);
+				state.setMoving(true);
 				break;
 			case DOWN :
 				pos.setPosY(pos.getPosY() - 1);
+				state.setMoving(true);
 				break;
 			case LEFT :
 				pos.setPosX(pos.getPosX() - 1);
+				state.setMoving(true);
 				break;
 			case RIGHT :
 				pos.setPosX(pos.getPosX() + 1);
+				state.setMoving(true);
 				break;
 			default :
 				break;
 		}
+		state.setMoving(false);
 	}
 	
 	/**
