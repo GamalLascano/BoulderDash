@@ -1,5 +1,5 @@
 package game.cell;
 
-public class Titanium {
+public class Titanium extends Cell {
 
 }

@@ -1,5 +1,5 @@
 package game.cell;
 
-public class Exit {
+public class Exit extends Cell {
 
 }

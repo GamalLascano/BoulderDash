@@ -1,5 +1,5 @@
 package game.cell;
 
-public class Wall {
+public class Wall extends Cell {
 
 }
