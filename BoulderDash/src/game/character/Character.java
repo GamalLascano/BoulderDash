@@ -35,6 +35,7 @@ public abstract class Character {
 	 * Explosion cuadrada 3x3.
 	 */
 	public void explode() {
+		//Hay bloques que no pueden desparecer! ej: bloque salida
 		BDLevelReader.field[pos.getPosX()][pos.getPosY()] = BDTile.EMPTY;
 		
 		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY()] = BDTile.EMPTY;
