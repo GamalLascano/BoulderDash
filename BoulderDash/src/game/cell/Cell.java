@@ -3,12 +3,10 @@ import game.Status;
 
 public abstract class Cell {
 	Status state;
-	Sprite sprite;
 	boolean isSolid;
 	
-	Cell(Status state, boolean isSolid, Sprite sprite) {
+	Cell(Status state, boolean isSolid) {
 		this.state = state;
 		this.isSolid = isSolid;
-		this.sprite = sprite;
 	}
 }
