@@ -9,5 +9,5 @@ public class Rockford extends Character {
 		return true;
 	}
 	
-	//singleton aca?
+	//singleton aca??
 }
