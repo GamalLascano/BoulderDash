@@ -1,7 +1,6 @@
-package game.character;
+package game;
 
 public enum CurrentDirection {
-	NONE ,
 	UP   ,
 	DOWN ,
 	LEFT ,
