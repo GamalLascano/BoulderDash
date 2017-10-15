@@ -9,6 +9,12 @@ public abstract class Character {
 	Status state = new Status();
 	Position pos = new Position();
 	
+	public Character(Status state, Position pos, boolean alive) {
+		super();
+		this.state = state;
+		this.pos = pos;
+	}
+
 	/**
 	 * Movimiento en el mapa, poner una direcion como parametro.
 	 * usa game.Position y game.CurrentDirection.
