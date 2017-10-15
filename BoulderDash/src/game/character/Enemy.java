@@ -1,8 +1,7 @@
 package game.character;
 
-public abstract class Enemy {
+public abstract class Enemy extends Character {
 	
-	protected abstract boolean explode();
 	protected abstract boolean rotate();
 
 }
