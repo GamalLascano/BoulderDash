@@ -1,8 +1,5 @@
 package game.item;
 
-public class Diamond {
+public class Diamond extends Item {
 	
-	public boolean movement() {
-		return true;
-	}
 }

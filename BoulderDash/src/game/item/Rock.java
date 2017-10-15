@@ -1,6 +1,6 @@
 package game.item;
 
-public class Rock {
+public class Rock extends Item {
 
 	private boolean movement() {
 		 return true;

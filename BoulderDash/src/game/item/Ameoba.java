@@ -1,16 +1,25 @@
 package game.item;
+
+import game.Position;
+import game.Status;
 import java.util.Timer;
 
-public class Ameoba {
-
+public class Ameoba extends Item {
 	Timer timer = new Timer();
 	
-	private boolean expand() {
-		 return true;
+	private void expand() {
+		while(state.getStatus() == true)
+			state.setExpanding(true);
 	}
 	
 	private boolean check() {
-		 return true;
+		 if(timer < 300)
+		 {
+			 state.setStatus(true);
+		 }
+		 else
+		 {
+			 state.setStatus(false);
+		 }
 	}
-	
 }

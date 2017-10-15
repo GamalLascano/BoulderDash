@@ -1,6 +1,6 @@
 package game.item;
 
-public class Dirt {
+public class Dirt extends Item {
 
 	
 }
