@@ -1,11 +1,14 @@
 package game.character;
 
+import game.Position;
+import game.Status;
+
 public class Rockford extends Character {
 	int score;
 	int diamonds;
 	
-	public Rockford() {
-		super();
+	public Rockford(Status state, Position pos) {
+		super(state, pos, true);
 		// TODO Auto-generated constructor stub
 	}
 
