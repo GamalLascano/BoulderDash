@@ -12,7 +12,9 @@ public class Rockford extends Character {
 	public Rockford(Status state, Position pos)
 	{
 		super(state, pos);
-		// TODO Auto-generated constructor stub
+		this.score = 0;
+		this.diamonds = 0;
+		this.pushing = false;
 	}
 
 	public int getScore() {
