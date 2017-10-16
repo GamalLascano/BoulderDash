@@ -32,6 +32,27 @@ public abstract class Item {
 			state.setFalling(true);
 		}
 	}
+
+	public Status getState()
+	{
+		return state;
+	}
+
+	public void setState(Status state)
+	{
+		this.state = state;
+	}
+
+	public Position getPos()
+	{
+		return pos;
+	}
+
+	public void setPos(Position pos)
+	{
+		this.pos = pos;
+	}
+	
 	/** poner collect en Rockford?
 	public void collected() {
 		if ()
