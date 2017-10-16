@@ -30,7 +30,6 @@ public class Rockford extends Character {
 	public void setDiamonds(int diamonds) {
 		this.diamonds = diamonds;
 	}
-
 	
 	public boolean isPushing()
 	{
