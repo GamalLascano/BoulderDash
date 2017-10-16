@@ -9,6 +9,4 @@ public class Diamond extends Item {
 		super(state, pos, true, false, true, false);
 	}
 	
-	
-	
 }
