@@ -52,6 +52,48 @@ public abstract class Item {
 	{
 		this.pos = pos;
 	}
+
+	public boolean isCollectable()
+	{
+		return collectable;
+	}
+
+	public void setCollectable(boolean collectable)
+	{
+		this.collectable = collectable;
+	}
+
+	public boolean isMoveable()
+	{
+		return moveable;
+	}
+
+	public void setMoveable(boolean moveable)
+	{
+		this.moveable = moveable;
+	}
+
+	public boolean isFallable()
+	{
+		return fallable;
+	}
+
+	public void setFallable(boolean fallable)
+	{
+		this.fallable = fallable;
+	}
+
+	public boolean isExplodable()
+	{
+		return explodable;
+	}
+
+	public void setExplodable(boolean explodable)
+	{
+		this.explodable = explodable;
+	}
+	
+	
 	
 	/** poner collect en Rockford?
 	public void collected() {
