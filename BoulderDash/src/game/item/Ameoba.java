@@ -5,8 +5,9 @@ import game.Status;
 import game.Timer;
 
 public class Ameoba extends Item {
-	public Ameoba(Status state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable) {
-		super(state, pos, collectable, moveable, fallable, explodable);
+	
+	public Ameoba(Status state, Position pos) {
+		super(state, pos, false, false, false, false);
 	}
 
 	Timer timer = new Timer();
