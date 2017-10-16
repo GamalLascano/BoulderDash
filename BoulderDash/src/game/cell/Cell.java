@@ -12,6 +12,16 @@ public abstract class Cell {
 		this.solid = solid;
 		this.active = active;
 	}
+	
+	public Position getPos()
+	{
+		return pos;
+	}
+
+	public void setPos(Position pos)
+	{
+		this.pos = pos;
+	}
 
 	public boolean isActive() {
 		return active;
