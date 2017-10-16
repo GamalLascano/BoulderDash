@@ -4,6 +4,7 @@ import game.Position;
 import game.Status;
 import game.map.BDLevelReader;
 import game.map.BDTile;
+import game.map.MapInstance;
 
 public abstract class Character {
 	Status state = new Status();
@@ -49,19 +50,16 @@ public abstract class Character {
 	 */
 	public void explode() {
 		//Hay bloques que no pueden desparecer! ej: bloque salida
-		BDLevelReader.field[pos.getPosX()][pos.getPosY()] = BDTile.EMPTY;
-		
-		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY()] = BDTile.EMPTY;
-		BDLevelReader.field[pos.getPosX() - 1][pos.getPosY()] = BDTile.EMPTY;
-		
-		BDLevelReader.field[pos.getPosX()][pos.getPosY() + 1] = BDTile.EMPTY;
-		BDLevelReader.field[pos.getPosX()][pos.getPosY() - 1] = BDTile.EMPTY;
-		
-		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY() + 1] = BDTile.EMPTY;
-		BDLevelReader.field[pos.getPosX() - 1][pos.getPosY() - 1] = BDTile.EMPTY;
-		
-		BDLevelReader.field[pos.getPosX() + 1][pos.getPosY() - 1] = BDTile.EMPTY;
-		BDLevelReader.field[pos.getPosX() - 1][pos.getPosY() + 1] = BDTile.EMPTY;
+		//Hay que ver como tratar con las instancias de las cells
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX(), pos.getPosY());
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY());
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX()-1, pos.getPosY());
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX(), pos.getPosY() + 1);
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX(), pos.getPosY() - 1);
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY() + 1);
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX() - 1, pos.getPosY() - 1);
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX() - 1, pos.getPosY() + 1);
+		MapInstance.loadData(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY() - 1);
 		
 	}
 	

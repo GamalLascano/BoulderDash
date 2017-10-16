@@ -3,8 +3,8 @@ package game.character;
 public class Firefly extends Enemy {
 
 	@Override
-	public boolean explode() {
-		return true;
+	public void explode() {
+
 	}
 	
 	@Override

@@ -33,4 +33,5 @@ public class Rockford extends Character {
 	}
 	
 	//singleton aca??
+	//banco hacerlo singleton
 }
