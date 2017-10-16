@@ -2,7 +2,6 @@ package game.character;
 import game.CurrentDirection;
 import game.Position;
 import game.Status;
-import game.map.BDLevelReader;
 import game.map.BDTile;
 import game.map.MapInstance;
 
@@ -10,7 +9,7 @@ public abstract class Character {
 	Status state = new Status();
 	Position pos = new Position();
 	
-	public Character(Status state, Position pos, boolean alive) {
+	public Character(Status state, Position pos) {
 		super();
 		this.state = state;
 		this.pos = pos;
