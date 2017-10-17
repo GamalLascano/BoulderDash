@@ -2,14 +2,11 @@ package game.item;
 
 import game.Position;
 import game.Status;
-import game.map.BDLevelReader;
 import game.map.BDTile;
 import game.map.MapInstance;
-import game.character.Character;
-import game.character.Rockford;
 
 public abstract class Item {
-	Status state = new Status(false,false,false,false,false,false);
+	Status state = new Status(false,false,false,false,false);
 	Position pos = new Position();
 	boolean collectable;
 	boolean moveable;

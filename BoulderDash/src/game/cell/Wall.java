@@ -21,7 +21,7 @@ public class Wall extends Cell {
 			
 			stone.getState().setAlive(false);
 			Position diamondPos = this.getPos();
-			Status diamondState = new Status(false,false,false,false,true,true);
+			Status diamondState = new Status(false,false,false,true,true);
 			Diamond diamond = new Diamond(diamondState, diamondPos);
 			MapInstance.loadData(BDTile.DIAMOND, diamond.getPos().getPosX(), diamond.getPos().getPosY());
 		}
@@ -34,7 +34,7 @@ public class Wall extends Cell {
 			
 			diamond.getState().setAlive(false);
 			Position stonePos = this.getPos();
-			Status stoneState = new Status(false,false,false,false,true,true);
+			Status stoneState = new Status(false,false,false,true,true);
 			Rock stone = new Rock(stoneState, stonePos);
 			MapInstance.loadData(BDTile.ROCK, stone.getPos().getPosX(), stone.getPos().getPosY());
 		}
