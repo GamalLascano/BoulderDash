@@ -3,7 +3,6 @@ package game;
 public class Status {
 	boolean status;
 	boolean exploding;
-	boolean expanding;
 	boolean moving;
 	boolean falling;
 	boolean alive;
@@ -12,11 +11,10 @@ public class Status {
 		
 	}
 	
-	public Status(boolean status, boolean exploding, boolean expanding, boolean moving, boolean falling, boolean alive) {
+	public Status(boolean status, boolean exploding, boolean moving, boolean falling, boolean alive) {
 		super();
 		this.status = status;
 		this.exploding = exploding;
-		this.expanding = expanding;
 		this.moving = moving;
 		this.falling = falling;
 		this.alive = alive;
@@ -28,14 +26,6 @@ public class Status {
 
 	public void setExploding(boolean exploding) {
 		this.exploding = exploding;
-	}
-
-	public boolean isExpanding() {
-		return expanding;
-	}
-
-	public void setExpanding(boolean expanding) {
-		this.expanding = expanding;
 	}
 
 	public boolean isMoving() {
@@ -78,8 +68,8 @@ public class Status {
 
 	@Override
 	public String toString() {
-		return "Status [status=" + status + ", exploding=" + exploding + ", expanding=" + expanding + ", moving="
-				+ moving + ", falling=" + falling + "]";
+		return "Status [status=" + status + ", exploding=" + exploding + ", moving=" + moving + ", falling=" + falling
+				+ ", alive=" + alive + "]";
 	}
 	
 }
