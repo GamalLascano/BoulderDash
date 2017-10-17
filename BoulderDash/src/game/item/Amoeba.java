@@ -4,11 +4,11 @@ import game.Position;
 import game.Status;
 import game.Timer;
 
-public class Ameoba extends Item {
+public class Amoeba extends Item {
 	boolean expanding;
 	Timer timer = new Timer();
 	
-	public Ameoba(Status state, Position pos) {
+	public Amoeba(Status state, Position pos) {
 		super(state, pos, false, false, false, false);
 	}
 
