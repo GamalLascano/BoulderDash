@@ -17,11 +17,35 @@ public class MapInstance {
 		return single;
 	}
 	
-	public static BDTile returnTile(int x, int y) {
+	/**
+	 * Retorna una celda del mapa.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public static BDTile getTile(int x, int y) {
 		return map[x][y];
 	}
-	// pasar paramA de bdlevelreader, usado para cargar datos al mapa o cambiar casillas
-	public static void loadData(BDTile tile, int x, int y) {
+	
+	/**
+	 *Usado para cargar datos al mapa o cambiar casillas.
+	 * @param tile : de BDlevelreader
+	 * @param x
+	 * @param y
+	 */
+	public static void setTile(BDTile tile, int x, int y) {
 		map[x][y] = tile;
+	}
+	
+	/**
+	 * Construye el mapa.
+	 * @param level : nivel.
+	 */
+	public static void buildMap(BDLevelReader level) {
+		for (int y = 0; y < level.getHEIGHT(); y++) {
+			for (int x = 0; x < level.getWIDTH(); x++) {
+				map[x][y] = level.getTile(x, y);
+			}
+		}
 	}
 }
