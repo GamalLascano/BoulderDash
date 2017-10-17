@@ -8,9 +8,9 @@ public class Amoeba extends Item {
 	boolean expanding;
 	Timer timer = new Timer();
 	
-	public Amoeba(Status state, Position pos, boolean expanding) {
+	public Amoeba(Status state, Position pos) {
 		super(state, pos, false, false, false, false);
-		this.expanding = expanding;
+		this.expanding = true;
 	}
 
 
