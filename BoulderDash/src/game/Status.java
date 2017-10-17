@@ -12,7 +12,6 @@ public class Status {
 	}
 	
 	public Status(boolean status, boolean exploding, boolean moving, boolean falling, boolean alive) {
-		super();
 		this.status = status;
 		this.exploding = exploding;
 		this.moving = moving;
@@ -60,6 +59,25 @@ public class Status {
 		this.status = status;
 	}
 	
+	/**
+	 * Cambia todo los parametros.
+	 * @param status
+	 * @param exploding
+	 * @param moving
+	 * @param falling
+	 * @param alive
+	 */
+	public void reset(boolean status, boolean exploding, boolean moving, boolean falling, boolean alive) {
+		this.status = status;
+		this.exploding = exploding;
+		this.moving = moving;
+		this.falling = falling;
+		this.alive = alive;
+	}
+	
+	/**
+	 * Status switch.
+	 */
 	public void changeStatus() {
 		if (status) 
 			status=false;
