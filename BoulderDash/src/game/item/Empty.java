@@ -1,9 +1,17 @@
 package game.item;
 
-public class Empty {
+import game.Position;
+import game.Status;
 
-	private boolean deleteItem() {
-		 return true;
+public class Empty extends Item {
+	
+	public Empty(Status state, Position pos) {
+		super(state, pos, false, false, false, false);
+		// TODO Auto-generated constructor stub
+	}
+
+	private void deleteItem() {
+		
 	}
 	
 }
