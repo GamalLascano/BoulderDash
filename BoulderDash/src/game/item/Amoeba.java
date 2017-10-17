@@ -8,8 +8,9 @@ public class Amoeba extends Item {
 	boolean expanding;
 	Timer timer = new Timer();
 	
-	public Amoeba(Status state, Position pos) {
+	public Amoeba(Status state, Position pos, boolean expanding) {
 		super(state, pos, false, false, false, false);
+		this.expanding = expanding;
 	}
 
 
@@ -39,5 +40,10 @@ public class Amoeba extends Item {
 		this.expanding = expanding;
 	}
 	
+	/**
+	 * Se convierte en diamantes.
+	 */
+	public void diamonize() {
+	}
 	
 }
