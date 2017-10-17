@@ -1,13 +1,23 @@
 package game.map;
 
+import game.*;
+import game.cell.*;
+import game.item.*;
+import game.character.*;
 
 public class MapInstance {
 	private static MapInstance single;
-	private static BDTile[][] map;
+	private static BDTile[][] tile;
+	private static Cell[][] cell;
+	private static Item[][] item;
+	private static Actor[][] actor;
 	
 	//Singleton
 	private MapInstance() {
-		map=null;
+		tile=null;
+		cell=null;
+		item=null;
+		actor=null;
 	}
 	
 	public static synchronized MapInstance getInstance() {
@@ -24,7 +34,7 @@ public class MapInstance {
 	 * @return
 	 */
 	public static BDTile getTile(int x, int y) {
-		return map[x][y];
+		return tile[x][y];
 	}
 	
 	/**
@@ -33,18 +43,71 @@ public class MapInstance {
 	 * @param x
 	 * @param y
 	 */
-	public static void setTile(BDTile tile, int x, int y) {
-		map[x][y] = tile;
+	public static void setTile(BDTile til, int x, int y) {
+		tile[x][y] = til;
 	}
 	
 	/**
 	 * Construye el mapa.
 	 * @param level : nivel.
 	 */
-	public static void buildMap(BDLevelReader level) {
+	public static void buildTiles(BDLevelReader level) {
+		Position pos = new Position();
+		Status state = new Status();
 		for (int y = 0; y < level.getHEIGHT(); y++) {
 			for (int x = 0; x < level.getWIDTH(); x++) {
-				map[x][y] = level.getTile(x, y);
+				tile[x][y] = level.getTile(x, y);
+				pos.setPos(x, y);
+				state.reset(false, false, false, false, true);
+				
+				switch (tile[x][y]) {
+					case EMPTY :
+						cell[x][y] = new Normal(pos);
+						item[x][y] = new Empty(state,pos);
+						actor[x][y] = null;
+						break;
+					case DIRT :
+						item[x][y] = new Dirt(state,pos);
+						break;
+					case TITANIUM :
+						cell[x][y] = new Titanium(pos);
+						break;
+					case WALL :
+						cell[x][y] = new Wall(pos,false);
+						break;
+					case ROCK :
+						item[x][y] = new Rock(state,pos);
+						break;
+					case FALLINGROCK :
+						state.setFalling(true);
+						item[x][y] = new Rock(state,pos);
+						break;
+					case DIAMOND :
+						item[x][y] = new Diamond(state,pos);
+						break;
+					case FALLINGDIAMOND :
+						state.setFalling(true);
+						item[x][y] = new Diamond(state,pos);
+						break;
+					case AMOEBA :
+						item[x][y] = new Amoeba(state,pos);
+						break;
+					case FIREFLY :
+						actor[x][y] = new Firefly(state,pos);
+						break;
+					case BUTTERFLY :
+						actor[x][y] = new Butterfly(state,pos);
+						break;
+					case EXIT :
+						cell[x][y] = new Exit(pos);
+						break;
+					case PLAYER :
+						actor[x][y] = new Rockford(state,pos);
+						break;
+					default :
+						break;
+				}
+				
 			}
 		}
 	}
