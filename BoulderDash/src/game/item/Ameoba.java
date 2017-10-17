@@ -5,16 +5,17 @@ import game.Status;
 import game.Timer;
 
 public class Ameoba extends Item {
+	boolean expanding;
+	Timer timer = new Timer();
 	
 	public Ameoba(Status state, Position pos) {
 		super(state, pos, false, false, false, false);
 	}
 
-	Timer timer = new Timer();
 
 	public void expand() {
 		while(state.getStatus() == true)
-			state.setExpanding(true);
+			this.expanding = true;
 	}
 	
 	public boolean check() {
@@ -29,4 +30,14 @@ public class Ameoba extends Item {
 			 return false;
 		 }
 	}
+
+	public boolean isExpanding() {
+		return expanding;
+	}
+
+	public void setExpanding(boolean expanding) {
+		this.expanding = expanding;
+	}
+	
+	
 }
