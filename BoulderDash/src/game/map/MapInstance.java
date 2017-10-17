@@ -51,7 +51,7 @@ public class MapInstance {
 	 * Construye el mapa.
 	 * @param level : nivel.
 	 */
-	public static void buildTiles(BDLevelReader level) {
+	public static void buildMap(BDLevelReader level) {
 		Position pos = new Position();
 		Status state = new Status();
 		for (int y = 0; y < level.getHEIGHT(); y++) {
