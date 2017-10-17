@@ -5,11 +5,11 @@ import game.Status;
 import game.map.BDTile;
 import game.map.MapInstance;
 
-public abstract class Character {
+public abstract class Actor {
 	Status state = new Status();
 	Position pos = new Position();
 	
-	public Character(Status state, Position pos) {
+	public Actor(Status state, Position pos) {
 		super();
 		this.state = state;
 		this.pos = pos;

@@ -4,7 +4,7 @@ import game.Position;
 import game.Status;
 import game.item.Item;
 
-public class Rockford extends Character {
+public class Rockford extends Actor {
 	int score;
 	int diamonds;
 	boolean pushing;
