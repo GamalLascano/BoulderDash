@@ -53,7 +53,7 @@ public class MapInstance {
 	}
 	
 	/**
-	 * Construye el mapa.
+	 * Construye el mapa. Convierte la matriz tiles a 3 matrices de objectos.
 	 * @param level : nivel.
 	 */
 	public static void buildTiles(BDLevelReader level) {
