@@ -14,24 +14,25 @@ public class MapItem {
 		this.height = height;
 	}
 	
-	public Item getActor(Position pos) {
+	public Item getItem(Position pos) {
 		return items[pos.getPosX()][pos.getPosY()];
 	}
 	
 	/**
 	 * 
 	 * @param pos
-	 * @param act
+	 * @param ite
 	 * @return : true si se agrego correctamente
 	 */
-	public boolean setActor(Position pos, Item act) {
+	public boolean setItem(Position pos, Item ite) {
 		if(this.width < pos.getPosX() && this.height < pos.getPosY()) {
-			items[pos.getPosX()][pos.getPosY()] = act;
+			items[pos.getPosX()][pos.getPosY()] = ite;
 			return true;
 		}
 		else {
 			return false;
 		}
 	}
+	
 	
 }

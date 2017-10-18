@@ -13,19 +13,19 @@ public class MapCell {
 		this.height = height;
 	}
 	
-	public Cell getActor(Position pos) {
+	public Cell getCell(Position pos) {
 		return cell[pos.getPosX()][pos.getPosY()];
 	}
 	
 	/**
 	 * 
 	 * @param pos
-	 * @param act
+	 * @param cel
 	 * @return : true si se agrego correctamente
 	 */
-	public boolean setActor(Position pos, Cell act) {
+	public boolean setCell(Position pos, Cell cel) {
 		if(this.width < pos.getPosX() && this.height < pos.getPosY()) {
-			cell[pos.getPosX()][pos.getPosY()] = act;
+			cell[pos.getPosX()][pos.getPosY()] = cel;
 			return true;
 		}
 		else {
