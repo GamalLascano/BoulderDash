@@ -9,6 +9,11 @@ import game.map.BDTile;
 
 public class Wall extends Cell {
 
+	public Wall(Position pos)
+	{
+		super(pos, true, false);
+	}
+	
 	//active = true para magic wall
 	public Wall(Position pos, boolean active)
 	{
