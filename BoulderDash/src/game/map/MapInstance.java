@@ -12,7 +12,9 @@ public class MapInstance {
 	private static Item[][] item;
 	private static Actor[][] actor;
 	
-	//Singleton
+	/**
+	* Constructor para el singleton
+	*/
 	private MapInstance() {
 		tile=null;
 		cell=null;
@@ -20,6 +22,9 @@ public class MapInstance {
 		actor=null;
 	}
 	
+	/**
+	* Metodo singleton
+	*/
 	public static synchronized MapInstance getInstance() {
 		if (single == null) {
 			single = new MapInstance();
