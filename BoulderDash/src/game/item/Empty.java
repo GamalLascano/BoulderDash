@@ -6,7 +6,7 @@ import game.Status;
 public class Empty extends Item {
 	
 	public Empty(Status state, Position pos) {
-		super(state, pos, false, false, false, false);
+		super(state, pos, false, false, false, false, false);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -6,14 +6,16 @@ import game.map.BDTile;
 import game.map.MapInstance;
 
 public abstract class Item {
-	Status state = new Status(false,false,false,false,false);
+	Status state = new Status(false, false, false, false, false);
 	Position pos = new Position();
 	boolean collectable;
 	boolean moveable;
 	boolean fallable;
 	boolean explodable;
-	
-	public Item(Status state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable) {
+	boolean rounded;
+
+	public Item(Status state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
+			boolean rounded) {
 		super();
 		this.state = state;
 		this.pos = pos;
@@ -21,82 +23,76 @@ public abstract class Item {
 		this.moveable = moveable;
 		this.fallable = fallable;
 		this.explodable = explodable;
+		this.rounded = rounded;
 	}
 
 	public void fall() {
-		while(MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY) {
+		while (MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY) {
 			pos.setPosY(pos.getPosY() - 1);
 			state.setFalling(true);
 		}
 	}
 
-	public Status getState()
-	{
+	public Status getState() {
 		return state;
 	}
 
-	public void setState(Status state)
-	{
+	public void setState(Status state) {
 		this.state = state;
 	}
 
-	public Position getPos()
-	{
+	public Position getPos() {
 		return pos;
 	}
 
-	public void setPos(Position pos)
-	{
+	public void setPos(Position pos) {
 		this.pos = pos;
 	}
 
-	public boolean isCollectable()
-	{
+	public boolean isCollectable() {
 		return collectable;
 	}
 
-	public void setCollectable(boolean collectable)
-	{
+	public void setCollectable(boolean collectable) {
 		this.collectable = collectable;
 	}
 
-	public boolean isMoveable()
-	{
+	public boolean isMoveable() {
 		return moveable;
 	}
 
-	public void setMoveable(boolean moveable)
-	{
+	public void setMoveable(boolean moveable) {
 		this.moveable = moveable;
 	}
 
-	public boolean isFallable()
-	{
+	public boolean isFallable() {
 		return fallable;
 	}
 
-	public void setFallable(boolean fallable)
-	{
+	public void setFallable(boolean fallable) {
 		this.fallable = fallable;
 	}
 
-	public boolean isExplodable()
-	{
+	public boolean isExplodable() {
 		return explodable;
 	}
 
-	public void setExplodable(boolean explodable)
-	{
+	public void setExplodable(boolean explodable) {
 		this.explodable = explodable;
 	}
-	
-	
-	
-	/** poner collect en Rockford?
-	public void collected() {
-		if ()
-		BDLevelReader.field[pos.posX][pos.posY] = BDTile.EMPTY;
-		
+
+	public boolean isRounded() {
+		return rounded;
 	}
-	*/
+
+	public void setRounded(boolean rounded) {
+		this.rounded = rounded;
+	}
+
+	/**
+	 * poner collect en Rockford? public void collected() { if ()
+	 * BDLevelReader.field[pos.posX][pos.posY] = BDTile.EMPTY;
+	 * 
+	 * }
+	 */
 }

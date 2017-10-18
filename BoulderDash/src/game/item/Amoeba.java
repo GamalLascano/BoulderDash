@@ -9,7 +9,7 @@ public class Amoeba extends Item {
 	Timer timer = new Timer();
 	
 	public Amoeba(Status state, Position pos) {
-		super(state, pos, false, false, false, false);
+		super(state, pos, false, false, false, false, false);
 		this.expanding = true;
 	}
 

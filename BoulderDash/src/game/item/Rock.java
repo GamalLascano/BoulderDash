@@ -10,7 +10,7 @@ public class Rock extends Item {
 	
 	public Rock(Status state, Position pos)
 	{
-		super(state, pos, false, true, true, false);
+		super(state, pos, false, true, true, false, true);
 		// TODO Auto-generated constructor stub
 	}
 
