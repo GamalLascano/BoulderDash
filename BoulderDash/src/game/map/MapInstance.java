@@ -1,16 +1,16 @@
 package game.map;
-
-import game.*;
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
+import game.Position;
+import game.Status;
 
 public class MapInstance {
 	private static MapInstance single;
 	private static BDTile[][] tile;
-	private static Cell[][] cell;
-	private static Item[][] item;
-	private static Actor[][] actor;
+	private static MapCell cell;
+	private static MapItem item;
+	private static MapActor actor;
 	
 	/**
 	* Constructor para el singleton
@@ -67,47 +67,47 @@ public class MapInstance {
 				
 				switch (tile[x][y]) {
 					case EMPTY :
-						cell[x][y] = new Normal(pos);
-						item[x][y] = new Empty(state,pos);
-						actor[x][y] = null;
+						cell.setCell( pos, new Normal(pos) );
+						item.setItem(pos, new Empty(state,pos) );
+						actor.setActor(pos, null );
 						break;
 					case DIRT :
-						item[x][y] = new Dirt(state,pos);
+						item.setItem(pos, new Dirt(state,pos) );
 						break;
 					case TITANIUM :
-						cell[x][y] = new Titanium(pos);
+						cell.setCell( pos, new Titanium(pos) );
 						break;
 					case WALL :
-						cell[x][y] = new Wall(pos,false);
+						cell.setCell( pos, new Wall(pos) );
 						break;
 					case ROCK :
-						item[x][y] = new Rock(state,pos);
+						item.setItem(pos, new Rock(state,pos) );
 						break;
 					case FALLINGROCK :
 						state.setFalling(true);
-						item[x][y] = new Rock(state,pos);
+						item.setItem(pos, new Rock(state,pos) );
 						break;
 					case DIAMOND :
-						item[x][y] = new Diamond(state,pos);
+						item.setItem(pos, new Diamond(state,pos) );
 						break;
 					case FALLINGDIAMOND :
 						state.setFalling(true);
-						item[x][y] = new Diamond(state,pos);
+						item.setItem(pos, new Diamond(state,pos) );
 						break;
 					case AMOEBA :
-						item[x][y] = new Amoeba(state,pos);
+						item.setItem(pos, new Amoeba(state,pos) );
 						break;
 					case FIREFLY :
-						actor[x][y] = new Firefly(state,pos);
+						actor.setActor(pos, new Firefly(state,pos) );
 						break;
 					case BUTTERFLY :
-						actor[x][y] = new Butterfly(state,pos);
+						actor.setActor(pos, new Butterfly(state,pos) );
 						break;
 					case EXIT :
-						cell[x][y] = new Exit(pos);
+						cell.setCell( pos, new Exit(pos) );
 						break;
 					case PLAYER :
-						actor[x][y] = new Rockford(state,pos);
+						actor.setActor(pos, new Rockford(state,pos) );
 						break;
 					default :
 						break;
