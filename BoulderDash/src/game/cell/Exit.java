@@ -1,7 +1,7 @@
 package game.cell;
 
 import game.Position;
-import game.character.Rockford;
+import game.actor.Rockford;
 import game.map.BDLevelReader;
 
 public class Exit extends Cell {

@@ -1,7 +1,7 @@
 package game;
 
-import game.character.Firefly;
-import game.character.Rockford;
+import game.actor.Firefly;
+import game.actor.Rockford;
 import game.map.*;
 
 public class Game

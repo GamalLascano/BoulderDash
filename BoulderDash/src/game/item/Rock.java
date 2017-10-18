@@ -2,7 +2,7 @@ package game.item;
 
 import game.Position;
 import game.Status;
-import game.character.Rockford;
+import game.actor.Rockford;
 
 public class Rock extends Item {
 

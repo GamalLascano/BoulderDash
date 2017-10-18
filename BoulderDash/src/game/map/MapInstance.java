@@ -1,9 +1,9 @@
 package game.map;
 
 import game.*;
+import game.actor.*;
 import game.cell.*;
 import game.item.*;
-import game.character.*;
 
 public class MapInstance {
 	private static MapInstance single;

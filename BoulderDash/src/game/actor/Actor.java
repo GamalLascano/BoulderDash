@@ -1,4 +1,4 @@
-package game.character;
+package game.actor;
 import game.CurrentDirection;
 import game.Position;
 import game.Status;
