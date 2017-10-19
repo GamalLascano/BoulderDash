@@ -8,17 +8,22 @@ public class Game
 {
 	//HAY QUE CAMBIAR TODO ESTO DSP Y HACERLO BIEN
 	public static void main(String[] args) {
-		BDLevelReader levelReader = new BDLevelReader();
+		BDLevelReader levelFrame = new BDLevelReader();
 		CurrentDirection dir;
 	
 		int nivelElegido = 1;
-		int levels = levelReader.readLevels("levels.xml");
-		levelReader.setCurrentLevel(nivelElegido);
+		int levels = levelFrame.readLevels("levels.xml");
+		levelFrame.setCurrentLevel(nivelElegido);
 		MapInstance map = MapInstance.getInstance();
 		
-		Rockford player = new Rockford();
+		//se ponen los objectos en la matriz
+		MapInstance.buildTiles(levelFrame);
+		Position playerPos;
+		Position posmap;
 		
-		MapInstance.buildTiles(levelReader);
+		
+		Rockford player = MapInstance.getMapActor().getActor(playerPos);
+
 		player.move(CurrentDirection.DOWN); //cavar
 		player.move(CurrentDirection.RIGHT); //cavar
 		player.move(CurrentDirection.RIGHT); //cavar

@@ -13,10 +13,22 @@ public class MapActor {
 		this.height = height;
 	}
 	
+	public Rockford findPlayer() {
+		
+		for(int i = 0; i < levelFrame.getWIDTH(); ++i) {
+			for(int j = 0; j < levelFrame.getHEIGHT(); ++j) {
+				posmap.setPos(i, j);
+				if(MapInstance.getMapActor().getActor(posmap) instanceof Rockford)
+					playerPos.setPos(i, j);
+			}
+		}
+		
+	}
+	
 	public Actor getActor(Position pos) {
 		return actor[pos.getPosX()][pos.getPosY()];
 	}
-	
+
 	/**
 	 * 
 	 * @param pos

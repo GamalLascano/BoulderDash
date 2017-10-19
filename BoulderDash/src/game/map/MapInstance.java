@@ -33,6 +33,25 @@ public class MapInstance {
 	}
 	
 	/**
+	 * Get maps
+	 * @return
+	 */
+	public static MapCell getMapCell()
+	{
+		return cell;
+	}
+
+	public static MapItem getMapItem()
+	{
+		return item;
+	}
+
+	public static MapActor getMapActor()
+	{
+		return actor;
+	}
+
+	/**
 	 * Retorna una celda del mapa.
 	 * @param x
 	 * @param y
@@ -59,6 +78,10 @@ public class MapInstance {
 	public static void buildTiles(BDLevelReader level) {
 		Position pos = new Position();
 		Status state = new Status();
+		cell = new MapCell(level.getWIDTH(),level.getHEIGHT());
+		item = new MapItem(level.getWIDTH(), level.getHEIGHT());
+		actor = new MapActor(level.getWIDTH(), level.getHEIGHT());
+		
 		for (int y = 0; y < level.getHEIGHT(); y++) {
 			for (int x = 0; x < level.getWIDTH(); x++) {
 				tile[x][y] = level.getTile(x, y);

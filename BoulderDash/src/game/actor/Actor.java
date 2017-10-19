@@ -61,5 +61,27 @@ public abstract class Actor {
 		MapInstance.loadData(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY() - 1);
 		
 	}
+
+	public Status getState()
+	{
+		return state;
+	}
+
+	public void setState(Status state)
+	{
+		this.state = state;
+	}
+
+	public Position getPos()
+	{
+		return pos;
+	}
+
+	public void setPos(Position pos)
+	{
+		this.pos = pos;
+	}
+	
+	
 	
 }
