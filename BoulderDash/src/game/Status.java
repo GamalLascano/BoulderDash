@@ -1,93 +1,49 @@
 package game;
 
 public class Status {
-	boolean status;
-	boolean exploding;
-	boolean moving;
-	boolean falling;
+	StatusEnum state;
 	boolean alive;
 
 	public Status(){
 		
 	}
 	
-	public Status(boolean status, boolean exploding, boolean moving, boolean falling, boolean alive) {
-		this.status = status;
-		this.exploding = exploding;
-		this.moving = moving;
-		this.falling = falling;
+	//status para cada uno actor y item
+	//enumerador para status
+	public Status(StatusEnum state, boolean alive) {
+		this.state = state;
 		this.alive = alive;
 	}
+	
+	
 
-	public boolean isExploding() {
-		return exploding;
+	public StatusEnum getState()
+	{
+		return state;
 	}
 
-	public void setExploding(boolean exploding) {
-		this.exploding = exploding;
+	public void setState(StatusEnum state)
+	{
+		this.state = state;
 	}
 
-	public boolean isMoving() {
-		return moving;
-	}
-
-	public void setMoving(boolean moving) {
-		this.moving = moving;
-	}
-
-	public boolean isFalling() {
-		return falling;
-	}
-
-	public void setFalling(boolean falling) {
-		this.falling = falling;
-	}
-
-	public boolean isAlive() {
+	public boolean isAlive()
+	{
 		return alive;
 	}
 
-	public void setAlive(boolean alive) {
+	public void setAlive(boolean alive)
+	{
 		this.alive = alive;
 	}
 
-	public boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-	
 	/**
 	 * Cambia todo los parametros.
-	 * @param status
-	 * @param exploding
-	 * @param moving
-	 * @param falling
 	 * @param alive
 	 */
-	public void reset(boolean status, boolean exploding, boolean moving, boolean falling, boolean alive) {
-		this.status = status;
-		this.exploding = exploding;
-		this.moving = moving;
-		this.falling = falling;
+	public void reset(StatusEnum state, boolean alive) {
+		this.state = state;
 		this.alive = alive;
-	}
-	
-	/**
-	 * Status switch.
-	 */
-	public void changeStatus() {
-		if (status) 
-			status=false;
-		else status=true;
-	}
-
-	@Override
-	public String toString() {
-		return "Status [status=" + status + ", exploding=" + exploding + ", moving=" + moving + ", falling=" + falling
-				+ ", alive=" + alive + "]";
 	}
 	
 }
