@@ -3,4 +3,5 @@ public enum StatusEnum{
   EXPLODING ,
   FALLING   ,
   MOVING    ,
-  }
+  IDLE      ,
+}
