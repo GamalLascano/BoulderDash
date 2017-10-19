@@ -3,14 +3,14 @@ package game.cell;
 import game.Position;
 
 public class Normal extends Cell {
-	private boolean isDirt;
+	private boolean isDirt; //True = is dirt, false = is normal
 	public Normal(Position pos)
 	{
-		super(pos, false, false);
-		this.isDirt=false;
+		super(pos, false);
+		this.isDirt=true;
 	}
 	public Normal(Position pos, boolean isDirt){
-		super(pos, false, false);		 
+		super(pos, false);		 
 		this.isDirt=isDirt;
 	}
 	pubublic boolean getIsDirt(){
