@@ -2,20 +2,24 @@ package game.cell;
 
 import game.Position;
 
-public class Normal extends Cell {
+public class Dirt extends Cell {
 	private boolean isDirt; //True = is dirt, false = is normal
-	public Normal(Position pos)
+	
+	public Dirt(Position pos)
 	{
 		super(pos, false);
 		this.isDirt=true;
 	}
-	public Normal(Position pos, boolean isDirt){
+	
+	public Dirt(Position pos, boolean isDirt){
 		super(pos, false);		 
 		this.isDirt=isDirt;
 	}
-	pubublic boolean getIsDirt(){
+	
+	public boolean getIsDirt(){
 		return isDirt;
 	}
+	
 	public void setNormal(){
 		this.isDirt=false;
 	}

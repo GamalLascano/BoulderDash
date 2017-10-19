@@ -4,7 +4,7 @@ import game.Position;
 
 public abstract class Cell {
 	Position pos;
-	boolean solid;		//Si los personajes pueden caminar sobre la celda.
+	boolean solid;		//Si los personajes pueden caminar sobre la celda..
 	
 	Cell(Position pos, boolean solid) {
 		this.pos = pos;
