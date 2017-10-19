@@ -6,7 +6,7 @@ import game.map.BDTile;
 import game.map.MapInstance;
 
 public abstract class Item {
-	Status state = new Status(false, false, false, false, false);
+	Status state;
 	Position pos = new Position();
 	boolean collectable;
 	boolean moveable;

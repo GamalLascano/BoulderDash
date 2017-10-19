@@ -5,6 +5,7 @@ import game.item.*;
 import game.Position;
 import game.Status;
 import game.StatusEnum;
+import game.ListActor;
 
 public class MapInstance {
 	private static MapInstance single;
