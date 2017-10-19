@@ -25,7 +25,7 @@ public class MapItem {
 	 * @return : true si se agrego correctamente
 	 */
 	public boolean setItem(Position pos, Item ite) {
-		if(this.width < pos.getPosX() && this.height < pos.getPosY()) {
+		if(this.width >= pos.getPosX() && this.height >= pos.getPosY()) {
 			items[pos.getPosX()][pos.getPosY()] = ite;
 			return true;
 		}

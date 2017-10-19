@@ -24,7 +24,7 @@ public class MapCell {
 	 * @return : true si se agrego correctamente
 	 */
 	public boolean setCell(Position pos, Cell cel) {
-		if(this.width < pos.getPosX() && this.height < pos.getPosY()) {
+		if(this.width >= pos.getPosX() && this.height >= pos.getPosY()) {
 			cell[pos.getPosX()][pos.getPosY()] = cel;
 			return true;
 		}

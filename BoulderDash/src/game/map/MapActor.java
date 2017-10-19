@@ -24,7 +24,7 @@ public class MapActor {
 	 * @return : true si se agrego correctamente
 	 */
 	public boolean setActor(Position pos, Actor act) {
-		if(this.width < pos.getPosX() && this.height < pos.getPosY()) {
+		if(this.width >= pos.getPosX() && this.height >= pos.getPosY()) {
 			actor[pos.getPosX()][pos.getPosY()] = act;
 			return true;
 		}
