@@ -4,13 +4,11 @@ import game.Position;
 
 public abstract class Cell {
 	Position pos;
-	boolean active;		//Para la salida y muros magicos.
 	boolean solid;		//Si los personajes pueden caminar sobre la celda.
 	
-	Cell(Position pos, boolean solid, boolean active) {
+	Cell(Position pos, boolean solid) {
 		this.pos = pos;
 		this.solid = solid;
-		this.active = active;
 	}
 	
 	public Position getPos()
@@ -21,14 +19,6 @@ public abstract class Cell {
 	public void setPos(Position pos)
 	{
 		this.pos = pos;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 
 	public boolean isSolid() {

@@ -7,12 +7,11 @@ import game.map.BDLevelReader;
 public class Exit extends Cell {
 
 	public Exit(Position pos) {
-		super(pos, true, false);
+		super(pos, true);
 	}
 
 	public void open(BDLevelReader levelReader, Rockford player ) {
 		if(player.getDiamonds() == levelReader.getDiamondsNeeded()) {
-			this.setActive(true);
 			this.setSolid(false);
 		}
 	}

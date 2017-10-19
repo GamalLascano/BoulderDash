@@ -6,7 +6,7 @@ public class Titanium extends Cell {
 
 	public Titanium(Position pos)
 	{
-		super(pos, true, false);
+		super(pos, true);
 	}
 	
 }
