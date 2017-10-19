@@ -4,6 +4,7 @@ import game.cell.*;
 import game.item.*;
 import game.Position;
 import game.Status;
+import game.StatusEnum;
 
 public class MapInstance {
 	private static MapInstance single;
@@ -78,6 +79,7 @@ public class MapInstance {
 	public static void buildTiles(BDLevelReader level) {
 		Position pos = new Position();
 		Status state = new Status();
+
 		cell = new MapCell(level.getWIDTH(),level.getHEIGHT());
 		item = new MapItem(level.getWIDTH(), level.getHEIGHT());
 		actor = new MapActor(level.getWIDTH(), level.getHEIGHT());
@@ -86,16 +88,16 @@ public class MapInstance {
 			for (int x = 0; x < level.getWIDTH(); x++) {
 				tile[x][y] = level.getTile(x, y);
 				pos.setPos(x, y);
-				state.reset(false, false, false, false, true);
+				state.reset(StatusEnum.IDLE, true);
 				
 				switch (tile[x][y]) {
 					case EMPTY :
-						cell.setCell( pos, new Normal(pos) );
+						cell.setCell(pos, new Dirt(pos,false) );
 						item.setItem(pos, new Empty(state,pos) );
 						actor.setActor(pos, null );
 						break;
 					case DIRT :
-						item.setItem(pos, new Dirt(state,pos) );
+						cell.setCell(pos, new Dirt(pos) );
 						break;
 					case TITANIUM :
 						cell.setCell( pos, new Titanium(pos) );
@@ -107,14 +109,14 @@ public class MapInstance {
 						item.setItem(pos, new Rock(state,pos) );
 						break;
 					case FALLINGROCK :
-						state.setFalling(true);
+						state.setStateEnum(StatusEnum.FALLING);
 						item.setItem(pos, new Rock(state,pos) );
 						break;
 					case DIAMOND :
 						item.setItem(pos, new Diamond(state,pos) );
 						break;
 					case FALLINGDIAMOND :
-						state.setFalling(true);
+						state.setStateEnum(StatusEnum.FALLING);
 						item.setItem(pos, new Diamond(state,pos) );
 						break;
 					case AMOEBA :
