@@ -1,19 +1,18 @@
-Digo de dejar un archivo de texto con las cosas a hacer
--Codear celdas
--Ver como hacer con las instancias
--Hacer la logica del juego
-- hacer ojetos redondos (diamantes y boulders)
-o
-o
+
 - hacer el update de los elementos
 - que estructuras de datos usar para el update
 - pensar en hacer mas clases
 
+Hacer:
+- hacer los turnos
+- hacer lista linked list de actores y items
+- hacer link de la posicion y index de la matriz
+- hacer la explosion y consequencia
+- hacer status para actor y status para items de manera separada
+- poner explode en enemy
+- poner variables de instancias en clases especificas y no todo en items
+- hacer mas enumeraciones ej:status
+- hacer el main (for de turnos)
+
 Preguntar:
-- como se hace el mapa (1 matriz o multiples, como acceder a los items etc...)
-- como se construye el mapa
-- como acceder a Rockford en el mapa
-- si estan bien las variables y constructores
-- si estan bien los metodos
-- como hacer el main
-- si poner las clases: explosion ...
+- 
