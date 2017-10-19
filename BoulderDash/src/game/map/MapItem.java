@@ -8,7 +8,7 @@ public class MapItem {
 	private int width;
 	private int height;
 	
-	public MapItem(Item[][] items, int width, int height) {
+	public MapItem(int width, int height) {
 		this.items = new Item[width][height];
 		this.width = width;
 		this.height = height;

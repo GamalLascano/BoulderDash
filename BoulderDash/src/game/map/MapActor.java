@@ -7,7 +7,7 @@ public class MapActor {
 	private int width;
 	private int height;
 	
-	public MapActor(Actor[][] actor, int width, int height) {
+	public MapActor(int width, int height) {
 		this.actor = new Actor[width][height];
 		this.width = width;
 		this.height = height;

@@ -7,7 +7,7 @@ public class MapCell {
 	private int width;
 	private int height;
 	
-	public MapCell(Cell[][] cell, int width, int height) {
+	public MapCell(int width, int height) {
 		this.cell = new Cell[width][height];
 		this.width = width;
 		this.height = height;
