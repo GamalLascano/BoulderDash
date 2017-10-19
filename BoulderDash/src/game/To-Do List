@@ -7,7 +7,7 @@ Hacer:
 - hacer los turnos.
 - hacer lista linked list de actores y items
 - hacer link de la posicion y index de la matriz
-- hacer la explosion y consequencia
+- hacer la explosion y consecuencia
 - hacer status para actor y status para items de manera separada
 - poner explode en enemy
 - poner variables de instancias en clases especificas y no todo en items
