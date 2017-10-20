@@ -45,6 +45,11 @@ public class MapInstance
 	 * 
 	 * @return
 	 */
+	public static BDTile[][] getMapTile()
+	{
+		return tile;
+	}
+	
 	public static MapCell getMapCell()
 	{
 		return cell;
