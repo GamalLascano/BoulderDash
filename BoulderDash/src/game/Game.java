@@ -3,7 +3,7 @@ package game;
 import game.actor.Firefly;
 import game.actor.Rockford;
 import game.map.*;
-import game.map.BDLevel.BDLevelReader;
+import game.map.bdlevel.BDLevelReader;
 
 public class Game
 {

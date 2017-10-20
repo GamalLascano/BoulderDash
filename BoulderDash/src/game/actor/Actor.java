@@ -3,7 +3,7 @@ import game.CurrentDirection;
 import game.Position;
 import game.item.StatusItem;
 import game.map.MapInstance;
-import game.map.BDLevel.BDTile;
+import game.map.bdlevel.BDTile;
 
 public abstract class Actor {
 	StatusItem state = new StatusItem();

@@ -1,4 +1,4 @@
-package game.map.BDLevel;
+package game.map.bdlevel;
 
 import java.io.*;
 import java.util.*;

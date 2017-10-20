@@ -2,8 +2,8 @@ package game.map;
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
-import game.map.BDLevel.BDLevelReader;
-import game.map.BDLevel.BDTile;
+import game.map.bdlevel.BDLevelReader;
+import game.map.bdlevel.BDTile;
 import game.Position;
 import game.ListActor;
 

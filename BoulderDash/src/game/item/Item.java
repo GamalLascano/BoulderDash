@@ -2,7 +2,7 @@ package game.item;
 
 import game.Position;
 import game.map.MapInstance;
-import game.map.BDLevel.BDTile;
+import game.map.bdlevel.BDTile;
 
 public abstract class Item {
 	StatusItem state;
