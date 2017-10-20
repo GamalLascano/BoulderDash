@@ -6,10 +6,10 @@ import game.map.MapInstance;
 import game.map.bdlevel.BDTile;
 
 public abstract class Actor {
-	StatusItem state = new StatusItem();
+	StatusActor state = new StatusActor();
 	Position pos = new Position();
 	
-	public Actor(StatusItem state, Position pos) {
+	public Actor(StatusActor state, Position pos) {
 		super();
 		this.state = state;
 		this.pos = pos;
@@ -23,7 +23,7 @@ public abstract class Actor {
 		switch (direction) {
 			case UP :
 				pos.setPosY(pos.getPosY() + 1);
-				state.setMoving(true);
+				state.setStateEnum(StatusActorEnum.MOVING);
 				break;
 			case DOWN :
 				pos.setPosY(pos.getPosY() - 1);
@@ -43,12 +43,12 @@ public abstract class Actor {
 		state.setMoving(false);
 	}
 
-	public StatusItem getState()
+	public StatusActor getState()
 	{
 		return state;
 	}
 
-	public void setState(StatusItem state)
+	public void setState(StatusActor state)
 	{
 		this.state = state;
 	}

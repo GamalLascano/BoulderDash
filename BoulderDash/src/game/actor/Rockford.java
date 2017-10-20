@@ -9,7 +9,7 @@ public class Rockford extends Actor {
 	int diamonds;
 	boolean pushing;
 
-	public Rockford(StatusItem state, Position pos)
+	public Rockford(StatusActor state, Position pos)
 	{
 		super(state, pos);
 		this.score = 0;

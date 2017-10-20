@@ -5,7 +5,7 @@ import game.item.StatusItem;
 
 public class Firefly extends Enemy {
 
-	public Firefly(StatusItem state, Position pos) {
+	public Firefly(StatusActor state, Position pos) {
 		super(state, pos);
 		// TODO Auto-generated constructor stub
 	}

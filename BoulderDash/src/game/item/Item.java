@@ -28,7 +28,7 @@ public abstract class Item {
 	public void fall() {
 		while (MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY) {
 			pos.setPosY(pos.getPosY() - 1);
-			state.setFalling(true);
+			state.setStateEnum(StatusItemEnum.FALLING);
 		}
 	}
 

@@ -14,19 +14,17 @@ public class Amoeba extends Item {
 
 
 	public void expand() {
-		while(state.getStatus() == true)
-			this.expanding = true;
 	}
 	
 	public boolean check() {
 		 if(timer.getTime() < 300)
 		 {
-			 state.setStatus(true);
+			 expanding = true;
 			 return true;
 		 }
 		 else
 		 {
-			 state.setStatus(false);
+			 expanding = false;
 			 return false;
 		 }
 	}
