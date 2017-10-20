@@ -1,7 +1,6 @@
 package game;
-public enum StatusEnum{
+public enum StatusActorEnum{
   EXPLODING ,
-  FALLING   ,
   MOVING    ,
   IDLE      ,
 }

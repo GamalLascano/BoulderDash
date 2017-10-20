@@ -89,7 +89,7 @@ public class MapInstance {
 			for (int x = 0; x < level.getWIDTH(); x++) {
 				tile[x][y] = level.getTile(x, y);
 				pos.setPos(x, y);
-				state.reset(StatusEnum.IDLE, true);
+				state.reset(StatusActorEnum.IDLE, true);
 				
 				switch (tile[x][y]) {
 					case EMPTY :
@@ -110,14 +110,14 @@ public class MapInstance {
 						item.setItem(pos, new Rock(state,pos) );
 						break;
 					case FALLINGROCK :
-						state.setStateEnum(StatusEnum.FALLING);
+						state.setStateEnum(StatusActorEnum.FALLING);
 						item.setItem(pos, new Rock(state,pos) );
 						break;
 					case DIAMOND :
 						item.setItem(pos, new Diamond(state,pos) );
 						break;
 					case FALLINGDIAMOND :
-						state.setStateEnum(StatusEnum.FALLING);
+						state.setStateEnum(StatusActorEnum.FALLING);
 						item.setItem(pos, new Diamond(state,pos) );
 						break;
 					case AMOEBA :

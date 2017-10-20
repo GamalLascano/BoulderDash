@@ -1,7 +1,7 @@
 package game.item;
 
 public class StatusItem {
-	StatusEnum stateEnum;
+	StatusActorEnum stateEnum;
 	boolean alive;
 
 	public StatusItem(){
@@ -10,19 +10,19 @@ public class StatusItem {
 	
 	//status para cada uno actor y item
 	//enumerador para status
-	public StatusItem(StatusEnum stateEnum, boolean alive) {
+	public StatusItem(StatusActorEnum stateEnum, boolean alive) {
 		this.stateEnum = stateEnum;
 		this.alive = alive;
 	}
 	
 	
 
-	public StatusEnum getStateEnum()
+	public StatusActorEnum getStateEnum()
 	{
 		return stateEnum;
 	}
 
-	public void setStateEnum(StatusEnum state)
+	public void setStateEnum(StatusActorEnum state)
 	{
 		this.stateEnum = stateEnum;
 	}
@@ -41,7 +41,7 @@ public class StatusItem {
 	 * Cambia todo los parametros.
 	 * @param alive
 	 */
-	public void reset(StatusEnum stateEnum, boolean alive) {
+	public void reset(StatusActorEnum stateEnum, boolean alive) {
 		this.stateEnum = stateEnum;
 		this.alive = alive;
 	}
