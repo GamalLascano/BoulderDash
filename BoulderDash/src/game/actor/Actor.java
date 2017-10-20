@@ -2,8 +2,8 @@ package game.actor;
 import game.CurrentDirection;
 import game.Position;
 import game.item.StatusItem;
-import game.map.BDTile;
 import game.map.MapInstance;
+import game.map.BDLevel.BDTile;
 
 public abstract class Actor {
 	StatusItem state = new StatusItem();

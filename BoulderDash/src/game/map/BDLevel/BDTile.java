@@ -1,4 +1,4 @@
-package game.map;
+package game.map.BDLevel;
 public enum BDTile {
          EMPTY              , 
          DIRT               ,

@@ -5,7 +5,7 @@ import game.item.Diamond;
 import game.item.Rock;
 import game.item.StatusItem;
 import game.map.MapInstance;
-import game.map.BDTile;
+import game.map.BDLevel.BDTile;
 
 public class Wall extends Cell {
 

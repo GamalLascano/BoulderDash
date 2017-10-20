@@ -2,7 +2,7 @@ package game.cell;
 
 import game.Position;
 import game.actor.Rockford;
-import game.map.BDLevelReader;
+import game.map.BDLevel.BDLevelReader;
 
 public class Exit extends Cell {
 
