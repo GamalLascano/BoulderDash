@@ -8,10 +8,9 @@ public class ListItem
 {
 	private List<Item> it = new ArrayList<Item>();
 
-	public ListItem(List<Item> it)
+	public ListItem()
 	{
 		super();
-		this.it = it;
 	}
 
 	public List<Item> getIt()

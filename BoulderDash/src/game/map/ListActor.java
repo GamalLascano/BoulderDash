@@ -8,6 +8,11 @@ public class ListActor
 {
 	private List<Actor> ac = new ArrayList<Actor>();
 
+	public ListActor()
+	{
+		super();
+	}
+	
 	public ListActor(List<Actor> ac)
 	{
 		super();

@@ -103,8 +103,8 @@ public class MapInstance
 		item = new MapItem(level.getWIDTH(), level.getHEIGHT());
 		actor = new MapActor(level.getWIDTH(), level.getHEIGHT());
 
-		ListActor actorList;
-		ListItem itemList;
+		ListActor actorList = new ListActor();
+		ListItem itemList = new ListItem();
 
 		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
@@ -132,33 +132,49 @@ public class MapInstance
 					cell.setCell(pos, new Wall(pos));
 					break;
 				case ROCK:
-					item.setItem(pos, new Rock(stateItem, pos));
+					Rock rock = new Rock(stateItem, pos);
+					item.setItem(pos, rock);
+					itemList.getIt().add(rock);
 					break;
 				case FALLINGROCK:
 					stateItem.setStateEnum(StatusItemEnum.FALLING);
-					item.setItem(pos, new Rock(stateItem, pos));
+					Rock fallingRock = new Rock(stateItem, pos);
+					item.setItem(pos, fallingRock);
+					itemList.getIt().add(fallingRock);
 					break;
 				case DIAMOND:
-					item.setItem(pos, new Diamond(stateItem, pos));
+					Diamond diamond = new Diamond(stateItem, pos);
+					item.setItem(pos, diamond);
+					itemList.getIt().add(diamond);
 					break;
 				case FALLINGDIAMOND:
 					stateItem.setStateEnum(StatusItemEnum.FALLING);
-					item.setItem(pos, new Diamond(stateItem, pos));
+					Diamond fallingDiamond = new Diamond(stateItem, pos);
+					item.setItem(pos, fallingDiamond);
+					itemList.getIt().add(fallingDiamond);
 					break;
 				case AMOEBA:
-					item.setItem(pos, new Amoeba(stateItem, pos));
+					Amoeba amoeba = new Amoeba(stateItem, pos);
+					item.setItem(pos, amoeba);
+					itemList.getIt().add(amoeba);
 					break;
 				case FIREFLY:
-					actor.setActor(pos, new Firefly(stateActor, pos));
+					Firefly firefly = new Firefly(stateActor, pos);
+					actor.setActor(pos, firefly);
+					actorList.getAc().add(firefly);
 					break;
 				case BUTTERFLY:
-					actor.setActor(pos, new Butterfly(stateActor, pos));
+					Butterfly butterfly = new Butterfly(stateActor, pos);
+					actor.setActor(pos, butterfly);
+					actorList.getAc().add(butterfly);
 					break;
 				case EXIT:
 					cell.setCell(pos, new Exit(pos));
 					break;
 				case PLAYER:
-					actor.setActor(pos, new Rockford(stateActor, pos));
+					Rockford player = new Rockford(stateActor, pos);
+					actor.setActor(pos, player);
+					actorList.getAc().add(player);
 					break;
 				default:
 					break;
