@@ -1,9 +1,10 @@
 package game.map;
 
+import game.actor.Actor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActor<Actor>
+public class ListActor
 {
 	private List<Actor> ac = new ArrayList<Actor>();
 
