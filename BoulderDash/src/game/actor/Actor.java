@@ -1,7 +1,7 @@
 package game.actor;
 import game.CurrentDirection;
 import game.Position;
-import game.StatusItem;
+import game.item.StatusItem;
 import game.map.BDTile;
 import game.map.MapInstance;
 

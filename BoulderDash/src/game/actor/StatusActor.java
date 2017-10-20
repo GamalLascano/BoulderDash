@@ -1,4 +1,4 @@
-package game;
+package game.actor;
 
 public class StatusActor {
 	StatusEnum stateEnum;

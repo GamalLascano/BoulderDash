@@ -3,8 +3,6 @@ import game.actor.*;
 import game.cell.*;
 import game.item.*;
 import game.Position;
-import game.StatusItem;
-import game.StatusItem;
 import game.ListActor;
 
 public class MapInstance {

@@ -1,7 +1,6 @@
 package game.item;
 
 import game.Position;
-import game.StatusItem;
 import game.map.BDTile;
 import game.map.MapInstance;
 

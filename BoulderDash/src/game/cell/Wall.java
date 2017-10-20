@@ -1,9 +1,9 @@
 package game.cell;
 
 import game.Position;
-import game.StatusItem;
 import game.item.Diamond;
 import game.item.Rock;
+import game.item.StatusItem;
 import game.map.MapInstance;
 import game.map.BDTile;
 

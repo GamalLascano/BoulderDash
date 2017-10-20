@@ -1,7 +1,7 @@
 package game.actor;
 
 import game.Position;
-import game.StatusItem;
+import game.item.StatusItem;
 
 public abstract class Enemy extends Actor {
 	

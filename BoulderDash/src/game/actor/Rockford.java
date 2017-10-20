@@ -1,8 +1,8 @@
 package game.actor;
 
 import game.Position;
-import game.StatusItem;
 import game.item.Item;
+import game.item.StatusItem;
 
 public class Rockford extends Actor {
 	int score;

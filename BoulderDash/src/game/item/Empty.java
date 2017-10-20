@@ -1,7 +1,6 @@
 package game.item;
 
 import game.Position;
-import game.StatusItem;
 
 public class Empty extends Item {
 	
