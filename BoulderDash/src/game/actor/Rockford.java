@@ -1,7 +1,7 @@
 package game.actor;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 import game.item.Item;
 
 public class Rockford extends Actor {
@@ -9,7 +9,7 @@ public class Rockford extends Actor {
 	int diamonds;
 	boolean pushing;
 
-	public Rockford(Status state, Position pos)
+	public Rockford(StatusItem state, Position pos)
 	{
 		super(state, pos);
 		this.score = 0;

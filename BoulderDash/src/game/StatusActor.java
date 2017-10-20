@@ -1,10 +1,10 @@
 package game;
 
-public class Status {
+public class StatusActor {
 	StatusEnum stateEnum;
 	boolean alive;
 
-	public Status(){
+	public StatusActor(){
 		
 	}
 	

@@ -1,11 +1,11 @@
 package game.actor;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 
 public class Firefly extends Enemy {
 
-	public Firefly(Status state, Position pos) {
+	public Firefly(StatusItem state, Position pos) {
 		super(state, pos);
 		// TODO Auto-generated constructor stub
 	}

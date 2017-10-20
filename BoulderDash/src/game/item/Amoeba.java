@@ -1,14 +1,14 @@
 package game.item;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 import game.Timer;
 
 public class Amoeba extends Item {
 	boolean expanding;
 	Timer timer = new Timer();
 	
-	public Amoeba(Status state, Position pos) {
+	public Amoeba(StatusItem state, Position pos) {
 		super(state, pos, false, false, false, false, false);
 		this.expanding = true;
 	}

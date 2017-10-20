@@ -1,7 +1,7 @@
 package game.cell;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 import game.item.Diamond;
 import game.item.Rock;
 import game.map.MapInstance;
@@ -20,7 +20,7 @@ public class Wall extends Cell {
 			
 			stone.getState().setAlive(false);
 			Position diamondPos = this.getPos();
-			Status diamondState = new Status(false,false,false,true,true);
+			StatusItem diamondState = new StatusItem(false,false,false,true,true);
 			Diamond diamond = new Diamond(diamondState, diamondPos);
 			MapInstance.loadData(BDTile.DIAMOND, diamond.getPos().getPosX(), diamond.getPos().getPosY());
 		}
@@ -33,7 +33,7 @@ public class Wall extends Cell {
 			
 			diamond.getState().setAlive(false);
 			Position stonePos = this.getPos();
-			Status stoneState = new Status(false,false,false,true,true);
+			StatusItem stoneState = new StatusItem(false,false,false,true,true);
 			Rock stone = new Rock(stoneState, stonePos);
 			MapInstance.loadData(BDTile.ROCK, stone.getPos().getPosX(), stone.getPos().getPosY());
 		}

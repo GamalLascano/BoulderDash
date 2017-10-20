@@ -1,12 +1,12 @@
 package game.item;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 import game.map.BDTile;
 import game.map.MapInstance;
 
 public abstract class Item {
-	Status state;
+	StatusItem state;
 	Position pos = new Position();
 	boolean collectable;
 	boolean moveable;
@@ -14,7 +14,7 @@ public abstract class Item {
 	boolean explodable;
 	boolean rounded;
 
-	public Item(Status state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
+	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
 			boolean rounded) {
 		super();
 		this.state = state;
@@ -33,11 +33,11 @@ public abstract class Item {
 		}
 	}
 
-	public Status getState() {
+	public StatusItem getState() {
 		return state;
 	}
 
-	public void setState(Status state) {
+	public void setState(StatusItem state) {
 		this.state = state;
 	}
 

@@ -1,14 +1,14 @@
 package game.item;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 import game.actor.Rockford;
 
 public class Rock extends Item {
 
 	
 	
-	public Rock(Status state, Position pos)
+	public Rock(StatusItem state, Position pos)
 	{
 		super(state, pos, false, true, true, false, true);
 		// TODO Auto-generated constructor stub

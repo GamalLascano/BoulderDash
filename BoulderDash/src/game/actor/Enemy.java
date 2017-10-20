@@ -1,11 +1,11 @@
 package game.actor;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 
 public abstract class Enemy extends Actor {
 	
-	public Enemy(Status state, Position pos) {
+	public Enemy(StatusItem state, Position pos) {
 		super(state, pos);
 		// TODO Auto-generated constructor stub
 	}

@@ -3,8 +3,8 @@ import game.actor.*;
 import game.cell.*;
 import game.item.*;
 import game.Position;
-import game.Status;
-import game.StatusEnum;
+import game.StatusItem;
+import game.StatusItem;
 import game.ListActor;
 
 public class MapInstance {
@@ -79,7 +79,7 @@ public class MapInstance {
 	 */
 	public static void buildTiles(BDLevelReader level) {
 		Position pos = new Position();
-		Status state = new Status();
+		StatusItem state = new StatusItem();
 
 		cell = new MapCell(level.getWIDTH(),level.getHEIGHT());
 		item = new MapItem(level.getWIDTH(), level.getHEIGHT());

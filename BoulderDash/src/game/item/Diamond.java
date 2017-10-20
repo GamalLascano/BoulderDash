@@ -1,11 +1,11 @@
 package game.item;
 
 import game.Position;
-import game.Status;
+import game.StatusItem;
 
 public class Diamond extends Item {
 
-	public Diamond(Status state, Position pos) {
+	public Diamond(StatusItem state, Position pos) {
 		super(state, pos, true, false, true, false, true);
 	}
 	

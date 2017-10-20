@@ -1,15 +1,15 @@
 package game.actor;
 import game.CurrentDirection;
 import game.Position;
-import game.Status;
+import game.StatusItem;
 import game.map.BDTile;
 import game.map.MapInstance;
 
 public abstract class Actor {
-	Status state = new Status();
+	StatusItem state = new StatusItem();
 	Position pos = new Position();
 	
-	public Actor(Status state, Position pos) {
+	public Actor(StatusItem state, Position pos) {
 		super();
 		this.state = state;
 		this.pos = pos;
@@ -43,12 +43,12 @@ public abstract class Actor {
 		state.setMoving(false);
 	}
 
-	public Status getState()
+	public StatusItem getState()
 	{
 		return state;
 	}
 
-	public void setState(Status state)
+	public void setState(StatusItem state)
 	{
 		this.state = state;
 	}
