@@ -1,8 +1,8 @@
 package game.actor;
 
 public class StatusActor {
-	StatusActorEnum stateEnum;
-	boolean alive;
+	private StatusActorEnum stateEnum;
+	private boolean alive;
 
 	public StatusActor(){
 		

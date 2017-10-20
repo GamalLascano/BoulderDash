@@ -1,11 +1,13 @@
 package game.map;
+
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
 import game.Position;
-import game.ListActor;
+import game.map.ListActor;
+import game.map.ListItem;
 
 public class MapInstance {
 	private static MapInstance single;
@@ -79,7 +81,8 @@ public class MapInstance {
 	 */
 	public static void buildTiles(BDLevelReader level) {
 		Position pos = new Position();
-		StatusItem state = new StatusItem();
+		StatusItem stateItem = new StatusItem();
+		StatusActor stateActor = new StatusActor();
 
 		cell = new MapCell(level.getWIDTH(),level.getHEIGHT());
 		item = new MapItem(level.getWIDTH(), level.getHEIGHT());
@@ -89,7 +92,8 @@ public class MapInstance {
 			for (int x = 0; x < level.getWIDTH(); x++) {
 				tile[x][y] = level.getTile(x, y);
 				pos.setPos(x, y);
-				state.reset(StatusActorEnum.IDLE, true);
+				stateItem.reset(StatusItemEnum.IDLE, true);
+				stateActor.reset(StatusActorEnum.IDLE, true);
 				
 				switch (tile[x][y]) {
 					case EMPTY :
