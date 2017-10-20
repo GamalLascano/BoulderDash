@@ -1,21 +1,21 @@
 package game.actor;
 
-public class StatusActor {
+public class StatusActor
+{
 	private StatusActorEnum stateEnum;
 	private boolean alive;
 
-	public StatusActor(){
-		
+	public StatusActor()
+	{
+
 	}
-	
-	//status para cada uno actor y item
-	//enumerador para status
+
+	// status para cada uno actor y item
+	// enumerador para status
 	public Status(StatusActorEnum stateEnum, boolean alive) {
 		this.stateEnum = stateEnum;
 		this.alive = alive;
 	}
-	
-	
 
 	public StatusActorEnum getStateEnum()
 	{
@@ -39,11 +39,13 @@ public class StatusActor {
 
 	/**
 	 * Cambia todo los parametros.
+	 * 
 	 * @param alive
 	 */
-	public void reset(StatusActorEnum stateEnum, boolean alive) {
+	public void reset(StatusActorEnum stateEnum, boolean alive)
+	{
 		this.stateEnum = stateEnum;
 		this.alive = alive;
 	}
-	
+
 }

@@ -4,7 +4,8 @@ import game.Position;
 import game.item.Item;
 import game.item.StatusItem;
 
-public class Rockford extends Actor {
+public class Rockford extends Actor
+{
 	int score;
 	int diamonds;
 	boolean pushing;
@@ -17,22 +18,26 @@ public class Rockford extends Actor {
 		this.pushing = false;
 	}
 
-	public int getScore() {
+	public int getScore()
+	{
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(int score)
+	{
 		this.score = score;
 	}
 
-	public int getDiamonds() {
+	public int getDiamonds()
+	{
 		return diamonds;
 	}
 
-	public void setDiamonds(int diamonds) {
+	public void setDiamonds(int diamonds)
+	{
 		this.diamonds = diamonds;
 	}
-	
+
 	public boolean isPushing()
 	{
 		return pushing;
@@ -43,17 +48,20 @@ public class Rockford extends Actor {
 		this.pushing = pushing;
 	}
 
-	public boolean save() {
+	public boolean save()
+	{
 		return true;
 	}
-	
-	//hacer una clase proximidad? sino hay que hacer empujar en cada direction
-	public void push(Item item) {
-		while ( this.pos.getPosX() == item.getPos().getPosX() + 1) {
+
+	// hacer una clase proximidad? sino hay que hacer empujar en cada direction
+	public void push(Item item)
+	{
+		while (this.pos.getPosX() == item.getPos().getPosX() + 1)
+		{
 			this.pushing = true;
 		}
 	}
-	
-	//singleton aca??
-	//banco hacerlo singleton
+
+	// singleton aca??
+	// banco hacerlo singleton
 }

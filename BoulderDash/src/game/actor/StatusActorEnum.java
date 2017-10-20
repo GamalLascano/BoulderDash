@@ -1,5 +1,6 @@
 package game.actor;
-public enum StatusActorEnum{
+public enum StatusActorEnum
+{
   EXPLODING ,
   MOVING    ,
   IDLE      ,

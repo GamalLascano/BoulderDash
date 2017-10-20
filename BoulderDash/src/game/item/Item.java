@@ -4,7 +4,8 @@ import game.Position;
 import game.map.MapInstance;
 import game.map.bdlevel.BDTile;
 
-public abstract class Item {
+public abstract class Item
+{
 	StatusItem state;
 	Position pos = new Position();
 	boolean collectable;
@@ -13,8 +14,9 @@ public abstract class Item {
 	boolean explodable;
 	boolean rounded;
 
-	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
-			boolean rounded) {
+	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable,
+			boolean explodable, boolean rounded)
+	{
 		super();
 		this.state = state;
 		this.pos = pos;
@@ -25,66 +27,82 @@ public abstract class Item {
 		this.rounded = rounded;
 	}
 
-	public void fall() {
-		while (MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY) {
+	public void fall()
+	{
+		while (MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY)
+		{
 			pos.setPosY(pos.getPosY() - 1);
 			state.setStateEnum(StatusItemEnum.FALLING);
 		}
 	}
 
-	public StatusItem getState() {
+	public StatusItem getState()
+	{
 		return state;
 	}
 
-	public void setState(StatusItem state) {
+	public void setState(StatusItem state)
+	{
 		this.state = state;
 	}
 
-	public Position getPos() {
+	public Position getPos()
+	{
 		return pos;
 	}
 
-	public void setPos(Position pos) {
+	public void setPos(Position pos)
+	{
 		this.pos = pos;
 	}
 
-	public boolean isCollectable() {
+	public boolean isCollectable()
+	{
 		return collectable;
 	}
 
-	public void setCollectable(boolean collectable) {
+	public void setCollectable(boolean collectable)
+	{
 		this.collectable = collectable;
 	}
 
-	public boolean isMoveable() {
+	public boolean isMoveable()
+	{
 		return moveable;
 	}
 
-	public void setMoveable(boolean moveable) {
+	public void setMoveable(boolean moveable)
+	{
 		this.moveable = moveable;
 	}
 
-	public boolean isFallable() {
+	public boolean isFallable()
+	{
 		return fallable;
 	}
 
-	public void setFallable(boolean fallable) {
+	public void setFallable(boolean fallable)
+	{
 		this.fallable = fallable;
 	}
 
-	public boolean isExplodable() {
+	public boolean isExplodable()
+	{
 		return explodable;
 	}
 
-	public void setExplodable(boolean explodable) {
+	public void setExplodable(boolean explodable)
+	{
 		this.explodable = explodable;
 	}
 
-	public boolean isRounded() {
+	public boolean isRounded()
+	{
 		return rounded;
 	}
 
-	public void setRounded(boolean rounded) {
+	public void setRounded(boolean rounded)
+	{
 		this.rounded = rounded;
 	}
 

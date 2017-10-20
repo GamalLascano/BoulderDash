@@ -2,15 +2,17 @@ package game.cell;
 
 import game.Position;
 
-public abstract class Cell {
+public abstract class Cell
+{
 	Position pos;
-	boolean solid;		//Si los personajes pueden caminar sobre la celda..
-	
-	Cell(Position pos, boolean solid) {
+	boolean solid; // Si los personajes pueden caminar sobre la celda..
+
+	Cell(Position pos, boolean solid)
+	{
 		this.pos = pos;
 		this.solid = solid;
 	}
-	
+
 	public Position getPos()
 	{
 		return pos;
@@ -21,11 +23,13 @@ public abstract class Cell {
 		this.pos = pos;
 	}
 
-	public boolean isSolid() {
+	public boolean isSolid()
+	{
 		return solid;
 	}
 
-	public void setSolid(boolean solid) {
+	public void setSolid(boolean solid)
+	{
 		this.solid = solid;
 	}
 }

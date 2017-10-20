@@ -23,6 +23,5 @@ public class ListItem
 	{
 		this.it = it;
 	}
-	
-	
+
 }

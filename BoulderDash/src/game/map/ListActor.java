@@ -23,6 +23,5 @@ public class ListActor
 	{
 		this.ac = ac;
 	}
-	
-	 
+
 }

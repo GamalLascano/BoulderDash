@@ -1,5 +1,6 @@
 package game.item;
-public enum StatusItemEnum{
+public enum StatusItemEnum
+{
   FALLING   ,
   IDLE      ,
 }
