@@ -1,6 +1,7 @@
 
 		=== INFO ===
 - para sleep: java.util.concurrent.TimeUnit
+- otro sleep: Thread.sleep(1000);
 
 		=== TODO ===
 - hacer los turnos..
