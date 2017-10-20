@@ -1,4 +1,4 @@
-package game.map
+package game;
 public enum StatusEnum{
   EXPLODING ,
   FALLING   ,
