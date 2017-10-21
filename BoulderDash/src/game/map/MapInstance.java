@@ -91,7 +91,30 @@ public class MapInstance
 
 	// ACTUALIZAR POSICION
 	
-	public static void changePosition(Entity entity)
+	private void movingPosition(Actor actor)
+	{
+		StatusActorEnum status = actor.getState().getStateEnum();
+		switch ( status )
+		{
+		case MOVINGUP:
+			actor.getPosition().goUp();
+			break;
+		case MOVINGDOWN:
+			actor.getPosition().goDown();
+			break;
+		case MOVINGRIGHT:
+			actor.getPosition().goRight();
+			break;
+		case MOVINGLEFT:
+			actor.getPosition().goRight();
+			break;
+		default:
+			break;
+		}
+		actor.getState().setStateEnum(StatusActorEnum.IDLE);
+	}
+	
+	public void changePosition(Entity entity)
 	{
 		Position pos = entity.getPosition();
 		
@@ -99,15 +122,15 @@ public class MapInstance
 		{
 			if(entity instanceof Actor)
 			{
-					actorMap.setActor(pos, entity);
-					entity.getPosition().setXY(actorMap.ge, posY);
+					movingPosition( (Actor) entity );
+					actorMap.setActor(pos, (Actor) entity);
 			}
 			else
 			{
-				itemMap.setItem(pos, entity);
+				//fallingPosition( (Item) entity );
+				itemMap.setItem(pos, (Item) entity);
 			}
 		}
-
 
 	}
 	
@@ -125,6 +148,7 @@ public class MapInstance
 			Actor unActor = actorsActive.getList().get(i);
 			switch ( actorsActive.getList().get(i).getClass().getName() )
 			{
+			// NO SWITCH PUT ENITTY
 			case "Firefly" :
 				changePosition(fire);
 				break;
@@ -167,7 +191,7 @@ public class MapInstance
 			for (int x = 0; x < level.getWIDTH(); x++)
 			{
 				tileMap[x][y] = level.getTile(x, y);
-				pos.setPos(x, y);
+				pos.setXY(x, y);
 				stateItem.reset(StatusItemEnum.IDLE, true);
 				stateActor.reset(StatusActorEnum.IDLE, true);
 
