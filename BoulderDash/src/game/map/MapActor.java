@@ -18,19 +18,19 @@ public class MapActor
 	}
 
 	// GETTERS
-	
+
 	public Actor[][] getMatrix()
 	{
 		return matrix;
 	}
-	
+
 	public Actor getActor(Position pos)
 	{
 		return matrix[pos.getX()][pos.getY()];
 	}
 
 	// SETTERS
-	
+
 	/**
 	 * 
 	 * @param pos
@@ -39,11 +39,12 @@ public class MapActor
 	 */
 	public boolean setActor(Position pos, Actor act)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.setY())
+		if (this.width >= pos.getX() && this.height >= pos.getY())
 		{
-			matrix[pos.getX()][pos.setY()] = act;
+			matrix[pos.getX()][pos.getY()] = act;
 			return true;
-		} else
+		}
+		else
 		{
 			return false;
 		}
