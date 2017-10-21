@@ -1,7 +1,10 @@
 package game.actor;
 public enum StatusActorEnum
 {
-  EXPLODING ,
-  MOVING    ,
-  IDLE      ,
+  EXPLODING		,
+  MOVINGUP		,
+  MOVINGDOWN	,
+  MOVINGRIGHT	,
+  MOVINGLEFT	,
+  IDLE			,
 }
