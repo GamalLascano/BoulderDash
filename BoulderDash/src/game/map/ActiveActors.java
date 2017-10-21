@@ -19,12 +19,12 @@ public class ActiveActors
 		this.list = list;
 	}
 
-	public List<Actor> getArray()
+	public List<Actor> getList()
 	{
 		return list;
 	}
 
-	public void setAc(List<Actor> list)
+	public void setList(List<Actor> list)
 	{
 		this.list = list;
 	}
