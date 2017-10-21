@@ -5,7 +5,7 @@
 
 		=== INFO ===
 - si alive = false explota
-- lo que se actualiza: posicion, estatus
+- lo que se actualiza: posicion, estatus.
 
 		=== TODO ===
 - hacer los turnos..
