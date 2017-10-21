@@ -4,8 +4,8 @@ import game.map.MapInstance;
 
 public class Position
 {
-	private Integer posX;
-	private Integer posY;
+	private Integer X;
+	private Integer Y;
 
 	// CONSTRUCTORS
 	
@@ -14,85 +14,85 @@ public class Position
 		super();
 	}
 
-	public Position(int posX, int posY)
+	public Position(int x, int y)
 	{
 		super();
-		this.posX = posX;
-		this.posY = posY;
+		this.X = x;
+		this.Y = y;
 	}
 
 	// GETTERS
 	
-	public int getPosX()
+	public int getX()
 	{
-		return posX;
+		return X;
 	}
 
-	public int getPosY()
+	public int setY()
 	{
-		return posY;
+		return Y;
 	}
 	
 	// SETTERS
 	
-	public void setPosX(int posX)
+	public void setX(int posX)
 	{
-		this.posX = posX;
+		this.X = posX;
 	}
 	
-	public void setPosY(int posY)
+	public void setY(int posY)
 	{
-		this.posY = posY;
+		this.Y = posY;
 	}
 
-	public void setPos(int posX, int posY)
+	public void setXY(int posX, int posY)
 	{
-		this.posX = posX;
-		this.posY = posY;
+		this.X = posX;
+		this.Y = posY;
 	}
 	
 	// POS GO
 	
 	public void goDown()
 	{
-		--this.posY;
+		--this.Y;
 	}
 
 	public void goUp()
 	{
-		++this.posY;
+		++this.Y;
 	}
 	
 	public void goLeft()
 	{
-		--this.posX;
+		--this.X;
 	}
 	
 	public void goRight()
 	{
-		++this.posX;
+		++this.X;
 	}
 	
 	// POS CHECK
 	
 	public Integer checkDown()
 	{
-		return this.posY - 1;
+		return this.Y - 1;
 	}
 
 	public Integer checkUp()
 	{
-		return this.posY + 1;
+		return this.Y + 1;
 	}
 	
 	public Integer checkLeft()
 	{
-		return this.posX - 1;
+		return this.X - 1;
 	}
 	
 	public Integer checkRight()
 	{
-		return this.posX + 1;
+		return this.X + 1;
 	}
 	
 }
