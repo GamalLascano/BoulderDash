@@ -1,24 +1,18 @@
 package game.map;
 
-import game.map.bdlevel.BDLevelReader;
 import game.Position;
 import game.SpriteChar;
 
 public class Map
 {
 	private SpriteChar[][] map;
-	private MapActor actorMap;
-	private MapCell cellMap;
-	private MapItem itemMap;
+
 	private int width;
 	private int height;
 	
-	public Map(SpriteChar[][] map, MapActor actorMap, MapCell cellMap, MapItem itemMap, int width, int height)
+	public Map(int width, int height)
 	{
-		this.map = map;
-		this.actorMap = actorMap;
-		this.cellMap = cellMap;
-		this.itemMap = itemMap;
+		this.map = new SpriteChar[width][height];
 		this.width = width;
 		this.height = height;
 	}
@@ -28,7 +22,9 @@ public class Map
 
 	// SETTERS
 	
-	public void drawMap()
+	// GRAPHICS
+	
+	public void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
 	{
 		Position pos = new Position();
 		for (int y = 0; y < height; y++)

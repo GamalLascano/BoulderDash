@@ -7,6 +7,7 @@ import game.ActiveEntities;
 import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
+import game.map.*;
 import game.Position;
 
 public class MapInstance
