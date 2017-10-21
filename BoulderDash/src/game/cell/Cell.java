@@ -1,6 +1,7 @@
 package game.cell;
 
 import game.Position;
+import game.SpriteChar;
 
 public abstract class Cell
 {
@@ -15,6 +16,11 @@ public abstract class Cell
 	
 	// GETTERS
 
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
 	public Position getPos()
 	{
 		return pos;

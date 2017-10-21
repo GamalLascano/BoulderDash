@@ -31,6 +31,11 @@ public abstract class Item extends Entity
 
 	// GETTERS
 	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
 	public StatusItem getState()
 	{
 		return state;
