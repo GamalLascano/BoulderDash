@@ -6,90 +6,90 @@ import game.item.*;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
 import game.Position;
-import game.map.ListActor;
-import game.map.ListItem;
+import game.map.ActiveActors;
+import game.map.ActiveItem;
 
 public class MapInstance
 {
-	private static MapInstance single;
-	private static BDTile[][] tile;
-	private static MapCell cell;
-	private static MapItem item;
-	private static MapActor actor;
+	private static MapInstance singleton;
+	private static BDTile[][] tileMap;
+	private static MapCell cellMap;
+	private static MapItem itemMap;
+	private static MapActor actorMap;
 
-	/**
-	 * Constructor para el singleton
-	 */
+	private static ActiveActors actorList;
+	private static ActiveItem itemList;
+
+	// CONSTRUCTOR
+
 	private MapInstance()
 	{
-		tile = null;
-		cell = null;
-		item = null;
-		actor = null;
+		tileMap = null;
+		cellMap = null;
+		itemMap = null;
+		actorMap = null;
+		actorList = null;
+		itemList = null;
 	}
 
-	/**
-	 * Metodo singleton
-	 */
+	// SINGLETON
+	
 	public static synchronized MapInstance getInstance()
 	{
-		if (single == null)
+		if (singleton == null)
 		{
-			single = new MapInstance();
+			singleton = new MapInstance();
 		}
-		return single;
+		return singleton;
 	}
 
-	/**
-	 * Get maps
-	 * 
-	 * @return
-	 */
+	// GETTERS
+	
+	public static BDTile getTile(int x, int y)
+	{
+		return tileMap[x][y];
+	}
+	
 	public static BDTile[][] getMapTile()
 	{
-		return tile;
+		return tileMap;
 	}
 	
 	public static MapCell getMapCell()
 	{
-		return cell;
+		return cellMap;
 	}
 
 	public static MapItem getMapItem()
 	{
-		return item;
+		return itemMap;
 	}
 
 	public static MapActor getMapActor()
 	{
-		return actor;
+		return actorMap;
 	}
-
-	/**
-	 * Retorna una celda del mapa.
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
-	 */
-	public static BDTile getTile(int x, int y)
+	
+	public static ActiveActors getListActor()
 	{
-		return tile[x][y];
+		return actorList;
 	}
 
-	/**
-	 * Usado para cargar datos al mapa o cambiar casillas.
-	 * 
-	 * @param tile
-	 *            : de BDlevelreader
-	 * @param x
-	 * @param y
-	 */
+	public static ActiveItem getListItem()
+	{
+		return itemList;
+	}
+	
+
+	// SETTERS
+
 	public static void setTile(BDTile til, int x, int y)
 	{
-		tile[x][y] = til;
+		tileMap[x][y] = til;
 	}
 
+	// MAPA
+	
 	/**
 	 * Construye el mapa. Convierte la matriz tiles a 3 matrices. 1 matriz de
 	 * actores, 1 matriz de items, 1 matriz de celdas Agrega actores en una
@@ -98,88 +98,87 @@ public class MapInstance
 	 * @param level
 	 *            : nivel.
 	 */
-	public static void buildTiles(BDLevelReader level)
+	public static void buildMap(BDLevelReader level)
 	{
 		Position pos = new Position();
 		StatusItem stateItem = new StatusItem();
 		StatusActor stateActor = new StatusActor();
 
-		cell = new MapCell(level.getWIDTH(), level.getHEIGHT());
-		item = new MapItem(level.getWIDTH(), level.getHEIGHT());
-		actor = new MapActor(level.getWIDTH(), level.getHEIGHT());
-
-		ListActor actorList = new ListActor();
-		ListItem itemList = new ListItem();
+		cellMap = new MapCell(level.getWIDTH(), level.getHEIGHT());
+		itemMap = new MapItem(level.getWIDTH(), level.getHEIGHT());
+		actorMap = new MapActor(level.getWIDTH(), level.getHEIGHT());
+		actorList = new ActiveActors();
+		itemList = new ActiveItem();
 
 		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
 			for (int x = 0; x < level.getWIDTH(); x++)
 			{
-				tile[x][y] = level.getTile(x, y);
+				tileMap[x][y] = level.getTile(x, y);
 				pos.setPos(x, y);
 				stateItem.reset(StatusItemEnum.IDLE, true);
 				stateActor.reset(StatusActorEnum.IDLE, true);
 
-				switch (tile[x][y])
+				switch (tileMap[x][y])
 				{
 				case EMPTY:
-					cell.setCell(pos, new Dirt(pos, false));
-					item.setItem(pos, new Empty(stateItem, pos));
-					actor.setActor(pos, null);
+					cellMap.setCell(pos, new Dirt(pos, false));
+					itemMap.setItem(pos, new Empty(stateItem, pos));
+					actorMap.setActor(pos, null);
 					break;
 				case DIRT:
-					cell.setCell(pos, new Dirt(pos));
+					cellMap.setCell(pos, new Dirt(pos));
 					break;
 				case TITANIUM:
-					cell.setCell(pos, new Titanium(pos));
+					cellMap.setCell(pos, new Titanium(pos));
 					break;
 				case WALL:
-					cell.setCell(pos, new Wall(pos));
+					cellMap.setCell(pos, new Wall(pos));
 					break;
 				case ROCK:
 					Rock rock = new Rock(stateItem, pos);
-					item.setItem(pos, rock);
-					itemList.getIt().add(rock);
+					itemMap.setItem(pos, rock);
+					itemList.getArray().add(rock);
 					break;
 				case FALLINGROCK:
 					stateItem.setStateEnum(StatusItemEnum.FALLING);
 					Rock fallingRock = new Rock(stateItem, pos);
-					item.setItem(pos, fallingRock);
-					itemList.getIt().add(fallingRock);
+					itemMap.setItem(pos, fallingRock);
+					itemList.getArray().add(fallingRock);
 					break;
 				case DIAMOND:
 					Diamond diamond = new Diamond(stateItem, pos);
-					item.setItem(pos, diamond);
-					itemList.getIt().add(diamond);
+					itemMap.setItem(pos, diamond);
+					itemList.getArray().add(diamond);
 					break;
 				case FALLINGDIAMOND:
 					stateItem.setStateEnum(StatusItemEnum.FALLING);
 					Diamond fallingDiamond = new Diamond(stateItem, pos);
-					item.setItem(pos, fallingDiamond);
-					itemList.getIt().add(fallingDiamond);
+					itemMap.setItem(pos, fallingDiamond);
+					itemList.getArray().add(fallingDiamond);
 					break;
 				case AMOEBA:
 					Amoeba amoeba = new Amoeba(stateItem, pos);
-					item.setItem(pos, amoeba);
-					itemList.getIt().add(amoeba);
+					itemMap.setItem(pos, amoeba);
+					itemList.getArray().add(amoeba);
 					break;
 				case FIREFLY:
 					Firefly firefly = new Firefly(stateActor, pos);
-					actor.setActor(pos, firefly);
-					actorList.getAc().add(firefly);
+					actorMap.setActor(pos, firefly);
+					actorList.getArray().add(firefly);
 					break;
 				case BUTTERFLY:
 					Butterfly butterfly = new Butterfly(stateActor, pos);
-					actor.setActor(pos, butterfly);
-					actorList.getAc().add(butterfly);
+					actorMap.setActor(pos, butterfly);
+					actorList.getArray().add(butterfly);
 					break;
 				case EXIT:
-					cell.setCell(pos, new Exit(pos));
+					cellMap.setCell(pos, new Exit(pos));
 					break;
 				case PLAYER:
 					Rockford player = new Rockford(stateActor, pos);
-					actor.setActor(pos, player);
-					actorList.getAc().add(player);
+					actorMap.setActor(pos, player);
+					actorList.getArray().add(player);
 					break;
 				default:
 					break;

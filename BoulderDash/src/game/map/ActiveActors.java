@@ -4,29 +4,29 @@ import game.actor.Actor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActor
+public class ActiveActors
 {
-	private List<Actor> ac = new ArrayList<Actor>();
+	private List<Actor> list = new ArrayList<Actor>();
 
-	public ListActor()
+	public ActiveActors()
 	{
 		super();
 	}
 	
-	public ListActor(List<Actor> ac)
+	public ActiveActors(List<Actor> list)
 	{
 		super();
-		this.ac = ac;
+		this.list = list;
 	}
 
-	public List<Actor> getAc()
+	public List<Actor> getArray()
 	{
-		return ac;
+		return list;
 	}
 
-	public void setAc(List<Actor> ac)
+	public void setAc(List<Actor> list)
 	{
-		this.ac = ac;
+		this.list = list;
 	}
 
 }

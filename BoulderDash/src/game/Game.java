@@ -19,12 +19,13 @@ public class Game
 		MapInstance map = MapInstance.getInstance();
 
 		// se ponen los objectos en la matriz
-		MapInstance.buildTiles(levelFrame);
+		MapInstance.buildMap(levelFrame);
 		Position playerPos;
 		Position posmap;
+		Rockford player;
 
-		Rockford player = MapInstance.getMapActor().getActor(playerPos);
-
+		map.getActorList().getAc()
+		
 		player.move(CurrentDirection.DOWN); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar

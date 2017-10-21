@@ -4,23 +4,23 @@ import game.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListItem
+public class ActiveItem
 {
-	private List<Item> it = new ArrayList<Item>();
+	private List<Item> list = new ArrayList<Item>();
 
-	public ListItem()
+	public ActiveItem()
 	{
 		super();
 	}
 
-	public List<Item> getIt()
+	public List<Item> getList()
 	{
-		return it;
+		return list;
 	}
 
-	public void setIt(List<Item> it)
+	public void setList(List<Item> list)
 	{
-		this.it = it;
+		this.list = list;
 	}
 
 }
