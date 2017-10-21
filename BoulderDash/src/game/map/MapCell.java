@@ -18,7 +18,7 @@ public class MapCell
 
 	public Cell getCell(Position pos)
 	{
-		return cell[pos.getPosX()][pos.getPosY()];
+		return cell[pos.getX()][pos.setY()];
 	}
 
 	/**
@@ -29,9 +29,9 @@ public class MapCell
 	 */
 	public boolean setCell(Position pos, Cell cel)
 	{
-		if (this.width >= pos.getPosX() && this.height >= pos.getPosY())
+		if (this.width >= pos.getX() && this.height >= pos.setY())
 		{
-			cell[pos.getPosX()][pos.getPosY()] = cel;
+			cell[pos.getX()][pos.setY()] = cel;
 			return true;
 		} else
 		{

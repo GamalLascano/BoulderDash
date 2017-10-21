@@ -56,7 +56,7 @@ public class Rockford extends Actor
 	// hacer una clase proximidad? sino hay que hacer empujar en cada direction
 	public void push(Item item)
 	{
-		while (this.pos.getPosX() == item.getPos().getPosX() + 1)
+		while (this.pos.getX() == item.getPosition().getX() + 1)
 		{
 			this.pushing = true;
 		}

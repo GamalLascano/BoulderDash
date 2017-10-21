@@ -5,7 +5,7 @@ import game.item.StatusItem;
 
 public class Butterfly extends Enemy
 {
-
+	
 	public Butterfly(StatusActor state, Position pos)
 	{
 		super(state, pos);

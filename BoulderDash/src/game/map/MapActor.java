@@ -6,37 +6,31 @@ import game.map.bdlevel.BDLevelReader;
 
 public class MapActor
 {
-	private Actor[][] actor;
+	private Actor[][] matrix;
 	private int width;
 	private int height;
 
 	public MapActor(int width, int height)
 	{
-		this.actor = new Actor[width][height];
+		this.matrix = new Actor[width][height];
 		this.width = width;
 		this.height = height;
 	}
 
-	public Rockford findPlayer()
+	// GETTERS
+	
+	public Actor[][] getMatrix()
 	{
-
-		for (int i = 0; i < levelFrame.getWIDTH(); ++i)
-		{
-			for (int j = 0; j < levelFrame.getHEIGHT(); ++j)
-			{
-				posmap.setPos(i, j);
-				if (MapInstance.getMapActor().getActor(posmap) instanceof Rockford)
-					playerPos.setPos(i, j);
-			}
-		}
-
+		return matrix;
 	}
-
+	
 	public Actor getActor(Position pos)
 	{
-		return actor[pos.getPosX()][pos.getPosY()];
+		return matrix[pos.getX()][pos.getY()];
 	}
 
+	// SETTERS
+	
 	/**
 	 * 
 	 * @param pos
@@ -45,9 +39,9 @@ public class MapActor
 	 */
 	public boolean setActor(Position pos, Actor act)
 	{
-		if (this.width >= pos.getPosX() && this.height >= pos.getPosY())
+		if (this.width >= pos.getX() && this.height >= pos.setY())
 		{
-			actor[pos.getPosX()][pos.getPosY()] = act;
+			matrix[pos.getX()][pos.setY()] = act;
 			return true;
 		} else
 		{

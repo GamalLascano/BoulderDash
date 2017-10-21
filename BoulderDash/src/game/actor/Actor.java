@@ -2,12 +2,10 @@ package game.actor;
 
 import game.CurrentDirection;
 import game.Position;
-import game.item.StatusItem;
-import game.map.MapInstance;
-import game.map.bdlevel.BDTile;
+import game.Entity;
 import java.util.concurrent.TimeUnit;
 
-public abstract class Actor
+public abstract class Actor extends Entity
 {
 	StatusActor state = new StatusActor();
 	Position pos = new Position();
@@ -16,7 +14,7 @@ public abstract class Actor
 	
 	public Actor(StatusActor state, Position pos)
 	{
-		super();
+		super(pos);
 		this.state = state;
 		this.pos = pos;
 	}
@@ -28,7 +26,7 @@ public abstract class Actor
 		return state;
 	}
 	
-	public Position getPos()
+	public Position getPosition()
 	{
 		return pos;
 	}
@@ -40,7 +38,7 @@ public abstract class Actor
 		this.state = state;
 	}
 
-	public void setPos(Position pos)
+	public void setPosition(Position pos)
 	{
 		this.pos = pos;
 	}

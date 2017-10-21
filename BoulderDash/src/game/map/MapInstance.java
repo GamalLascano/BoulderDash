@@ -3,6 +3,7 @@ package game.map;
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
+import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
 import game.Position;
@@ -88,6 +89,57 @@ public class MapInstance
 		tileMap[x][y] = til;
 	}
 
+	// ACTUALIZAR POSICION
+	
+	public static void changePosition(Entity entity)
+	{
+		Position pos = entity.getPosition();
+		
+		if(cellMap.getCell(pos).isSolid() == false)
+		{
+			if(entity instanceof Actor)
+			{
+					actorMap.setActor(pos, entity);
+					entity.getPosition().setXY(actorMap.ge, posY);
+			}
+			else
+			{
+				itemMap.setItem(pos, entity);
+			}
+		}
+
+
+	}
+	
+	// TURNOS
+	
+	public static void refresh()
+	{
+		Rockford player;
+		Butterfly butter;
+		Firefly fire;
+		
+		int i;
+		for(i = 0; i < actorsActive.getList().size(); ++i) 
+		{
+			Actor unActor = actorsActive.getList().get(i);
+			switch ( actorsActive.getList().get(i).getClass().getName() )
+			{
+			case "Firefly" :
+				changePosition(fire);
+				break;
+			case "Butterfly" :
+				changePosition(butter);
+				break;
+			case "Player" :
+				changePosition(player);
+				break;
+			default :
+				break;
+			}
+		}
+	}
+	
 	// MAPA
 	
 	/**

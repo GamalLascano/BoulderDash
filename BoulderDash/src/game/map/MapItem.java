@@ -18,7 +18,7 @@ public class MapItem
 
 	public Item getItem(Position pos)
 	{
-		return items[pos.getPosX()][pos.getPosY()];
+		return items[pos.getX()][pos.setY()];
 	}
 
 	/**
@@ -29,9 +29,9 @@ public class MapItem
 	 */
 	public boolean setItem(Position pos, Item ite)
 	{
-		if (this.width >= pos.getPosX() && this.height >= pos.getPosY())
+		if (this.width >= pos.getX() && this.height >= pos.setY())
 		{
-			items[pos.getPosX()][pos.getPosY()] = ite;
+			items[pos.getX()][pos.setY()] = ite;
 			return true;
 		} else
 		{

@@ -1,7 +1,7 @@
 package game;
 
-import game.actor.Firefly;
-import game.actor.Rockford;
+import game.actor.*;
+import game.item.*;
 import game.map.*;
 import game.map.bdlevel.BDLevelReader;
 
@@ -22,9 +22,9 @@ public class Game
 		MapInstance.buildMap(levelFrame);
 		Position playerPos;
 		Position posmap;
-		Rockford player;
+		Actor player;
 
-		map.getActorList().getAc()
+		player = MapInstance.getActorsActive().findRockford();
 		
 		player.move(CurrentDirection.DOWN); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar
@@ -55,7 +55,8 @@ public class Game
 		player.move(CurrentDirection.RIGHT); // cavar
 
 		nivelElegido = 2;
-		MapInstance.buildTiles(levelReader);
+		levelFrame.setCurrentLevel(nivelElegido);
+		MapInstance.buildMap(levelFrame);
 		player.move(CurrentDirection.RIGHT); // collectar
 		player.move(CurrentDirection.UP); // cavar
 		player.move(CurrentDirection.UP); // cavar

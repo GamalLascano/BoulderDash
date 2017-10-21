@@ -1,10 +1,11 @@
 package game.item;
 
 import game.Position;
+import game.Entity;
 import game.map.MapInstance;
 import game.map.bdlevel.BDTile;
 
-public abstract class Item
+public abstract class Item extends Entity
 {
 	StatusItem state;
 	Position pos = new Position();
@@ -17,7 +18,7 @@ public abstract class Item
 	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable,
 			boolean explodable, boolean rounded)
 	{
-		super();
+		super(pos);
 		this.state = state;
 		this.pos = pos;
 		this.collectable = collectable;
@@ -31,7 +32,7 @@ public abstract class Item
 	{
 		while (MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY)
 		{
-			pos.setPosY(pos.getPosY() - 1);
+			pos.setY(pos.setY() - 1);
 			state.setStateEnum(StatusItemEnum.FALLING);
 		}
 	}
@@ -46,12 +47,12 @@ public abstract class Item
 		this.state = state;
 	}
 
-	public Position getPos()
+	public Position getPosition()
 	{
 		return pos;
 	}
 
-	public void setPos(Position pos)
+	public void setPosition(Position pos)
 	{
 		this.pos = pos;
 	}

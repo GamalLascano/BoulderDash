@@ -23,15 +23,15 @@ public abstract class Enemy extends Actor
 	{
 		// Hay bloques que no pueden desparecer! ej: bloque salida
 		// Hay que ver como tratar con las instancias de las cells
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX(), pos.getPosY());
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY());
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX() - 1, pos.getPosY());
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX(), pos.getPosY() + 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX(), pos.getPosY() - 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY() + 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX() - 1, pos.getPosY() - 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX() - 1, pos.getPosY() + 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getPosX() + 1, pos.getPosY() - 1);
+		MapInstance.setTile(BDTile.EMPTY, pos.getX(), pos.setY());
+		MapInstance.setTile(BDTile.EMPTY, pos.getX() + 1, pos.setY());
+		MapInstance.setTile(BDTile.EMPTY, pos.getX() - 1, pos.setY());
+		MapInstance.setTile(BDTile.EMPTY, pos.getX(), pos.setY() + 1);
+		MapInstance.setTile(BDTile.EMPTY, pos.getX(), pos.setY() - 1);
+		MapInstance.setTile(BDTile.EMPTY, pos.getX() + 1, pos.setY() + 1);
+		MapInstance.setTile(BDTile.EMPTY, pos.getX() - 1, pos.setY() - 1);
+		MapInstance.setTile(BDTile.EMPTY, pos.getX() - 1, pos.setY() + 1);
+		MapInstance.setTile(BDTile.EMPTY, pos.getX() + 1, pos.setY() - 1);
 
 	}
 

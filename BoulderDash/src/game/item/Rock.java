@@ -23,7 +23,7 @@ public class Rock extends Item
 	{
 		if (player.isPushing() && this.moveable)
 		{
-			this.pos.setPosX(this.pos.posX++);
+			this.pos.setX(this.pos.posX++);
 			this.pushed = true;
 		}
 	}
