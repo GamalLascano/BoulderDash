@@ -54,25 +54,25 @@ public abstract class Actor extends Entity
 		switch (direction)
 		{
 		case UP:
-			pos.goUp();
+			pos.checkUp();
 			state.setStateEnum(StatusActorEnum.MOVING);
 			TimeUnit.SECONDS.sleep(1);
 			state.setStateEnum(StatusActorEnum.IDLE);
 			break;
 		case DOWN:
-			pos.goDown();
+			pos.checkDown();
 			state.setStateEnum(StatusActorEnum.MOVING);
 			TimeUnit.SECONDS.sleep(1);
 			state.setStateEnum(StatusActorEnum.IDLE);
 			break;
 		case LEFT:
-			pos.goLeft();
+			pos.checkLeft();
 			state.setStateEnum(StatusActorEnum.MOVING);
 			TimeUnit.SECONDS.sleep(1);
 			state.setStateEnum(StatusActorEnum.IDLE);
 			break;
 		case RIGHT:
-			pos.goRight();
+			pos.checkRight();
 			state.setStateEnum(StatusActorEnum.MOVING);
 			TimeUnit.SECONDS.sleep(1);
 			state.setStateEnum(StatusActorEnum.IDLE);
