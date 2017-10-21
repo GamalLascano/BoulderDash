@@ -100,7 +100,7 @@ public class MapInstance
 			if(entity instanceof Actor)
 			{
 					actorMap.setActor(pos, entity);
-					entity.getPosition().setXY(actorMap.ge, posY);
+					entity.getPosition().setXY(actorMap.getActor(pos), posY);
 			}
 			else
 			{
@@ -123,20 +123,7 @@ public class MapInstance
 		for(i = 0; i < actorsActive.getList().size(); ++i) 
 		{
 			Actor unActor = actorsActive.getList().get(i);
-			switch ( actorsActive.getList().get(i).getClass().getName() )
-			{
-			case "Firefly" :
-				changePosition(fire);
-				break;
-			case "Butterfly" :
-				changePosition(butter);
-				break;
-			case "Player" :
-				changePosition(player);
-				break;
-			default :
-				break;
-			}
+			changePosition(unActor);
 		}
 	}
 	

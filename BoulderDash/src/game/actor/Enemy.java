@@ -19,20 +19,15 @@ public abstract class Enemy extends Actor
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
 	 * 3x3.
 	 */
-	public void explode()
-	{
-		// Hay bloques que no pueden desparecer! ej: bloque salida
-		// Hay que ver como tratar con las instancias de las cells
-		MapInstance.setTile(BDTile.EMPTY, pos.getX(), pos.setY());
-		MapInstance.setTile(BDTile.EMPTY, pos.getX() + 1, pos.setY());
-		MapInstance.setTile(BDTile.EMPTY, pos.getX() - 1, pos.setY());
-		MapInstance.setTile(BDTile.EMPTY, pos.getX(), pos.setY() + 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getX(), pos.setY() - 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getX() + 1, pos.setY() + 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getX() - 1, pos.setY() - 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getX() - 1, pos.setY() + 1);
-		MapInstance.setTile(BDTile.EMPTY, pos.getX() + 1, pos.setY() - 1);
-
+	public abstract void explode();
+	//Recibe una posicion, y ve si esta en un radio de 3x3
+	public boolean isInRange(Position pos) {
+		if ((pos.getX()==(this.pos.getX()-1))||(pos.getX()==this.pos.getX())||
+		(pos.getX()==(this.pos.getX()+1))) {
+			if ((pos.getY()==(this.pos.getY()-1))||(pos.getY()==this.pos.getY())||
+					(pos.getY()==(this.pos.getY()+1))) {
+				return true;
+			}else return false;
+		}else return false;
 	}
-
 }
