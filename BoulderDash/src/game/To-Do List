@@ -4,8 +4,10 @@
 - otro sleep: Thread.sleep(1000);
 
 		=== INFO ===
-- si alive = false explota
+- si alive = false explota.
 - lo que se actualiza: posicion, estatus.
+- alive de player es false cuando el tiempo se acaba
+- explosion de butterfly genera diamantes
 
 		=== TODO ===
 - hacer los turnos..

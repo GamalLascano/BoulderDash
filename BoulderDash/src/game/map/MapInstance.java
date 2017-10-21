@@ -146,21 +146,7 @@ public class MapInstance
 		for(i = 0; i < actorsActive.getList().size(); ++i) 
 		{
 			Actor unActor = actorsActive.getList().get(i);
-			switch ( actorsActive.getList().get(i).getClass().getName() )
-			{
-			// NO SWITCH PUT ENITTY
-			case "Firefly" :
-				changePosition(fire);
-				break;
-			case "Butterfly" :
-				changePosition(butter);
-				break;
-			case "Player" :
-				changePosition(player);
-				break;
-			default :
-				break;
-			}
+			changePosition(unActor);
 		}
 	}
 	
