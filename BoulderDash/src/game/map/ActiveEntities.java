@@ -6,6 +6,7 @@ import game.actor.Rockford;
 import java.util.ArrayList;
 import java.util.List;
 
+	//	Lista de entities (Items y Actores)
 public class ActiveEntities
 {
 	private List<Entity> list = new ArrayList<Entity>();
