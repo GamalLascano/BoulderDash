@@ -1,7 +1,11 @@
 
-		=== INFO ===
+		=== UTIL ===
 - para sleep: java.util.concurrent.TimeUnit
 - otro sleep: Thread.sleep(1000);
+
+		=== INFO ===
+- si alive = false explota
+- lo que se actualiza: posicion, estatus
 
 		=== TODO ===
 - hacer los turnos..
