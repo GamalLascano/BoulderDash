@@ -28,7 +28,7 @@ public class Position
 		return X;
 	}
 
-	public int setY()
+	public int GetY()
 	{
 		return Y;
 	}
