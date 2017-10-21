@@ -6,13 +6,22 @@ import game.item.Rock;
 import game.item.StatusItem;
 import game.map.MapInstance;
 import game.map.bdlevel.BDTile;
+import game.SpriteChar;
 
 public class Wall extends Cell
 {
+	SpriteChar spritechar = SpriteChar.W;
 
 	public Wall(Position pos)
 	{
 		super(pos, true);
+	}
+	
+	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
 	}
 
 	// CONVERSION

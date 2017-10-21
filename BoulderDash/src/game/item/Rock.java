@@ -2,9 +2,11 @@ package game.item;
 
 import game.Position;
 import game.actor.Rockford;
+import game.SpriteChar;
 
 public class Rock extends Item
 {
+	SpriteChar spritechar = SpriteChar.O;
 	boolean pushed;
 
 	public Rock(StatusItem state, Position pos)
@@ -14,6 +16,15 @@ public class Rock extends Item
 		// TODO Auto-generated constructor stub
 	}
 
+	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
+	// MOVIMIENTO
+	
 	/**
 	 * Rockford empuja la roca. direciones?
 	 * 

@@ -1,9 +1,11 @@
 package game.cell;
 
 import game.Position;
+import game.SpriteChar;
 
 public class Dirt extends Cell
 {
+	SpriteChar spritechar = SpriteChar.D;
 	private boolean isDirt; // True = is dirt, false = is normal
 
 	// CONSTRUCTORS
@@ -22,7 +24,12 @@ public class Dirt extends Cell
 
 	// GETTERS
 	
-	public boolean getIsDirt()
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
+	public boolean IsDirt()
 	{
 		return isDirt;
 	}

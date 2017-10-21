@@ -3,9 +3,11 @@ package game.cell;
 import game.Position;
 import game.actor.Rockford;
 import game.map.bdlevel.BDLevelReader;
+import game.SpriteChar;
 
 public class Exit extends Cell
 {
+	SpriteChar spritechar = SpriteChar.S;
 
 	public Exit(Position pos)
 	{
@@ -18,6 +20,13 @@ public class Exit extends Cell
 		{
 			this.setSolid(false);
 		}
+	}
+	
+	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
 	}
 
 }

@@ -5,14 +5,14 @@ import game.Position;
 
 public class Map
 {
-	private String[][] map;
+	private Character[][] map;
 	private MapActor actorMap;
 	private MapCell cellMap;
 	private MapItem itemMap;
 	private int width;
 	private int height;
 	
-	public Map(String[][] map, MapActor actorMap, MapCell cellMap, MapItem itemMap, int width, int height)
+	public Map(Character[][] map, MapActor actorMap, MapCell cellMap, MapItem itemMap, int width, int height)
 	{
 		this.map = map;
 		this.actorMap = actorMap;
@@ -34,30 +34,9 @@ public class Map
 		{
 			for (int x = 0; x < width; x++)
 			{
-				pos.setXY(x, y);
-				switch (cellMap.getCell(pos).ge)
-				{
-					case DIRT :
-						break;
-					default :
-						break;
-				}
-				
-				switch ()
-				{
-					case DIRT :
-						break;
-					default :
-						break;
-				}
-				
-				switch ()
-				{
-					case DIRT :
-						break;
-					default :
-						break;
-				}
+				map[x][y] = cellMap.getCell(pos);
+				map[x][y] = itemMap.getItem(pos);
+				map[x][y] = actorMap.getActor(pos);
 			}
 
 		}
@@ -71,7 +50,7 @@ public class Map
 		{
 			for (int x = 0; x < width; x++)
 			{
-
+				System.out.println();
 			}
 			System.out.println();
 

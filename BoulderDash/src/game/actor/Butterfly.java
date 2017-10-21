@@ -2,9 +2,11 @@ package game.actor;
 
 import game.Position;
 import game.item.StatusItem;
+import game.SpriteChar;
 
 public class Butterfly extends Enemy
 {
+	SpriteChar spritechar = SpriteChar.B;
 	
 	public Butterfly(StatusActor state, Position pos)
 	{
@@ -12,6 +14,13 @@ public class Butterfly extends Enemy
 		// TODO Auto-generated constructor stub
 	}
 
+	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
 	// S
 	
 	@Override
@@ -21,7 +30,8 @@ public class Butterfly extends Enemy
 	}
 
 	// S
-	
+
+
 	@Override
 	public boolean rotate()
 	{

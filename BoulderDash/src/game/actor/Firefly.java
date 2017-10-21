@@ -2,18 +2,26 @@ package game.actor;
 
 import game.Position;
 import game.item.StatusItem;
-import game.map.ActiveActors;
 import game.map.MapInstance;
+import game.SpriteChar;
 
 public class Firefly extends Enemy
 {
-
+	SpriteChar spritechar = SpriteChar.F;
+	
 	public Firefly(StatusActor state, Position pos)
 	{
 		super(state, pos);
 		// TODO Auto-generated constructor stub
 	}
 
+	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
 	// S
 	
 	public boolean rotate()

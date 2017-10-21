@@ -1,10 +1,11 @@
 package game.item;
 
 import game.Position;
+import game.SpriteChar;
 
 public class Empty extends Item
 {
-
+	SpriteChar spritechar = SpriteChar.E;
 	public Empty(StatusItem state, Position pos)
 	{
 		super(state, pos, false, false, false, false, false);
@@ -16,4 +17,11 @@ public class Empty extends Item
 
 	}
 
+	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
+	
 }

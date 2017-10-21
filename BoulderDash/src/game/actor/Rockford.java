@@ -3,12 +3,15 @@ package game.actor;
 import game.Position;
 import game.item.Item;
 import game.item.StatusItem;
+import game.SpriteChar;
 
 public class Rockford extends Actor
 {
+	SpriteChar spritechar = SpriteChar.R;
 	int score;
 	int diamonds;
 	boolean pushing;
+	
 
 	public Rockford(StatusActor state, Position pos)
 	{
@@ -19,6 +22,11 @@ public class Rockford extends Actor
 	}
 
 	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
 	
 	public int getScore()
 	{

@@ -2,9 +2,11 @@ package game.item;
 
 import game.Position;
 import game.Timer;
+import game.SpriteChar;
 
 public class Amoeba extends Item
 {
+	SpriteChar spritechar = SpriteChar.A;
 	boolean expanding;
 	Timer timer = new Timer();
 
@@ -34,6 +36,11 @@ public class Amoeba extends Item
 	}
 
 	// GETTERS
+	
+	public SpriteChar getSpritechar()
+	{
+		return spritechar;
+	}
 	
 	public boolean isExpanding()
 	{

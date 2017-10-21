@@ -4,6 +4,7 @@ import game.Position;
 import game.Entity;
 import game.map.MapInstance;
 import game.map.bdlevel.BDTile;
+import game.SpriteChar;
 
 public abstract class Item extends Entity
 {
