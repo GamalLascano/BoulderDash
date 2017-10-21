@@ -3,11 +3,11 @@ package game.map;
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
+import game.ActiveEntities;
 import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
 import game.Position;
-import game.map.ActiveEntities;
 
 public class MapInstance
 {
