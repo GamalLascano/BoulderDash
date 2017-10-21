@@ -4,11 +4,11 @@ import game.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActiveItem
+public class ActiveItems
 {
 	private List<Item> list = new ArrayList<Item>();
 
-	public ActiveItem()
+	public ActiveItems()
 	{
 		super();
 	}
