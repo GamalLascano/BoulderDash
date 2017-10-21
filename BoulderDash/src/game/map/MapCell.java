@@ -14,11 +14,17 @@ public class MapCell
 		this.cell = new Cell[width][height];
 		this.width = width;
 		this.height = height;
+		for(int i=0;i<width;i++) 
+			for(int j=0;j<height;j++) {
+				Position pos = new Position(width,height);
+				Dirt dirt = new Dirt(pos);
+				this.cell[width][height] = dirt; 
+			}
 	}
 
 	public Cell getCell(Position pos)
 	{
-		return cell[pos.getX()][pos.setY()];
+		return cell[pos.getX()][pos.getY()];
 	}
 
 	/**
@@ -29,9 +35,9 @@ public class MapCell
 	 */
 	public boolean setCell(Position pos, Cell cel)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.setY())
+		if (this.width >= pos.getX() && this.height >= pos.getY())
 		{
-			cell[pos.getX()][pos.setY()] = cel;
+			cell[pos.getX()][pos.getY()] = cel;
 			return true;
 		} else
 		{
