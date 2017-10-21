@@ -1,9 +1,11 @@
 package game;
 
+import game.Entity;
 import game.actor.Actor;
 import game.actor.Rockford;
 import java.util.ArrayList;
 import java.util.List;
+
 
 	//	Lista de entities (Items y Actores)
 public class ActiveEntities
@@ -49,7 +51,7 @@ public class ActiveEntities
 		{
 			i++;
 		}
-		player = list.get(i);
+		player = (Rockford) list.get(i);
 		return player;
 	}
 
