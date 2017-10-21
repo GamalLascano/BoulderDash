@@ -14,6 +14,8 @@ public class Amoeba extends Item
 		this.expanding = true;
 	}
 
+	// COMPORTAMIENTO
+	
 	public void expand()
 	{
 	}
@@ -31,11 +33,15 @@ public class Amoeba extends Item
 		}
 	}
 
+	// GETTERS
+	
 	public boolean isExpanding()
 	{
 		return expanding;
 	}
 
+	// SETTERS
+	
 	public void setExpanding(boolean expanding)
 	{
 		this.expanding = expanding;

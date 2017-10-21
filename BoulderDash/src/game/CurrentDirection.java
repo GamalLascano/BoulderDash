@@ -1,9 +1,6 @@
 package game;
 
-public enum CurrentDirection 
+public enum CurrentDirection
 {
-	UP   ,
-	DOWN ,
-	LEFT ,
-	RIGHT,
+	UP, DOWN, LEFT, RIGHT,
 }

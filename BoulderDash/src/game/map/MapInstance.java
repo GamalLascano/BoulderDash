@@ -7,8 +7,7 @@ import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
 import game.Position;
-import game.map.ActiveActors;
-import game.map.ActiveItems;
+import game.map.ActiveEntities;
 
 public class MapInstance
 {
@@ -18,8 +17,7 @@ public class MapInstance
 	private static MapItem itemMap;
 	private static MapActor actorMap;
 
-	private static ActiveActors actorsActive;
-	private static ActiveItems itemsActive;
+	private static ActiveEntities entitiesAlive;
 
 	// CONSTRUCTOR
 
@@ -29,8 +27,7 @@ public class MapInstance
 		cellMap = null;
 		itemMap = null;
 		actorMap = null;
-		actorsActive = null;
-		itemsActive = null;
+		entitiesAlive = null;
 	}
 
 	// SINGLETON
@@ -71,16 +68,10 @@ public class MapInstance
 		return actorMap;
 	}
 	
-	public static ActiveActors getActorsActive()
+	public static ActiveEntities getActorsActive()
 	{
-		return actorsActive;
+		return entitiesAlive;
 	}
-
-	public static ActiveItems getItemsActive()
-	{
-		return itemsActive;
-	}
-	
 
 	// SETTERS
 
@@ -143,9 +134,9 @@ public class MapInstance
 		Firefly fire;
 		
 		int i;
-		for(i = 0; i < actorsActive.getList().size(); ++i) 
+		for(i = 0; i < entitiesAlive.getList().size(); ++i) 
 		{
-			Actor unActor = actorsActive.getList().get(i);
+			Actor unActor = entitiesAlive.getList().get(i);
 			changePosition(unActor);
 		}
 	}
@@ -169,8 +160,7 @@ public class MapInstance
 		cellMap = new MapCell(level.getWIDTH(), level.getHEIGHT());
 		itemMap = new MapItem(level.getWIDTH(), level.getHEIGHT());
 		actorMap = new MapActor(level.getWIDTH(), level.getHEIGHT());
-		actorsActive = new ActiveActors();
-		itemsActive = new ActiveItems();
+		entitiesAlive = new ActiveEntities();
 
 		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
@@ -200,39 +190,39 @@ public class MapInstance
 				case ROCK:
 					Rock rock = new Rock(stateItem, pos);
 					itemMap.setItem(pos, rock);
-					itemsActive.getList().add(rock);
+					entitiesAlive.getList().add(rock);
 					break;
 				case FALLINGROCK:
 					stateItem.setStateEnum(StatusItemEnum.FALLING);
 					Rock fallingRock = new Rock(stateItem, pos);
 					itemMap.setItem(pos, fallingRock);
-					itemsActive.getList().add(fallingRock);
+					entitiesAlive.getList().add(fallingRock);
 					break;
 				case DIAMOND:
 					Diamond diamond = new Diamond(stateItem, pos);
 					itemMap.setItem(pos, diamond);
-					itemsActive.getList().add(diamond);
+					entitiesAlive.getList().add(diamond);
 					break;
 				case FALLINGDIAMOND:
 					stateItem.setStateEnum(StatusItemEnum.FALLING);
 					Diamond fallingDiamond = new Diamond(stateItem, pos);
 					itemMap.setItem(pos, fallingDiamond);
-					itemsActive.getList().add(fallingDiamond);
+					entitiesAlive.getList().add(fallingDiamond);
 					break;
 				case AMOEBA:
 					Amoeba amoeba = new Amoeba(stateItem, pos);
 					itemMap.setItem(pos, amoeba);
-					itemsActive.getList().add(amoeba);
+					entitiesAlive.getList().add(amoeba);
 					break;
 				case FIREFLY:
 					Firefly firefly = new Firefly(stateActor, pos);
 					actorMap.setActor(pos, firefly);
-					actorsActive.getList().add(firefly);
+					entitiesAlive.getList().add(firefly);
 					break;
 				case BUTTERFLY:
 					Butterfly butterfly = new Butterfly(stateActor, pos);
 					actorMap.setActor(pos, butterfly);
-					actorsActive.getList().add(butterfly);
+					entitiesAlive.getList().add(butterfly);
 					break;
 				case EXIT:
 					cellMap.setCell(pos, new Exit(pos));
@@ -240,7 +230,7 @@ public class MapInstance
 				case PLAYER:
 					Rockford player = new Rockford(stateActor, pos);
 					actorMap.setActor(pos, player);
-					actorsActive.getList().add(player);
+					entitiesAlive.getList().add(player);
 					break;
 				default:
 					break;

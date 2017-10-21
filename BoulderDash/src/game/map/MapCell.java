@@ -14,18 +14,7 @@ public class MapCell
 		this.cell = new Cell[width][height];
 		this.width = width;
 		this.height = height;
-	}
-
-	// DIRT FILL
-	public void fill()
-	{
-		for (int i = 0; i < width; i++)
-			for (int j = 0; j < height; j++)
-			{
-				Position pos = new Position(width, height);
-				Dirt dirt = new Dirt(pos);
-				this.cell[width][height] = dirt;
-			}
+		fill();
 	}
 
 	// GETTERS
@@ -53,5 +42,17 @@ public class MapCell
 		{
 			return false;
 		}
+	}
+	
+	// DIRT FILL
+	public void fill()
+	{
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+			{
+				Position pos = new Position(width, height);
+				Dirt dirt = new Dirt(pos);
+				this.cell[width][height] = dirt;
+			}
 	}
 }

@@ -12,20 +12,24 @@ public abstract class Cell
 		this.pos = pos;
 		this.solid = solid;
 	}
+	
+	// GETTERS
 
 	public Position getPos()
 	{
 		return pos;
 	}
+	
+	public boolean isSolid()
+	{
+		return solid;
+	}
+
+	// SETTERS
 
 	public void setPos(Position pos)
 	{
 		this.pos = pos;
-	}
-
-	public boolean isSolid()
-	{
-		return solid;
 	}
 
 	public void setSolid(boolean solid)

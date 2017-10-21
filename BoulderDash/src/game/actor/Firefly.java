@@ -14,11 +14,15 @@ public class Firefly extends Enemy
 		// TODO Auto-generated constructor stub
 	}
 
+	// S
+	
 	public boolean rotate()
 	{
 		return true;
 	}
 
+	// S
+	
 	public void explode()
 	{
 		if (this.state.isAlive()==false) {

@@ -6,6 +6,8 @@ public class Dirt extends Cell
 {
 	private boolean isDirt; // True = is dirt, false = is normal
 
+	// CONSTRUCTORS
+	
 	public Dirt(Position pos)
 	{
 		super(pos, false);
@@ -18,11 +20,15 @@ public class Dirt extends Cell
 		this.isDirt = isDirt;
 	}
 
+	// GETTERS
+	
 	public boolean getIsDirt()
 	{
 		return isDirt;
 	}
 
+	// SETTERS
+	
 	public void setNormal()
 	{
 		this.isDirt = false;

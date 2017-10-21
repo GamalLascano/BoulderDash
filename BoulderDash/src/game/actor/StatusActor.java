@@ -5,37 +5,44 @@ public class StatusActor
 	private StatusActorEnum stateEnum;
 	private boolean alive;
 
+	// CONSTRUCTORS
+
 	public StatusActor()
 	{
 
 	}
 
-	// status para cada uno actor y item
-	// enumerador para status
-	public Status(StatusActorEnum stateEnum, boolean alive) {
+	public StatusActor(StatusActorEnum stateEnum, boolean alive) 
+	{
 		this.stateEnum = stateEnum;
 		this.alive = alive;
 	}
+
+	// GETTERS
 
 	public StatusActorEnum getStateEnum()
 	{
 		return stateEnum;
 	}
-
-	public void setStateEnum(StatusActorEnum state)
-	{
-		this.stateEnum = stateEnum;
-	}
-
+	
 	public boolean isAlive()
 	{
 		return alive;
+	}
+
+	// SETTERS
+	
+	public void setStateEnum(StatusActorEnum stateEnum)
+	{
+		this.stateEnum = stateEnum;
 	}
 
 	public void setAlive(boolean alive)
 	{
 		this.alive = alive;
 	}
+	
+	// RESET
 
 	/**
 	 * Cambia todo los parametros.

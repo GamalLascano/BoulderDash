@@ -18,14 +18,11 @@ public class Rockford extends Actor
 		this.pushing = false;
 	}
 
+	// GETTERS
+	
 	public int getScore()
 	{
 		return score;
-	}
-
-	public void setScore(int score)
-	{
-		this.score = score;
 	}
 
 	public int getDiamonds()
@@ -33,14 +30,21 @@ public class Rockford extends Actor
 		return diamonds;
 	}
 
-	public void setDiamonds(int diamonds)
-	{
-		this.diamonds = diamonds;
-	}
-
 	public boolean isPushing()
 	{
 		return pushing;
+	}
+	
+	// SETTERS
+	
+	public void setScore(int score)
+	{
+		this.score = score;
+	}
+
+	public void setDiamonds(int diamonds)
+	{
+		this.diamonds = diamonds;
 	}
 
 	public void setPushing(boolean pushing)
@@ -48,6 +52,8 @@ public class Rockford extends Actor
 		this.pushing = pushing;
 	}
 
+	// SAVE
+	
 	public boolean save()
 	{
 		return true;

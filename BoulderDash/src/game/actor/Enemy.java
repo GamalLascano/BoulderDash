@@ -12,9 +12,13 @@ public abstract class Enemy extends Actor
 		super(state, pos);
 		// TODO Auto-generated constructor stub
 	}
+	
+	// S
 
 	protected abstract boolean rotate();
 
+	// S
+	
 	/**
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
 	 * 3x3.

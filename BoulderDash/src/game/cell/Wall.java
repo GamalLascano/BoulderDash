@@ -15,6 +15,8 @@ public class Wall extends Cell
 		super(pos, true);
 	}
 
+	// CONVERSION
+	
 	public void conversion(Rock stone)
 	{
 		if ((stone.getPosition().posY == this.getPos().posY + 1) && (stone.getState().isFalling()))

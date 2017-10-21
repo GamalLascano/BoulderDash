@@ -12,12 +12,16 @@ public class Butterfly extends Enemy
 		// TODO Auto-generated constructor stub
 	}
 
+	// S
+	
 	@Override
 	public boolean explode()
 	{
 		return true;
 	}
 
+	// S
+	
 	@Override
 	public boolean rotate()
 	{

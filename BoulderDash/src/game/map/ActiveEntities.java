@@ -1,21 +1,23 @@
 package game.map;
 
-import game.actor.*;
+import game.Entity;
+import game.actor.Actor;
+import game.actor.Rockford;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActiveActors
+public class ActiveEntities
 {
-	private List<Actor> list = new ArrayList<Actor>();
+	private List<Entity> list = new ArrayList<Entity>();
 
 	// CONSTRUCTORS
 	
-	public ActiveActors()
+	public ActiveEntities()
 	{
 		super();
 	}
 	
-	public ActiveActors(List<Actor> list)
+	public ActiveEntities(List<Entity> list)
 	{
 		super();
 		this.list = list;
@@ -23,14 +25,14 @@ public class ActiveActors
 
 	// GETTERS
 	
-	public List<Actor> getList()
+	public List<Entity> getList()
 	{
 		return list;
 	}
 
 	// SETTERS	
 	
-	public void setList(List<Actor> list)
+	public void setList(List<Entity> list)
 	{
 		this.list = list;
 	}
@@ -39,9 +41,9 @@ public class ActiveActors
 	
 	// FIND
 	
-	public Actor findRockford()
+	public Rockford findRockford()
 	{
-		Actor player;
+		Rockford player;
 		int i = 0;
 		while(!(list.get(i) instanceof Rockford))
 		{
