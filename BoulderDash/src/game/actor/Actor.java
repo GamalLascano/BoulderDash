@@ -55,27 +55,19 @@ public abstract class Actor extends Entity
 		{
 		case UP:
 			pos.checkUp();
-			state.setStateEnum(StatusActorEnum.MOVING);
-			TimeUnit.SECONDS.sleep(1);
-			state.setStateEnum(StatusActorEnum.IDLE);
+			state.setStateEnum(StatusActorEnum.MOVINGUP);
 			break;
 		case DOWN:
 			pos.checkDown();
-			state.setStateEnum(StatusActorEnum.MOVING);
-			TimeUnit.SECONDS.sleep(1);
-			state.setStateEnum(StatusActorEnum.IDLE);
+			state.setStateEnum(StatusActorEnum.MOVINGDOWN);
 			break;
 		case LEFT:
 			pos.checkLeft();
-			state.setStateEnum(StatusActorEnum.MOVING);
-			TimeUnit.SECONDS.sleep(1);
-			state.setStateEnum(StatusActorEnum.IDLE);
+			state.setStateEnum(StatusActorEnum.MOVINGLEFT);
 			break;
 		case RIGHT:
 			pos.checkRight();
-			state.setStateEnum(StatusActorEnum.MOVING);
-			TimeUnit.SECONDS.sleep(1);
-			state.setStateEnum(StatusActorEnum.IDLE);
+			state.setStateEnum(StatusActorEnum.MOVINGRIGHT);
 			break;
 		default:
 			break;
