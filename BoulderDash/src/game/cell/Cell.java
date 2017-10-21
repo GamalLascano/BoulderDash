@@ -5,6 +5,7 @@ import game.SpriteChar;
 
 public abstract class Cell
 {
+	SpriteChar spritechar;
 	Position pos;
 	boolean solid; // Si los personajes pueden caminar sobre la celda..
 

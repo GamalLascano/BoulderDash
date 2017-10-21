@@ -8,6 +8,7 @@ import game.SpriteChar;
 
 public abstract class Item extends Entity
 {
+	SpriteChar spritechar;
 	StatusItem state;
 	Position pos = new Position();
 	boolean collectable;

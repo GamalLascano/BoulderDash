@@ -2,17 +2,18 @@ package game.map;
 
 import game.map.bdlevel.BDLevelReader;
 import game.Position;
+import game.SpriteChar;
 
 public class Map
 {
-	private Character[][] map;
+	private SpriteChar[][] map;
 	private MapActor actorMap;
 	private MapCell cellMap;
 	private MapItem itemMap;
 	private int width;
 	private int height;
 	
-	public Map(Character[][] map, MapActor actorMap, MapCell cellMap, MapItem itemMap, int width, int height)
+	public Map(SpriteChar[][] map, MapActor actorMap, MapCell cellMap, MapItem itemMap, int width, int height)
 	{
 		this.map = map;
 		this.actorMap = actorMap;
@@ -34,9 +35,18 @@ public class Map
 		{
 			for (int x = 0; x < width; x++)
 			{
-				map[x][y] = cellMap.getCell(pos);
-				map[x][y] = itemMap.getItem(pos);
-				map[x][y] = actorMap.getActor(pos);
+				if(actorMap.getActor(pos) != null)
+				{
+					map[x][y] = actorMap.getActor(pos).getSpritechar();
+				}
+				else if(itemMap.getItem(pos).getSpritechar() != SpriteChar.E)
+				{
+					map[x][y] = itemMap.getItem(pos).getSpritechar();
+				}
+				else
+				{
+					map[x][y] = cellMap.getCell(pos).getSpritechar();
+				}
 			}
 
 		}
@@ -50,7 +60,8 @@ public class Map
 		{
 			for (int x = 0; x < width; x++)
 			{
-				System.out.println();
+				System.out.print(map[x][y]);
+				System.out.print(" ");
 			}
 			System.out.println();
 

@@ -10,6 +10,7 @@ public abstract class Actor extends Entity
 {
 	StatusActor state = new StatusActor();
 	Position pos = new Position();
+	SpriteChar spritechar;
 
 	// CONSTRUCTORS
 	
