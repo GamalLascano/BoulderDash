@@ -82,7 +82,7 @@ public class MapInstance
 
 	// ACTUALIZAR POSICION
 	
-	private void movingPosition(Actor actor)
+	private static void movingPosition(Actor actor)
 	{
 		StatusActorEnum status = actor.getState().getStateEnum();
 		switch ( status )
@@ -97,7 +97,7 @@ public class MapInstance
 			actor.getPosition().goRight();
 			break;
 		case MOVINGLEFT:
-			actor.getPosition().goRight();
+			actor.getPosition().goLeft();
 			break;
 		default:
 			break;
@@ -105,7 +105,27 @@ public class MapInstance
 		actor.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 	
-	public void changePosition(Entity entity)
+	private static void fallingPosition(Item item)
+	{
+		StatusItemEnum status = item.getState().getStateEnum();
+		switch ( status )
+		{
+		case FALLING:
+			item.getPosition().goUp();
+			break;
+		case SLIDINGRIGHT:
+			item.getPosition().goRight();
+			break;
+		case SLIDINGLEFT:
+			item.getPosition().goLeft();
+			break;
+		default:
+			break;
+		}
+		item.getState().setStateEnum(StatusItemEnum.IDLE);
+	}
+	
+	public static void changePosition(Entity entity)
 	{
 		Position pos = entity.getPosition();
 		
@@ -118,7 +138,7 @@ public class MapInstance
 			}
 			else
 			{
-				//fallingPosition( (Item) entity );
+				fallingPosition( (Item) entity );
 				itemMap.setItem(pos, (Item) entity);
 			}
 		}
@@ -136,7 +156,7 @@ public class MapInstance
 		int i;
 		for(i = 0; i < entitiesAlive.getList().size(); ++i) 
 		{
-			Actor unActor = entitiesAlive.getList().get(i);
+			Actor unActor = (Actor) entitiesAlive.getList().get(i);
 			changePosition(unActor);
 		}
 	}
