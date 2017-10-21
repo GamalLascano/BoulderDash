@@ -14,19 +14,29 @@ public class MapCell
 		this.cell = new Cell[width][height];
 		this.width = width;
 		this.height = height;
-		for(int i=0;i<width;i++) 
-			for(int j=0;j<height;j++) {
-				Position pos = new Position(width,height);
+	}
+
+	// DIRT FILL
+	public void fill()
+	{
+		for (int i = 0; i < width; i++)
+			for (int j = 0; j < height; j++)
+			{
+				Position pos = new Position(width, height);
 				Dirt dirt = new Dirt(pos);
-				this.cell[width][height] = dirt; 
+				this.cell[width][height] = dirt;
 			}
 	}
 
+	// GETTERS
+	
 	public Cell getCell(Position pos)
 	{
 		return cell[pos.getX()][pos.getY()];
 	}
 
+	// SETTERS
+	
 	/**
 	 * 
 	 * @param pos
