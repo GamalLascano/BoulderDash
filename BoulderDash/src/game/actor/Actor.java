@@ -13,6 +13,10 @@ public abstract class Actor extends Entity
 
 	// CONSTRUCTORS
 	
+	public Actor()
+	{
+	}
+	
 	public Actor(StatusActor state, Position pos)
 	{
 		super(pos);

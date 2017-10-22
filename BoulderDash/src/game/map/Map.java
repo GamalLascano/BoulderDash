@@ -2,21 +2,35 @@ package game.map;
 
 import game.Position;
 import game.SpriteChar;
+import game.actor.None;
+import game.map.bdlevel.BDLevelReader;
 
 public class Map
 {
-	private SpriteChar[][] map;
-
-	private int width;
-	private int height;
+	private static Map singleton;
+	private static SpriteChar[][] map;
+	private static BDLevelReader level;
+	private static int width;
+	private static int height;
 	
-	public Map(int width, int height)
+	public Map()
 	{
-		this.map = new SpriteChar[width][height];
-		this.width = width;
-		this.height = height;
+		map = new SpriteChar[width][height];
+		level = null;
+		width = level.getWIDTH();
+		height = level.getHEIGHT();
 	}
+	
+	// SINGLETON
 
+	public static synchronized Map getInstance()
+	{
+		if (singleton == null)
+		{
+			singleton = new Map();
+		}
+		return singleton;
+	}
 
 	// GETTERS
 
@@ -24,14 +38,14 @@ public class Map
 	
 	// GRAPHICS
 	
-	public void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
+	public static void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
 	{
 		Position pos = new Position();
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x++)
 			{
-				if( !( actorMap.getActor(pos).equals(null) ) )
+				if( actorMap.getActor(pos) instanceof None )
 				{
 					map[x][y] = actorMap.getActor(pos).getSpritechar();
 				}
@@ -48,7 +62,7 @@ public class Map
 		}
 	}
 	
-	public void imprimirMapa()
+	public static void imprimirMapa()
 	{
 		System.out.println("..............................................................");
 

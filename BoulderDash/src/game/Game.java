@@ -31,12 +31,11 @@ public class Game
 		}
 
 		// se ponen los objectos en la matriz
+		MapInstance.getInstance();
 		MapInstance.buildMap(levelFrame);
 		Actor player;
-		
-		Map graphicmap = new Map(levelFrame.getWIDTH(),levelFrame.getHEIGHT());
 
-		player = MapInstance.getActorsActive().findRockford();
+		player = MapInstance.getEntitiesActive().findRockford();
 		
 		graphicmap.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		graphicmap.imprimirMapa();

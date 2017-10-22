@@ -4,6 +4,10 @@ public abstract class Entity
 {
 	private Position pos = new Position();
 
+	public Entity()
+	{
+	}
+	
 	public Entity(Position pos)
 	{
 		super();

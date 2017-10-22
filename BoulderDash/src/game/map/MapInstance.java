@@ -68,7 +68,7 @@ public class MapInstance
 		return actorMap;
 	}
 
-	public static ActiveEntities getActorsActive()
+	public static ActiveEntities getEntitiesActive()
 	{
 		return entitiesAlive;
 	}

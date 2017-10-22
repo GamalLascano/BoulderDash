@@ -5,6 +5,11 @@ import game.Position;
 public class None extends Actor
 {
 	//None actor
+	
+	public None()
+	{
+	}
+	
 	public None(StatusActor state, Position pos)
 	{
 		super(state, pos);

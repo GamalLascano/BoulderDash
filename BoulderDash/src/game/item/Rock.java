@@ -1,7 +1,6 @@
 package game.item;
 
 import game.Position;
-import game.actor.Rockford;
 import game.SpriteChar;
 
 public class Rock extends Item

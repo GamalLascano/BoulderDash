@@ -25,7 +25,14 @@ public class MapActor
 
 	public Actor getActor(Position pos)
 	{
-		return matrix[pos.getX()][pos.getY()];
+		if (this.width >= pos.getX() && this.height >= pos.getY())
+		{
+			return matrix[pos.getX()][pos.getY()];
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	// SETTERS
