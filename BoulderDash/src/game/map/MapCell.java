@@ -13,8 +13,7 @@ public class MapCell
 
 	private MapCell() 
 	{
-		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
-		fill();
+
 	}
 
 	// SINGLETON
@@ -68,7 +67,11 @@ public class MapCell
 			return false;
 		}
 	}
-	
+	public void start(BDLevelReader levels) {
+		level=levels;
+		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
+		fill();
+	}
 	// DIRT FILL
 	public void fill()
 	{

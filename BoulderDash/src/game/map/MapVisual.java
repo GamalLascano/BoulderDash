@@ -13,7 +13,7 @@ public class MapVisual
 	
 	private MapVisual()
 	{
-		map = new SpriteChar[level.getWIDTH()][level.getHEIGHT()];
+		
 	}
 	
 	// SINGLETON
@@ -25,6 +25,10 @@ public class MapVisual
 			singleton = new MapVisual();
 		}
 		return singleton;
+	}
+	public void start(BDLevelReader levels) {
+		level=levels;
+		map = new SpriteChar[level.getWIDTH()][level.getHEIGHT()];
 	}
 
 	// GETTERS

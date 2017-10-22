@@ -32,11 +32,12 @@ public class Game
 
 		// se ponen los objectos en la matriz
 		MapInstance.getInstance();
+		MapInstance.start(levelFrame);
 		MapInstance.buildMap(levelFrame);
 		Actor player;
 
 		player = MapInstance.getEntitiesActive().findRockford();
-		
+		MapVisual.getInstance().start(levelFrame);;
 		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		MapVisual.imprimirMapa();
 		player.move(CurrentDirection.DOWN); // cavar

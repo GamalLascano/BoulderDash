@@ -23,11 +23,7 @@ public class MapInstance
 
 	private MapInstance()
 	{
-		tileMap = null;
-		cellMap = MapCell.getInstance();
-		itemMap = MapItem.getInstance();
-		actorMap = MapActor.getInstance();
-		entitiesAlive = null;
+
 	}
 
 	// SINGLETON
@@ -105,7 +101,16 @@ public class MapInstance
 		Position pos = new Position(x,y);
 		actorMap.setActor(pos, act);
 	}
-
+	public static void start(BDLevelReader levels) {
+		tileMap = null;
+		MapCell.getInstance().start(levels);
+		cellMap = MapCell.getInstance();
+		MapItem.getInstance().start(levels);
+		itemMap = MapItem.getInstance();
+		MapActor.getInstance().start(levels);
+		actorMap = MapActor.getInstance();
+		entitiesAlive = null;
+	}
 	// ACTUALIZAR POSICION
 
 	private static void movingPosition(Actor actor)

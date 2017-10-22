@@ -12,7 +12,7 @@ public class MapItem
 
 	private MapItem()
 	{
-		matrix = new Item[level.getWIDTH()][level.getHEIGHT()];
+		
 	}
 
 	// SINGLETON
@@ -27,7 +27,10 @@ public class MapItem
 	}
 	
 	// GETTERS
-	
+	public void start(BDLevelReader levels) {
+		level=levels;
+		matrix = new Item[level.getWIDTH()][level.getHEIGHT()];
+	}
 	public Item[][] getMatrix()
 	{
 		return matrix;
