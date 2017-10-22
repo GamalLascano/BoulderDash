@@ -39,7 +39,7 @@ public class MapActor
 
 	public Actor getActor(Position pos)
 	{
-		if ( ( level.getWIDTH() >= pos.getX() ) && ( level.getHEIGHT() >= pos.getY() ) )
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			return matrix[pos.getX()][pos.getY()];
 		}
@@ -59,7 +59,7 @@ public class MapActor
 	 */
 	public boolean setActor(Position pos, Actor act)
 	{
-		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			matrix[pos.getX()][pos.getY()] = act;
 			return true;
@@ -72,7 +72,7 @@ public class MapActor
 	
 	public boolean removeActor(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			return true;

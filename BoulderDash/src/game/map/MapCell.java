@@ -2,6 +2,7 @@ package game.map;
 
 import game.cell.Cell;
 import game.cell.Dirt;
+import game.cell.Exit;
 import game.Position;
 import game.map.bdlevel.BDLevelReader;
 
@@ -36,9 +37,16 @@ public class MapCell
 	
 	public Dirt getDirt(Position pos)
 	{
-		if(matrix[pos.getX()][pos.getY()] instanceof Dirt)
+		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
-			return (Dirt) matrix[pos.getX()][pos.getY()];
+			if(matrix[pos.getX()][pos.getY()] instanceof Dirt)
+			{
+				return (Dirt) matrix[pos.getX()][pos.getY()];
+			}
+			else
+			{
+				return null;
+			}
 		}
 		else
 		{
@@ -70,7 +78,7 @@ public class MapCell
 	 */
 	public boolean setCell(Position pos, Cell cel)
 	{
-		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			matrix[pos.getX()][pos.getY()] = cel;
 			return true;
@@ -85,6 +93,22 @@ public class MapCell
 		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
 		fill();
 	}
+	
+	public Exit findExit()
+	{
+		Exit exit;
+		for (int x = 0; x < level.getWIDTH(); x++)
+			for (int y = 0; y < level.getHEIGHT(); y++)
+			{
+				if(matrix[x][y] instanceof Exit)
+				{
+				exit = (Exit) matrix[x][y];
+				return exit;
+				}
+			}
+		return null;
+	}
+	
 	// DIRT FILL
 	public void fill()
 	{

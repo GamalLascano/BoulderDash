@@ -27,11 +27,13 @@ public class MapItem
 		return singleton;
 	}
 	
-	// GETTERS
 	public void start(BDLevelReader levels) {
-		level=levels;
+		level = levels;
 		matrix = new Item[level.getWIDTH()][level.getHEIGHT()];
+		fill();
 	}
+	
+	// GETTERS
 	public Item[][] getMatrix()
 	{
 		return matrix;
@@ -52,7 +54,7 @@ public class MapItem
 	 */
 	public boolean setItem(Position pos, Item ite)
 	{
-		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			matrix[pos.getX()][pos.getY()] = ite;
 			return true;
@@ -65,7 +67,7 @@ public class MapItem
 	
 	public boolean removeItem(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			matrix[pos.getX()][pos.getY()] = new Empty(pos);
 			return true;
@@ -74,6 +76,18 @@ public class MapItem
 		{
 			return false;
 		}
+	}
+	
+	// NULL FILL
+	public void fill()
+	{
+		Position pos = new Position();
+		for (int x = 0; x < level.getWIDTH(); x++)
+			for (int y = 0; y < level.getHEIGHT(); y++)
+			{
+				pos.setXY(x, y);
+				matrix[x][y] = new Empty(pos);
+			}
 	}
 
 }

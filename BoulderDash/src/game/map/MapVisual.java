@@ -3,6 +3,7 @@ package game.map;
 import game.Position;
 import game.SpriteChar;
 import game.item.Empty;
+import game.cell.Cell;
 import game.map.bdlevel.BDLevelReader;
 
 public class MapVisual
@@ -53,7 +54,7 @@ public class MapVisual
 				{
 					map[x][y] = itemMap.getItem(pos).getSpritechar();
 				}
-				else
+				else if( cellMap.getCell(pos) instanceof Cell)
 				{
 					map[x][y] = cellMap.getCell(pos).getSpritechar();
 				}

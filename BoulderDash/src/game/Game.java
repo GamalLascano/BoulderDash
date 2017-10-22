@@ -1,13 +1,17 @@
 package game;
 
-import game.actor.*;
-import game.map.*;
+import game.actor.Rockford;
+import game.map.MapInstance;
+import game.map.MapVisual;
+import game.cell.Exit;
 import game.map.bdlevel.BDLevelReader;
+import java.util.Scanner;
 
 public class Game
 {
 	public static void main(String[] args)
 	{
+		Scanner in = new Scanner(System.in);
 		BDLevelReader levelFrame = new BDLevelReader();
 
 		int nivelElegido = 1;
@@ -37,77 +41,47 @@ public class Game
 		MapVisual.getInstance().start(levelFrame);;
 		
 		Rockford player = MapInstance.getEntitiesActive().findRockford();
+		Exit exit = MapInstance.getMapCell().findExit();
 		
 		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		MapVisual.imprimirMapa();
 		MapInstance.refresh();
 		
-		player.move(CurrentDirection.DOWN); // cavar
-		MapInstance.refresh();
-		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
-		MapVisual.imprimirMapa();
-		
-		player.move(CurrentDirection.RIGHT); // cavar
-		MapInstance.refresh();
-		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
-		MapVisual.imprimirMapa();
-		
-		player.move(CurrentDirection.RIGHT); // cavar
-		MapInstance.refresh();
-		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
-		MapVisual.imprimirMapa();
-		
-		/**
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.UP); // cavar
-		player.move(CurrentDirection.UP); // collectar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.DOWN);
-		player.move(CurrentDirection.DOWN);
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT);
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.DOWN); // cavar
-		player.move(CurrentDirection.DOWN); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
-		player.move(CurrentDirection.RIGHT); // cavar
+		int i = 0;
+		while( i < 10 )
+		{
+			i++;
+			char dir = in.next(".").charAt(0);
+			switch (dir)
+			{
+				case 'w':
+					player.move(CurrentDirection.UP);
+					break;
+				case 's':
+					player.move(CurrentDirection.DOWN);
+					break;
+				case 'd':
+					player.move(CurrentDirection.RIGHT);
+					break;
+				case 'a':
+					player.move(CurrentDirection.LEFT);
+					break;
+				default:
+					break;
+			}
+			
+			MapInstance.refresh();
+			MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+			MapVisual.imprimirMapa();
+			
+		}
 
+		/**
 		nivelElegido = 2;
 		//levelFrame.setCurrentLevel(nivelElegido);
 		MapInstance.buildMap(levelFrame);
-		player.move(CurrentDirection.RIGHT); // collectar
-		player.move(CurrentDirection.UP); // cavar
-		player.move(CurrentDirection.UP); // cavar
-		player.move(CurrentDirection.UP); // collectar
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT);
-		player.move(CurrentDirection.LEFT); // empujar
-		player.move(CurrentDirection.LEFT); // empujar
-		player.move(CurrentDirection.LEFT); // empujar
-		player.move(CurrentDirection.LEFT); // empujar
-		player.move(CurrentDirection.LEFT); // empujar
-		player.move(CurrentDirection.LEFT); // empujar
-		player.move(CurrentDirection.UP); // cavar
-		player.move(CurrentDirection.UP); // explotar
-	*/
+		*/
+		in.close();
 	}
 
 }
