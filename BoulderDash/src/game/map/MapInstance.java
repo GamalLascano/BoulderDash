@@ -113,6 +113,33 @@ public class MapInstance
 	}
 	// ACTUALIZAR POSICION
 
+	private static void movingPosition(Rockford player)
+	{
+		StatusActorEnum status = player.getState().getStateEnum();
+		switch (status)
+		{
+			case MOVINGUP:
+				player.getPosition().goUp();
+				player.dig(cellMap.getDirt(player.getPosition()));
+				break;
+			case MOVINGDOWN:
+				player.getPosition().goDown();
+				player.dig(cellMap.getDirt(player.getPosition()));
+				break;
+			case MOVINGRIGHT:
+				player.getPosition().goRight();
+				player.dig(cellMap.getDirt(player.getPosition()));
+				break;
+			case MOVINGLEFT:
+				player.getPosition().goLeft();
+				player.dig(cellMap.getDirt(player.getPosition()));
+				break;
+			default:
+				break;
+		}
+		player.getState().setStateEnum(StatusActorEnum.IDLE);
+	}
+	
 	private static void movingPosition(Actor actor)
 	{
 		StatusActorEnum status = actor.getState().getStateEnum();
@@ -162,7 +189,12 @@ public class MapInstance
 
 		if (cellMap.getCell(pos).isSolid() == false)
 		{
-			if (entity instanceof Actor)
+			if (entity instanceof Rockford)
+			{
+				movingPosition((Rockford) entity);
+				actorMap.setActor(pos, (Rockford) entity);
+			}
+			else if (entity instanceof Actor)
 			{
 				movingPosition((Actor) entity);
 				actorMap.setActor(pos, (Actor) entity);
@@ -180,15 +212,11 @@ public class MapInstance
 
 	public static void refresh()
 	{
-		//Rockford player;
-		//Butterfly butter;
-		//Firefly fire;
-
 		int i;
 		for (i = 0; i < entitiesAlive.getList().size(); ++i)
 		{
-			Actor unActor = (Actor) entitiesAlive.getList().get(i);
-			changePosition(unActor);
+			Entity ent = entitiesAlive.getList().get(i);
+			changePosition(ent);
 		}
 	}
 
@@ -221,7 +249,7 @@ public class MapInstance
 					case EMPTY:
 						cellMap.setCell(pos, new Dirt(pos, false));
 						itemMap.setItem(pos, new Empty(stateItem, pos));
-						actorMap.setActor(pos, new None(stateActor, pos));
+						actorMap.setActor(pos, null);
 						break;
 					case DIRT:
 						cellMap.setCell(pos, new Dirt(pos));

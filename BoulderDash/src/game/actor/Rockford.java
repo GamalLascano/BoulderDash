@@ -3,6 +3,7 @@ package game.actor;
 import game.Position;
 import game.item.Item;
 import game.SpriteChar;
+import game.cell.Dirt;
 
 public class Rockford extends Actor
 {
@@ -69,10 +70,15 @@ public class Rockford extends Actor
 	// hacer una clase proximidad? sino hay que hacer empujar en cada direction
 	public void push(Item item)
 	{
-		while (this.pos.getX() == item.getPosition().getX() + 1)
+		while (this.pos.getX() == item.getPosition().checkRight())
 		{
 			this.pushing = true;
 		}
+	}
+	
+	public void dig(Dirt dirt)
+	{
+		dirt.removeDirt();
 	}
 
 	// singleton aca??

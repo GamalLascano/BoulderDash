@@ -36,7 +36,7 @@ public class Dirt extends Cell
 
 	// SETTERS
 	
-	public void setNormal()
+	public void removeDirt()
 	{
 		this.isDirt = false;
 	}

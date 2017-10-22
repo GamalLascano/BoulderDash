@@ -2,7 +2,7 @@ package game.map;
 
 import game.Position;
 import game.SpriteChar;
-import game.actor.None;
+import game.item.Empty;
 import game.map.bdlevel.BDLevelReader;
 
 public class MapVisual
@@ -44,11 +44,12 @@ public class MapVisual
 		{
 			for (int x = 0; x < level.getWIDTH(); x++)
 			{
-				if( actorMap.getActor(pos) instanceof None )
+				pos.setXY(x, y);
+				if( actorMap.getActor(pos) != null )
 				{
 					map[x][y] = actorMap.getActor(pos).getSpritechar();
 				}
-				else if(itemMap.getItem(pos).getSpritechar() != SpriteChar.E)
+				else if(itemMap.getItem(pos) instanceof Empty)
 				{
 					map[x][y] = itemMap.getItem(pos).getSpritechar();
 				}

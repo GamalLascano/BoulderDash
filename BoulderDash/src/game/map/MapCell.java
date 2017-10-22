@@ -34,6 +34,18 @@ public class MapCell
 		return matrix[pos.getX()][pos.getY()];
 	}
 	
+	public Dirt getDirt(Position pos)
+	{
+		if(matrix[pos.getX()][pos.getY()] instanceof Dirt)
+		{
+			return (Dirt) matrix[pos.getX()][pos.getY()];
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	public boolean isEmpty(Position pos)
 	{
 		boolean empty;
