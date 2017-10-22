@@ -11,6 +11,12 @@ public class StatusItem
 	{
 
 	}
+	
+	public StatusItem(StatusItemEnum stateEnum)
+	{
+		this.stateEnum = stateEnum;
+		this.alive = true;
+	}
 
 	public StatusItem(StatusItemEnum stateEnum, boolean alive)
 	{

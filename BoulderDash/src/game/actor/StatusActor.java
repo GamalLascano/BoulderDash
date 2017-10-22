@@ -12,6 +12,12 @@ public class StatusActor
 
 	}
 
+	public StatusActor(StatusActorEnum stateEnum) 
+	{
+		this.stateEnum = stateEnum;
+		this.alive = true;
+	}
+	
 	public StatusActor(StatusActorEnum stateEnum, boolean alive) 
 	{
 		this.stateEnum = stateEnum;

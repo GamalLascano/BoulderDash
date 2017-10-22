@@ -1,7 +1,5 @@
 package game;
 
-import game.map.MapInstance;
-
 public class Position
 {
 	private Integer X;

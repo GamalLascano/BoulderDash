@@ -3,7 +3,6 @@ package game.item;
 import game.Position;
 import game.Entity;
 import game.map.MapInstance;
-import game.map.bdlevel.BDTile;
 import game.SpriteChar;
 
 public abstract class Item extends Entity
@@ -113,11 +112,14 @@ public abstract class Item extends Entity
 	
 	public void fall()
 	{
-		while (MapInstance.getTile(pos.posX, pos.posY - 1) == BDTile.EMPTY)
+		Position posDown = new Position(pos.getX(),pos.checkDown());
+		
+		while ( MapInstance.isEmpty(posDown))
 		{
-			pos.setY(pos.setY() - 1);
+			pos.goDown();
 			state.setStateEnum(StatusItemEnum.FALLING);
 		}
+		state.setStateEnum(StatusItemEnum.IDLE);
 	}
 
 	

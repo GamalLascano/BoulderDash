@@ -5,22 +5,32 @@ import game.item.*;
 
 public class MapItem
 {
-	private Item[][] items;
+	private Item[][] matrix;
 	private int width;
 	private int height;
 
 	public MapItem(int width, int height)
 	{
-		this.items = new Item[width][height];
+		this.matrix = new Item[width][height];
 		this.width = width;
 		this.height = height;
 	}
 
-	public Item getItem(Position pos)
+	// GETTERS
+	
+	public Item[][] getMatrix()
 	{
-		return items[pos.getX()][pos.setY()];
+		return matrix;
 	}
 
+	
+	public Item getItem(Position pos)
+	{
+		return matrix[pos.getX()][pos.getY()];
+	}
+
+	// SETTERS
+	
 	/**
 	 * 
 	 * @param pos
@@ -29,9 +39,9 @@ public class MapItem
 	 */
 	public boolean setItem(Position pos, Item ite)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.setY())
+		if (this.width >= pos.getX() && this.height >= pos.getY())
 		{
-			items[pos.getX()][pos.setY()] = ite;
+			matrix[pos.getX()][pos.getY()] = ite;
 			return true;
 		} else
 		{

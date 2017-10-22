@@ -7,7 +7,6 @@ import game.ActiveEntities;
 import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.map.bdlevel.BDTile;
-import game.map.*;
 import game.Position;
 
 public class MapInstance
@@ -73,12 +72,38 @@ public class MapInstance
 	{
 		return entitiesAlive;
 	}
+	
+	public static Cell getCell(Position pos)
+	{
+		return cellMap.getCell(pos);
+	}
+	
+	public static Item getItem(Position pos)
+	{
+		return itemMap.getItem(pos);
+	}
+	
+	public static Actor getActor(Position pos)
+	{
+		return actorMap.getActor(pos);
+	}
+	
+	public static boolean isEmpty(Position pos)
+	{
+		return cellMap.isEmpty(pos);
+	}
 
 	// SETTERS
-
-	public static void setTile(BDTile til, int x, int y)
+	
+	public static void setItem(Item ite, Position pos)
 	{
-		tileMap[x][y] = til;
+		itemMap.setItem(pos, ite);
+	}
+	
+	public static void setActor(Actor act, int x, int y)
+	{
+		Position pos = new Position(x,y);
+		actorMap.setActor(pos, act);
 	}
 
 	// ACTUALIZAR POSICION
@@ -150,9 +175,9 @@ public class MapInstance
 
 	public static void refresh()
 	{
-		Rockford player;
-		Butterfly butter;
-		Firefly fire;
+		//Rockford player;
+		//Butterfly butter;
+		//Firefly fire;
 
 		int i;
 		for (i = 0; i < entitiesAlive.getList().size(); ++i)
@@ -187,12 +212,11 @@ public class MapInstance
 		{
 			for (int x = 0; x < level.getWIDTH(); x++)
 			{
-				tileMap[x][y] = level.getTile(x, y);
 				pos.setXY(x, y);
 				stateItem.reset(StatusItemEnum.IDLE, true);
 				stateActor.reset(StatusActorEnum.IDLE, true);
 
-				switch (tileMap[x][y])
+				switch (level.getTile(x, y))
 				{
 					case EMPTY:
 						cellMap.setCell(pos, new Dirt(pos, false));

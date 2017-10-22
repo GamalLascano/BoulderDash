@@ -1,7 +1,6 @@
 package game;
 
 import game.Entity;
-import game.actor.Actor;
 import game.actor.Rockford;
 import java.util.ArrayList;
 import java.util.List;

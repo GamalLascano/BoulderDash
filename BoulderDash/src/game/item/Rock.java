@@ -30,17 +30,14 @@ public class Rock extends Item
 	 * 
 	 * @return
 	 */
-	private void movement(Rockford player)
+	/**
+	private void pushed(Rockford player)
 	{
 		if (player.isPushing() && this.moveable)
 		{
-			this.pos.setX(this.pos.posX++);
+			this.pos.goRight();
 			this.pushed = true;
 		}
-	}
+	*/
 
-	private boolean checkEmpty()
-	{
-		return true;
-	}
 }

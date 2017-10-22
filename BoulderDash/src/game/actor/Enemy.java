@@ -1,8 +1,6 @@
 package game.actor;
 
 import game.Position;
-import game.item.StatusItem;
-import game.map.MapInstance;
 
 public abstract class Enemy extends Actor
 {

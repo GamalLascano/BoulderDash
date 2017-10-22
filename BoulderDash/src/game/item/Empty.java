@@ -12,11 +12,6 @@ public class Empty extends Item
 		// TODO Auto-generated constructor stub
 	}
 
-	private void deleteItem()
-	{
-
-	}
-
 	// GETTERS
 	
 	public SpriteChar getSpritechar()

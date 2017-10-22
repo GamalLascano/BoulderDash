@@ -23,6 +23,20 @@ public class MapCell
 	{
 		return cell[pos.getX()][pos.getY()];
 	}
+	
+	public boolean isEmpty(Position pos)
+	{
+		boolean empty;
+		if (cell[pos.getX()][pos.getY()] instanceof Dirt)
+		{
+			empty = true;
+		}
+		else
+		{
+			empty = false;
+		}
+		return empty;
+	}
 
 	// SETTERS
 	
@@ -52,7 +66,7 @@ public class MapCell
 			{
 				Position pos = new Position(width, height);
 				Dirt dirt = new Dirt(pos);
-				this.cell[width][height] = dirt;
+				this.cell[i][j] = dirt;
 			}
 	}
 }

@@ -4,7 +4,6 @@ import game.CurrentDirection;
 import game.Position;
 import game.SpriteChar;
 import game.Entity;
-import java.util.concurrent.TimeUnit;
 
 public abstract class Actor extends Entity
 {

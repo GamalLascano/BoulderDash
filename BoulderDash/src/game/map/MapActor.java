@@ -2,7 +2,6 @@ package game.map;
 
 import game.actor.*;
 import game.Position;
-import game.map.bdlevel.BDLevelReader;
 
 public class MapActor
 {

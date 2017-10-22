@@ -1,7 +1,6 @@
 package game.actor;
 
 import game.Position;
-import game.item.StatusItem;
 import game.SpriteChar;
 
 public class Butterfly extends Enemy
@@ -24,9 +23,8 @@ public class Butterfly extends Enemy
 	// S
 	
 	@Override
-	public boolean explode()
+	public void explode()
 	{
-		return true;
 	}
 
 	// S

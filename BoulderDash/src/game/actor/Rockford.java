@@ -2,7 +2,6 @@ package game.actor;
 
 import game.Position;
 import game.item.Item;
-import game.item.StatusItem;
 import game.SpriteChar;
 
 public class Rockford extends Actor
