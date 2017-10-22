@@ -191,11 +191,9 @@ public class MapInstance
 
 	/**
 	 * Construye el mapa. Convierte la matriz tiles a 3 matrices. 1 matriz de
-	 * actores, 1 matriz de items, 1 matriz de celdas Agrega actores en una
-	 * lista y agrega los items en una otra lista para el acceso.
-	 * 
-	 * @param level
-	 *            : nivel.
+	 * actores, 1 matriz de items, 1 matriz de celdas Agrega actores y items
+	 * en una lista de entities
+	 * @param level : nivel.
 	 */
 	public static void buildMap(BDLevelReader level)
 	{
@@ -221,7 +219,7 @@ public class MapInstance
 					case EMPTY:
 						cellMap.setCell(pos, new Dirt(pos, false));
 						itemMap.setItem(pos, new Empty(stateItem, pos));
-						actorMap.setActor(pos, null);
+						actorMap.setActor(pos, new None(stateActor, pos));
 						break;
 					case DIRT:
 						cellMap.setCell(pos, new Dirt(pos));

@@ -21,12 +21,12 @@ public class Position
 
 	// GETTERS
 	
-	public int getX()
+	public Integer getX()
 	{
 		return X;
 	}
 
-	public int getY()
+	public Integer getY()
 	{
 		return Y;
 	}

@@ -22,7 +22,6 @@ public class MapItem
 	{
 		return matrix;
 	}
-
 	
 	public Item getItem(Position pos)
 	{

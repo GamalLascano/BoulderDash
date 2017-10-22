@@ -31,7 +31,7 @@ public class Map
 		{
 			for (int x = 0; x < width; x++)
 			{
-				if(actorMap.getActor(pos) != null)
+				if( !( actorMap.getActor(pos).equals(null) ) )
 				{
 					map[x][y] = actorMap.getActor(pos).getSpritechar();
 				}
