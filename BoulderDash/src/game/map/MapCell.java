@@ -79,6 +79,7 @@ public class MapCell
 			return false;
 		}
 	}
+	
 	public void start(BDLevelReader levels) {
 		level=levels;
 		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];

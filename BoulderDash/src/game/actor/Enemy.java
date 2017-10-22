@@ -22,14 +22,23 @@ public abstract class Enemy extends Actor
 	 * 3x3.
 	 */
 	public abstract void explode();
-	//Recibe una posicion, y ve si esta en un radio de 3x3
+
+	// Recibe una posicion, y ve si esta en un radio de 3x3
 	public boolean isInRange(Position pos) {
-		if ((pos.getX()==(this.pos.getX()-1))||(pos.getX()==this.pos.getX())||
-		(pos.getX()==(this.pos.getX()+1))) {
-			if ((pos.getY()==(this.pos.getY()-1))||(pos.getY()==this.pos.getY())||
-					(pos.getY()==(this.pos.getY()+1))) {
+		if( ( pos.getX() == super.getPosition().checkLeft() ) || ( pos.getX() == super.getPosition().getX() ) || ( pos.getX() == super.getPosition().checkRight() ) ) 
+		{
+			if ( ( pos.getY() == super.getPosition().checkDown() ) || ( pos.getY() == super.getPosition().getY() ) || ( pos.getY() == super.getPosition().checkUp() ) )
+			{
 				return true;
-			}else return false;
-		}else return false;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else 
+		{
+			return false;
+		}
 	}
 }

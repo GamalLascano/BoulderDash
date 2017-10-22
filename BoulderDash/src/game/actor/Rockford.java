@@ -70,7 +70,7 @@ public class Rockford extends Actor
 	// hacer una clase proximidad? sino hay que hacer empujar en cada direction
 	public void push(Item item)
 	{
-		while (this.pos.getX() == item.getPosition().checkRight())
+		while (super.getPosition().getX() == item.getPosition().checkRight())
 		{
 			this.pushing = true;
 		}
@@ -78,7 +78,10 @@ public class Rockford extends Actor
 	
 	public void dig(Dirt dirt)
 	{
-		dirt.removeDirt();
+		if (dirt != null)
+		{
+			dirt.removeDirt();
+		}
 	}
 
 	// singleton aca??

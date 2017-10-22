@@ -2,6 +2,7 @@ package game.map;
 
 import game.Position;
 import game.item.Item;
+import game.item.Empty;
 import game.map.bdlevel.BDLevelReader;
 
 public class MapItem
@@ -55,7 +56,21 @@ public class MapItem
 		{
 			matrix[pos.getX()][pos.getY()] = ite;
 			return true;
-		} else
+		} 
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean removeItem(Position pos)
+	{
+		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		{
+			matrix[pos.getX()][pos.getY()] = new Empty(pos);
+			return true;
+		} 
+		else
 		{
 			return false;
 		}

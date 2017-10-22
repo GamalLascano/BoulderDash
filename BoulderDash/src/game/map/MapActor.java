@@ -1,7 +1,6 @@
 package game.map;
 
 import game.actor.*;
-import game.cell.Dirt;
 import game.Position;
 import game.map.bdlevel.BDLevelReader;
 
@@ -63,6 +62,19 @@ public class MapActor
 		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = act;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean removeActor(Position pos)
+	{
+		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
+		{
+			matrix[pos.getX()][pos.getY()] = null;
 			return true;
 		}
 		else

@@ -49,7 +49,7 @@ public class MapVisual
 				{
 					map[x][y] = actorMap.getActor(pos).getSpritechar();
 				}
-				else if(itemMap.getItem(pos) instanceof Empty)
+				else if( itemMap.getItem(pos) instanceof Empty == false )
 				{
 					map[x][y] = itemMap.getItem(pos).getSpritechar();
 				}

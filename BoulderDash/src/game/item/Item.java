@@ -9,7 +9,6 @@ public abstract class Item extends Entity
 {
 	SpriteChar spritechar;
 	StatusItem state;
-	Position pos = new Position();
 	boolean collectable;
 	boolean moveable;
 	boolean fallable;
@@ -21,7 +20,6 @@ public abstract class Item extends Entity
 	{
 		super(pos);
 		this.state = state;
-		this.pos = pos;
 		this.collectable = collectable;
 		this.moveable = moveable;
 		this.fallable = fallable;
@@ -39,11 +37,6 @@ public abstract class Item extends Entity
 	public StatusItem getState()
 	{
 		return state;
-	}
-
-	public Position getPosition()
-	{
-		return pos;
 	}
 
 	public boolean isCollectable()
@@ -78,11 +71,6 @@ public abstract class Item extends Entity
 		this.state = state;
 	}
 
-	public void setPosition(Position pos)
-	{
-		this.pos = pos;
-	}
-
 	public void setCollectable(boolean collectable)
 	{
 		this.collectable = collectable;
@@ -112,11 +100,11 @@ public abstract class Item extends Entity
 	
 	public void fall()
 	{
-		Position posDown = new Position(pos.getX(),pos.checkDown());
+		Position posDown = new Position(super.getPosition().getX(),super.getPosition().checkDown());
 		
 		while ( MapInstance.isEmpty(posDown))
 		{
-			pos.goDown();
+			super.getPosition().goDown();
 			state.setStateEnum(StatusItemEnum.FALLING);
 		}
 		state.setStateEnum(StatusItemEnum.IDLE);

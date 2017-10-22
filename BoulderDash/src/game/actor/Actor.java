@@ -8,7 +8,6 @@ import game.Entity;
 public abstract class Actor extends Entity
 {
 	StatusActor state = new StatusActor();
-	Position pos = new Position();
 	SpriteChar spritechar;
 
 	// CONSTRUCTORS
@@ -21,7 +20,6 @@ public abstract class Actor extends Entity
 	{
 		super(pos);
 		this.state = state;
-		this.pos = pos;
 	}
 
 	// GETTERS
@@ -35,11 +33,6 @@ public abstract class Actor extends Entity
 	{
 		return state;
 	}
-	
-	public Position getPosition()
-	{
-		return pos;
-	}
 
 	// SETTERS
 	
@@ -48,11 +41,6 @@ public abstract class Actor extends Entity
 		this.state = state;
 	}
 
-	public void setPosition(Position pos)
-	{
-		this.pos = pos;
-	}
-	
 	// MOVE
 	
 	/**
@@ -64,19 +52,19 @@ public abstract class Actor extends Entity
 		switch (direction)
 		{
 		case UP:
-			pos.checkUp();
+			super.getPosition().checkUp();
 			state.setStateEnum(StatusActorEnum.MOVINGUP);
 			break;
 		case DOWN:
-			pos.checkDown();
+			super.getPosition().checkDown();
 			state.setStateEnum(StatusActorEnum.MOVINGDOWN);
 			break;
 		case LEFT:
-			pos.checkLeft();
+			super.getPosition().checkLeft();
 			state.setStateEnum(StatusActorEnum.MOVINGLEFT);
 			break;
 		case RIGHT:
-			pos.checkRight();
+			super.getPosition().checkRight();
 			state.setStateEnum(StatusActorEnum.MOVINGRIGHT);
 			break;
 		default:

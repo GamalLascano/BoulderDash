@@ -34,9 +34,10 @@ public class Game
 		MapInstance.getInstance();
 		MapInstance.start(levelFrame);
 		MapInstance.buildMap(levelFrame);
-		Rockford player = MapInstance.getEntitiesActive().findRockford();
-
 		MapVisual.getInstance().start(levelFrame);;
+		
+		Rockford player = MapInstance.getEntitiesActive().findRockford();
+		
 		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		MapVisual.imprimirMapa();
 		MapInstance.refresh();
@@ -51,8 +52,12 @@ public class Game
 		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		MapVisual.imprimirMapa();
 		
-		/**
 		player.move(CurrentDirection.RIGHT); // cavar
+		MapInstance.refresh();
+		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+		MapVisual.imprimirMapa();
+		
+		/**
 		player.move(CurrentDirection.RIGHT); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar

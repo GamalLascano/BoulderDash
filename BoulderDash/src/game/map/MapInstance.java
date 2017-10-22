@@ -120,19 +120,20 @@ public class MapInstance
 		{
 			case MOVINGUP:
 				player.getPosition().goUp();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				//player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			case MOVINGDOWN:
 				player.getPosition().goDown();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				//player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			case MOVINGRIGHT:
 				player.getPosition().goRight();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				//player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			case MOVINGLEFT:
 				player.getPosition().goLeft();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				if( cellMap.getCell( player.getPosition() ).isSolid() == true )
+				//player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			default:
 				break;
@@ -186,26 +187,25 @@ public class MapInstance
 	public static void changePosition(Entity entity)
 	{
 		Position pos = entity.getPosition();
-
-		if (cellMap.getCell(pos).isSolid() == false)
+		
+		if (entity instanceof Rockford)
 		{
-			if (entity instanceof Rockford)
-			{
-				movingPosition((Rockford) entity);
-				actorMap.setActor(pos, (Rockford) entity);
-			}
-			else if (entity instanceof Actor)
-			{
-				movingPosition((Actor) entity);
-				actorMap.setActor(pos, (Actor) entity);
-			}
-			else if (entity instanceof Item)
-			{
-				fallingPosition((Item) entity);
-				itemMap.setItem(pos, (Item) entity);
-			}
+			actorMap.removeActor(pos);
+			movingPosition((Rockford) entity);
+			actorMap.setActor(pos, (Rockford) entity);
 		}
-
+		else if (entity instanceof Actor)
+		{
+			actorMap.removeActor(pos);
+			movingPosition((Actor) entity);
+			actorMap.setActor(pos, (Actor) entity);
+		}
+		else if (entity instanceof Item)
+		{
+			itemMap.removeItem(pos);
+			fallingPosition((Item) entity);
+			itemMap.setItem(pos, (Item) entity);
+		}
 	}
 
 	// TURNOS
