@@ -10,15 +10,10 @@ public class MapVisual
 	private static MapVisual singleton;
 	private static SpriteChar[][] map;
 	private static BDLevelReader level;
-	private static int width;
-	private static int height;
 	
-	public MapVisual()
+	private MapVisual()
 	{
-		map = new SpriteChar[width][height];
-		level = null;
-		width = level.getWIDTH();
-		height = level.getHEIGHT();
+		map = new SpriteChar[level.getWIDTH()][level.getHEIGHT()];
 	}
 	
 	// SINGLETON
@@ -41,9 +36,9 @@ public class MapVisual
 	public static void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
 	{
 		Position pos = new Position();
-		for (int y = 0; y < height; y++)
+		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
-			for (int x = 0; x < width; x++)
+			for (int x = 0; x < level.getWIDTH(); x++)
 			{
 				if( actorMap.getActor(pos) instanceof None )
 				{
@@ -66,9 +61,9 @@ public class MapVisual
 	{
 		System.out.println("..............................................................");
 
-		for (int y = 0; y < height; y++)
+		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
-			for (int x = 0; x < width; x++)
+			for (int x = 0; x < level.getWIDTH(); x++)
 			{
 				System.out.print(map[x][y]);
 				System.out.print(" ");

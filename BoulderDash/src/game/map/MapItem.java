@@ -1,21 +1,31 @@
 package game.map;
 
 import game.Position;
-import game.item.*;
+import game.item.Item;
+import game.map.bdlevel.BDLevelReader;
 
 public class MapItem
 {
-	private Item[][] matrix;
-	private int width;
-	private int height;
+	private static MapItem singleton;
+	private static BDLevelReader level;
+	private static Item[][] matrix;
 
-	public MapItem(int width, int height)
+	private MapItem()
 	{
-		this.matrix = new Item[width][height];
-		this.width = width;
-		this.height = height;
+		matrix = new Item[level.getWIDTH()][level.getHEIGHT()];
 	}
 
+	// SINGLETON
+	
+	public static synchronized MapItem getInstance()
+	{
+		if (singleton == null)
+		{
+			singleton = new MapItem();
+		}
+		return singleton;
+	}
+	
 	// GETTERS
 	
 	public Item[][] getMatrix()
@@ -38,7 +48,7 @@ public class MapItem
 	 */
 	public boolean setItem(Position pos, Item ite)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.getY())
+		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = ite;
 			return true;

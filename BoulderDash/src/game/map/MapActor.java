@@ -2,20 +2,30 @@ package game.map;
 
 import game.actor.*;
 import game.Position;
+import game.map.bdlevel.BDLevelReader;
 
 public class MapActor
 {
-	private Actor[][] matrix;
-	private int width;
-	private int height;
+	private static MapActor singleton;
+	private static BDLevelReader level;
+	private static Actor[][] matrix;
 
-	public MapActor(int width, int height)
+	private MapActor()
 	{
-		this.matrix = new Actor[width][height];
-		this.width = width;
-		this.height = height;
+		matrix = new Actor[level.getWIDTH()][level.getHEIGHT()];
 	}
 
+	// SINGLETON
+
+	public static synchronized MapActor getInstance()
+	{
+		if (singleton == null)
+		{
+			singleton = new MapActor();
+		}
+		return singleton;
+	}
+	
 	// GETTERS
 
 	public Actor[][] getMatrix()
@@ -25,7 +35,7 @@ public class MapActor
 
 	public Actor getActor(Position pos)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.getY())
+		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
 		{
 			return matrix[pos.getX()][pos.getY()];
 		}
@@ -45,7 +55,7 @@ public class MapActor
 	 */
 	public boolean setActor(Position pos, Actor act)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.getY())
+		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = act;
 			return true;

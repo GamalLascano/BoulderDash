@@ -3,6 +3,7 @@ package game.map;
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
+import game.map.*;
 import game.ActiveEntities;
 import game.Entity;
 import game.map.bdlevel.BDLevelReader;
@@ -24,9 +25,9 @@ public class MapInstance
 	private MapInstance()
 	{
 		tileMap = null;
-		cellMap = null;
-		itemMap = null;
-		actorMap = null;
+		cellMap = MapCell.getInstance();
+		itemMap = MapItem.getInstance();
+		actorMap = MapActor.getInstance();
 		entitiesAlive = null;
 	}
 
@@ -200,10 +201,7 @@ public class MapInstance
 		Position pos = new Position();
 		StatusItem stateItem = new StatusItem();
 		StatusActor stateActor = new StatusActor();
-
-		cellMap = new MapCell(level.getWIDTH(), level.getHEIGHT());
-		itemMap = new MapItem(level.getWIDTH(), level.getHEIGHT());
-		actorMap = new MapActor(level.getWIDTH(), level.getHEIGHT());
+		
 		entitiesAlive = new ActiveEntities();
 
 		for (int y = 0; y < level.getHEIGHT(); y++)

@@ -1,33 +1,44 @@
 package game.map;
 
-import game.cell.*;
+import game.cell.Cell;
+import game.cell.Dirt;
 import game.Position;
+import game.map.bdlevel.BDLevelReader;
 
 public class MapCell
 {
-	private Cell[][] cell;
-	private int width;
-	private int height;
+	private static MapCell singleton;
+	private static BDLevelReader level;
+	private static Cell[][] matrix;
 
-	public MapCell(int width, int height) 
+	private MapCell() 
 	{
-		this.cell = new Cell[width][height];
-		this.width = width;
-		this.height = height;
+		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
 		fill();
 	}
 
+	// SINGLETON
+
+	public static synchronized MapCell getInstance()
+	{
+		if (singleton == null)
+		{
+			singleton = new MapCell();
+		}
+		return singleton;
+	}
+	
 	// GETTERS
 	
 	public Cell getCell(Position pos)
 	{
-		return cell[pos.getX()][pos.getY()];
+		return matrix[pos.getX()][pos.getY()];
 	}
 	
 	public boolean isEmpty(Position pos)
 	{
 		boolean empty;
-		if (cell[pos.getX()][pos.getY()] instanceof Dirt)
+		if (matrix[pos.getX()][pos.getY()] instanceof Dirt)
 		{
 			empty = true;
 		}
@@ -48,9 +59,9 @@ public class MapCell
 	 */
 	public boolean setCell(Position pos, Cell cel)
 	{
-		if (this.width >= pos.getX() && this.height >= pos.getY())
+		if (level.getWIDTH() >= pos.getX() && level.getHEIGHT() >= pos.getY())
 		{
-			cell[pos.getX()][pos.getY()] = cel;
+			matrix[pos.getX()][pos.getY()] = cel;
 			return true;
 		} else
 		{
@@ -61,12 +72,12 @@ public class MapCell
 	// DIRT FILL
 	public void fill()
 	{
-		for (int i = 0; i < width; i++)
-			for (int j = 0; j < height; j++)
+		for (int x = 0; x < level.getWIDTH(); x++)
+			for (int y = 0; y < level.getHEIGHT(); y++)
 			{
-				Position pos = new Position(width, height);
+				Position pos = new Position(x, y);
 				Dirt dirt = new Dirt(pos);
-				this.cell[i][j] = dirt;
+				matrix[x][y] = dirt;
 			}
 	}
 }
