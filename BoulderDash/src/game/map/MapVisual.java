@@ -5,15 +5,15 @@ import game.SpriteChar;
 import game.actor.None;
 import game.map.bdlevel.BDLevelReader;
 
-public class Map
+public class MapVisual
 {
-	private static Map singleton;
+	private static MapVisual singleton;
 	private static SpriteChar[][] map;
 	private static BDLevelReader level;
 	private static int width;
 	private static int height;
 	
-	public Map()
+	public MapVisual()
 	{
 		map = new SpriteChar[width][height];
 		level = null;
@@ -23,11 +23,11 @@ public class Map
 	
 	// SINGLETON
 
-	public static synchronized Map getInstance()
+	public static synchronized MapVisual getInstance()
 	{
 		if (singleton == null)
 		{
-			singleton = new Map();
+			singleton = new MapVisual();
 		}
 		return singleton;
 	}
