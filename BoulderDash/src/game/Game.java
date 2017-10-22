@@ -6,11 +6,9 @@ import game.map.bdlevel.BDLevelReader;
 
 public class Game
 {
-	// HAY QUE CAMBIAR TODO ESTO DSP Y HACERLO BIEN
 	public static void main(String[] args)
 	{
 		BDLevelReader levelFrame = new BDLevelReader();
-		CurrentDirection dir;
 
 		int nivelElegido = 1;
 		try
@@ -31,12 +29,9 @@ public class Game
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		MapInstance map = MapInstance.getInstance();
 
 		// se ponen los objectos en la matriz
 		MapInstance.buildMap(levelFrame);
-		Position playerPos;
-		Position posmap;
 		Actor player;
 		
 		Map graphicmap = new Map(levelFrame.getWIDTH(),levelFrame.getHEIGHT());
@@ -51,6 +46,7 @@ public class Game
 		player.move(CurrentDirection.RIGHT); // cavar
 		graphicmap.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		graphicmap.imprimirMapa();
+		/**
 		player.move(CurrentDirection.RIGHT); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar
@@ -101,7 +97,7 @@ public class Game
 		player.move(CurrentDirection.LEFT); // empujar
 		player.move(CurrentDirection.UP); // cavar
 		player.move(CurrentDirection.UP); // explotar
-
+	*/
 	}
 
 }
