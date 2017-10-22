@@ -37,14 +37,14 @@ public class Game
 
 		player = MapInstance.getEntitiesActive().findRockford();
 		
-		graphicmap.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
-		graphicmap.imprimirMapa();
+		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+		MapVisual.imprimirMapa();
 		player.move(CurrentDirection.DOWN); // cavar
-		graphicmap.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
-		graphicmap.imprimirMapa();
+		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+		MapVisual.imprimirMapa();
 		player.move(CurrentDirection.RIGHT); // cavar
-		graphicmap.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
-		graphicmap.imprimirMapa();
+		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+		MapVisual.imprimirMapa();
 		/**
 		player.move(CurrentDirection.RIGHT); // cavar
 		player.move(CurrentDirection.RIGHT); // cavar
