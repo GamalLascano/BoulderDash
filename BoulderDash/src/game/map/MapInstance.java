@@ -14,7 +14,6 @@ public class MapInstance
 	private static MapCell cellMap;
 	private static MapItem itemMap;
 	private static MapActor actorMap;
-
 	private static ActiveEntities entitiesAlive;
 
 	// CONSTRUCTOR
@@ -76,6 +75,11 @@ public class MapInstance
 	
 	// ACTUALIZAR POSICION
 
+	/**
+	 * Se occupa de mover a Rockford en la matriz, tambien verifica si la celda destino es solida para moverse.
+	 * Rockford cava automaticamente la tierra.
+	 * @param player
+	 */
 	private static void movingRockford(Rockford player)
 	{
 		switch ( player.getState().getStateEnum() )
@@ -118,6 +122,10 @@ public class MapInstance
 		player.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 	
+	/**
+	 * Se occupa de hacer mover a los enemigos.
+	 * @param actor
+	 */
 	private static void movingActor(Actor actor)
 	{
 		switch ( actor.getState().getStateEnum() )
@@ -140,6 +148,10 @@ public class MapInstance
 		actor.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 
+	/**
+	 * Se occupa de hacer caer a los objetos en la matriz
+	 * @param item
+	 */
 	private static void fallingItem(Item item)
 	{
 		StatusItemEnum status = item.getState().getStateEnum();
@@ -160,6 +172,10 @@ public class MapInstance
 		item.getState().setStateEnum(StatusItemEnum.IDLE);
 	}
 
+	/**
+	 * Actualiza la posicion de la entidad en la matriz.
+	 * @param entity
+	 */
 	public static void changePosition(Entity entity)
 	{
 		
@@ -185,6 +201,9 @@ public class MapInstance
 
 	// TURNOS
 
+	/**
+	 * Actualiza el mapa. Actualiza la posicion de todas las entidades en la matriz.
+	 */
 	public static void refresh()
 	{
 		int i;
