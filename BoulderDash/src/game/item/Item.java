@@ -102,12 +102,23 @@ public abstract class Item extends Entity
 	{
 		Position posDown = new Position(super.getPosition().getX(),super.getPosition().checkDown());
 		
-		while ( MapInstance.getMapCell().isEmpty(posDown))
+		if ( MapInstance.getMapCell().isEmpty(posDown))
 		{
-			super.getPosition().goDown();
 			state.setStateEnum(StatusItemEnum.FALLING);
+		}else {
+			if (MapInstance.getMapItem().getItem(posDown).isRounded()) {
+				Position posLeft = new Position(super.getPosition().checkLeft(),super.getPosition().getY());
+				Position posRight = new Position(super.getPosition().checkRight(), super.getPosition().getY());
+				if (MapInstance.getMapCell().isEmpty(posLeft)) {
+					state.setStateEnum(StatusItemEnum.SLIDINGLEFT);	
+				}else {
+					if (MapInstance.getMapCell().isEmpty(posRight)) {
+						state.setStateEnum(StatusItemEnum.SLIDINGRIGHT);
+						
+					}
+				}
+			}
 		}
-		state.setStateEnum(StatusItemEnum.IDLE);
 	}
 
 	
