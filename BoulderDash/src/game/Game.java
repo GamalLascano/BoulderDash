@@ -3,27 +3,31 @@ package game;
 import game.actor.Rockford;//
 import game.map.MapInstance;
 import game.map.MapVisual;
-import game.cell.Exit;
 import game.map.bdlevel.BDLevelReader;
 import java.util.Scanner;
 
+/** Esta es la clase principal del juego
+ *  De aqui se maneja la logica del juego
+ *
+ */
 public class Game
 {
 	public static void main(String[] args)
 	{
+		//Primero armo el scanner para el movimiento, y inicializo el level reader
 		Scanner in = new Scanner(System.in);
 		BDLevelReader levelFrame = new BDLevelReader();
 		int nivelElegido;
-		
-		for(nivelElegido = 1; nivelElegido <= 3; nivelElegido++)
+		//empiezo del nivel 1, y voy iterando por los niveles
+		for(nivelElegido = 1; nivelElegido <= 2; nivelElegido++)
 		{
+				//hago que lea los niveles, y cargue el nivel elegido
 				try
 				{
-					int levels = levelFrame.readLevels("levels.xml");
+					levelFrame.readLevels("levels.xml");
 				}
 				catch (Exception e1)
 				{
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				try
@@ -36,25 +40,29 @@ public class Game
 					e.printStackTrace();
 				}
 		
-				// se ponen los objectos en la matriz
+				// se empieza la instancia del mapa
 				MapInstance.getInstance();
+				//el mapa se empieza con el frame del nivel actual
 				MapInstance.start(levelFrame);
+				//y luego se arma
 				MapInstance.buildMap(levelFrame);
+				//luego, armo las visuales con el levelframe
 				MapVisual.getInstance().start(levelFrame);;
-				
+				//busco a rockford en la lista de entidades
 				Rockford player = ActiveEntities.findRockford();
-				Exit exit = MapInstance.getMapCell().findExit();
 				boolean quit = false;
-				
-
+				//interpolo el mapa actual con todos los mapas de todos los objetos
 				MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+				// imprimo el mapa en pantalla
 				MapVisual.imprimirMapa();
+				//hago que se muevan todos los actores
 				MapInstance.refresh();
 				
 				System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, apretar (q) para quitar el nivel");
 		
 				while( quit == false )
 				{
+					//Este case va a obtener los movimientos que va a hacer el personaje
 					String dir = in.next();
 					switch (dir)
 					{
@@ -76,7 +84,7 @@ public class Game
 						default:
 							break;
 					}
-					
+					//y esto refresca el mapa con el movimiento elegido
 					MapInstance.refresh();
 					MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 					MapVisual.imprimirMapa();
