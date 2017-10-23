@@ -4,6 +4,7 @@ import game.Position;
 import game.item.Item;
 import game.item.Empty;
 import game.map.bdlevel.BDLevelReader;
+import game.item.Diamond;
 
 public class MapItem
 {
@@ -13,7 +14,7 @@ public class MapItem
 
 	private MapItem()
 	{
-		
+		matrix = null;
 	}
 
 	// SINGLETON
@@ -51,6 +52,25 @@ public class MapItem
 	public Item getItem(Integer x, Integer y)
 	{
 		return matrix[x][y];
+	}
+	
+	public Diamond getDiamond(Position pos)
+	{
+		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		{
+			if( matrix[pos.getX()][pos.getY()] instanceof Diamond )
+			{
+				return ( (Diamond) matrix[pos.getX()][pos.getY()] );
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	// SETTERS

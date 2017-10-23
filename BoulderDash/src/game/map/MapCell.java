@@ -14,7 +14,7 @@ public class MapCell
 
 	private MapCell() 
 	{
-
+		matrix = null;
 	}
 
 	// SINGLETON

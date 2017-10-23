@@ -19,4 +19,12 @@ public class Diamond extends Item
 		return spritechar;
 	}
 	
+	// COLLECTED
+	
+	public void collected()
+	{
+		this.collectable = false;
+		this.spritechar = SpriteChar.E;
+	}
+	
 }

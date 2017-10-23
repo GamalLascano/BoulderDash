@@ -26,7 +26,7 @@ public abstract class Cell
 		return spritechar;
 	}
 	
-	public Position getPos()
+	public Position getPosition()
 	{
 		return pos;
 	}
@@ -38,7 +38,7 @@ public abstract class Cell
 
 	// SETTERS
 
-	public void setPos(Position pos)
+	public void setPosition(Position pos)
 	{
 		this.pos = pos;
 	}

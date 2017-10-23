@@ -17,7 +17,7 @@ public class ActiveEntities
 
 	private ActiveEntities()
 	{
-		
+		list = null;
 	}
 
 	// SINGLETON

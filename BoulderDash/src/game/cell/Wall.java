@@ -29,11 +29,11 @@ public class Wall extends Cell
 	//corregir esto dsp
 	public void conversion(Rock stone)
 	{
-		if (( stone.getPosition().getY() == this.getPos().checkUp() ) && ( stone.getState().getStateEnum() == StatusItemEnum.FALLING) )
+		if (( stone.getPosition().getY() == this.getPosition().checkUp() ) && ( stone.getState().getStateEnum() == StatusItemEnum.FALLING) )
 		{
 
 			stone.getState().setAlive(false);
-			Position diamondPos = this.getPos();
+			Position diamondPos = this.getPosition();
 			StatusItem diamondState = new StatusItem(StatusItemEnum.FALLING);
 			Diamond diamond = new Diamond(diamondState, diamondPos);
 			MapInstance.getMapItem().setItem(diamondPos, diamond);

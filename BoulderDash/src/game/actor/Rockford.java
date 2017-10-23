@@ -87,7 +87,11 @@ public class Rockford extends Actor
 	
 	public void collect(Diamond diamond)
 	{
+		if(diamond != null && diamond.isCollectable())
+		{
 			this.diamonds++;
+			diamond.collected();
+		}
 	}
 
 	// singleton aca??

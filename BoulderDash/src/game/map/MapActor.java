@@ -12,7 +12,7 @@ public class MapActor
 
 	private MapActor()
 	{
-
+		matrix = null;
 	}
 
 	// SINGLETON

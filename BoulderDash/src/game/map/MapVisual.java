@@ -19,7 +19,7 @@ public class MapVisual
 	
 	private MapVisual()
 	{
-		
+		map = null;
 	}
 	
 	// SINGLETON
@@ -96,6 +96,7 @@ public class MapVisual
 
 		}
 		System.out.println("Rockford Pos: " + ActiveEntities.findRockford().getPosition().getX() + "," + ActiveEntities.findRockford().getPosition().getY() );
+		System.out.println("Rockford Diamantes: " + ActiveEntities.findRockford().getDiamonds() );
 		System.out.println("..............................................................");
 
 	}
