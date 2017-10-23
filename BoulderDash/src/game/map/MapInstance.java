@@ -81,20 +81,32 @@ public class MapInstance
 		switch ( player.getState().getStateEnum() )
 		{
 			case MOVINGUP:
-				player.getPosition().goUp();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == false)
+				{
+					player.getPosition().goUp();
+					player.dig(cellMap.getDirt(player.getPosition()));
+				}
 				break;
 			case MOVINGDOWN:
-				player.getPosition().goDown();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == false)
+				{
+					player.getPosition().goDown();
+					player.dig(cellMap.getDirt(player.getPosition()));
+				}
 				break;
 			case MOVINGRIGHT:
-				player.getPosition().goRight();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false)
+				{
+					player.getPosition().goRight();
+					player.dig(cellMap.getDirt(player.getPosition()));
+				}
 				break;
 			case MOVINGLEFT:
-				player.getPosition().goLeft();
-				player.dig(cellMap.getDirt(player.getPosition()));
+				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false)
+				{
+					player.getPosition().goLeft();
+					player.dig(cellMap.getDirt(player.getPosition()));
+				}
 				break;
 			default:
 				break;

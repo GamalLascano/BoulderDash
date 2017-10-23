@@ -44,6 +44,11 @@ public class MapCell
 		return matrix[pos.getX()][pos.getY()];
 	}
 	
+	public Cell getCell(Integer x, Integer y)
+	{
+		return matrix[x][y];
+	}
+	
 	public Dirt getDirt(Position pos)
 	{
 		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )

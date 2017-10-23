@@ -75,12 +75,12 @@ public class Position
 	
 	public Integer checkDown()
 	{
-		return this.Y - 1;
+		return this.Y + 1;
 	}
 
 	public Integer checkUp()
 	{
-		return this.Y + 1;
+		return this.Y - 1;
 	}
 	
 	public Integer checkLeft()
