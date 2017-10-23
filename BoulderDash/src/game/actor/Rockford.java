@@ -7,14 +7,24 @@ import game.item.Rock;
 import game.SpriteChar;
 import game.cell.Dirt;
 
+/**
+ * Esta clase es la que contiene al personaje principal: Rockford Contiene un
+ * spritechar para representacion visual, su puntuacion, sus diamantes y si esta
+ * empujando o no, ademas de las otras propiedades de otros actores
+ */
 public class Rockford extends Actor
 {
 	SpriteChar spritechar = SpriteChar.R;
 	int score;
 	int diamonds;
 	boolean pushing;
-	
 
+	/**
+	 * Permite inicializar a Rockford con un status y posicion determinadas
+	 * 
+	 * @param state: Contiene movimiento y estado de vida
+	 * @param pos: Posicion
+	 */
 	public Rockford(StatusActor state, Position pos)
 	{
 		super(state, pos);
@@ -24,12 +34,12 @@ public class Rockford extends Actor
 	}
 
 	// GETTERS
-	
+
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-	
+
 	public int getScore()
 	{
 		return score;
@@ -44,9 +54,9 @@ public class Rockford extends Actor
 	{
 		return pushing;
 	}
-	
+
 	// SETTTERS
-	
+
 	public void setScore(int score)
 	{
 		this.score = score;
@@ -63,13 +73,18 @@ public class Rockford extends Actor
 	}
 
 	// SAVE
-	
+
 	public boolean save()
 	{
 		return true;
 	}
 
-	// hacer una clase proximidad? sino hay que hacer empujar en cada direction
+	/**
+	 * Este metodo hace que si esta empujando a un item, se le ponga el estado
+	 * correspondiente
+	 * 
+	 * @param item: Item que se empujaria
+	 */
 	public void push(Item item)
 	{
 		while (super.getPosition().getX() == item.getPosition().checkRight())
@@ -77,7 +92,12 @@ public class Rockford extends Actor
 			this.pushing = true;
 		}
 	}
-	
+
+	/**
+	 * Remueve la tierra del juego
+	 * 
+	 * @param dirt: Bloque de tierra
+	 */
 	public void dig(Dirt dirt)
 	{
 		if (dirt != null)
@@ -85,19 +105,30 @@ public class Rockford extends Actor
 			dirt.removeDirt();
 		}
 	}
-	
+
+	/**
+	 * Si es un diamante, lo recolecta
+	 * 
+	 * @param diamond: Bloque de diamante
+	 */
 	public void collect(Diamond diamond)
 	{
-		if(diamond != null && diamond.isCollectable())
+		if (diamond != null && diamond.isCollectable())
 		{
 			this.diamonds++;
 			diamond.collected();
 		}
 	}
-	
+
+	/**
+	 * Este metodo hace que si esta empujando a una roca, se le ponga el estado
+	 * correspondiente
+	 * 
+	 * @param rock: Bloque de roca
+	 */
 	public void push(Rock rock)
 	{
-		if(rock != null && rock.isMoveable())
+		if (rock != null && rock.isMoveable())
 		{
 			this.pushing = true;
 			rock.pushed(this);
@@ -105,6 +136,4 @@ public class Rockford extends Actor
 		}
 	}
 
-	// singleton aca??
-	// banco hacerlo singleton
 }
