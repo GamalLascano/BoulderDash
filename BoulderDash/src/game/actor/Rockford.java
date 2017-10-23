@@ -44,7 +44,7 @@ public class Rockford extends Actor
 		return pushing;
 	}
 	
-	// SETTERS
+	// SETTTERS
 	
 	public void setScore(int score)
 	{
