@@ -48,7 +48,7 @@ public class Game
 		MapInstance.refresh();
 		
 		int i = 0;
-		while( i < 20 )
+		while( i < 1000 )
 		{
 			i++;
 			char dir = in.next(".").charAt(0);
@@ -65,6 +65,9 @@ public class Game
 					break;
 				case 'a':
 					player.move(CurrentDirection.LEFT);
+					break;
+				case 'q':
+					i = 1000;
 					break;
 				default:
 					break;

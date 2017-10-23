@@ -188,9 +188,6 @@ public class MapInstance
 	 */
 	public static void buildMap(BDLevelReader level)
 	{
-		Position pos = new Position();
-		StatusItem stateItem = new StatusItem();
-		StatusActor stateActor = new StatusActor();
 		
 		entitiesAlive = new ActiveEntities();
 
@@ -198,6 +195,10 @@ public class MapInstance
 		{
 			for (int x = 0; x < level.getWIDTH(); x++)
 			{
+				StatusItem stateItem = new StatusItem();
+				StatusActor stateActor = new StatusActor();
+				Position pos = new Position();
+				
 				pos.setXY(x, y);
 				stateItem.reset(StatusItemEnum.IDLE, true);
 				stateActor.reset(StatusActorEnum.IDLE, true);
