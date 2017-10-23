@@ -7,6 +7,12 @@ import java.util.List;
 
 
 	//	Lista de entities (Items y Actores)
+/**
+ * Esta clase contiene todas las entidades que se pueden mover en el juego
+ * Incluye rockford, enemigos, rocas y diamantes 
+ * 
+ *
+ */
 public class ActiveEntities
 {
 	private List<Entity> list = new ArrayList<Entity>();
@@ -18,6 +24,10 @@ public class ActiveEntities
 		super();
 	}
 	
+	/**
+	 * Esto permite inicializar esta lista de entidades movibles con otra lista
+	 * @param list
+	 */
 	public ActiveEntities(List<Entity> list)
 	{
 		super();
@@ -42,10 +52,16 @@ public class ActiveEntities
 	
 	// FIND
 	
+	/**
+	 * Este metodo permite sacar de la lista de entidades al personaje principal
+	 * para ser usado en otros metodos del programa
+	 * @return Rockford, el personaje principal
+	 */
 	public Rockford findRockford()
 	{
 		Rockford player;
 		int i = 0;
+		//Ahora va a rotar por toda la lista hasta encontrar a rockford
 		while(!(list.get(i) instanceof Rockford))
 		{
 			i++;

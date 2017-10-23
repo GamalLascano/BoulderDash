@@ -1,5 +1,9 @@
 package game;
 
+/**
+ * Esta clase representa todas las unidades que se pueden mover
+ * Tiene lo intrinseco de una unidad, su posicion
+ */
 public abstract class Entity
 {
 	private Position pos = new Position();
