@@ -7,6 +7,10 @@ import game.item.Empty;
 import game.cell.Cell;
 import game.map.bdlevel.BDLevelReader;
 
+/**
+ * Esta clase es la encargada de agarrar los objetos y imprimirlos en pantalla
+ *
+ */
 public class MapVisual
 {
 	private static MapVisual singleton;
@@ -43,6 +47,11 @@ public class MapVisual
 	
 	// GRAPHICS
 	
+	/** Este metodo recibe todos los mapas y hace un mapa para imprimir
+	 * @param cellMap EL mapa de celdas
+	 * @param itemMap El mapa de items
+	 * @param actorMap El mapa de actores
+	 */
 	public static void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
 	{
 		Position pos = new Position();
@@ -69,6 +78,9 @@ public class MapVisual
 		}
 	}
 	
+	/** Este metodo usa el mapa creado en drawMap, y lo dibuja en pantalla
+	 * 
+	 */
 	public static void imprimirMapa()
 	{
 		System.out.println("..............................................................");

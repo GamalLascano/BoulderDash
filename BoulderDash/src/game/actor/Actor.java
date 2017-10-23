@@ -5,6 +5,10 @@ import game.Position;
 import game.SpriteChar;
 import game.Entity;
 
+/**
+ * Esta clase representa a todos los actores, que pueden moverse
+ *
+ */
 public abstract class Actor extends Entity
 {
 	StatusActor state = new StatusActor();
