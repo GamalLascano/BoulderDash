@@ -21,7 +21,7 @@ public class Dirt extends Cell
 	{
 		super(pos, false);
 		this.isDirt = isDirt;
-		if (isDirt = false)
+		if (isDirt == false)
 		{
 			this.spritechar = SpriteChar.E;
 		}
