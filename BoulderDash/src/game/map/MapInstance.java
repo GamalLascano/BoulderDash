@@ -125,11 +125,10 @@ public class MapInstance
 
 	private static void fallingItem(Item item)
 	{
-		StatusItemEnum status = item.getState().getStateEnum();
-		switch (status)
+		switch (item.getState().getStateEnum())
 		{
 			case FALLING:
-				item.getPosition().goUp();
+				item.getPosition().goDown();
 				break;
 			case SLIDINGRIGHT:
 				item.getPosition().goRight();

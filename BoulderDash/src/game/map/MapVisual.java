@@ -1,5 +1,6 @@
 package game.map;
 
+import game.ActiveEntities;
 import game.Position;
 import game.SpriteChar;
 import game.item.Empty;
