@@ -53,12 +53,12 @@ public class Position
 	
 	public void goDown()
 	{
-		this.Y--;
+		this.Y++;
 	}
 
 	public void goUp()
 	{
-		this.Y++;
+		this.Y--;
 	}
 	
 	public void goLeft()
@@ -68,7 +68,7 @@ public class Position
 	
 	public void goRight()
 	{
-		this.X--;
+		this.X++;
 	}
 	
 	// POS CHECK
