@@ -1,6 +1,6 @@
 package game;
 
-import game.actor.Rockford;//
+import game.actor.Rockford;/
 import game.map.MapInstance;
 import game.map.MapVisual;
 //import game.cell.Exit;
