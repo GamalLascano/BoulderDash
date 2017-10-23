@@ -39,5 +39,6 @@ public class Dirt extends Cell
 	public void removeDirt()
 	{
 		this.isDirt = false;
+		spritechar = SpriteChar.E;
 	}
 }

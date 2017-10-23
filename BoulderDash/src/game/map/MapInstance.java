@@ -6,13 +6,11 @@ import game.item.*;
 import game.ActiveEntities;
 import game.Entity;
 import game.map.bdlevel.BDLevelReader;
-import game.map.bdlevel.BDTile;
 import game.Position;
 
 public class MapInstance
 {
 	private static MapInstance singleton;
-	private static BDTile[][] tileMap;
 	private static MapCell cellMap;
 	private static MapItem itemMap;
 	private static MapActor actorMap;
@@ -39,16 +37,6 @@ public class MapInstance
 
 	// GETTERS
 
-	public static BDTile getTile(int x, int y)
-	{
-		return tileMap[x][y];
-	}
-
-	public static BDTile[][] getMapTile()
-	{
-		return tileMap;
-	}
-
 	public static MapCell getMapCell()
 	{
 		return cellMap;
@@ -68,41 +56,14 @@ public class MapInstance
 	{
 		return entitiesAlive;
 	}
-	
-	public static Cell getCell(Position pos)
-	{
-		return cellMap.getCell(pos);
-	}
-	
-	public static Item getItem(Position pos)
-	{
-		return itemMap.getItem(pos);
-	}
-	
-	public static Actor getActor(Position pos)
-	{
-		return actorMap.getActor(pos);
-	}
-	
-	public static boolean isEmpty(Position pos)
-	{
-		return cellMap.isEmpty(pos);
-	}
 
 	// SETTERS
 	
-	public static void setItem(Item ite, Position pos)
-	{
-		itemMap.setItem(pos, ite);
-	}
+
+	// INICIALIZACION
 	
-	public static void setActor(Actor act, int x, int y)
+	public static void start(BDLevelReader levels)
 	{
-		Position pos = new Position(x,y);
-		actorMap.setActor(pos, act);
-	}
-	public static void start(BDLevelReader levels) {
-		tileMap = null;
 		MapCell.getInstance().start(levels);
 		cellMap = MapCell.getInstance();
 		MapItem.getInstance().start(levels);
@@ -111,29 +72,28 @@ public class MapInstance
 		actorMap = MapActor.getInstance();
 		entitiesAlive = null;
 	}
+	
 	// ACTUALIZAR POSICION
 
-	private static void movingPosition(Rockford player)
+	private static void movingRockford(Rockford player)
 	{
-		StatusActorEnum status = player.getState().getStateEnum();
-		switch (status)
+		switch ( player.getState().getStateEnum() )
 		{
 			case MOVINGUP:
 				player.getPosition().goUp();
-				//player.dig(cellMap.getDirt(player.getPosition()));
+				player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			case MOVINGDOWN:
 				player.getPosition().goDown();
-				//player.dig(cellMap.getDirt(player.getPosition()));
+				player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			case MOVINGRIGHT:
 				player.getPosition().goRight();
-				//player.dig(cellMap.getDirt(player.getPosition()));
+				player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			case MOVINGLEFT:
 				player.getPosition().goLeft();
-				if( cellMap.getCell( player.getPosition() ).isSolid() == true )
-				//player.dig(cellMap.getDirt(player.getPosition()));
+				player.dig(cellMap.getDirt(player.getPosition()));
 				break;
 			default:
 				break;
@@ -141,10 +101,9 @@ public class MapInstance
 		player.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 	
-	private static void movingPosition(Actor actor)
+	private static void movingActor(Actor actor)
 	{
-		StatusActorEnum status = actor.getState().getStateEnum();
-		switch (status)
+		switch ( actor.getState().getStateEnum() )
 		{
 			case MOVINGUP:
 				actor.getPosition().goUp();
@@ -164,7 +123,7 @@ public class MapInstance
 		actor.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 
-	private static void fallingPosition(Item item)
+	private static void fallingItem(Item item)
 	{
 		StatusItemEnum status = item.getState().getStateEnum();
 		switch (status)
@@ -186,25 +145,24 @@ public class MapInstance
 
 	public static void changePosition(Entity entity)
 	{
-		Position pos = entity.getPosition();
 		
 		if (entity instanceof Rockford)
 		{
-			actorMap.removeActor(pos);
-			movingPosition((Rockford) entity);
-			actorMap.setActor(pos, (Rockford) entity);
+			actorMap.removeActor(entity.getPosition());
+			movingRockford((Rockford) entity);
+			actorMap.setActor(entity.getPosition(), (Rockford) entity);
 		}
 		else if (entity instanceof Actor)
 		{
-			actorMap.removeActor(pos);
-			movingPosition((Actor) entity);
-			actorMap.setActor(pos, (Actor) entity);
+			actorMap.removeActor(entity.getPosition());
+			movingActor((Actor) entity);
+			actorMap.setActor(entity.getPosition(), (Actor) entity);
 		}
 		else if (entity instanceof Item)
 		{
-			itemMap.removeItem(pos);
-			fallingPosition((Item) entity);
-			itemMap.setItem(pos, (Item) entity);
+			itemMap.removeItem(entity.getPosition());
+			fallingItem((Item) entity);
+			itemMap.setItem(entity.getPosition(), (Item) entity);
 		}
 	}
 
@@ -224,8 +182,8 @@ public class MapInstance
 
 	/**
 	 * Construye el mapa. Convierte la matriz tiles a 3 matrices. 1 matriz de
-	 * actores, 1 matriz de items, 1 matriz de celdas Agrega actores y items
-	 * en una lista de entities
+	 * actores, 1 matriz de items, 1 matriz de celdas. Agrega actores y items
+	 * en una lista de entities.
 	 * @param level : nivel.
 	 */
 	public static void buildMap(BDLevelReader level)

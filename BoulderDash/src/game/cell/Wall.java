@@ -36,7 +36,7 @@ public class Wall extends Cell
 			Position diamondPos = this.getPos();
 			StatusItem diamondState = new StatusItem(StatusItemEnum.FALLING);
 			Diamond diamond = new Diamond(diamondState, diamondPos);
-			MapInstance.setItem(diamond, diamondPos);
+			MapInstance.getMapItem().setItem(diamondPos, diamond);
 		}
 
 	}

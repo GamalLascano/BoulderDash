@@ -27,8 +27,12 @@ public class MapVisual
 		}
 		return singleton;
 	}
-	public void start(BDLevelReader levels) {
-		level=levels;
+
+	// INICIALIZACION
+	
+	public void start(BDLevelReader levels)
+	{
+		level = levels;
 		map = new SpriteChar[level.getWIDTH()][level.getHEIGHT()];
 	}
 
@@ -41,9 +45,11 @@ public class MapVisual
 	public static void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
 	{
 		Position pos = new Position();
-		for (int y = 0; y < level.getHEIGHT(); y++)
+		int y;
+		int x;
+		for (y = 0; y < level.getHEIGHT(); y++)
 		{
-			for (int x = 0; x < level.getWIDTH(); x++)
+			for (x = 0; x < level.getWIDTH(); x++)
 			{
 				pos.setXY(x, y);
 				if( actorMap.getActor(pos) != null )
@@ -59,7 +65,6 @@ public class MapVisual
 					map[x][y] = cellMap.getCell(pos).getSpritechar();
 				}
 			}
-
 		}
 	}
 	

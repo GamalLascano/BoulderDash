@@ -28,6 +28,15 @@ public class MapCell
 		return singleton;
 	}
 	
+	// INICIALIZACION
+
+	public void start(BDLevelReader levels)
+	{
+		level = levels;
+		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
+		fill();
+	}
+	
 	// GETTERS
 	
 	public Cell getCell(Position pos)
@@ -39,9 +48,9 @@ public class MapCell
 	{
 		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
-			if(matrix[pos.getX()][pos.getY()] instanceof Dirt)
+			if( matrix[pos.getX()][pos.getY()] instanceof Dirt )
 			{
-				return (Dirt) matrix[pos.getX()][pos.getY()];
+				return ( (Dirt) matrix[pos.getX()][pos.getY()] );
 			}
 			else
 			{
@@ -53,13 +62,38 @@ public class MapCell
 			return null;
 		}
 	}
+
+	// SETTERS
+	
+	public boolean setCell(Position pos, Cell cel)
+	{
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		{
+			matrix[pos.getX()][pos.getY()] = cel;
+			return true;
+		} 
+		else
+		{
+			return false;
+		}
+	}
+	
+	// Devuelve True si la celda esta vacia
 	
 	public boolean isEmpty(Position pos)
 	{
 		boolean empty;
-		if (matrix[pos.getX()][pos.getY()] instanceof Dirt)
+		if ( matrix[pos.getX()][pos.getY()] instanceof Dirt )
 		{
-			empty = true;
+			Dirt dirt = (Dirt) matrix[pos.getX()][pos.getY()];
+			if( dirt.IsDirt() == false)
+			{
+				empty = true;
+			}
+			else
+			{
+			empty = false;
+			}
 		}
 		else
 		{
@@ -67,32 +101,8 @@ public class MapCell
 		}
 		return empty;
 	}
-
-	// SETTERS
 	
-	/**
-	 * 
-	 * @param pos
-	 * @param cel
-	 * @return : true si se agrego correctamente
-	 */
-	public boolean setCell(Position pos, Cell cel)
-	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
-		{
-			matrix[pos.getX()][pos.getY()] = cel;
-			return true;
-		} else
-		{
-			return false;
-		}
-	}
-	
-	public void start(BDLevelReader levels) {
-		level=levels;
-		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
-		fill();
-	}
+	// ENCONTRAR LA CELDA SALIDA
 	
 	public Exit findExit()
 	{

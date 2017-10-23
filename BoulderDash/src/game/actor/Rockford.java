@@ -2,6 +2,7 @@ package game.actor;
 
 import game.Position;
 import game.item.Item;
+import game.item.Diamond;
 import game.SpriteChar;
 import game.cell.Dirt;
 
@@ -82,6 +83,11 @@ public class Rockford extends Actor
 		{
 			dirt.removeDirt();
 		}
+	}
+	
+	public void collect(Diamond diamond)
+	{
+			this.diamonds++;
 	}
 
 	// singleton aca??

@@ -102,7 +102,7 @@ public abstract class Item extends Entity
 	{
 		Position posDown = new Position(super.getPosition().getX(),super.getPosition().checkDown());
 		
-		while ( MapInstance.isEmpty(posDown))
+		while ( MapInstance.getMapCell().isEmpty(posDown))
 		{
 			super.getPosition().goDown();
 			state.setStateEnum(StatusItemEnum.FALLING);

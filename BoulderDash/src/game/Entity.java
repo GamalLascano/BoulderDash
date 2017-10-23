@@ -14,14 +14,14 @@ public abstract class Entity
 		this.pos = pos;
 	}
 
-	// S
+	// GETTERS
 	
 	public Position getPosition()
 	{
 		return pos;
 	}
 
-	// S
+	// SETTERS
 	
 	public void setPosition(Position pos)
 	{

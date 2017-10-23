@@ -26,14 +26,18 @@ public class MapItem
 		}
 		return singleton;
 	}
+
+	// INICIALIZACION
 	
-	public void start(BDLevelReader levels) {
+	public void start(BDLevelReader levels)
+	{
 		level = levels;
 		matrix = new Item[level.getWIDTH()][level.getHEIGHT()];
 		fill();
 	}
-	
+
 	// GETTERS
+	
 	public Item[][] getMatrix()
 	{
 		return matrix;
@@ -46,12 +50,6 @@ public class MapItem
 
 	// SETTERS
 	
-	/**
-	 * 
-	 * @param pos
-	 * @param ite
-	 * @return : true si se agrego correctamente
-	 */
 	public boolean setItem(Position pos, Item ite)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )

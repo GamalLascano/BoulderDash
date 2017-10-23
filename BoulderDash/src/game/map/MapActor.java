@@ -12,15 +12,11 @@ public class MapActor
 
 	private MapActor()
 	{
-		
+
 	}
 
 	// SINGLETON
-	public void start(BDLevelReader levels) {
-		level=levels;
-		matrix = new Actor[level.getWIDTH()][level.getHEIGHT()];
-		fill();
-	}
+
 	public static synchronized MapActor getInstance()
 	{
 		if (singleton == null)
@@ -30,12 +26,16 @@ public class MapActor
 		return singleton;
 	}
 	
-	// GETTERS
-
-	public Actor[][] getMatrix()
+	// INICIALIZACION
+	
+	public void start(BDLevelReader levels)
 	{
-		return matrix;
+		level = levels;
+		matrix = new Actor[level.getWIDTH()][level.getHEIGHT()];
+		fill();
 	}
+
+	// GETTERS
 
 	public Actor getActor(Position pos)
 	{
@@ -84,6 +84,7 @@ public class MapActor
 	}
 
 	// NULL FILL
+	
 	public void fill()
 	{
 		for (int x = 0; x < level.getWIDTH(); x++)

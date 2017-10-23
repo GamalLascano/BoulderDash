@@ -43,28 +43,20 @@ public abstract class Actor extends Entity
 
 	// MOVE
 	
-	/**
-	 * Movimiento en el mapa, poner una direcion como parametro. usa
-	 * game.Position y game.CurrentDirection.
-	 */
 	public void move(CurrentDirection direction)
 	{
 		switch (direction)
 		{
 		case UP:
-			super.getPosition().checkUp();
 			state.setStateEnum(StatusActorEnum.MOVINGUP);
 			break;
 		case DOWN:
-			super.getPosition().checkDown();
 			state.setStateEnum(StatusActorEnum.MOVINGDOWN);
 			break;
 		case LEFT:
-			super.getPosition().checkLeft();
 			state.setStateEnum(StatusActorEnum.MOVINGLEFT);
 			break;
 		case RIGHT:
-			super.getPosition().checkRight();
 			state.setStateEnum(StatusActorEnum.MOVINGRIGHT);
 			break;
 		default:

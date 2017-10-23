@@ -48,7 +48,7 @@ public class Game
 		MapInstance.refresh();
 		
 		int i = 0;
-		while( i < 10 )
+		while( i < 20 )
 		{
 			i++;
 			char dir = in.next(".").charAt(0);
