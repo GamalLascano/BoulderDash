@@ -3,6 +3,10 @@ package game.cell;
 import game.Position;
 import game.SpriteChar;
 
+/**
+ * Esta clase contiene todos los objetos del mapa que no se mueven
+ *
+ */
 public abstract class Cell
 {
 	SpriteChar spritechar;

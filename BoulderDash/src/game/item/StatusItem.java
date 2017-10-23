@@ -1,5 +1,10 @@
 package game.item;
 
+/**
+ * Esta clase tiene los estados de los items, contenidos en statusitemenum,
+ * ademas de incluir alive: si esta vivo o no
+ *
+ */
 public class StatusItem
 {
 	private StatusItemEnum stateEnum;
