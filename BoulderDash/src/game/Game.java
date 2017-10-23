@@ -53,7 +53,7 @@ public class Game
 				
 				System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, apretar (q) para quitar el nivel");
 		
-				while( ( player.getPosition().getX() != exit.getPosition().getX() && player.getPosition().getY() != exit.getPosition().getY() ) && quit == false)
+				while( quit == false )
 				{
 					String dir = in.next();
 					switch (dir)

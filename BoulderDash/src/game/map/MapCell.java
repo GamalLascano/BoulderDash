@@ -131,7 +131,7 @@ public class MapCell
 			for (int y = 0; y < level.getHEIGHT(); y++)
 			{
 				Position pos = new Position(x, y);
-				Dirt dirt = new Dirt(pos);
+				Dirt dirt = new Dirt(pos, false);
 				matrix[x][y] = dirt;
 			}
 	}
