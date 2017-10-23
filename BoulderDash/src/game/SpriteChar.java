@@ -4,7 +4,7 @@ package game;
  * Este enum contiene la representacion grafica de todas las entidades del juego
  * R:Rockford
  * F:Firefly
- * B:
+ * B:bla
  *
  */
 public enum SpriteChar
