@@ -138,10 +138,10 @@ public class MapInstance
 				// EMPUJA PIEDRA SI HAY
 				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true
-						&& itemMap.getItem(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == false
-						&& cellMap.getCell(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == false
-						&& cellMap.getDirt(player.getPosition().checkLeft() + 1, player.getPosition().getY()) != null 
-						&& cellMap.getDirt(player.getPosition().checkLeft() + 1, player.getPosition().getY()).IsDirt() == false )
+						&& itemMap.getItem(player.getPosition().checkLeft() - 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getCell(player.getPosition().checkLeft() - 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getDirt(player.getPosition().checkLeft() - 1, player.getPosition().getY()) != null 
+						&& cellMap.getDirt(player.getPosition().checkLeft() - 1, player.getPosition().getY()).IsDirt() == false )
 				{
 					player.getPosition().goLeft();
 					player.dig(cellMap.getDirt(player.getPosition()));
@@ -169,12 +169,20 @@ public class MapInstance
 				{
 					actor.getPosition().goUp();
 				}
+				else
+				{
+					((Firefly) actor).rotate();
+				}
 				break;
 			case MOVINGDOWN:
 				if( cellMap.getCell(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false
 				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false)
 				{
 					actor.getPosition().goDown();
+				}
+				else
+				{
+					((Firefly) actor).rotate();
 				}
 				break;
 			case MOVINGRIGHT:
@@ -183,6 +191,10 @@ public class MapInstance
 				{
 					actor.getPosition().goRight();
 				}
+				else
+				{
+					((Firefly) actor).rotate();
+				}
 				break;
 			case MOVINGLEFT:
 				if( cellMap.getCell(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false
@@ -190,11 +202,14 @@ public class MapInstance
 				{
 					actor.getPosition().goLeft();
 				}
+				else
+				{
+					((Firefly) actor).rotate();
+				}
 				break;
 			default:
 				break;
 		}
-		actor.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 
 	/**
@@ -249,7 +264,6 @@ public class MapInstance
 		else if (entity instanceof Actor)
 		{
 			actorMap.removeActor(entity.getPosition());
-			((Enemy) entity).rotate();
 			movingActor((Actor) entity);
 			actorMap.setActor(entity.getPosition(), (Actor) entity);
 		}

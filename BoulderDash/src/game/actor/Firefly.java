@@ -23,7 +23,7 @@ public class Firefly extends Enemy
 		return spritechar;
 	}
 	
-	// S
+	// ROTACION
 	
 	public void rotate()
 	{
@@ -46,7 +46,7 @@ public class Firefly extends Enemy
 		}
 	}
 
-	// S
+	// EXPLOSION
 	
 	public void explode()
 	{
