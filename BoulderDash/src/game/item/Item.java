@@ -104,35 +104,34 @@ public abstract class Item extends Entity
 	}
 
 	//COMPORTAMIENTO
-	
+
 	public void fall()
 	{
-		Position posDown = new Position(super.getPosition().getX(),super.getPosition().checkDown());
-		
-		if ( MapInstance.getMapCell().isEmpty(posDown))
+		Position posDown = new Position(super.getPosition().getX(), super.getPosition().checkDown());
+
+		if (MapInstance.getMapCell().isEmpty(posDown))
 		{
 			state.setStateEnum(StatusItemEnum.FALLING);
-		}else {
-			if (MapInstance.getMapItem().getItem(posDown).isRounded()) {
-				Position posLeft = new Position(super.getPosition().checkLeft(),super.getPosition().getY());
+		}
+		else
+		{
+			if (MapInstance.getMapItem().getItem(posDown).isRounded())
+			{
+				Position posLeft = new Position(super.getPosition().checkLeft(), super.getPosition().getY());
 				Position posRight = new Position(super.getPosition().checkRight(), super.getPosition().getY());
-				if (MapInstance.getMapCell().isEmpty(posLeft)) {
-					state.setStateEnum(StatusItemEnum.SLIDINGLEFT);	
-				}else {
-					if (MapInstance.getMapCell().isEmpty(posRight)) {
+				if (MapInstance.getMapCell().isEmpty(posLeft))
+				{
+					state.setStateEnum(StatusItemEnum.SLIDINGLEFT);
+				}
+				else
+				{
+					if (MapInstance.getMapCell().isEmpty(posRight))
+					{
 						state.setStateEnum(StatusItemEnum.SLIDINGRIGHT);
-						
+
 					}
 				}
 			}
 		}
 	}
-
-	
-	/**
-	 * poner collect en Rockford? public void collected() { if ()
-	 * BDLevelReader.field[pos.posX][pos.posY] = BDTile.EMPTY;
-	 * 
-	 * }
-	 */
 }

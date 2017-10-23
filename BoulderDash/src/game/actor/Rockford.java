@@ -3,6 +3,7 @@ package game.actor;
 import game.Position;
 import game.item.Item;
 import game.item.Diamond;
+import game.item.Rock;
 import game.SpriteChar;
 import game.cell.Dirt;
 
@@ -91,6 +92,16 @@ public class Rockford extends Actor
 		{
 			this.diamonds++;
 			diamond.collected();
+		}
+	}
+	
+	public void push(Rock rock)
+	{
+		if(rock != null && rock.isMoveable())
+		{
+			this.pushing = true;
+			rock.pushed(this);
+			this.pushing = false;
 		}
 	}
 

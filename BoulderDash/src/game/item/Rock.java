@@ -2,6 +2,7 @@ package game.item;
 
 import game.Position;
 import game.SpriteChar;
+import game.actor.Rockford;
 
 public class Rock extends Item
 {
@@ -29,14 +30,26 @@ public class Rock extends Item
 	 * 
 	 * @return
 	 */
-	/**
-	private void pushed(Rockford player)
+	
+	public void pushed(Rockford player)
 	{
 		if (player.isPushing() && this.moveable)
 		{
-			this.pos.goRight();
-			this.pushed = true;
+			switch ( player.getState().getStateEnum() )
+			{
+				case MOVINGLEFT:
+					this.state.setStateEnum(StatusItemEnum.SLIDINGLEFT);
+					this.pushed = true;
+					break;
+				case MOVINGRIGHT:
+					this.state.setStateEnum(StatusItemEnum.SLIDINGRIGHT);
+					this.pushed = true;
+					break;
+				default:
+					break;
+			}
+		this.pushed = false;		
 		}
-	*/
+	}
 
 }

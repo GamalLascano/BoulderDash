@@ -113,6 +113,14 @@ public class MapInstance
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
+				else if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false
+						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isMoveable() == true)
+				{
+					player.getPosition().goRight();
+					player.dig(cellMap.getDirt(player.getPosition()));
+					player.collect(itemMap.getDiamond(player.getPosition()));
+					player.push(itemMap.getRock(player.getPosition()));
+				}
 				break;
 			case MOVINGLEFT:
 				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
@@ -121,6 +129,14 @@ public class MapInstance
 					player.getPosition().goLeft();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
+				}
+				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
+						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true)
+				{
+					player.getPosition().goLeft();
+					player.dig(cellMap.getDirt(player.getPosition()));
+					player.collect(itemMap.getDiamond(player.getPosition()));
+					player.push(itemMap.getRock(player.getPosition()));
 				}
 				break;
 			default:
@@ -181,13 +197,25 @@ public class MapInstance
 		switch (status)
 		{
 			case FALLING:
-				item.getPosition().goUp();
+				if( cellMap.getCell(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() == false
+				&& itemMap.getItem(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() == false)
+				{
+					item.getPosition().goDown();
+				}
 				break;
 			case SLIDINGRIGHT:
-				item.getPosition().goRight();
+				if( cellMap.getCell(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() == false
+				&& itemMap.getItem(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() == false)
+				{
+					item.getPosition().goRight();
+				}
 				break;
 			case SLIDINGLEFT:
-				item.getPosition().goLeft();
+				if( cellMap.getCell(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() == false
+				&& itemMap.getItem(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() == false)
+				{
+					item.getPosition().goLeft();
+				}
 				break;
 			default:
 				break;
@@ -217,6 +245,7 @@ public class MapInstance
 		else if (entity instanceof Item)
 		{
 			itemMap.removeItem(entity.getPosition());
+			((Item) entity).fall();
 			fallingItem((Item) entity);
 			itemMap.setItem(entity.getPosition(), (Item) entity);
 		}

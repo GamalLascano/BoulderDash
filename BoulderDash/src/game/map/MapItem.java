@@ -5,6 +5,7 @@ import game.item.Item;
 import game.item.Empty;
 import game.map.bdlevel.BDLevelReader;
 import game.item.Diamond;
+import game.item.Rock;
 
 public class MapItem
 {
@@ -61,6 +62,25 @@ public class MapItem
 			if( matrix[pos.getX()][pos.getY()] instanceof Diamond )
 			{
 				return ( (Diamond) matrix[pos.getX()][pos.getY()] );
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public Rock getRock(Position pos)
+	{
+		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		{
+			if( matrix[pos.getX()][pos.getY()] instanceof Rock )
+			{
+				return ( (Rock) matrix[pos.getX()][pos.getY()] );
 			}
 			else
 			{
