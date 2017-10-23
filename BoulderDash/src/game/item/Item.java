@@ -9,6 +9,7 @@ public abstract class Item extends Entity
 {
 	SpriteChar spritechar;
 	StatusItem state;
+	boolean solid;
 	boolean collectable;
 	boolean moveable;
 	boolean fallable;
@@ -16,7 +17,7 @@ public abstract class Item extends Entity
 	boolean rounded;	//Si un objeto sobre otro se cae por los lados
 
 	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable,
-			boolean explodable, boolean rounded)
+			boolean explodable, boolean rounded, boolean solid)
 	{
 		super(pos);
 		this.state = state;
@@ -25,6 +26,7 @@ public abstract class Item extends Entity
 		this.fallable = fallable;
 		this.explodable = explodable;
 		this.rounded = rounded;
+		this.solid = solid;
 	}
 
 	// GETTERS
@@ -62,6 +64,11 @@ public abstract class Item extends Entity
 	public boolean isRounded()
 	{
 		return rounded;
+	}
+
+	public boolean isSolid()
+	{
+		return solid;
 	}
 
 	// SETTERS

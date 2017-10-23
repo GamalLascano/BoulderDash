@@ -47,6 +47,11 @@ public class MapItem
 	{
 		return matrix[pos.getX()][pos.getY()];
 	}
+	
+	public Item getItem(Integer x, Integer y)
+	{
+		return matrix[x][y];
+	}
 
 	// SETTERS
 	

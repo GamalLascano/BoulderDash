@@ -81,28 +81,32 @@ public class MapInstance
 		switch ( player.getState().getStateEnum() )
 		{
 			case MOVINGUP:
-				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == false)
+				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == false
+						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == false)
 				{
 					player.getPosition().goUp();
 					player.dig(cellMap.getDirt(player.getPosition()));
 				}
 				break;
 			case MOVINGDOWN:
-				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == false)
+				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == false
+						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == false)
 				{
 					player.getPosition().goDown();
 					player.dig(cellMap.getDirt(player.getPosition()));
 				}
 				break;
 			case MOVINGRIGHT:
-				if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false)
+				if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false
+						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false)
 				{
 					player.getPosition().goRight();
 					player.dig(cellMap.getDirt(player.getPosition()));
 				}
 				break;
 			case MOVINGLEFT:
-				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false)
+				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
+						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false)
 				{
 					player.getPosition().goLeft();
 					player.dig(cellMap.getDirt(player.getPosition()));
