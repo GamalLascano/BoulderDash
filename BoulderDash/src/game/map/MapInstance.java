@@ -249,6 +249,7 @@ public class MapInstance
 		else if (entity instanceof Actor)
 		{
 			actorMap.removeActor(entity.getPosition());
+			((Enemy) entity).rotate();
 			movingActor((Actor) entity);
 			actorMap.setActor(entity.getPosition(), (Actor) entity);
 		}

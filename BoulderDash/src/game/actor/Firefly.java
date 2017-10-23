@@ -4,6 +4,7 @@ import game.ActiveEntities;
 import game.Position;
 import game.map.MapInstance;
 import game.SpriteChar;
+import game.item.StatusItemEnum;
 
 public class Firefly extends Enemy
 {
@@ -24,9 +25,25 @@ public class Firefly extends Enemy
 	
 	// S
 	
-	public boolean rotate()
+	public void rotate()
 	{
-		return true;
+		switch ( this.getState().getStateEnum() )
+		{
+			case MOVINGUP:
+				this.getState().setStateEnum(StatusActorEnum.MOVINGRIGHT);
+				break;
+			case MOVINGRIGHT:
+				this.getState().setStateEnum(StatusActorEnum.MOVINGDOWN);
+				break;
+			case MOVINGDOWN:
+				this.getState().setStateEnum(StatusActorEnum.MOVINGLEFT);
+				break;
+			case MOVINGLEFT:
+				this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
+				break;
+			default:
+				break;
+		}
 	}
 
 	// S

@@ -31,9 +31,9 @@ public class Butterfly extends Enemy
 
 
 	@Override
-	public boolean rotate()
+	public void rotate()
 	{
-		return true;
+		
 	}
 
 }

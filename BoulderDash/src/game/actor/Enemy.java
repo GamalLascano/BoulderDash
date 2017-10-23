@@ -13,7 +13,7 @@ public abstract class Enemy extends Actor
 	
 	// S
 
-	protected abstract boolean rotate();
+	protected abstract void rotate();
 
 	// S
 	
