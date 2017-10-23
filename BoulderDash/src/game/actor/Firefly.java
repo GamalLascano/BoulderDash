@@ -7,7 +7,7 @@ import game.SpriteChar;
 
 public class Firefly extends Enemy
 {
-	SpriteChar spritechar = SpriteChar.F;
+	private SpriteChar spritechar = SpriteChar.F;
 	
 	public Firefly(StatusActor state, Position pos)
 	{
