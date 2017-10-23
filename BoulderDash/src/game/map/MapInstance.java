@@ -113,8 +113,13 @@ public class MapInstance
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
+				// EMPUJA PIEDRA SI HAY (dps limpiar aca)
 				else if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false
-						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isMoveable() == true)
+						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isMoveable() == true
+						&& itemMap.getItem(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getCell(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getDirt(player.getPosition().checkRight() + 1, player.getPosition().getY()) != null 
+						&& cellMap.getDirt(player.getPosition().checkRight() + 1, player.getPosition().getY()).IsDirt() == false )
 				{
 					player.getPosition().goRight();
 					player.dig(cellMap.getDirt(player.getPosition()));
@@ -130,8 +135,13 @@ public class MapInstance
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
+				// EMPUJA PIEDRA SI HAY
 				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
-						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true)
+						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true
+						&& itemMap.getItem(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getCell(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getDirt(player.getPosition().checkLeft() + 1, player.getPosition().getY()) != null 
+						&& cellMap.getDirt(player.getPosition().checkLeft() + 1, player.getPosition().getY()).IsDirt() == false )
 				{
 					player.getPosition().goLeft();
 					player.dig(cellMap.getDirt(player.getPosition()));

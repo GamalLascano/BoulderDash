@@ -67,6 +67,25 @@ public class MapCell
 			return null;
 		}
 	}
+	
+	public Dirt getDirt(Integer x, Integer y)
+	{
+		if( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		{
+			if( matrix[x][y] instanceof Dirt )
+			{
+				return ( (Dirt) matrix[x][y] );
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return null;
+		}
+	}
 
 	// SETTERS
 	
