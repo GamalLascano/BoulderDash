@@ -83,7 +83,7 @@ public class MapVisual
 			System.out.println();
 
 		}
-
+		System.out.println("Rockford Pos: " + ActiveEntities.findRockford().getPosition().getX() + "," + ActiveEntities.findRockford().getPosition().getY() );
 		System.out.println("..............................................................");
 
 	}

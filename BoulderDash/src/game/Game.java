@@ -3,7 +3,7 @@ package game;
 import game.actor.Rockford;
 import game.map.MapInstance;
 import game.map.MapVisual;
-import game.cell.Exit;
+//import game.cell.Exit;
 import game.map.bdlevel.BDLevelReader;
 import java.util.Scanner;
 
@@ -40,9 +40,9 @@ public class Game
 		MapInstance.buildMap(levelFrame);
 		MapVisual.getInstance().start(levelFrame);;
 		
-		Rockford player = MapInstance.getEntitiesActive().findRockford();
-		Exit exit = MapInstance.getMapCell().findExit();
+		//Exit exit = MapInstance.getMapCell().findExit();
 		
+		Rockford player = ActiveEntities.findRockford();
 		MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
 		MapVisual.imprimirMapa();
 		MapInstance.refresh();

@@ -70,7 +70,8 @@ public class MapInstance
 		itemMap = MapItem.getInstance();
 		MapActor.getInstance().start(levels);
 		actorMap = MapActor.getInstance();
-		entitiesAlive = null;
+		entitiesAlive = ActiveEntities.getInstance();
+		ActiveEntities.start();
 	}
 	
 	// ACTUALIZAR POSICION
@@ -125,10 +126,11 @@ public class MapInstance
 
 	private static void fallingItem(Item item)
 	{
-		switch (item.getState().getStateEnum())
+		StatusItemEnum status = item.getState().getStateEnum();
+		switch (status)
 		{
 			case FALLING:
-				item.getPosition().goDown();
+				item.getPosition().goUp();
 				break;
 			case SLIDINGRIGHT:
 				item.getPosition().goRight();
@@ -170,9 +172,9 @@ public class MapInstance
 	public static void refresh()
 	{
 		int i;
-		for (i = 0; i < entitiesAlive.getList().size(); ++i)
+		for (i = 0; i < ActiveEntities.getList().size(); ++i)
 		{
-			Entity ent = entitiesAlive.getList().get(i);
+			Entity ent = ActiveEntities.getList().get(i);
 			changePosition(ent);
 		}
 	}
@@ -187,9 +189,6 @@ public class MapInstance
 	 */
 	public static void buildMap(BDLevelReader level)
 	{
-		
-		entitiesAlive = new ActiveEntities();
-
 		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
 			for (int x = 0; x < level.getWIDTH(); x++)
@@ -221,39 +220,39 @@ public class MapInstance
 					case ROCK:
 						Rock rock = new Rock(stateItem, pos);
 						itemMap.setItem(pos, rock);
-						entitiesAlive.getList().add(rock);
+						ActiveEntities.getList().add(rock);
 						break;
 					case FALLINGROCK:
 						stateItem.setStateEnum(StatusItemEnum.FALLING);
 						Rock fallingRock = new Rock(stateItem, pos);
 						itemMap.setItem(pos, fallingRock);
-						entitiesAlive.getList().add(fallingRock);
+						ActiveEntities.getList().add(fallingRock);
 						break;
 					case DIAMOND:
 						Diamond diamond = new Diamond(stateItem, pos);
 						itemMap.setItem(pos, diamond);
-						entitiesAlive.getList().add(diamond);
+						ActiveEntities.getList().add(diamond);
 						break;
 					case FALLINGDIAMOND:
 						stateItem.setStateEnum(StatusItemEnum.FALLING);
 						Diamond fallingDiamond = new Diamond(stateItem, pos);
 						itemMap.setItem(pos, fallingDiamond);
-						entitiesAlive.getList().add(fallingDiamond);
+						ActiveEntities.getList().add(fallingDiamond);
 						break;
 					case AMOEBA:
 						Amoeba amoeba = new Amoeba(stateItem, pos);
 						itemMap.setItem(pos, amoeba);
-						entitiesAlive.getList().add(amoeba);
+						ActiveEntities.getList().add(amoeba);
 						break;
 					case FIREFLY:
 						Firefly firefly = new Firefly(stateActor, pos);
 						actorMap.setActor(pos, firefly);
-						entitiesAlive.getList().add(firefly);
+						ActiveEntities.getList().add(firefly);
 						break;
 					case BUTTERFLY:
 						Butterfly butterfly = new Butterfly(stateActor, pos);
 						actorMap.setActor(pos, butterfly);
-						entitiesAlive.getList().add(butterfly);
+						ActiveEntities.getList().add(butterfly);
 						break;
 					case EXIT:
 						cellMap.setCell(pos, new Exit(pos));
@@ -261,7 +260,7 @@ public class MapInstance
 					case PLAYER:
 						Rockford player = new Rockford(stateActor, pos);
 						actorMap.setActor(pos, player);
-						entitiesAlive.getList().add(player);
+						ActiveEntities.getList().add(player);
 						break;
 					default:
 						break;

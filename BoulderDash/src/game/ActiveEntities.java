@@ -2,6 +2,7 @@ package game;
 
 import game.Entity;
 import game.actor.Rockford;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,40 +10,46 @@ import java.util.List;
 	//	Lista de entities (Items y Actores)
 public class ActiveEntities
 {
-	private List<Entity> list = new ArrayList<Entity>();
+	private static ActiveEntities singleton;
+	private static List<Entity> list;
 
 	// CONSTRUCTORS
-	
-	public ActiveEntities()
+
+	private ActiveEntities()
 	{
-		super();
-	}
-	
-	public ActiveEntities(List<Entity> list)
-	{
-		super();
-		this.list = list;
+		
 	}
 
+	// SINGLETON
+
+	public static synchronized ActiveEntities getInstance()
+	{
+		if (singleton == null)
+		{
+			singleton = new ActiveEntities();
+		}
+		return singleton;
+	}
+	
+	public static void start()
+	{
+		list = new ArrayList<Entity>();
+	}
+	
 	// GETTERS
 	
-	public List<Entity> getList()
+	public static List<Entity> getList()
 	{
 		return list;
 	}
 
 	// SETTERS	
 	
-	public void setList(List<Entity> list)
-	{
-		this.list = list;
-	}
-	
 	// SORT
 	
 	// FIND
 	
-	public Rockford findRockford()
+	public static Rockford findRockford()
 	{
 		Rockford player;
 		int i = 0;
