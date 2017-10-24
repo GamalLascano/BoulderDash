@@ -80,7 +80,7 @@ public class MapInstance
 
 	/**
 	 * Se occupa de mover a Rockford en la matriz, tambien verifica si la celda destino es solida para moverse.
-	 * Rockford cava automaticamente la tierra.
+	 * Rockford cava automaticamente la tierra, recolta diamantes y empuja rocas aca.
 	 * @param player
 	 */
 	private static void movingRockford(Rockford player)
@@ -113,7 +113,7 @@ public class MapInstance
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
-				// EMPUJA PIEDRA SI HAY (dps limpiar aca)
+				// EMPUJA PIEDRA SI HAY (despues hacer mejor codigo aca)
 				else if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isMoveable() == true
 						&& itemMap.getItem(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() == false
@@ -135,7 +135,7 @@ public class MapInstance
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
-				// EMPUJA PIEDRA SI HAY
+				// EMPUJA PIEDRA SI HAY  (despues hacer mejor codigo aca)
 				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true
 						&& itemMap.getItem(player.getPosition().checkLeft() - 1, player.getPosition().getY()).isSolid() == false

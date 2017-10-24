@@ -58,7 +58,7 @@ public class Game
 				//hago que se muevan todos los actores
 				MapInstance.refresh();
 				
-				System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, apretar (q) para quitar el nivel");
+				System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
 		
 				while( quit == false )
 				{
@@ -77,6 +77,8 @@ public class Game
 							break;
 						case "a":
 							player.move(CurrentDirection.LEFT);
+							break;
+						case "e":
 							break;
 						case "q":
 							quit = true;
