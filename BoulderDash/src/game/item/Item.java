@@ -161,7 +161,7 @@ public abstract class Item extends Entity
 		else
 		{
 			//Sino, si el objeto es redondo, elije uno de los lados para caer, y cae
-			if (MapInstance.getMapItem().getItem(posDown).isRounded())
+			if (MapInstance.getMapItem().getItem(posDown.getX(),posDown.getY()).isRounded())
 			{
 				Position posLeft = new Position(super.getPosition().checkLeft(), super.getPosition().getY());
 				Position posRight = new Position(super.getPosition().checkRight(), super.getPosition().getY());

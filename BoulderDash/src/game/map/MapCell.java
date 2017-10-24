@@ -39,10 +39,6 @@ public class MapCell
 	
 	// GETTERS
 	
-	public Cell getCell(Position pos)
-	{
-		return matrix[pos.getX()][pos.getY()];
-	}
 	
 	public Cell getCell(Integer x, Integer y)
 	{

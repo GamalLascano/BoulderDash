@@ -66,13 +66,13 @@ public class MapVisual
 				{
 					map[x][y] = actorMap.getActor(pos).getSpritechar();
 				}
-				else if( itemMap.getItem(pos) instanceof Empty == false )
+				else if( itemMap.getItem(pos.getX(),pos.getY()) instanceof Empty == false )
 				{
-					map[x][y] = itemMap.getItem(pos).getSpritechar();
+					map[x][y] = itemMap.getItem(pos.getX(),pos.getY()).getSpritechar();
 				}
-				else if( cellMap.getCell(pos) instanceof Cell)
+				else if( cellMap.getCell(pos.getX(),pos.getY()) instanceof Cell)
 				{
-					map[x][y] = cellMap.getCell(pos).getSpritechar();
+					map[x][y] = cellMap.getCell(pos.getX(),pos.getY()).getSpritechar();
 				}
 			}
 		}
