@@ -4,7 +4,6 @@ import game.ActiveEntities;
 import game.Position;
 import game.map.MapInstance;
 import game.SpriteChar;
-import game.item.StatusItemEnum;
 
 public class Firefly extends Enemy
 {
@@ -13,6 +12,7 @@ public class Firefly extends Enemy
 	public Firefly(StatusActor state, Position pos)
 	{
 		super(state, pos);
+		this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
 		// TODO Auto-generated constructor stub
 	}
 

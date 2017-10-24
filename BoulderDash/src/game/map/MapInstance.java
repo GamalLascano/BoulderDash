@@ -165,7 +165,9 @@ public class MapInstance
 		{
 			case MOVINGUP:
 				if( cellMap.getCell(actor.getPosition().getX(), actor.getPosition().checkUp()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkUp()).isSolid() == false)
+				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkUp()).isSolid() == false
+				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkUp()) != null 
+				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkUp()).IsDirt() == false )
 				{
 					actor.getPosition().goUp();
 				}
@@ -176,7 +178,9 @@ public class MapInstance
 				break;
 			case MOVINGDOWN:
 				if( cellMap.getCell(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false)
+				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false
+				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkDown()) != null 
+				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkDown()).IsDirt() == false )
 				{
 					actor.getPosition().goDown();
 				}
@@ -187,7 +191,9 @@ public class MapInstance
 				break;
 			case MOVINGRIGHT:
 				if( cellMap.getCell(actor.getPosition().checkRight(), actor.getPosition().getY()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().checkRight(), actor.getPosition().getY()).isSolid() == false)
+				&& itemMap.getItem(actor.getPosition().checkRight(), actor.getPosition().getY()).isSolid() == false
+				&& cellMap.getDirt(actor.getPosition().checkRight(), actor.getPosition().getY()) != null 
+				&& cellMap.getDirt(actor.getPosition().checkRight(), actor.getPosition().getY()).IsDirt() == false )
 				{
 					actor.getPosition().goRight();
 				}
@@ -198,7 +204,9 @@ public class MapInstance
 				break;
 			case MOVINGLEFT:
 				if( cellMap.getCell(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false)
+				&& itemMap.getItem(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false
+				&& cellMap.getDirt(actor.getPosition().checkLeft(), actor.getPosition().getY()) != null 
+				&& cellMap.getDirt(actor.getPosition().checkLeft(), actor.getPosition().getY()).IsDirt() == false )
 				{
 					actor.getPosition().goLeft();
 				}
