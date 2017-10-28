@@ -265,7 +265,7 @@ public class MapInstance
 			case FALLING:
 				if( cellMap.getCell(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1
 				&& itemMap.getItem(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1
-				&& actorMap.getActor(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1)
+				&& actorMap.getActor(item.getPosition().getX(), item.getPosition().checkDown()) != null)
 				{
 					item.getPosition().goDown();
 				}
@@ -273,7 +273,7 @@ public class MapInstance
 			case SLIDINGRIGHT:
 				if( cellMap.getCell(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1
 				&& itemMap.getItem(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1
-				&& actorMap.getActor(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1)
+				&& actorMap.getActor(item.getPosition().checkRight(), item.getPosition().getY()) != null)
 				{
 					item.getPosition().goRight();
 				}
@@ -281,7 +281,7 @@ public class MapInstance
 			case SLIDINGLEFT:
 				if( cellMap.getCell(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1
 				&& itemMap.getItem(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1
-				&& actorMap.getActor(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1)
+				&& actorMap.getActor(item.getPosition().checkLeft(), item.getPosition().getY()) != null)
 				{
 					item.getPosition().goLeft();
 				}
