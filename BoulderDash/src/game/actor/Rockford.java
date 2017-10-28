@@ -27,7 +27,7 @@ public class Rockford extends Actor
 	 */
 	public Rockford(StatusActor state, Position pos)
 	{
-		super(state, pos);
+		super(state, pos, 1);
 		this.score = 0;
 		this.diamonds = 0;
 		this.pushing = false;

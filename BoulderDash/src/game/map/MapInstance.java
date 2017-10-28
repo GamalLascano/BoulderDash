@@ -101,8 +101,8 @@ public class MapInstance
 		{
 			case MOVINGUP:
 				//Si las celdas e items de arriba de rockford no son solidos...
-				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == 0
-						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == 0)
+				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() < 2
+						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() < 2)
 				{
 					//..rompo la tierra arriba de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goUp();
@@ -112,8 +112,8 @@ public class MapInstance
 				break;
 			case MOVINGDOWN:
 				//Si las celdas e items de abajo de rockford no son solidos...
-				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == 0
-						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == 0)
+				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() < 2
+						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() < 2)
 				{
 					//..rompo la tierra abajo de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goDown();
@@ -123,8 +123,8 @@ public class MapInstance
 				break;
 			case MOVINGRIGHT:
 				//Si las celdas e items en la derecha de rockford no son solidos...
-				if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == 0
-						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == 0)
+				if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() < 2
+						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() < 2)
 				{
 					//..rompo la tierra en la derecha de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goRight();
@@ -132,10 +132,10 @@ public class MapInstance
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
 				//Si no es solido, es movible, y no hay tierra al lado.
-				else if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == 0
+				else if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() < 2
 						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isMoveable() == true
-						&& itemMap.getItem(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() == 0
-						&& cellMap.getCell(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() == 0 )
+						&& itemMap.getItem(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() < 1
+						&& cellMap.getCell(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() < 1)
 				{
 					//Se pushea lo que haya
 					player.getPosition().goRight();
@@ -146,8 +146,8 @@ public class MapInstance
 				break;
 			case MOVINGLEFT:
 				//Si las celdas e items en la izquierda de rockford no son solidos...
-				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == 0
-						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == 0)
+				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() < 2
+						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() < 2)
 				{
 					//..rompo la tierra en la derecha de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goLeft();
@@ -155,10 +155,10 @@ public class MapInstance
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
 				//Si no es solido, es movible, y no hay tierra al lado
-				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == 0
+				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() < 2
 						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true
-						&& itemMap.getItem(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == 0
-						&& cellMap.getCell(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == 0)
+						&& itemMap.getItem(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() < 1
+						&& cellMap.getCell(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() < 1)
 				{
 					//Se pushea lo que haya
 					player.getPosition().goLeft();
@@ -183,43 +183,51 @@ public class MapInstance
 		switch ( enemy.getState().getStateEnum() )
 		{
 			case MOVINGUP:
-				if( cellMap.getCell(enemy.getPosition().getX(), enemy.getPosition().checkUp()).isSolid() == 0
-				&& itemMap.getItem(enemy.getPosition().getX(), enemy.getPosition().checkUp()).isSolid() == 0)
+				if( cellMap.getCell(enemy.getPosition().getX(), enemy.getPosition().checkUp()).isSolid() < 1
+				&& itemMap.getItem(enemy.getPosition().getX(), enemy.getPosition().checkUp()).isSolid() < 1)
 				{
 					enemy.getPosition().goUp();
 				}
 				else
 				{
+					((Firefly) enemy).rotate();
+					((Butterfly) enemy).rotate();
 				}
 				break;
 			case MOVINGDOWN:
-				if( cellMap.getCell(enemy.getPosition().getX(), enemy.getPosition().checkDown()).isSolid() == 0
-				&& itemMap.getItem(enemy.getPosition().getX(), enemy.getPosition().checkDown()).isSolid() == 0)
+				if( cellMap.getCell(enemy.getPosition().getX(), enemy.getPosition().checkDown()).isSolid() < 1
+				&& itemMap.getItem(enemy.getPosition().getX(), enemy.getPosition().checkDown()).isSolid() < 1)
 				{
 					enemy.getPosition().goDown();
 				}
 				else
 				{
+					((Firefly) enemy).rotate();
+					((Butterfly) enemy).rotate();
 				}
 				break;
 			case MOVINGRIGHT:
-				if( cellMap.getCell(enemy.getPosition().checkRight(), enemy.getPosition().getY()).isSolid() == 0
-				&& itemMap.getItem(enemy.getPosition().checkRight(), enemy.getPosition().getY()).isSolid() == 0)
+				if( cellMap.getCell(enemy.getPosition().checkRight(), enemy.getPosition().getY()).isSolid() < 1
+				&& itemMap.getItem(enemy.getPosition().checkRight(), enemy.getPosition().getY()).isSolid() < 1)
 				{
 					enemy.getPosition().goRight();
 				}
 				else
 				{
+					((Firefly) enemy).rotate();
+					((Butterfly) enemy).rotate();
 				}
 				break;
 			case MOVINGLEFT:
-				if( cellMap.getCell(enemy.getPosition().checkLeft(), enemy.getPosition().getY()).isSolid() == 0
-				&& itemMap.getItem(enemy.getPosition().checkLeft(), enemy.getPosition().getY()).isSolid() == 0)
+				if( cellMap.getCell(enemy.getPosition().checkLeft(), enemy.getPosition().getY()).isSolid() < 1
+				&& itemMap.getItem(enemy.getPosition().checkLeft(), enemy.getPosition().getY()).isSolid() < 1)
 				{
 					enemy.getPosition().goLeft();
 				}
 				else
 				{
+					((Firefly) enemy).rotate();
+					((Butterfly) enemy).rotate();
 				}
 				break;
 			default:
@@ -238,22 +246,22 @@ public class MapInstance
 		switch (status)
 		{
 			case FALLING:
-				if( cellMap.getCell(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() == 0
-				&& itemMap.getItem(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() == 0)
+				if( cellMap.getCell(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1
+				&& itemMap.getItem(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1)
 				{
 					item.getPosition().goDown();
 				}
 				break;
 			case SLIDINGRIGHT:
-				if( cellMap.getCell(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() == 0
-				&& itemMap.getItem(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() == 0)
+				if( cellMap.getCell(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1
+				&& itemMap.getItem(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1)
 				{
 					item.getPosition().goRight();
 				}
 				break;
 			case SLIDINGLEFT:
-				if( cellMap.getCell(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() == 0
-				&& itemMap.getItem(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() == 0)
+				if( cellMap.getCell(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1
+				&& itemMap.getItem(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1)
 				{
 					item.getPosition().goLeft();
 				}

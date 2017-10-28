@@ -9,7 +9,7 @@ public class Butterfly extends Enemy
 	
 	public Butterfly(StatusActor state, Position pos)
 	{
-		super(state, pos);
+		super(state, pos, 1);
 		// TODO Auto-generated constructor stub
 	}
 

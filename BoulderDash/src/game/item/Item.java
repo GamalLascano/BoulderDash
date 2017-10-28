@@ -59,14 +59,13 @@ public abstract class Item extends Entity
 	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable,
 			boolean explodable, boolean rounded, int solid)
 	{
-		super(pos);
+		super(pos, solid);
 		this.state = state;
 		this.collectable = collectable;
 		this.moveable = moveable;
 		this.fallable = fallable;
 		this.explodable = explodable;
 		this.rounded = rounded;
-		this.solid = solid;
 	}
 
 	// GETTERS
@@ -104,11 +103,6 @@ public abstract class Item extends Entity
 	public boolean isRounded()
 	{
 		return rounded;
-	}
-
-	public int isSolid()
-	{
-		return solid;
 	}
 
 	// SETTERS

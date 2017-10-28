@@ -7,6 +7,7 @@ package game;
 public abstract class Entity
 {
 	private Position pos = new Position();
+	private int solid;
 
 	public Entity()
 	{
@@ -14,8 +15,14 @@ public abstract class Entity
 	
 	public Entity(Position pos)
 	{
-		super();
 		this.pos = pos;
+		this.solid = 0;
+	}
+	
+	public Entity(Position pos, int solid)
+	{
+		this.pos = pos;
+		this.solid = solid;
 	}
 
 	// GETTERS
@@ -24,9 +31,19 @@ public abstract class Entity
 	{
 		return pos;
 	}
+	
+	public int isSolid()
+	{
+		return solid;
+	}
 
 	// SETTERS
-	
+
+	public void setSolid(int solid)
+	{
+		this.solid = solid;
+	}
+
 	public void setPosition(Position pos)
 	{
 		this.pos = pos;

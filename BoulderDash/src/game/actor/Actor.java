@@ -22,7 +22,13 @@ public abstract class Actor extends Entity
 	
 	public Actor(StatusActor state, Position pos)
 	{
-		super(pos);
+		super(pos, 0);
+		this.state = state;
+	}
+	
+	public Actor(StatusActor state, Position pos, int solid)
+	{
+		super(pos, solid);
 		this.state = state;
 	}
 

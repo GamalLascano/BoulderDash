@@ -11,7 +11,7 @@ public class Firefly extends Enemy
 	
 	public Firefly(StatusActor state, Position pos)
 	{
-		super(state, pos);
+		super(state, pos, 1);
 		this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
 		// TODO Auto-generated constructor stub
 	}

@@ -5,9 +5,9 @@ import game.Position;
 public abstract class Enemy extends Actor
 {
 
-	public Enemy(StatusActor state, Position pos)
+	public Enemy(StatusActor state, Position pos, int solid)
 	{
-		super(state, pos);
+		super(state, pos, solid);
 		// TODO Auto-generated constructor stub
 	}
 	
