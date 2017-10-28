@@ -8,6 +8,9 @@ import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.Position;
 
+/** Esta clase contiene la instancia del mapa principal del juego, y controla la gran parte del movimiento del juego
+ *  Es singleton, y contiene a un mapa de celdas, items y actores, junto con una lista con todas las entidades vivas
+ */
 public class MapInstance
 {
 	private static MapInstance singleton;
@@ -28,8 +31,12 @@ public class MapInstance
 
 	// SINGLETON
 
+	/** Devuelve la unica instancia del mapa
+	 * @return el singleton de la clase
+	 */
 	public static synchronized MapInstance getInstance()
 	{
+		//Si la instancia no se creo, se crea, y se devuelve la instancia
 		if (singleton == null)
 		{
 			singleton = new MapInstance();
@@ -64,6 +71,10 @@ public class MapInstance
 
 	// INICIALIZACION
 	
+	/** Con este metodo, creo cada uno de los mapas para que se puedan usar independientemente
+	 *  En conjunto con una lista con todas las entidades que se mueven
+	 * @param levels: El lector de niveles del juego
+	 */
 	public static void start(BDLevelReader levels)
 	{
 		MapCell.getInstance().start(levels);
@@ -80,40 +91,47 @@ public class MapInstance
 
 	/**
 	 * Se occupa de mover a Rockford en la matriz, tambien verifica si la celda destino es solida para moverse.
-	 * Rockford cava automaticamente la tierra, recolta diamantes y empuja rocas aca.
+	 * Rockford cava automaticamente la tierra.
 	 * @param player
 	 */
 	private static void movingRockford(Rockford player)
 	{
+		//En el cado de moverse arriba, abajo, izquierda o derecha, se mueve de forma diferente
 		switch ( player.getState().getStateEnum() )
 		{
 			case MOVINGUP:
+				//Si las celdas e items de arriba de rockford no son solidos...
 				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkUp()).isSolid() == false)
 				{
+					//..rompo la tierra arriba de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goUp();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
 				break;
 			case MOVINGDOWN:
+				//Si las celdas e items de abajo de rockford no son solidos...
 				if( cellMap.getCell(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().getX(), player.getPosition().checkDown()).isSolid() == false)
 				{
+					//..rompo la tierra abajo de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goDown();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
 				break;
 			case MOVINGRIGHT:
+				//Si las celdas e items en la derecha de rockford no son solidos...
 				if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false)
 				{
+					//..rompo la tierra en la derecha de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goRight();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
-				// EMPUJA PIEDRA SI HAY (despues hacer mejor codigo aca)
+				//Si no es solido, es movible, y no hay tierra al lado.
 				else if( cellMap.getCell(player.getPosition().checkRight(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkRight(), player.getPosition().getY()).isMoveable() == true
 						&& itemMap.getItem(player.getPosition().checkRight() + 1, player.getPosition().getY()).isSolid() == false
@@ -121,6 +139,7 @@ public class MapInstance
 						&& cellMap.getDirt(player.getPosition().checkRight() + 1, player.getPosition().getY()) != null 
 						&& cellMap.getDirt(player.getPosition().checkRight() + 1, player.getPosition().getY()).IsDirt() == false )
 				{
+					//Se pushea lo que haya
 					player.getPosition().goRight();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
@@ -128,21 +147,24 @@ public class MapInstance
 				}
 				break;
 			case MOVINGLEFT:
+				//Si las celdas e items en la izquierda de rockford no son solidos...
 				if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false)
 				{
+					//..rompo la tierra en la derecha de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goLeft();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
-				// EMPUJA PIEDRA SI HAY  (despues hacer mejor codigo aca)
+				//Si no es solido, es movible, y no hay tierra al lado
 				else if( cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() == false
 						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY()).isMoveable() == true
-						&& itemMap.getItem(player.getPosition().checkLeft() - 1, player.getPosition().getY()).isSolid() == false
-						&& cellMap.getCell(player.getPosition().checkLeft() - 1, player.getPosition().getY()).isSolid() == false
-						&& cellMap.getDirt(player.getPosition().checkLeft() - 1, player.getPosition().getY()) != null 
-						&& cellMap.getDirt(player.getPosition().checkLeft() - 1, player.getPosition().getY()).IsDirt() == false )
+						&& itemMap.getItem(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getCell(player.getPosition().checkLeft() + 1, player.getPosition().getY()).isSolid() == false
+						&& cellMap.getDirt(player.getPosition().checkLeft() + 1, player.getPosition().getY()) != null 
+						&& cellMap.getDirt(player.getPosition().checkLeft() + 1, player.getPosition().getY()).IsDirt() == false )
 				{
+					//Se pushea lo que haya
 					player.getPosition().goLeft();
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
@@ -152,12 +174,13 @@ public class MapInstance
 			default:
 				break;
 		}
+		//Por ultimo se setea al jugador en idle
 		player.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 	
 	/**
 	 * Se occupa de hacer mover a los enemigos.
-	 * @param actor
+	 * @param actor: El actor que se necesita mover
 	 */
 	private static void movingActor(Actor actor)
 	{
@@ -165,59 +188,36 @@ public class MapInstance
 		{
 			case MOVINGUP:
 				if( cellMap.getCell(actor.getPosition().getX(), actor.getPosition().checkUp()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkUp()).isSolid() == false
-				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkUp()) != null 
-				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkUp()).IsDirt() == false )
+				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkUp()).isSolid() == false)
 				{
 					actor.getPosition().goUp();
-				}
-				else
-				{
-					((Firefly) actor).rotate();
 				}
 				break;
 			case MOVINGDOWN:
 				if( cellMap.getCell(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false
-				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkDown()) != null 
-				&& cellMap.getDirt(actor.getPosition().getX(), actor.getPosition().checkDown()).IsDirt() == false )
+				&& itemMap.getItem(actor.getPosition().getX(), actor.getPosition().checkDown()).isSolid() == false)
 				{
 					actor.getPosition().goDown();
-				}
-				else
-				{
-					((Firefly) actor).rotate();
 				}
 				break;
 			case MOVINGRIGHT:
 				if( cellMap.getCell(actor.getPosition().checkRight(), actor.getPosition().getY()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().checkRight(), actor.getPosition().getY()).isSolid() == false
-				&& cellMap.getDirt(actor.getPosition().checkRight(), actor.getPosition().getY()) != null 
-				&& cellMap.getDirt(actor.getPosition().checkRight(), actor.getPosition().getY()).IsDirt() == false )
+				&& itemMap.getItem(actor.getPosition().checkRight(), actor.getPosition().getY()).isSolid() == false)
 				{
 					actor.getPosition().goRight();
-				}
-				else
-				{
-					((Firefly) actor).rotate();
 				}
 				break;
 			case MOVINGLEFT:
 				if( cellMap.getCell(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false
-				&& itemMap.getItem(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false
-				&& cellMap.getDirt(actor.getPosition().checkLeft(), actor.getPosition().getY()) != null 
-				&& cellMap.getDirt(actor.getPosition().checkLeft(), actor.getPosition().getY()).IsDirt() == false )
+				&& itemMap.getItem(actor.getPosition().checkLeft(), actor.getPosition().getY()).isSolid() == false)
 				{
 					actor.getPosition().goLeft();
-				}
-				else
-				{
-					((Firefly) actor).rotate();
 				}
 				break;
 			default:
 				break;
 		}
+		actor.getState().setStateEnum(StatusActorEnum.IDLE);
 	}
 
 	/**
@@ -262,19 +262,21 @@ public class MapInstance
 	 */
 	public static void changePosition(Entity entity)
 	{
-		
+		//Si esa entidad es rockford, se mueve y se hacen las operaciones determinadas
 		if (entity instanceof Rockford)
 		{
 			actorMap.removeActor(entity.getPosition());
 			movingRockford((Rockford) entity);
 			actorMap.setActor(entity.getPosition(), (Rockford) entity);
 		}
+		//Si esa entidad es otro actor, se hace lo mismo
 		else if (entity instanceof Actor)
 		{
 			actorMap.removeActor(entity.getPosition());
 			movingActor((Actor) entity);
 			actorMap.setActor(entity.getPosition(), (Actor) entity);
 		}
+		//Si esa entidad es otro item, se hace lo mismo, pero si es un item que se cae, se checkea si cae
 		else if (entity instanceof Item)
 		{
 			itemMap.removeItem(entity.getPosition());
@@ -309,10 +311,12 @@ public class MapInstance
 	 */
 	public static void buildMap(BDLevelReader level)
 	{
+		//Para armar el mapa, voy por todo el nivel
 		for (int y = 0; y < level.getHEIGHT(); y++)
 		{
 			for (int x = 0; x < level.getWIDTH(); x++)
 			{
+				//Hago un nuevo status para el item/actor nuevo, y uso la posicion actual
 				StatusItem stateItem = new StatusItem();
 				StatusActor stateActor = new StatusActor();
 				Position pos = new Position();
@@ -320,7 +324,7 @@ public class MapInstance
 				pos.setXY(x, y);
 				stateItem.reset(StatusItemEnum.IDLE, true);
 				stateActor.reset(StatusActorEnum.IDLE, true);
-
+				//y dependiendo de lo que se encuentre, se guarda en cada uno de los mapas
 				switch (level.getTile(x, y))
 				{
 					case EMPTY:
