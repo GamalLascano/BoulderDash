@@ -12,7 +12,7 @@ public class Dirt extends Cell
 	
 	public Dirt(Position pos)
 	{
-		super(pos, 0);
+		super(pos, 1);
 		this.isDirt = true;
 		this.spritechar = SpriteChar.D;
 	}
