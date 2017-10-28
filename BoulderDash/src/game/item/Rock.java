@@ -18,7 +18,7 @@ public class Rock extends Item
 	 */
 	public Rock(StatusItem state, Position pos)
 	{
-		super(state, pos, false, true, true, false, true, true);
+		super(state, pos, false, true, true, false, true, 2);
 		this.pushed = false;
 	}
 

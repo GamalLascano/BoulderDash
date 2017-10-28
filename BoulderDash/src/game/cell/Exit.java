@@ -11,14 +11,14 @@ public class Exit extends Cell
 
 	public Exit(Position pos)
 	{
-		super(pos, true);
+		super(pos, 2);
 	}
 
 	public void open(BDLevelReader levelReader, Rockford player)
 	{
 		if (player.getDiamonds() == levelReader.getDiamondsNeeded())
 		{
-			this.setSolid(false);
+			this.setSolid(1);
 		}
 	}
 	

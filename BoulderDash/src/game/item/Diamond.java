@@ -9,7 +9,7 @@ public class Diamond extends Item
 	
 	public Diamond(StatusItem state, Position pos)
 	{
-		super(state, pos, true, false, true, false, true, false);
+		super(state, pos, true, false, true, false, true, 1);
 	}
 
 	// GETTERS

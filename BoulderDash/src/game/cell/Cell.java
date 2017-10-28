@@ -11,9 +11,9 @@ public abstract class Cell
 {
 	SpriteChar spritechar;
 	Position pos;
-	boolean solid; // Si los personajes pueden caminar sobre la celda..
+	int solid; // Si los personajes pueden caminar sobre la celda..
 
-	Cell(Position pos, boolean solid)
+	Cell(Position pos, int solid)
 	{
 		this.pos = pos;
 		this.solid = solid;
@@ -31,7 +31,7 @@ public abstract class Cell
 		return pos;
 	}
 	
-	public boolean isSolid()
+	public int isSolid()
 	{
 		return solid;
 	}
@@ -43,7 +43,7 @@ public abstract class Cell
 		this.pos = pos;
 	}
 
-	public void setSolid(boolean solid)
+	public void setSolid(int solid)
 	{
 		this.solid = solid;
 	}

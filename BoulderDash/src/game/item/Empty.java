@@ -9,13 +9,13 @@ public class Empty extends Item
 	
 	public Empty(Position pos)
 	{
-		super(null, pos, false, false, false, false, false, false);
+		super(null, pos, false, false, false, false, false, 0);
 		// TODO Auto-generated constructor stub
 	}
 	
 	public Empty(StatusItem state, Position pos)
 	{
-		super(state, pos, false, false, false, false, false, false);
+		super(state, pos, false, false, false, false, false, 0);
 		// TODO Auto-generated constructor stub
 	}
 

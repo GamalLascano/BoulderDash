@@ -24,7 +24,7 @@ public abstract class Item extends Entity
 	/** solid: indica si el objeto es solido o no
 	 * 
 	 */
-	boolean solid;
+	int solid;
 	/** collectable: indica si el objeto es recolectable o no
 	 * 
 	 */
@@ -57,7 +57,7 @@ public abstract class Item extends Entity
 	 * @param solid: si es solido
 	 */
 	public Item(StatusItem state, Position pos, boolean collectable, boolean moveable, boolean fallable,
-			boolean explodable, boolean rounded, boolean solid)
+			boolean explodable, boolean rounded, int solid)
 	{
 		super(pos);
 		this.state = state;
@@ -106,7 +106,7 @@ public abstract class Item extends Entity
 		return rounded;
 	}
 
-	public boolean isSolid()
+	public int isSolid()
 	{
 		return solid;
 	}

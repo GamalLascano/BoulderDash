@@ -12,7 +12,7 @@ public class Amoeba extends Item
 
 	public Amoeba(StatusItem state, Position pos)
 	{
-		super(state, pos, false, false, false, false, false, true);
+		super(state, pos, false, false, false, false, false, 2);
 		this.expanding = true;
 	}
 

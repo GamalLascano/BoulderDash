@@ -14,7 +14,7 @@ public class Wall extends Cell
 
 	public Wall(Position pos)
 	{
-		super(pos, true);
+		super(pos, 2);
 	}
 	
 	// GETTERS
