@@ -109,6 +109,10 @@ public class MapInstance
 					player.dig(cellMap.getDirt(player.getPosition()));
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
+				else
+				{
+					player.collect(itemMap.getDiamond(player.getPosition()));
+				}
 				break;
 			case MOVINGDOWN:
 				//Si las celdas e items de abajo de rockford no son solidos...
@@ -118,6 +122,10 @@ public class MapInstance
 					//..rompo la tierra abajo de rockford y agarro el diamante en el caso de que haya
 					player.getPosition().goDown();
 					player.dig(cellMap.getDirt(player.getPosition()));
+					player.collect(itemMap.getDiamond(player.getPosition()));
+				}
+				else
+				{
 					player.collect(itemMap.getDiamond(player.getPosition()));
 				}
 				break;
@@ -143,6 +151,10 @@ public class MapInstance
 					player.collect(itemMap.getDiamond(player.getPosition()));
 					player.push(itemMap.getRock(player.getPosition()));
 				}
+				else
+				{
+					player.collect(itemMap.getDiamond(player.getPosition()));
+				}
 				break;
 			case MOVINGLEFT:
 				//Si las celdas e items en la izquierda de rockford no son solidos...
@@ -166,8 +178,13 @@ public class MapInstance
 					player.collect(itemMap.getDiamond(player.getPosition()));
 					player.push(itemMap.getRock(player.getPosition()));
 				}
+				else
+				{
+					player.collect(itemMap.getDiamond(player.getPosition()));
+				}
 				break;
 			default:
+				player.collect(itemMap.getDiamond(player.getPosition()));
 				break;
 		}
 		//Por ultimo se setea al jugador en idle
@@ -191,7 +208,7 @@ public class MapInstance
 				else
 				{
 					((Firefly) enemy).rotate();
-					((Butterfly) enemy).rotate();
+					//((Butterfly) enemy).rotate();
 				}
 				break;
 			case MOVINGDOWN:
@@ -203,7 +220,7 @@ public class MapInstance
 				else
 				{
 					((Firefly) enemy).rotate();
-					((Butterfly) enemy).rotate();
+					//((Butterfly) enemy).rotate();
 				}
 				break;
 			case MOVINGRIGHT:
@@ -215,7 +232,7 @@ public class MapInstance
 				else
 				{
 					((Firefly) enemy).rotate();
-					((Butterfly) enemy).rotate();
+					//((Butterfly) enemy).rotate();
 				}
 				break;
 			case MOVINGLEFT:
@@ -227,7 +244,7 @@ public class MapInstance
 				else
 				{
 					((Firefly) enemy).rotate();
-					((Butterfly) enemy).rotate();
+					//((Butterfly) enemy).rotate();
 				}
 				break;
 			default:
@@ -247,21 +264,24 @@ public class MapInstance
 		{
 			case FALLING:
 				if( cellMap.getCell(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1
-				&& itemMap.getItem(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1)
+				&& itemMap.getItem(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1
+				&& actorMap.getActor(item.getPosition().getX(), item.getPosition().checkDown()).isSolid() < 1)
 				{
 					item.getPosition().goDown();
 				}
 				break;
 			case SLIDINGRIGHT:
 				if( cellMap.getCell(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1
-				&& itemMap.getItem(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1)
+				&& itemMap.getItem(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1
+				&& actorMap.getActor(item.getPosition().checkRight(), item.getPosition().getY()).isSolid() < 1)
 				{
 					item.getPosition().goRight();
 				}
 				break;
 			case SLIDINGLEFT:
 				if( cellMap.getCell(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1
-				&& itemMap.getItem(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1)
+				&& itemMap.getItem(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1
+				&& actorMap.getActor(item.getPosition().checkLeft(), item.getPosition().getY()).isSolid() < 1)
 				{
 					item.getPosition().goLeft();
 				}

@@ -48,6 +48,18 @@ public class MapActor
 			return null;
 		}
 	}
+	
+	public Actor getActor(Integer x, Integer y)
+	{
+		if ( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		{
+			return matrix[x][y];
+		}
+		else
+		{
+			return null;
+		}
+	}
 
 	// SETTERS
 
