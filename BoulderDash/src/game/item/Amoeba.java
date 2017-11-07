@@ -1,14 +1,12 @@
 package game.item;
 
 import game.Position;
-import game.Timer;
 import game.SpriteChar;
 
 public class Amoeba extends Item
 {
 	private SpriteChar spritechar = SpriteChar.A;
 	private boolean expanding;
-	private Timer timer = new Timer();
 
 	public Amoeba(StatusItem state, Position pos)
 	{
@@ -24,7 +22,7 @@ public class Amoeba extends Item
 
 	public boolean check()
 	{
-		if (timer.getTime() < 300)
+		if (expanding = true)
 		{
 			expanding = true;
 			return true;

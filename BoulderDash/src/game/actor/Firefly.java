@@ -50,7 +50,7 @@ public class Firefly extends Enemy
 	
 	public void explode()
 	{
-		if (this.state.isAlive()==false) {
+		if (!this.getState().isAlive()) {
 			ListOfEntities list = MapInstance.getEntitiesActive();
 			int i;
 			for (i = 0 ; i < list.getList().size(); ++i) {
