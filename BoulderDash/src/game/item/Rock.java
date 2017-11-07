@@ -19,7 +19,6 @@ public class Rock extends Item
 	public Rock(StatusItem state, Position pos)
 	{
 		super(state, pos, false, true, true, false, true, 2);
-		this.pushed = false;
 	}
 
 	// GETTERS
@@ -46,16 +45,13 @@ public class Rock extends Item
 			{
 				case MOVINGLEFT:
 					this.getState().setStateEnum(StatusItemEnum.SLIDINGLEFT);
-					this.pushed = true;
 					break;
 				case MOVINGRIGHT:
 					this.getState().setStateEnum(StatusItemEnum.SLIDINGRIGHT);
-					this.pushed = true;
 					break;
 				default:
 					break;
-			}
-		this.pushed = false;		
+			}		
 		}
 	}
 

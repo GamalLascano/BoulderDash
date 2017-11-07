@@ -21,10 +21,6 @@ public abstract class Item extends Entity
 	 * 
 	 */
 	private StatusItem state;
-	/** solid: indica si el objeto es solido o no
-	 * 
-	 */
-	private int solid;
 	/** collectable: indica si el objeto es recolectable o no
 	 * 
 	 */
