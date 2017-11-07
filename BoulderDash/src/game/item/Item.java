@@ -16,35 +16,35 @@ public abstract class Item extends Entity
 	/** Spritechar: representa al personaje visualmente
 	 * 
 	 */
-	SpriteChar spritechar;
+	private SpriteChar spritechar;
 	/** state: setea el estado de movimiento del item
 	 * 
 	 */
-	StatusItem state;
+	private StatusItem state;
 	/** solid: indica si el objeto es solido o no
 	 * 
 	 */
-	int solid;
+	private int solid;
 	/** collectable: indica si el objeto es recolectable o no
 	 * 
 	 */
-	boolean collectable;
+	private	boolean collectable;
 	/** moveable: indica si el objeto se puede mover o no
 	 * 
 	 */
-	boolean moveable;
+	private boolean moveable;
 	/** fallable: indica si el objeto se puede caer o no
 	 * 
 	 */
-	boolean fallable;
+	private boolean fallable;
 	/** explodable: indica si el objeto puede ser explotado o no
 	 * 
 	 */
-	boolean explodable;
+	private boolean explodable;
 	/** rounded: indica si el objeto es redondo o no
 	 * 
 	 */
-	boolean rounded;	//Si un objeto sobre otro se cae por los lados
+	private boolean rounded;	//Si un objeto sobre otro se cae por los lados
 
 	/** Inicializa el item con un estado predeterminado
 	 * @param state: estado de movimiento

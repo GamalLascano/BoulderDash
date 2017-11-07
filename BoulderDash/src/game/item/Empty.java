@@ -5,7 +5,7 @@ import game.SpriteChar;
 
 public class Empty extends Item
 {
-	SpriteChar spritechar = SpriteChar.E;
+	private SpriteChar spritechar = SpriteChar.E;
 	
 	public Empty(Position pos)
 	{

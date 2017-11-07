@@ -8,25 +8,25 @@ import java.util.List;
 
 
 	//	Lista de entities (Items y Actores)
-public class ActiveEntities
+public class ListOfEntities
 {
-	private static ActiveEntities singleton;
+	private static ListOfEntities singleton;
 	private static List<Entity> list;
 
 	// CONSTRUCTORS
 
-	private ActiveEntities()
+	private ListOfEntities()
 	{
 		list = null;
 	}
 
 	// SINGLETON
 
-	public static synchronized ActiveEntities getInstance()
+	public static synchronized ListOfEntities getInstance()
 	{
 		if (singleton == null)
 		{
-			singleton = new ActiveEntities();
+			singleton = new ListOfEntities();
 		}
 		return singleton;
 	}

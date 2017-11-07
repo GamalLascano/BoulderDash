@@ -5,7 +5,7 @@ import game.SpriteChar;
 
 public class Diamond extends Item
 {
-	SpriteChar spritechar = SpriteChar.X;
+	private SpriteChar spritechar = SpriteChar.X;
 	
 	public Diamond(StatusItem state, Position pos)
 	{

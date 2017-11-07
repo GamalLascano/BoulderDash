@@ -5,7 +5,7 @@ import game.SpriteChar;
 
 public class Dirt extends Cell
 {
-	SpriteChar spritechar;
+	private SpriteChar spritechar;
 	private boolean isDirt; // True = is dirt, false = is normal
 
 	// CONSTRUCTORS

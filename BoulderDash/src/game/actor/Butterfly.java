@@ -5,7 +5,7 @@ import game.SpriteChar;
 
 public class Butterfly extends Enemy
 {
-	SpriteChar spritechar = SpriteChar.B;
+	private SpriteChar spritechar = SpriteChar.B;
 	
 	public Butterfly(StatusActor state, Position pos)
 	{

@@ -6,9 +6,9 @@ import game.SpriteChar;
 
 public class Amoeba extends Item
 {
-	SpriteChar spritechar = SpriteChar.A;
-	boolean expanding;
-	Timer timer = new Timer();
+	private SpriteChar spritechar = SpriteChar.A;
+	private boolean expanding;
+	private Timer timer = new Timer();
 
 	public Amoeba(StatusItem state, Position pos)
 	{

@@ -11,8 +11,8 @@ import game.Entity;
  */
 public abstract class Actor extends Entity
 {
-	StatusActor state = new StatusActor();
-	SpriteChar spritechar;
+	private StatusActor state = new StatusActor();
+	private SpriteChar spritechar;
 
 	// CONSTRUCTORS
 	

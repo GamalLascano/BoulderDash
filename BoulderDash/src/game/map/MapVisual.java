@@ -1,6 +1,6 @@
 package game.map;
 
-import game.ActiveEntities;
+import game.ListOfEntities;
 import game.Position;
 import game.SpriteChar;
 import game.item.Empty;
@@ -95,8 +95,8 @@ public class MapVisual
 			System.out.println();
 
 		}
-		System.out.println("Rockford Pos: " + ActiveEntities.findRockford().getPosition().getX() + "," + ActiveEntities.findRockford().getPosition().getY() );
-		System.out.println("Rockford Diamantes: " + ActiveEntities.findRockford().getDiamonds() );
+		System.out.println("Rockford Pos: " + ListOfEntities.findRockford().getPosition().getX() + "," + ListOfEntities.findRockford().getPosition().getY() );
+		System.out.println("Rockford Diamantes: " + ListOfEntities.findRockford().getDiamonds() );
 		System.out.println("..............................................................");
 
 	}

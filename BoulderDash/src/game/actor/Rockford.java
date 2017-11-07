@@ -14,10 +14,10 @@ import game.cell.Dirt;
  */
 public class Rockford extends Actor
 {
-	SpriteChar spritechar = SpriteChar.R;
-	int score;
-	int diamonds;
-	boolean pushing;
+	private SpriteChar spritechar = SpriteChar.R;
+	private int score;
+	private int diamonds;
+	private boolean pushing;
 
 	/**
 	 * Permite inicializar a Rockford con un status y posicion determinadas

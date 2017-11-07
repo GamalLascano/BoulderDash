@@ -10,7 +10,7 @@ import game.SpriteChar;
 
 public class Wall extends Cell
 {
-	SpriteChar spritechar = SpriteChar.W;
+	private SpriteChar spritechar = SpriteChar.W;
 
 	public Wall(Position pos)
 	{

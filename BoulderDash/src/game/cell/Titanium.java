@@ -5,7 +5,7 @@ import game.SpriteChar;
 
 public class Titanium extends Cell
 {
-	SpriteChar spritechar = SpriteChar.T;
+	private SpriteChar spritechar = SpriteChar.T;
 	
 	public Titanium(Position pos)
 	{

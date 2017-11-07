@@ -49,7 +49,7 @@ public class Game
 				//luego, armo las visuales con el levelframe
 				MapVisual.getInstance().start(levelFrame);;
 				//busco a rockford en la lista de entidades
-				Rockford player = ActiveEntities.findRockford();
+				Rockford player = ListOfEntities.findRockford();
 				boolean quit = false;
 				//interpolo el mapa actual con todos los mapas de todos los objetos
 				MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());

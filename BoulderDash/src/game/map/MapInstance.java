@@ -3,7 +3,7 @@ package game.map;
 import game.actor.*;
 import game.cell.*;
 import game.item.*;
-import game.ActiveEntities;
+import game.ListOfEntities;
 import game.Entity;
 import game.map.bdlevel.BDLevelReader;
 import game.Position;
@@ -19,7 +19,7 @@ public class MapInstance
 	private static MapCell cellMap;
 	private static MapItem itemMap;
 	private static MapActor actorMap;
-	private static ActiveEntities entitiesAlive;
+	private static ListOfEntities entitiesAlive;
 
 	// CONSTRUCTOR
 
@@ -65,7 +65,7 @@ public class MapInstance
 		return actorMap;
 	}
 
-	public static ActiveEntities getEntitiesActive()
+	public static ListOfEntities getEntitiesActive()
 	{
 		return entitiesAlive;
 	}
@@ -90,8 +90,8 @@ public class MapInstance
 		itemMap = MapItem.getInstance();
 		MapActor.getInstance().start(levels);
 		actorMap = MapActor.getInstance();
-		entitiesAlive = ActiveEntities.getInstance();
-		ActiveEntities.start();
+		entitiesAlive = ListOfEntities.getInstance();
+		ListOfEntities.start();
 	}
 
 	// ACTUALIZAR POSICION
@@ -359,9 +359,9 @@ public class MapInstance
 	public static void refresh()
 	{
 		int i;
-		for (i = 0; i < ActiveEntities.getList().size(); ++i)
+		for (i = 0; i < ListOfEntities.getList().size(); ++i)
 		{
-			Entity ent = ActiveEntities.getList().get(i);
+			Entity ent = ListOfEntities.getList().get(i);
 			changePosition(ent);
 		}
 	}
@@ -413,39 +413,39 @@ public class MapInstance
 					case ROCK:
 						Rock rock = new Rock(stateItem, pos);
 						itemMap.setItem(pos, rock);
-						ActiveEntities.getList().add(rock);
+						ListOfEntities.getList().add(rock);
 						break;
 					case FALLINGROCK:
 						stateItem.setStateEnum(StatusItemEnum.FALLING);
 						Rock fallingRock = new Rock(stateItem, pos);
 						itemMap.setItem(pos, fallingRock);
-						ActiveEntities.getList().add(fallingRock);
+						ListOfEntities.getList().add(fallingRock);
 						break;
 					case DIAMOND:
 						Diamond diamond = new Diamond(stateItem, pos);
 						itemMap.setItem(pos, diamond);
-						ActiveEntities.getList().add(diamond);
+						ListOfEntities.getList().add(diamond);
 						break;
 					case FALLINGDIAMOND:
 						stateItem.setStateEnum(StatusItemEnum.FALLING);
 						Diamond fallingDiamond = new Diamond(stateItem, pos);
 						itemMap.setItem(pos, fallingDiamond);
-						ActiveEntities.getList().add(fallingDiamond);
+						ListOfEntities.getList().add(fallingDiamond);
 						break;
 					case AMOEBA:
 						Amoeba amoeba = new Amoeba(stateItem, pos);
 						itemMap.setItem(pos, amoeba);
-						ActiveEntities.getList().add(amoeba);
+						ListOfEntities.getList().add(amoeba);
 						break;
 					case FIREFLY:
 						Firefly firefly = new Firefly(stateActor, pos);
 						actorMap.setActor(pos, firefly);
-						ActiveEntities.getList().add(firefly);
+						ListOfEntities.getList().add(firefly);
 						break;
 					case BUTTERFLY:
 						Butterfly butterfly = new Butterfly(stateActor, pos);
 						actorMap.setActor(pos, butterfly);
-						ActiveEntities.getList().add(butterfly);
+						ListOfEntities.getList().add(butterfly);
 						break;
 					case EXIT:
 						cellMap.setCell(pos, new Exit(pos));
@@ -453,7 +453,7 @@ public class MapInstance
 					case PLAYER:
 						Rockford player = new Rockford(stateActor, pos);
 						actorMap.setActor(pos, player);
-						ActiveEntities.getList().add(player);
+						ListOfEntities.getList().add(player);
 						break;
 					default:
 						break;

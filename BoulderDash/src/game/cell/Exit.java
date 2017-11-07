@@ -7,7 +7,7 @@ import game.SpriteChar;
 
 public class Exit extends Cell
 {
-	SpriteChar spritechar = SpriteChar.S;
+	private SpriteChar spritechar = SpriteChar.S;
 
 	public Exit(Position pos)
 	{

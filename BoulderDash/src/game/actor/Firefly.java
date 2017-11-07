@@ -1,6 +1,6 @@
 package game.actor;
 
-import game.ActiveEntities;
+import game.ListOfEntities;
 import game.Position;
 import game.map.MapInstance;
 import game.SpriteChar;
@@ -51,7 +51,7 @@ public class Firefly extends Enemy
 	public void explode()
 	{
 		if (this.state.isAlive()==false) {
-			ActiveEntities list = MapInstance.getEntitiesActive();
+			ListOfEntities list = MapInstance.getEntitiesActive();
 			int i;
 			for (i = 0 ; i < list.getList().size(); ++i) {
 				if (this.isInRange(list.getList().get(i).getPosition())==true) {
