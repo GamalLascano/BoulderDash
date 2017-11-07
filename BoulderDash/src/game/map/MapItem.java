@@ -20,7 +20,7 @@ public class MapItem
 
 	// SINGLETON
 	
-	public static synchronized MapItem getInstance()
+	public static MapItem getInstance()
 	{
 		if (singleton == null)
 		{

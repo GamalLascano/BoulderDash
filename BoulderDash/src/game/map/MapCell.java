@@ -19,7 +19,7 @@ public class MapCell
 
 	// SINGLETON
 
-	public static synchronized MapCell getInstance()
+	public static MapCell getInstance()
 	{
 		if (singleton == null)
 		{

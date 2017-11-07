@@ -38,7 +38,7 @@ public class MapInstance
 	 * 
 	 * @return el singleton de la clase
 	 */
-	public static synchronized MapInstance getInstance()
+	public static MapInstance getInstance()
 	{
 		// Si la instancia no se creo, se crea, y se devuelve la instancia
 		if (singleton == null)

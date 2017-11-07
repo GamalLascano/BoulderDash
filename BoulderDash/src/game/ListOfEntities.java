@@ -22,7 +22,7 @@ public class ListOfEntities
 
 	// SINGLETON
 
-	public static synchronized ListOfEntities getInstance()
+	public static ListOfEntities getInstance()
 	{
 		if (singleton == null)
 		{

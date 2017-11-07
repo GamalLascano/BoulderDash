@@ -17,7 +17,7 @@ public class MapActor
 
 	// SINGLETON
 
-	public static synchronized MapActor getInstance()
+	public static MapActor getInstance()
 	{
 		if (singleton == null)
 		{

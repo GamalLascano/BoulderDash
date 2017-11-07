@@ -24,7 +24,7 @@ public class MapVisual
 	
 	// SINGLETON
 
-	public static synchronized MapVisual getInstance()
+	public static MapVisual getInstance()
 	{
 		if (singleton == null)
 		{

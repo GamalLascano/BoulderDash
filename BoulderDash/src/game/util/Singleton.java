@@ -10,7 +10,7 @@ public class Singleton
 
 	}
 
-	public static synchronized Singleton getSingleton()
+	public static Singleton getSingleton()
 	{
 		if (single == null)
 		{
