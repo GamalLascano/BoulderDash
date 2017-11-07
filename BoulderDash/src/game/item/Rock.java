@@ -10,7 +10,6 @@ import game.actor.Rockford;
 public class Rock extends Item
 {
 	private SpriteChar spritechar = SpriteChar.O;
-	private boolean pushed;
 
 	/** Permite inicializar a la roca con un estado de movimiento y una posicion predeterminada
 	 * @param state: estado de movimiento

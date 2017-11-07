@@ -57,8 +57,16 @@ public class ListOfEntities
 		{
 			i++;
 		}
-		player = (Rockford) list.get(i);
-		return player;
+		if (list.get(i) instanceof Rockford)
+		{
+			player = (Rockford) list.get(i);
+			return player;
+		}
+		else
+		{
+			System.out.println("ERROR: ROCKFORD NO ESTA EN LA LISTA");
+			return null;
+		}
 	}
 
 }
