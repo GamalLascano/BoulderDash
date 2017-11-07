@@ -36,15 +36,15 @@ public class Butterfly extends Enemy
 		switch ( this.getState().getStateEnum() )
 		{
 			case MOVINGUP:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGRIGHT);
-				break;
-			case MOVINGRIGHT:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGDOWN);
-				break;
-			case MOVINGDOWN:
 				this.getState().setStateEnum(StatusActorEnum.MOVINGLEFT);
 				break;
 			case MOVINGLEFT:
+				this.getState().setStateEnum(StatusActorEnum.MOVINGDOWN);
+				break;
+			case MOVINGDOWN:
+				this.getState().setStateEnum(StatusActorEnum.MOVINGRIGHT);
+				break;
+			case MOVINGRIGHT:
 				this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
 				break;
 			default:
