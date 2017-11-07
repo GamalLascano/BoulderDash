@@ -24,12 +24,12 @@ public class Dirt extends Cell
 		if (isDirt == false)
 		{
 			this.spritechar = SpriteChar.E;
-			super.setSolid(0);
+			this.setSolid(0);
 		}
 		else
 		{
 			this.spritechar = SpriteChar.D;
-			super.setSolid(1);
+			this.setSolid(1);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class Dirt extends Cell
 	public void removeDirt()
 	{
 		this.isDirt = false;
-		super.solid = 0;
+		this.setSolid(0);
 		spritechar = SpriteChar.E;
 	}
 }

@@ -40,16 +40,16 @@ public class Rock extends Item
 	 */
 	public void pushed(Rockford player)
 	{
-		if (player.isPushing() && this.moveable)
+		if (player.isPushing() && this.isMoveable())
 		{
 			switch ( player.getState().getStateEnum() )
 			{
 				case MOVINGLEFT:
-					this.state.setStateEnum(StatusItemEnum.SLIDINGLEFT);
+					this.getState().setStateEnum(StatusItemEnum.SLIDINGLEFT);
 					this.pushed = true;
 					break;
 				case MOVINGRIGHT:
-					this.state.setStateEnum(StatusItemEnum.SLIDINGRIGHT);
+					this.getState().setStateEnum(StatusItemEnum.SLIDINGRIGHT);
 					this.pushed = true;
 					break;
 				default:

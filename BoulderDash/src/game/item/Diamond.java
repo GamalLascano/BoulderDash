@@ -23,7 +23,7 @@ public class Diamond extends Item
 	
 	public void collected()
 	{
-		this.collectable = false;
+		this.setCollectable(true);
 		this.spritechar = SpriteChar.E;
 	}
 	
