@@ -11,13 +11,13 @@ import java.util.List;
 public class ListOfEntities
 {
 	private static ListOfEntities singleton;
-	private static List<Entity> list;
+	private static List<Entity> entityList;
 
 	// CONSTRUCTORS
 
 	private ListOfEntities()
 	{
-		list = null;
+		entityList = null;
 	}
 
 	// SINGLETON
@@ -33,14 +33,14 @@ public class ListOfEntities
 	
 	public static void start()
 	{
-		list = new ArrayList<Entity>();
+		entityList = new ArrayList<Entity>();
 	}
 	
 	// GETTERS
 	
 	public static List<Entity> getList()
 	{
-		return list;
+		return entityList;
 	}
 
 	// SETTERS	
@@ -53,13 +53,13 @@ public class ListOfEntities
 	{
 		Rockford player;
 		int i = 0;
-		while(!(list.get(i) instanceof Rockford))
+		while(!(entityList.get(i) instanceof Rockford))
 		{
 			i++;
 		}
-		if (list.get(i) instanceof Rockford)
+		if (entityList.get(i) instanceof Rockford)
 		{
-			player = (Rockford) list.get(i);
+			player = (Rockford) entityList.get(i);
 			return player;
 		}
 		else

@@ -12,7 +12,7 @@ public class Firefly extends Enemy
 	public Firefly(StatusActor state, Position pos)
 	{
 		super(state, pos, 1);
-		this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
+		this.getState().setMovementState(StatusActorEnum.MOVINGUP);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -27,19 +27,19 @@ public class Firefly extends Enemy
 	
 	public void rotate()
 	{
-		switch ( this.getState().getStateEnum() )
+		switch ( this.getState().getMovementState() )
 		{
 			case MOVINGUP:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGRIGHT);
+				this.getState().setMovementState(StatusActorEnum.MOVINGRIGHT);
 				break;
 			case MOVINGRIGHT:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGDOWN);
+				this.getState().setMovementState(StatusActorEnum.MOVINGDOWN);
 				break;
 			case MOVINGDOWN:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGLEFT);
+				this.getState().setMovementState(StatusActorEnum.MOVINGLEFT);
 				break;
 			case MOVINGLEFT:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
+				this.getState().setMovementState(StatusActorEnum.MOVINGUP);
 				break;
 			default:
 				break;

@@ -33,19 +33,19 @@ public class Butterfly extends Enemy
 	@Override
 	public void rotate()
 	{
-		switch ( this.getState().getStateEnum() )
+		switch ( this.getState().getMovementState() )
 		{
 			case MOVINGUP:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGLEFT);
+				this.getState().setMovementState(StatusActorEnum.MOVINGLEFT);
 				break;
 			case MOVINGLEFT:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGDOWN);
+				this.getState().setMovementState(StatusActorEnum.MOVINGDOWN);
 				break;
 			case MOVINGDOWN:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGRIGHT);
+				this.getState().setMovementState(StatusActorEnum.MOVINGRIGHT);
 				break;
 			case MOVINGRIGHT:
-				this.getState().setStateEnum(StatusActorEnum.MOVINGUP);
+				this.getState().setMovementState(StatusActorEnum.MOVINGUP);
 				break;
 			default:
 				break;

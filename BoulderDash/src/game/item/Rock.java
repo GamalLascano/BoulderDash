@@ -40,7 +40,7 @@ public class Rock extends Item
 	{
 		if (player.isPushing() && this.isMoveable())
 		{
-			switch ( player.getState().getStateEnum() )
+			switch ( player.getState().getMovementState() )
 			{
 				case MOVINGLEFT:
 					this.getState().setStateEnum(StatusItemEnum.SLIDINGLEFT);

@@ -106,7 +106,7 @@ public class MapInstance
 	{
 		// En el cado de moverse arriba, abajo, izquierda o derecha, se mueve de
 		// forma diferente
-		switch (player.getState().getStateEnum())
+		switch (player.getState().getMovementState())
 		{
 			case MOVINGUP:
 				// Si las celdas e items de arriba de rockford no son solidos...
@@ -210,7 +210,7 @@ public class MapInstance
 				break;
 		}
 		// Por ultimo se setea al jugador en idle
-		player.getState().setStateEnum(StatusActorEnum.IDLE);
+		player.getState().setMovementState(StatusActorEnum.IDLE);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class MapInstance
 	 */
 	private static void movingEnemy(Enemy enemy)
 	{
-		switch (enemy.getState().getStateEnum())
+		switch (enemy.getState().getMovementState())
 		{
 			case MOVINGUP:
 				if (cellMap.getCell(enemy.getPosition().getX(), enemy.getPosition().checkUp()).isSolid() < 1
@@ -274,7 +274,7 @@ public class MapInstance
 			default:
 				break;
 		}
-		enemy.getState().setStateEnum(StatusActorEnum.IDLE);
+		enemy.getState().setMovementState(StatusActorEnum.IDLE);
 	}
 
 	/**

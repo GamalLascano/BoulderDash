@@ -17,7 +17,7 @@ public class Rockford extends Actor
 	private SpriteChar spritechar = SpriteChar.R;
 	private int score;
 	private int diamonds;
-	private boolean pushing;
+	private boolean isPushing;
 
 	/**
 	 * Permite inicializar a Rockford con un status y posicion determinadas
@@ -30,7 +30,7 @@ public class Rockford extends Actor
 		super(state, pos, 1);
 		this.score = 0;
 		this.diamonds = 0;
-		this.pushing = false;
+		this.isPushing = false;
 	}
 
 	// GETTERS
@@ -52,7 +52,7 @@ public class Rockford extends Actor
 
 	public boolean isPushing()
 	{
-		return pushing;
+		return isPushing;
 	}
 
 	// SETTTERS
@@ -69,7 +69,7 @@ public class Rockford extends Actor
 
 	public void setPushing(boolean pushing)
 	{
-		this.pushing = pushing;
+		this.isPushing = pushing;
 	}
 
 	// SAVE
@@ -89,7 +89,7 @@ public class Rockford extends Actor
 	{
 		while (super.getPosition().getX() == item.getPosition().checkRight())
 		{
-			this.pushing = true;
+			this.isPushing = true;
 		}
 	}
 
@@ -130,9 +130,9 @@ public class Rockford extends Actor
 	{
 		if (rock != null && rock.isMoveable())
 		{
-			this.pushing = true;
+			this.isPushing = true;
 			rock.pushed(this);
-			this.pushing = false;
+			this.isPushing = false;
 		}
 	}
 

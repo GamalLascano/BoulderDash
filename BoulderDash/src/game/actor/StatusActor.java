@@ -1,12 +1,12 @@
 package game.actor;
 
 /** Esta clase contiene todos los estados que puede tener un actor
- *  Todos los estados de stateEnum son de movimiento. y alive indica si esta vivo o no
+ *  Todos los estados de movementState son de movimiento. y alive indica si esta vivo o no
  *
  */
 public class StatusActor
 {
-	private StatusActorEnum stateEnum;
+	private StatusActorEnum movementState;
 	private boolean alive;
 
 	// CONSTRUCTORS
@@ -21,7 +21,7 @@ public class StatusActor
 	 */
 	public StatusActor(StatusActorEnum stateEnum) 
 	{
-		this.stateEnum = stateEnum;
+		this.movementState = stateEnum;
 		this.alive = true;
 	}
 	
@@ -31,15 +31,15 @@ public class StatusActor
 	 */
 	public StatusActor(StatusActorEnum stateEnum, boolean alive) 
 	{
-		this.stateEnum = stateEnum;
+		this.movementState = stateEnum;
 		this.alive = alive;
 	}
 
 	// GETTERS
 
-	public StatusActorEnum getStateEnum()
+	public StatusActorEnum getMovementState()
 	{
-		return stateEnum;
+		return movementState;
 	}
 	
 	public boolean isAlive()
@@ -49,9 +49,9 @@ public class StatusActor
 
 	// SETTERS
 	
-	public void setStateEnum(StatusActorEnum stateEnum)
+	public void setMovementState(StatusActorEnum stateEnum)
 	{
-		this.stateEnum = stateEnum;
+		this.movementState = stateEnum;
 	}
 
 	public void setAlive(boolean alive)
@@ -68,7 +68,7 @@ public class StatusActor
 	 */
 	public void reset(StatusActorEnum stateEnum, boolean alive)
 	{
-		this.stateEnum = stateEnum;
+		this.movementState = stateEnum;
 		this.alive = alive;
 	}
 
