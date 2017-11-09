@@ -25,5 +25,35 @@
 
 		=== PREGUNTAR ===
 		
-		
+	    === FEEDBACK SIN RESOLVER===
+UML
+
+*Está dos veces las clase MapCell.
+
+*Falta poner los nombres de los roles a las relaciones entre clase.
+
+*No indica la cardinalidad entre las relaciones
+
+*El UML no coincide con el código entregado. Por ejemplo, según el UML la clase Game dedería tener 3 variables de instancia y una coleccion de niveles. En UML StatusItem es subclase de item, pero en el código no. En UML dice Vacio, en código Empty.
+
+*Las relaciones entre clases no deben estar en la secciones de variables de la clase. Por ejemplo, singleton de la clase ActiveEntities, debería ser una flecha a sí mismo.
+
+POO
+
+*No hace un correcto uso del polimorfismo. Al tener tres mapas distintos de actor, item y cell pregunta la posición en cada una para determinar qué elmento está en la posición. Se debería pensar en una jeraquia en el cual se puede representar todos los elementos en una sola colección y trabajar el comportamiento usando polimorfismo.
+
+*No respeta el encapsulamiento, casi todas las variables de instancia tienen modificador de acceso package.
+
+*No está bien el uso de las variables y métodos de clase. Por ejemplo, es posible llamar al método de clase findRockford de AtiveEntities sin haber creado una instancia de la misma, lo que conlleva a un error, ya que la lista de entidades solo se crea cuando se invoca a start.
+
+*No debería haber código como list.get(i) instanceof Rockford. Deberia trabajar con la interacción entre los objetos, por ejemplo, preguntando a Rockford su posición.
+
+*En el método push de Rockford, se busca el elemento en la lista para actualizar. Se debería acceder directamente si se dispone de la posición de la elemento.
+
+
+
+Funcionamiento
+
+*Hay funcionalidad sin programar, por ejemplo las explosiones de mariposas y luciérnagas, el crecimiento de las amebas.
+
 - 
