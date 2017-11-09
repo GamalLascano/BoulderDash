@@ -189,9 +189,9 @@ public class MapInstance
 				else if (cellMap.getCell(player.getPosition().checkLeft(), player.getPosition().getY()).isSolid() < 2
 						&& itemMap.getItem(player.getPosition().checkLeft(), player.getPosition().getY())
 								.isMoveable() == true
-						&& itemMap.getItem(player.getPosition().checkLeft() + 1, player.getPosition().getY())
+						&& itemMap.getItem(player.getPosition().checkLeft() - 1, player.getPosition().getY())
 								.isSolid() < 1
-						&& cellMap.getCell(player.getPosition().checkLeft() + 1, player.getPosition().getY())
+						&& cellMap.getCell(player.getPosition().checkLeft() - 1, player.getPosition().getY())
 								.isSolid() < 1)
 				{
 					// Se pushea lo que haya

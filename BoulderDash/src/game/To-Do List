@@ -51,7 +51,6 @@ POO
 *En el método push de Rockford, se busca el elemento en la lista para actualizar. Se debería acceder directamente si se dispone de la posición de la elemento.
 
 
-
 Funcionamiento
 
 *Hay funcionalidad sin programar, por ejemplo las explosiones de mariposas y luciérnagas, el crecimiento de las amebas.

@@ -80,20 +80,6 @@ public class Rockford extends Actor
 	}
 
 	/**
-	 * Este metodo hace que si esta empujando a un item, se le ponga el estado
-	 * correspondiente
-	 * 
-	 * @param item: Item que se empujaria
-	 */
-	public void push(Item item)
-	{
-		while (super.getPosition().getX() == item.getPosition().checkRight())
-		{
-			this.isPushing = true;
-		}
-	}
-
-	/**
 	 * Remueve la tierra del juego
 	 * 
 	 * @param dirt: Bloque de tierra
