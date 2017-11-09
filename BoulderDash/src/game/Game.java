@@ -60,7 +60,7 @@ public class Game
 				
 				System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
 		
-				while( quit == false )
+				while(!quit)
 				{
 					//Este case va a obtener los movimientos que va a hacer el personaje
 					String dir = in.next();

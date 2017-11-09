@@ -12,6 +12,7 @@ public class ListOfEntities
 {
 	private static ListOfEntities singleton;
 	private static List<Entity> entityList;
+	private static boolean initiated=false;
 
 	// CONSTRUCTORS
 
@@ -31,8 +32,12 @@ public class ListOfEntities
 		return singleton;
 	}
 	
+	/** start inicia la lista con una lista vacia, y lo setea como inicializado
+	 * 
+	 */
 	public static void start()
 	{
+		initiated=true;
 		entityList = new ArrayList<Entity>();
 	}
 	
@@ -48,23 +53,31 @@ public class ListOfEntities
 	// SORT
 	
 	// FIND
-	
+	/** FindRockford busca en la lista de entidades a ver si se encuentra rockford
+	 * 
+	*/
 	public static Rockford findRockford()
 	{
 		Rockford player;
 		int i = 0;
-		while(!(entityList.get(i) instanceof Rockford))
-		{
-			i++;
+		if (initiated) {
+			while(!(entityList.get(i) instanceof Rockford))
+			{
+				i++;
+			}
+			if (entityList.get(i) instanceof Rockford)
+			{
+				player = (Rockford) entityList.get(i);
+				return player;
+			}
+			else
+			{
+				System.out.println("ERROR: ROCKFORD NO ESTA EN LA LISTA");
+				return null;
+			}
 		}
-		if (entityList.get(i) instanceof Rockford)
-		{
-			player = (Rockford) entityList.get(i);
-			return player;
-		}
-		else
-		{
-			System.out.println("ERROR: ROCKFORD NO ESTA EN LA LISTA");
+		else {
+			System.out.println("ERROR: LA LISTA NO ESTA INICIALIZADA");
 			return null;
 		}
 	}

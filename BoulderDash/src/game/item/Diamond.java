@@ -21,6 +21,9 @@ public class Diamond extends Item
 	
 	// COLLECTED
 	
+	/** Collected setea el diamante como recolectado, y cambia el sprite a un vacio
+	 * 
+	 */
 	public void collected()
 	{
 		this.setCollectable(true);
