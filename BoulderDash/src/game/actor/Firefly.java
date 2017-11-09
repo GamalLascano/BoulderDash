@@ -54,7 +54,7 @@ public class Firefly extends Enemy
 			ListOfEntities list = MapInstance.getEntitiesActive();
 			int i;
 			for (i = 0 ; i < list.getList().size(); ++i) {
-				if (this.isInRange(list.getList().get(i).getPosition())==true) {
+				if (this.isInRange(list.getList().get(i).getPosition())) {
 					//cambiar objeto en el mapa y setear el estado del objeto como dead, o exploding
 					//si es una luciernaga o una mariposa
 				}

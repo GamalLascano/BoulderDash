@@ -7,8 +7,8 @@ import game.map.bdlevel.BDLevelReader;
 import java.util.Scanner;
 
 /** Esta es la clase principal del juego
- *  De aqui se maneja la logica del juego
- *
+ *  De aqui se maneja la logica del juego, 
+ *  explicacion acerca de funcionamiento adentro del metodo
  */
 public class Game
 {
