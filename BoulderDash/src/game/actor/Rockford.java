@@ -24,8 +24,10 @@ public class Rockford extends Actor
 	/**
 	 * Permite inicializar a Rockford con un status y posicion determinadas
 	 * 
-	 * @param state: Contiene movimiento y estado de vida
-	 * @param pos: Posicion
+	 * @param state:
+	 *            Contiene movimiento y estado de vida
+	 * @param pos:
+	 *            Posicion
 	 */
 	public Rockford(StatusActor state, Position pos)
 	{
@@ -84,7 +86,8 @@ public class Rockford extends Actor
 	/**
 	 * Remueve la tierra del juego
 	 * 
-	 * @param dirt: Bloque de tierra
+	 * @param dirt:
+	 *            Bloque de tierra
 	 */
 	public void dig(Dirt dirt)
 	{
@@ -97,7 +100,8 @@ public class Rockford extends Actor
 	/**
 	 * Si es un diamante, lo recolecta
 	 * 
-	 * @param diamond: Bloque de diamante
+	 * @param diamond:
+	 *            Bloque de diamante
 	 */
 	public void collect(Diamond diamond)
 	{
@@ -112,7 +116,8 @@ public class Rockford extends Actor
 	 * Este metodo hace que si esta empujando a una roca, se le ponga el estado
 	 * correspondiente
 	 * 
-	 * @param rock: Bloque de roca
+	 * @param rock:
+	 *            Bloque de roca
 	 */
 	public void push(Rock rock)
 	{
@@ -123,16 +128,16 @@ public class Rockford extends Actor
 			this.isPushing = false;
 		}
 	}
-	
+
 	// REFRESH POSITION
-	
+
 	public void changePosition()
 	{
 		MapActor.removeActor(this.getPosition());
 		this.makeMove();
 		MapActor.setActor(this.getPosition(), this);
 	}
-	
+
 	/**
 	 * Se occupa de mover a Rockford en la matriz, tambien verifica si la celda
 	 * destino es solida para moverse. Rockford cava automaticamente la tierra.
@@ -180,8 +185,7 @@ public class Rockford extends Actor
 				// Si las celdas e items en la derecha de rockford no son
 				// solidos...
 				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 2
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
-								.isSolid() < 2)
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 2)
 				{
 					// ..rompo la tierra en la derecha de rockford y agarro el
 					// diamante en el caso de que haya
@@ -193,8 +197,7 @@ public class Rockford extends Actor
 				else if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 2
 						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
 								.isMoveable() == true
-						&& MapItem.getItem(this.getPosition().checkRight() + 1, this.getPosition().getY())
-								.isSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkRight() + 1, this.getPosition().getY()).isSolid() < 1
 						&& MapCell.getCell(this.getPosition().checkRight() + 1, this.getPosition().getY())
 								.isSolid() < 1)
 				{
@@ -225,10 +228,8 @@ public class Rockford extends Actor
 				else if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 2
 						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY())
 								.isMoveable() == true
-						&& MapItem.getItem(this.getPosition().checkLeft() - 1, this.getPosition().getY())
-								.isSolid() < 1
-						&& MapCell.getCell(this.getPosition().checkLeft() - 1, this.getPosition().getY())
-								.isSolid() < 1)
+						&& MapItem.getItem(this.getPosition().checkLeft() - 1, this.getPosition().getY()).isSolid() < 1
+						&& MapCell.getCell(this.getPosition().checkLeft() - 1, this.getPosition().getY()).isSolid() < 1)
 				{
 					// Se pushea lo que haya
 					this.getPosition().goLeft();
