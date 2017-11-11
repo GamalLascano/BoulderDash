@@ -110,7 +110,7 @@ public class MapCell
 		if ( matrix[pos.getX()][pos.getY()].isDirt() )
 		{
 			Dirt dirt = (Dirt) matrix[pos.getX()][pos.getY()];
-			if(!dirt.IsDirt())
+			if(!dirt.isDirty())
 			{
 				empty = true;
 			}

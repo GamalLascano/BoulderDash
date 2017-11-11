@@ -6,22 +6,22 @@ import game.SpriteChar;
 public class Dirt extends Cell
 {
 	private SpriteChar spritechar;
-	private boolean isDirt; // True = is dirt, false = is normal
+	private boolean dirty; // True = is dirt, false = is normal
 
 	// CONSTRUCTORS
 	
 	public Dirt(Position pos)
 	{
 		super(pos, 1);
-		this.isDirt = true;
+		this.dirty = true;
 		this.spritechar = SpriteChar.D;
 	}
 
-	public Dirt(Position pos, boolean isDirt)
+	public Dirt(Position pos, boolean dirty)
 	{
 		super(pos, 0);
-		this.isDirt = isDirt;
-		if (!isDirt)
+		this.dirty = dirty;
+		if (!dirty)
 		{
 			this.spritechar = SpriteChar.E;
 			this.setSolid(0);
@@ -40,16 +40,16 @@ public class Dirt extends Cell
 		return spritechar;
 	}
 	
-	public boolean IsDirt()
+	public boolean isDirty()
 	{
-		return isDirt;
+		return dirty;
 	}
 
 	// SETTERS
 	
 	public void removeDirt()
 	{
-		this.isDirt = false;
+		this.dirty = false;
 		this.setSolid(0);
 		spritechar = SpriteChar.E;
 	}
