@@ -183,20 +183,16 @@ public abstract class Item extends Entity
 			//Sino, si el objeto es redondo, elije uno de los lados para caer, y cae
 			if (MapItem.getItem(posDown).isRounded())
 			{
-				Position posLeft = new Position(super.getPosition().checkLeft(), super.getPosition().getY());
-				Position posRight = new Position(super.getPosition().checkRight(), super.getPosition().getY());
+				Position posLeft = new Position(this.getPosition().checkLeft(), this.getPosition().getY());
+				Position posRight = new Position(this.getPosition().checkRight(), this.getPosition().getY());
 				//Si estan los los lados vacios, elije el lado de la izquierda
 				if (MapCell.isEmpty(posLeft))
 				{
-					state.setStateEnum(StatusItemEnum.SLIDINGLEFT);
+					this.getState().setStateEnum(StatusItemEnum.SLIDINGLEFT);
 				}
-				else
+				else if (MapCell.isEmpty(posRight))
 				{
-					if (MapCell.isEmpty(posRight))
-					{
-						state.setStateEnum(StatusItemEnum.SLIDINGRIGHT);
-
-					}
+					this.getState().setStateEnum(StatusItemEnum.SLIDINGRIGHT);
 				}
 			}
 		}
