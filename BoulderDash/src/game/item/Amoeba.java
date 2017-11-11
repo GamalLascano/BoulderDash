@@ -2,6 +2,9 @@ package game.item;
 
 import game.Position;
 import game.SpriteChar;
+import game.map.MapActor;
+import game.map.MapCell;
+import game.map.MapItem;
 
 public class Amoeba extends Item
 {
@@ -57,6 +60,27 @@ public class Amoeba extends Item
 	 */
 	public void diamonize()
 	{
+	}
+	
+	// REFRESH POSITION
+	
+	public void changePosition()
+	{
+		MapItem.removeItem(this.getPosition());
+		this.makeMove();
+		MapItem.setItem(this.getPosition(), this);
+	}
+	
+	public void makeMove()
+	{
+		if(this.isExpanding())
+		{
+			
+		}
+		else
+		{
+			
+		}
 	}
 
 }

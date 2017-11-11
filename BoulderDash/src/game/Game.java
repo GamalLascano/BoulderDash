@@ -20,7 +20,7 @@ public class Game
 		BDLevelReader levelFrame = new BDLevelReader();
 		int nivelElegido;
 		// empiezo del nivel 1, y voy iterando por los niveles
-		for (nivelElegido = 1; nivelElegido <= 2; nivelElegido++)
+		for (nivelElegido = 1; nivelElegido <= 10; nivelElegido++)
 		{
 			// hago que lea los niveles, y cargue el nivel elegido
 			try
