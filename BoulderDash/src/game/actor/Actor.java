@@ -3,6 +3,7 @@ package game.actor;
 import game.CurrentDirection;
 import game.Position;
 import game.SpriteChar;
+import game.map.MapActor;
 import game.Entity;
 
 /**
@@ -30,6 +31,32 @@ public abstract class Actor extends Entity
 	{
 		super(pos, solid);
 		this.state = state;
+	}
+	
+	// ENTITY TYPE
+	
+	public boolean isRockford()
+	{
+		if(this instanceof Rockford)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isEnemy()
+	{
+		if(this instanceof Enemy)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	// GETTERS
@@ -72,6 +99,19 @@ public abstract class Actor extends Entity
 		default:
 			break;
 		}
+	}
+	
+	// REFRESH POSITION
+	
+	public void changePosition()
+	{
+		MapActor.removeActor(this.getPosition());
+		this.makeMove();
+		MapActor.setActor(this.getPosition(), this);
+	}
+	
+	public void makeMove()
+	{
 	}
 
 }

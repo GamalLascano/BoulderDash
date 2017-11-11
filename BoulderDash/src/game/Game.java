@@ -52,7 +52,7 @@ public class Game
 				Rockford player = ListOfEntities.findRockford();
 				boolean quit = false;
 				//interpolo el mapa actual con todos los mapas de todos los objetos
-				MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+				MapVisual.drawMap();
 				// imprimo el mapa en pantalla
 				MapVisual.imprimirMapa();
 				//hago que se muevan todos los actores
@@ -88,7 +88,7 @@ public class Game
 					}
 					//y esto refresca el mapa con el movimiento elegido
 					MapInstance.refresh();
-					MapVisual.drawMap(MapInstance.getMapCell(), MapInstance.getMapItem(), MapInstance.getMapActor());
+					MapVisual.drawMap();
 					MapVisual.imprimirMapa();
 					
 				}

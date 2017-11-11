@@ -6,13 +6,12 @@ import game.actor.Rockford;
 import java.util.ArrayList;
 import java.util.List;
 
-
-	//	Lista de entities (Items y Actores)
+//	Lista de entities (Items y Actores)
 public class ListOfEntities
 {
 	private static ListOfEntities singleton;
 	private static List<Entity> entityList;
-	private static boolean initiated=false;
+	private static boolean initiated = false;
 
 	// CONSTRUCTORS
 
@@ -31,41 +30,45 @@ public class ListOfEntities
 		}
 		return singleton;
 	}
-	
-	/** start inicia la lista con una lista vacia, y lo setea como inicializado
+
+	/**
+	 * start inicia la lista con una lista vacia, y lo setea como inicializado
 	 * 
 	 */
 	public static void start()
 	{
-		initiated=true;
+		initiated = true;
 		entityList = new ArrayList<Entity>();
 	}
-	
+
 	// GETTERS
-	
+
 	public static List<Entity> getList()
 	{
 		return entityList;
 	}
 
-	// SETTERS	
-	
+	// SETTERS
+
 	// SORT
-	
+
 	// FIND
-	/** FindRockford busca en la lista de entidades a ver si se encuentra rockford
+	/**
+	 * FindRockford busca en la lista de entidades a ver si se encuentra
+	 * rockford
 	 * 
-	*/
+	 */
 	public static Rockford findRockford()
 	{
 		Rockford player;
 		int i = 0;
-		if (initiated) {
-			while(!(entityList.get(i) instanceof Rockford))
+		if (initiated)
+		{
+			while (!(entityList.get(i).isRockford()))
 			{
 				i++;
 			}
-			if (entityList.get(i) instanceof Rockford)
+			if (entityList.get(i).isRockford())
 			{
 				player = (Rockford) entityList.get(i);
 				return player;
@@ -76,7 +79,8 @@ public class ListOfEntities
 				return null;
 			}
 		}
-		else {
+		else
+		{
 			System.out.println("ERROR: LA LISTA NO ESTA INICIALIZADA");
 			return null;
 		}

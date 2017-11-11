@@ -1,6 +1,8 @@
 package game.actor;
 
 import game.Position;
+import game.map.MapCell;
+import game.map.MapItem;
 
 public abstract class Enemy extends Actor
 {
@@ -41,4 +43,65 @@ public abstract class Enemy extends Actor
 			return false;
 		}
 	}
+	
+	// MAKE MOVE
+	
+	/**
+	 * Se occupa de hacer mover a los enemigos.
+	 * 
+	 */
+	public void makeMove()
+	{
+		switch (this.getState().getMovementState())
+		{
+			case MOVINGUP:
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 1)
+				{
+					this.getPosition().goUp();
+				}
+				else
+				{
+					this.rotate();
+				}
+				break;
+			case MOVINGDOWN:
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1)
+				{
+					this.getPosition().goDown();
+				}
+				else
+				{
+					this.rotate();
+				}
+				break;
+			case MOVINGRIGHT:
+				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1)
+				{
+					this.getPosition().goRight();
+				}
+				else
+				{
+					this.rotate();
+				}
+				break;
+			case MOVINGLEFT:
+				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1)
+				{
+					this.getPosition().goLeft();
+				}
+				else
+				{
+					this.rotate();
+				}
+				break;
+			default:
+				break;
+		}
+		this.getState().setMovementState(StatusActorEnum.IDLE);
+	}
+	
 }

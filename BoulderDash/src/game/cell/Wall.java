@@ -5,7 +5,7 @@ import game.item.Diamond;
 import game.item.Rock;
 import game.item.StatusItem;
 import game.item.StatusItemEnum;
-import game.map.MapInstance;
+import game.map.MapItem;
 import game.SpriteChar;
 
 public class Wall extends Cell
@@ -36,7 +36,7 @@ public class Wall extends Cell
 			Position diamondPos = this.getPosition();
 			StatusItem diamondState = new StatusItem(StatusItemEnum.FALLING);
 			Diamond diamond = new Diamond(diamondState, diamondPos);
-			MapInstance.getMapItem().setItem(diamondPos, diamond);
+			MapItem.setItem(diamondPos, diamond);
 		}
 
 	}

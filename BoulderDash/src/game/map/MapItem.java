@@ -40,26 +40,26 @@ public class MapItem
 
 	// GETTERS
 	
-	public Item[][] getMatrix()
+	public static Item[][] getMatrix()
 	{
 		return matrix;
 	}
 	
-	public Item getItem(Position pos)
+	public static Item getItem(Position pos)
 	{
 		return matrix[pos.getX()][pos.getY()];
 	}
 	
-	public Item getItem(Integer x, Integer y)
+	public static Item getItem(Integer x, Integer y)
 	{
 		return matrix[x][y];
 	}
 	
-	public Diamond getDiamond(Position pos)
+	public static Diamond getDiamond(Position pos)
 	{
 		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
-			if( matrix[pos.getX()][pos.getY()] instanceof Diamond )
+			if( matrix[pos.getX()][pos.getY()].isDiamond())
 			{
 				return ( (Diamond) matrix[pos.getX()][pos.getY()] );
 			}
@@ -74,11 +74,11 @@ public class MapItem
 		}
 	}
 	
-	public Rock getRock(Position pos)
+	public static Rock getRock(Position pos)
 	{
 		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
-			if( matrix[pos.getX()][pos.getY()] instanceof Rock )
+			if( matrix[pos.getX()][pos.getY()].isRock() )
 			{
 				return ( (Rock) matrix[pos.getX()][pos.getY()] );
 			}
@@ -95,7 +95,7 @@ public class MapItem
 
 	// SETTERS
 	
-	public boolean setItem(Position pos, Item ite)
+	public static boolean setItem(Position pos, Item ite)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
@@ -108,7 +108,7 @@ public class MapItem
 		}
 	}
 	
-	public boolean removeItem(Position pos)
+	public static boolean removeItem(Position pos)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{

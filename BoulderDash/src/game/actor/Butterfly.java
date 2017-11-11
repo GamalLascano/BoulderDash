@@ -51,5 +51,4 @@ public class Butterfly extends Enemy
 				break;
 		}
 	}
-
 }

@@ -1,5 +1,9 @@
 package game;
 
+import game.item.Item;
+import game.actor.Actor;
+import game.actor.Rockford;
+
 /**
  * Esta clase representa todas las unidades que se pueden mover
  * Tiene lo intrinseco de una unidad, su posicion
@@ -25,6 +29,44 @@ public abstract class Entity
 		this.solid = solid;
 	}
 
+	// ENTITY TYPE
+	
+	public boolean isActor()
+	{
+		if(this instanceof Actor)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isRockford()
+	{
+		if(this instanceof Rockford)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isItem()
+	{
+		if(this instanceof Item)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	// GETTERS
 	
 	public Position getPosition()
@@ -47,6 +89,16 @@ public abstract class Entity
 	public void setPosition(Position pos)
 	{
 		this.pos = pos;
+	}
+	
+	// POSITION
+	
+	public void changePosition()
+	{
+	}
+	
+	public void makeMove()
+	{
 	}
 	
 	

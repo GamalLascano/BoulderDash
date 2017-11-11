@@ -52,7 +52,7 @@ public class MapVisual
 	 * @param itemMap El mapa de items
 	 * @param actorMap El mapa de actores
 	 */
-	public static void drawMap(MapCell cellMap, MapItem itemMap, MapActor actorMap)
+	public static void drawMap()
 	{
 		Position pos = new Position();
 		int y;
@@ -62,17 +62,17 @@ public class MapVisual
 			for (x = 0; x < level.getWIDTH(); x++)
 			{
 				pos.setXY(x, y);
-				if( actorMap.getActor(pos) != null )
+				if( MapActor.getActor(pos) != null )
 				{
-					map[x][y] = actorMap.getActor(pos).getSpritechar();
+					map[x][y] = MapActor.getActor(pos).getSpritechar();
 				}
-				else if( itemMap.getItem(pos) instanceof Empty == false )
+				else if( MapItem.getItem(pos) instanceof Empty == false )
 				{
-					map[x][y] = itemMap.getItem(pos).getSpritechar();
+					map[x][y] = MapItem.getItem(pos).getSpritechar();
 				}
-				else if( cellMap.getCell(pos) instanceof Cell)
+				else if( MapCell.getCell(pos) instanceof Cell)
 				{
-					map[x][y] = cellMap.getCell(pos).getSpritechar();
+					map[x][y] = MapCell.getCell(pos).getSpritechar();
 				}
 			}
 		}

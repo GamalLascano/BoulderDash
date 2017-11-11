@@ -4,7 +4,7 @@ import game.actor.*;
 import game.Position;
 import game.map.bdlevel.BDLevelReader;
 
-public class MapActor
+public class MapActor extends Map
 {
 	private static MapActor singleton;
 	private static BDLevelReader level;
@@ -37,7 +37,7 @@ public class MapActor
 
 	// GETTERS
 
-	public Actor getActor(Position pos)
+	public static Actor getActor(Position pos)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
@@ -49,7 +49,7 @@ public class MapActor
 		}
 	}
 	
-	public Actor getActor(Integer x, Integer y)
+	public static Actor getActor(Integer x, Integer y)
 	{
 		if ( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
 		{
@@ -69,7 +69,7 @@ public class MapActor
 	 * @param act
 	 * @return : true si se agrego correctamente
 	 */
-	public boolean setActor(Position pos, Actor act)
+	public static boolean setActor(Position pos, Actor act)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
@@ -82,7 +82,7 @@ public class MapActor
 		}
 	}
 	
-	public boolean removeActor(Position pos)
+	public static boolean removeActor(Position pos)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{

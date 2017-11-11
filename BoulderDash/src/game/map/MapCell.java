@@ -39,21 +39,21 @@ public class MapCell
 	
 	// GETTERS
 	
-	public Cell getCell(Position pos)
+	public static Cell getCell(Position pos)
 	{
 		return matrix[pos.getX()][pos.getY()];
 	}
 	
-	public Cell getCell(Integer x, Integer y)
+	public static Cell getCell(Integer x, Integer y)
 	{
 		return matrix[x][y];
 	}
 	
-	public Dirt getDirt(Position pos)
+	public static Dirt getDirt(Position pos)
 	{
 		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
-			if( matrix[pos.getX()][pos.getY()] instanceof Dirt )
+			if( matrix[pos.getX()][pos.getY()].isDirt())
 			{
 				return ( (Dirt) matrix[pos.getX()][pos.getY()] );
 			}
@@ -68,11 +68,11 @@ public class MapCell
 		}
 	}
 	
-	public Dirt getDirt(Integer x, Integer y)
+	public static Dirt getDirt(Integer x, Integer y)
 	{
 		if( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
 		{
-			if( matrix[x][y] instanceof Dirt )
+			if( matrix[x][y].isDirt() )
 			{
 				return ( (Dirt) matrix[x][y] );
 			}
@@ -89,7 +89,7 @@ public class MapCell
 
 	// SETTERS
 	
-	public boolean setCell(Position pos, Cell cel)
+	public static boolean setCell(Position pos, Cell cel)
 	{
 		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
@@ -104,10 +104,10 @@ public class MapCell
 	
 	// Devuelve True si la celda esta vacia
 	
-	public boolean isEmpty(Position pos)
+	public static boolean isEmpty(Position pos)
 	{
 		boolean empty;
-		if ( matrix[pos.getX()][pos.getY()] instanceof Dirt )
+		if ( matrix[pos.getX()][pos.getY()].isDirt() )
 		{
 			Dirt dirt = (Dirt) matrix[pos.getX()][pos.getY()];
 			if(!dirt.IsDirt())
@@ -128,13 +128,13 @@ public class MapCell
 	
 	// ENCONTRAR LA CELDA SALIDA
 	
-	public Exit findExit()
+	public static Exit findExit()
 	{
 		Exit exit;
 		for (int x = 0; x < level.getWIDTH(); x++)
 			for (int y = 0; y < level.getHEIGHT(); y++)
 			{
-				if(matrix[x][y] instanceof Exit)
+				if( matrix[x][y].isExit() )
 				{
 				exit = (Exit) matrix[x][y];
 				return exit;

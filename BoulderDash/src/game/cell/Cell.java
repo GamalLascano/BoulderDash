@@ -13,10 +13,39 @@ public abstract class Cell
 	private Position pos;
 	private int solid; // Si los personajes pueden caminar sobre la celda..
 
+	// CONSTRUCTOR
+	
 	Cell(Position pos, int solid)
 	{
 		this.pos = pos;
 		this.solid = solid;
+	}
+	
+
+	// CELL TYPE
+	
+	public boolean isDirt()
+	{
+		if(this instanceof Dirt)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isExit()
+	{
+		if(this instanceof Exit)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	// GETTERS

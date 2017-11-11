@@ -32,7 +32,7 @@ public class Dirt extends Cell
 			this.setSolid(1);
 		}
 	}
-
+	
 	// GETTERS
 	
 	public SpriteChar getSpritechar()

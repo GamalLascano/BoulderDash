@@ -1,9 +1,11 @@
 package game.item;
 
-import game.Position;
 import game.Entity;
-import game.map.MapInstance;
+import game.Position;
 import game.SpriteChar;
+import game.map.MapActor;
+import game.map.MapCell;
+import game.map.MapItem;
 
 /** Esta es la clase de todos los items, que son objetos no-enemigos que se mueven
  *  Contienen una posicion heredada de entity, un Spritechar que representa al item,
@@ -42,6 +44,8 @@ public abstract class Item extends Entity
 	 */
 	private boolean rounded;	//Si un objeto sobre otro se cae por los lados
 
+	// CONSTRUCTOR
+	
 	/** Inicializa el item con un estado predeterminado
 	 * @param state: estado de movimiento
 	 * @param pos: posicion
@@ -64,6 +68,32 @@ public abstract class Item extends Entity
 		this.rounded = rounded;
 	}
 
+	// ENTITY TYPE
+	
+	public boolean isDiamond()
+	{
+		if(this instanceof Diamond)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isRock()
+	{
+		if(this instanceof Rock)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	// GETTERS
 	
 	public SpriteChar getSpritechar()
@@ -133,7 +163,7 @@ public abstract class Item extends Entity
 		this.rounded = rounded;
 	}
 
-	//COMPORTAMIENTO
+	// FALL
 
 	/** Este metodo se usa para comprobar si el item se cae o no, y setear el estado necesario
 	 * 
@@ -143,7 +173,7 @@ public abstract class Item extends Entity
 		//Se checkea la posicion de abajo del objeto
 		Position posDown = new Position(super.getPosition().getX(), super.getPosition().checkDown());
 		//Ve si la posicion que esta abajo esta vacia
-		if (MapInstance.getMapCell().isEmpty(posDown))
+		if (MapCell.isEmpty(posDown))
 		{
 			//Si esta vacia, lo deja cayendo
 			state.setStateEnum(StatusItemEnum.FALLING);
@@ -151,18 +181,18 @@ public abstract class Item extends Entity
 		else
 		{
 			//Sino, si el objeto es redondo, elije uno de los lados para caer, y cae
-			if (MapInstance.getMapItem().getItem(posDown).isRounded())
+			if (MapItem.getItem(posDown).isRounded())
 			{
 				Position posLeft = new Position(super.getPosition().checkLeft(), super.getPosition().getY());
 				Position posRight = new Position(super.getPosition().checkRight(), super.getPosition().getY());
 				//Si estan los los lados vacios, elije el lado de la izquierda
-				if (MapInstance.getMapCell().isEmpty(posLeft))
+				if (MapCell.isEmpty(posLeft))
 				{
 					state.setStateEnum(StatusItemEnum.SLIDINGLEFT);
 				}
 				else
 				{
-					if (MapInstance.getMapCell().isEmpty(posRight))
+					if (MapCell.isEmpty(posRight))
 					{
 						state.setStateEnum(StatusItemEnum.SLIDINGRIGHT);
 
@@ -171,4 +201,50 @@ public abstract class Item extends Entity
 			}
 		}
 	}
+	
+	// REFRESH POSITION
+	
+	public void changePosition()
+	{
+		MapItem.removeItem(this.getPosition());
+		this.fall();
+		this.makeMove();
+		MapItem.setItem(this.getPosition(), this);
+	}
+	
+	public void makeMove()
+	{
+		StatusItemEnum status = this.getState().getStateEnum();
+		switch (status)
+		{
+			case FALLING:
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1
+						&& MapActor.getActor(this.getPosition().getX(), this.getPosition().checkDown()) != null)
+				{
+					this.getPosition().goDown();
+				}
+				break;
+			case SLIDINGRIGHT:
+				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1
+						&& MapActor.getActor(this.getPosition().checkRight(), this.getPosition().getY()) != null)
+				{
+					this.getPosition().goRight();
+				}
+				break;
+			case SLIDINGLEFT:
+				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1
+						&& MapActor.getActor(this.getPosition().checkLeft(), this.getPosition().getY()) != null)
+				{
+					this.getPosition().goLeft();
+				}
+				break;
+			default:
+				break;
+		}
+		this.getState().setStateEnum(StatusItemEnum.IDLE);
+	}
+	
 }
