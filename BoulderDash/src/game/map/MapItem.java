@@ -74,13 +74,13 @@ public class MapItem
 		}
 	}
 	
-	public static Rock getRock(Position pos)
+	public static Rock getRock(Integer x, Integer y)
 	{
-		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
 		{
-			if( matrix[pos.getX()][pos.getY()].isRock() )
+			if( matrix[x][y].isRock() )
 			{
-				return ( (Rock) matrix[pos.getX()][pos.getY()] );
+				return ( (Rock) matrix[x][y] );
 			}
 			else
 			{

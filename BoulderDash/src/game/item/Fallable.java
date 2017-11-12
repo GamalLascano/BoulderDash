@@ -38,34 +38,28 @@ public class Fallable extends Item
 	 */
 	public void fall()
 	{
-		//Se checkea la posicion de abajo del objeto
-		Position posDown = new Position(super.getPosition().getX(), super.getPosition().checkDown());
 		//Ve si la posicion que esta abajo esta vacia
-		if (MapCell.isEmpty(posDown))
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
 		{
 			//Si esta vacia, lo deja cayendo
 			this.state = StatusFallableEnum.FALLING;
 		}
-		else
+		else if (MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded())
 		{
-			//Sino, si el objeto es redondo, elije uno de los lados para caer, y cae
-			if (MapItem.getItem(posDown).isRounded())
+			// Si estan los los lados vacios, elije el lado de la izquierda
+			if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1
+					&& MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().checkDown()) < 1)
 			{
-				Position posLeft = new Position(this.getPosition().checkLeft(), this.getPosition().getY());
-				Position posRight = new Position(this.getPosition().checkRight(), this.getPosition().getY());
-				//Si estan los los lados vacios, elije el lado de la izquierda
-				if (MapCell.isEmpty(posLeft))
-				{
-					this.state = StatusFallableEnum.SLIDINGLEFT;
-				}
-				else if (MapCell.isEmpty(posRight))
-				{
-					this.state = StatusFallableEnum.SLIDINGRIGHT;
-				}
+				this.state = StatusFallableEnum.SLIDINGLEFT;
+			}
+			else if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1
+					&& MapInstance.solid(this.getPosition().checkRight(), this.getPosition().checkDown()) < 1)
+			{
+				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
 		}
 	}
-	
+
 	// REFRESH POSITION
 
 	public void changePosition()

@@ -118,30 +118,6 @@ public class MapCell
 		}
 	}
 
-	// Devuelve True si la celda esta vacia
-
-	public static boolean isEmpty(Position pos)
-	{
-		boolean empty;
-		if (matrix[pos.getX()][pos.getY()].isDirt())
-		{
-			Dirt dirt = (Dirt) matrix[pos.getX()][pos.getY()];
-			if (!dirt.isDirty())
-			{
-				empty = true;
-			}
-			else
-			{
-				empty = false;
-			}
-		}
-		else
-		{
-			empty = false;
-		}
-		return empty;
-	}
-
 	// ENCONTRAR LA CELDA SALIDA
 	
 	public static Exit findExit()
