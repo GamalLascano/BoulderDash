@@ -95,11 +95,12 @@ public class MapItem
 
 	// SETTERS
 	
-	public static boolean setItem(Position pos, Item ite)
+	public static boolean setItem(Item ite)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if ( level.getWIDTH() >= ite.getPosition().getX() && 0 <= ite.getPosition().getX() 
+				&& level.getHEIGHT() >= ite.getPosition().getY() && 0 <= ite.getPosition().getY() )
 		{
-			matrix[pos.getX()][pos.getY()] = ite;
+			matrix[ite.getPosition().getX()][ite.getPosition().getY()] = ite;
 			return true;
 		} 
 		else

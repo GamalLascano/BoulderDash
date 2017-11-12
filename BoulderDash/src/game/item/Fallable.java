@@ -72,7 +72,7 @@ public class Fallable extends Item
 		MapItem.removeItem(this.getPosition());
 		this.fall();
 		this.makeMove();
-		MapItem.setItem(this.getPosition(), this);
+		MapItem.setItem(this);
 	}
 	
 	public void makeMove()

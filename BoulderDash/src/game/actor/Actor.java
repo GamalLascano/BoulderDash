@@ -33,32 +33,6 @@ public abstract class Actor extends Entity
 		this.state = state;
 	}
 
-	// ENTITY TYPE
-	
-	public boolean isRockford()
-	{
-		if(this instanceof Rockford)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public boolean isEnemy()
-	{
-		if(this instanceof Enemy)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	// GETTERS
 	
 	public SpriteChar getSpritechar()
@@ -107,11 +81,18 @@ public abstract class Actor extends Entity
 	{
 		MapActor.removeActor(this.getPosition());
 		this.makeMove();
-		MapActor.setActor(this.getPosition(), this);
+		MapActor.setActor(this);
 	}
 	
 	public void makeMove()
 	{
+	}
+	
+	// DIE
+	
+	public void die()
+	{
+		MapActor.removeActor(this.getPosition());
 	}
 
 }

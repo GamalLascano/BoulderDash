@@ -10,7 +10,7 @@ import game.SpriteChar;
 public abstract class Cell
 {
 	private SpriteChar spritechar;
-	private Position pos;
+	protected Position pos;
 	private int solid; // Si los personajes pueden caminar sobre la celda..
 
 	// CONSTRUCTOR
@@ -76,4 +76,8 @@ public abstract class Cell
 	{
 		this.solid = solid;
 	}
+	
+	// DIE
+	
+	abstract public void clear();
 }

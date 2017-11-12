@@ -93,13 +93,13 @@ public abstract class Entity
 	
 	// POSITION
 	
-	public void changePosition()
-	{
-	}
+	abstract public void changePosition();
 	
-	public void makeMove()
-	{
-	}
+	abstract public void makeMove();
+	
+	// DIE
+	
+	abstract public void die();
 	
 	
 }

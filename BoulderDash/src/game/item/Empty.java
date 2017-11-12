@@ -21,4 +21,14 @@ public class Empty extends Item
 		return spritechar;
 	}
 	
+	// CHANGE POSITION
+	
+	public void changePosition()
+	{
+	}
+	
+	public void makeMove()
+	{
+	}
+	
 }

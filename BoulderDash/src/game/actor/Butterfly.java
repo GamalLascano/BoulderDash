@@ -23,15 +23,14 @@ public class Butterfly extends Enemy
 		return spritechar;
 	}
 	
-	// S
+	// 
 	
 	@Override
 	public void explode()
 	{
 	}
 
-	// S
-
+	// ROTATE
 
 	@Override
 	public void rotate()

@@ -2,6 +2,7 @@ package game.actor;
 
 import game.Position;
 import game.map.MapCell;
+import game.map.MapInstance;
 import game.map.MapItem;
 
 public abstract class Enemy extends Actor
@@ -25,7 +26,20 @@ public abstract class Enemy extends Actor
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
 	 * 3x3.
 	 */
-	public abstract void explode();
+	public void explode()
+	{
+		if(true)
+		{
+			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
+			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
+			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
+			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
+			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
+			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
+			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
+			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
+		}
+	}
 
 	// Recibe una posicion, y ve si esta en un radio de 3x3
 	public boolean isInRange(Position pos) {

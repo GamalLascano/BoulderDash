@@ -69,11 +69,12 @@ public class MapActor extends Map
 	 * @param act
 	 * @return : true si se agrego correctamente
 	 */
-	public static boolean setActor(Position pos, Actor act)
+	public static boolean setActor(Actor act)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if ( level.getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX() 
+				&& level.getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY() )
 		{
-			matrix[pos.getX()][pos.getY()] = act;
+			matrix[act.getPosition().getX()][act.getPosition().getY()] = act;
 			return true;
 		}
 		else
@@ -84,7 +85,8 @@ public class MapActor extends Map
 	
 	public static boolean removeActor(Position pos)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() 
+				&& level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			return true;

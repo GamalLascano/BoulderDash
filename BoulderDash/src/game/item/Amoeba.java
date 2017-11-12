@@ -2,8 +2,6 @@ package game.item;
 
 import game.Position;
 import game.SpriteChar;
-import game.map.MapActor;
-import game.map.MapCell;
 import game.map.MapItem;
 import game.item.StatusAmoebaEnum;
 
@@ -81,7 +79,7 @@ public class Amoeba extends Item
 	{
 		MapItem.removeItem(this.getPosition());
 		this.makeMove();
-		MapItem.setItem(this.getPosition(), this);
+		MapItem.setItem(this);
 	}
 	
 	public void makeMove()

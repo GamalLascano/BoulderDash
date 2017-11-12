@@ -28,13 +28,12 @@ public class Diamond extends Fallable
 	
 	// COLLECTED
 	
-	/** Collected setea el diamante como recolectado, y cambia el sprite a un vacio
+	/** Collected setea el diamante como recolectado
 	 * 
 	 */
 	public void collected()
 	{
-		this.setCollectable(true);
-		this.spritechar = SpriteChar._;
+		this.die();
 	}
 	
 }

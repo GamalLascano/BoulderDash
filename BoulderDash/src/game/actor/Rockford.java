@@ -135,7 +135,7 @@ public class Rockford extends Actor
 	{
 		MapActor.removeActor(this.getPosition());
 		this.makeMove();
-		MapActor.setActor(this.getPosition(), this);
+		MapActor.setActor(this);
 	}
 
 	/**

@@ -53,4 +53,11 @@ public class Dirt extends Cell
 		this.setSolid(0);
 		spritechar = SpriteChar._;
 	}
+	
+	// DIE
+	
+	public void clear()
+	{
+		this.removeDirt();
+	}
 }

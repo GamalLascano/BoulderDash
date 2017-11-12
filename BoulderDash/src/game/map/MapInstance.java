@@ -50,6 +50,20 @@ public class MapInstance
 	}
 
 	// SETTERS
+	
+	public static void kill(Position pos)
+	{
+		MapCell.getCell(pos.getX(), pos.getY()).clear();
+		MapItem.getItem(pos.getX(), pos.getY()).die();
+		MapActor.getActor(pos.getX(), pos.getY()).die();
+	}
+	
+	public static void kill(Integer x, Integer y)
+	{
+		MapCell.getCell(x, y).clear();
+		MapItem.getItem(x, y).die();
+		MapActor.getActor(x, y).die();
+	}
 
 	// INICIALIZACION
 
@@ -112,60 +126,60 @@ public class MapInstance
 				switch (level.getTile(x, y))
 				{
 					case EMPTY:
-						MapCell.setCell(pos, new Dirt(pos, false));
-						MapItem.setItem(pos, new Empty(pos));
-						MapActor.setActor(pos, null);
+						MapCell.setCell(new Dirt(pos, false));
+						MapItem.setItem(new Empty(pos));
+						MapActor.removeActor(pos);
 						break;
 					case DIRT:
-						MapCell.setCell(pos, new Dirt(pos));
+						MapCell.setCell(new Dirt(pos));
 						break;
 					case TITANIUM:
-						MapCell.setCell(pos, new Titanium(pos));
+						MapCell.setCell(new Titanium(pos));
 						break;
 					case WALL:
-						MapCell.setCell(pos, new Wall(pos));
+						MapCell.setCell(new Wall(pos));
 						break;
 					case ROCK:
 						Rock rock = new Rock(pos);
-						MapItem.setItem(pos, rock);
+						MapItem.setItem(rock);
 						ListOfEntities.getList().add(rock);
 						break;
 					case FALLINGROCK:
 						Rock fallingRock = new Rock(pos, StatusFallableEnum.FALLING);
-						MapItem.setItem(pos, fallingRock);
+						MapItem.setItem(fallingRock);
 						ListOfEntities.getList().add(fallingRock);
 						break;
 					case DIAMOND:
 						Diamond diamond = new Diamond(pos);
-						MapItem.setItem(pos, diamond);
+						MapItem.setItem(diamond);
 						ListOfEntities.getList().add(diamond);
 						break;
 					case FALLINGDIAMOND:
 						Diamond fallingDiamond = new Diamond(pos,StatusFallableEnum.FALLING);
-						MapItem.setItem(pos, fallingDiamond);
+						MapItem.setItem(fallingDiamond);
 						ListOfEntities.getList().add(fallingDiamond);
 						break;
 					case AMOEBA:
 						Amoeba amoeba = new Amoeba(pos);
-						MapItem.setItem(pos, amoeba);
+						MapItem.setItem(amoeba);
 						ListOfEntities.getList().add(amoeba);
 						break;
 					case FIREFLY:
 						Firefly firefly = new Firefly(pos);
-						MapActor.setActor(pos, firefly);
+						MapActor.setActor(firefly);
 						ListOfEntities.getList().add(firefly);
 						break;
 					case BUTTERFLY:
 						Butterfly butterfly = new Butterfly(pos);
-						MapActor.setActor(pos, butterfly);
+						MapActor.setActor(butterfly);
 						ListOfEntities.getList().add(butterfly);
 						break;
 					case EXIT:
-						MapCell.setCell(pos, new Exit(pos));
+						MapCell.setCell(new Exit(pos));
 						break;
 					case PLAYER:
 						Rockford player = new Rockford(pos);
-						MapActor.setActor(pos, player);
+						MapActor.setActor(player);
 						ListOfEntities.getList().add(player);
 						break;
 					default:

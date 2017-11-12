@@ -4,6 +4,7 @@ import game.Position;
 import game.item.Diamond;
 import game.item.Rock;
 import game.item.StatusFallableEnum;
+import game.map.MapCell;
 import game.map.MapItem;
 import game.SpriteChar;
 
@@ -11,6 +12,8 @@ public class Wall extends Cell
 {
 	private SpriteChar spritechar = SpriteChar.W;
 
+	// CONSTRUCTORS
+	
 	public Wall(Position pos)
 	{
 		super(pos, 2);
@@ -25,7 +28,6 @@ public class Wall extends Cell
 
 	// CONVERSION
 
-	//corregir esto dsp
 	public void conversion(Rock stone)
 	{
 		if (( stone.getPosition().getY() == this.getPosition().checkUp() ) && ( stone.getState() == StatusFallableEnum.FALLING) )
@@ -34,9 +36,16 @@ public class Wall extends Cell
 			stone.setState(StatusFallableEnum.DEAD);
 			Position diamondPos = this.getPosition();
 			Diamond diamond = new Diamond(diamondPos, StatusFallableEnum.FALLING);
-			MapItem.setItem(diamondPos, diamond);
+			MapItem.setItem(diamond);
 		}
 
+	}
+	
+	// DIE
+	
+	public void clear()
+	{
+		MapCell.removeCell(this.pos);
 	}
 
 }

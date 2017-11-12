@@ -89,11 +89,12 @@ public class MapCell
 
 	// SETTERS
 	
-	public static boolean setCell(Position pos, Cell cel)
+	public static boolean setCell(Cell cel)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if ( level.getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX() 
+				&& level.getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY() )
 		{
-			matrix[pos.getX()][pos.getY()] = cel;
+			matrix[cel.getPosition().getX()][cel.getPosition().getY()] = cel;
 			return true;
 		} 
 		else
@@ -102,21 +103,36 @@ public class MapCell
 		}
 	}
 	
+	public static boolean removeCell(Position pos)
+	{
+		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() 
+				&& level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		{
+			matrix[pos.getX()][pos.getY()] = null;
+			matrix[pos.getX()][pos.getY()] = new Dirt(pos, false);
+			return true;
+		} 
+		else
+		{
+			return false;
+		}
+	}
+
 	// Devuelve True si la celda esta vacia
-	
+
 	public static boolean isEmpty(Position pos)
 	{
 		boolean empty;
-		if ( matrix[pos.getX()][pos.getY()].isDirt() )
+		if (matrix[pos.getX()][pos.getY()].isDirt())
 		{
 			Dirt dirt = (Dirt) matrix[pos.getX()][pos.getY()];
-			if(!dirt.isDirty())
+			if (!dirt.isDirty())
 			{
 				empty = true;
 			}
 			else
 			{
-			empty = false;
+				empty = false;
 			}
 		}
 		else
@@ -125,7 +141,7 @@ public class MapCell
 		}
 		return empty;
 	}
-	
+
 	// ENCONTRAR LA CELDA SALIDA
 	
 	public static Exit findExit()

@@ -3,6 +3,7 @@ package game.item;
 import game.Entity;
 import game.Position;
 import game.SpriteChar;
+import game.map.MapItem;
 
 /** Esta es la clase de todos los items, que son objetos no-enemigos que se mueven
  *  Contienen una posicion heredada de entity, un Spritechar que representa al item,
@@ -145,4 +146,10 @@ public abstract class Item extends Entity
 		this.rounded = rounded;
 	}
 	
+	// DIE
+	
+	public void die()
+	{
+		MapItem.removeItem(this.getPosition());
+	}
 }
