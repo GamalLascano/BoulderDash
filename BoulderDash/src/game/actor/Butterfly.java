@@ -2,6 +2,7 @@ package game.actor;
 
 import game.Position;
 import game.SpriteChar;
+import game.map.MapActor;
 
 public class Butterfly extends Enemy
 {
@@ -21,13 +22,6 @@ public class Butterfly extends Enemy
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
-	}
-	
-	// 
-	
-	@Override
-	public void explode()
-	{
 	}
 
 	// ROTATE
@@ -53,4 +47,13 @@ public class Butterfly extends Enemy
 				break;
 		}
 	}
+	
+	// DIE
+	
+	public void die()
+	{
+		this.explode();
+		MapActor.removeActor(this.getPosition());
+	}
+	
 }

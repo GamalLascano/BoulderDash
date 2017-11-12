@@ -4,6 +4,7 @@ import game.CurrentDirection;
 import game.Position;
 import game.SpriteChar;
 import game.map.MapActor;
+import game.map.MapInstance;
 import game.Entity;
 
 /**
@@ -52,6 +53,25 @@ public abstract class Actor extends Entity
 		this.state = state;
 	}
 
+	// EXPLODE
+	
+	/**
+	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
+	 * 3x3.
+	 */
+	public void explode()
+	{
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
+	}
+	
 	// MOVE
 	
 	public void move(CurrentDirection direction)

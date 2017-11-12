@@ -1,8 +1,8 @@
 package game.actor;
 
-import game.ListOfEntities;
 import game.Position;
 import game.SpriteChar;
+import game.map.MapActor;
 
 public class Firefly extends Enemy
 {
@@ -47,19 +47,12 @@ public class Firefly extends Enemy
 		}
 	}
 
-	// EXPLOSION
+	// DIE
 	
-	public void explode()
+	public void die()
 	{
-		if (this.getState() != StatusActorEnum.DEAD) {
-			int i;
-			for (i = 0 ; i < ListOfEntities.getList().size(); ++i) {
-				if (this.isInRange(ListOfEntities.getList().get(i).getPosition())) {
-					//cambiar objeto en el mapa y setear el estado del objeto como dead, o exploding
-					//si es una luciernaga o una mariposa
-				}
-			}
-		}
+		this.explode();
+		MapActor.removeActor(this.getPosition());
 	}
-
+	
 }

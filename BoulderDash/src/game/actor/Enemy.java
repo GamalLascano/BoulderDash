@@ -1,6 +1,7 @@
 package game.actor;
 
 import game.Position;
+import game.item.Diamond;
 import game.map.MapCell;
 import game.map.MapInstance;
 import game.map.MapItem;
@@ -20,27 +21,6 @@ public abstract class Enemy extends Actor
 
 	protected abstract void rotate();
 
-	// EXPLODE
-	
-	/**
-	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
-	 * 3x3.
-	 */
-	public void explode()
-	{
-		if(true)
-		{
-			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
-			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
-			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
-			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
-			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
-			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
-			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
-			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
-		}
-	}
-
 	// Recibe una posicion, y ve si esta en un radio de 3x3
 	public boolean isInRange(Position pos) {
 		if( ( pos.getX() == super.getPosition().checkLeft() ) || ( pos.getX() == super.getPosition().getX() ) || ( pos.getX() == super.getPosition().checkRight() ) ) 
@@ -58,6 +38,35 @@ public abstract class Enemy extends Actor
 		{
 			return false;
 		}
+	}
+	
+	// EXPLODE WITH DIAMONDS
+	
+	/**
+	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
+	 * 3x3.
+	 */
+	public void explode()
+	{
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
+		
+		MapItem.setItem( new Diamond( new Position( this.getPosition().getX() , this.getPosition().getY() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().getX() , this.getPosition().checkUp() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().checkRight() , this.getPosition().checkUp() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().checkRight() , this.getPosition().getY() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().checkRight() , this.getPosition().checkDown() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().getX() , this.getPosition().checkDown() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().checkLeft() , this.getPosition().checkDown() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().checkRight() , this.getPosition().getY() ) ) );
+		MapItem.setItem( new Diamond( new Position( this.getPosition().checkLeft() , this.getPosition().checkUp() ) ) );
 	}
 	
 	// MAKE MOVE
