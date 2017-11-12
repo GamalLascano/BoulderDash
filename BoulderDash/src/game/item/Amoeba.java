@@ -70,18 +70,23 @@ public class Amoeba extends Item
 		MapItem.setItem(new Diamond(this.getPosition()));
 	}
 	
-	public void expand()
+	// ROTATE
+	
+	public void rotate()
 	{
 		switch (this.state)
 		{
 			case EXPANDUP:
-				if()
+				this.state = StatusAmoebaEnum.EXPANDRIGHT;
 				break;
 			case EXPANDRIGHT:
+				this.state = StatusAmoebaEnum.EXPANDDOWN;
 				break;
 			case EXPANDDOWN:
+				this.state = StatusAmoebaEnum.EXPANDLEFT;
 				break;
 			case EXPANDLEFT:
+				this.state = StatusAmoebaEnum.EXPANDUP;
 				break;
 			default:
 				break;
@@ -104,12 +109,44 @@ public class Amoeba extends Item
 			switch (this.state)
 			{
 				case EXPANDUP:
+					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) < 1)
+					{
+						MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())) );
+					}
+					else
+					{
+						this.rotate();
+					}
 					break;
 				case EXPANDRIGHT:
+					if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1)
+					{
+						MapItem.setItem( new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())) );
+					}
+					else
+					{
+						this.rotate();
+					}
 					break;
 				case EXPANDDOWN:
+					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
+					{
+						MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())) );
+					}
+					else
+					{
+						this.rotate();
+					}
 					break;
 				case EXPANDLEFT:
+					if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1)
+					{
+						MapItem.setItem( new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())) );
+					}
+					else
+					{
+						this.rotate();
+					}
 					break;
 				default:
 					break;

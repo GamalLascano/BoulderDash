@@ -2,7 +2,6 @@ package game.actor;
 
 import game.Position;
 import game.SpriteChar;
-import game.map.MapActor;
 
 public class Butterfly extends Enemy
 {

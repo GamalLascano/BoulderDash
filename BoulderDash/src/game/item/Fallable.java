@@ -3,6 +3,7 @@ package game.item;
 import game.Position;
 import game.map.MapActor;
 import game.map.MapCell;
+import game.map.MapInstance;
 import game.map.MapItem;
 
 public class Fallable extends Item
@@ -80,25 +81,19 @@ public class Fallable extends Item
 		switch (this.state)
 		{
 			case FALLING:
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1
-						&& MapActor.getActor(this.getPosition().getX(), this.getPosition().checkDown()) != null)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
 				{
 					this.getPosition().goDown();
 				}
 				break;
 			case SLIDINGRIGHT:
-				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1
-						&& MapActor.getActor(this.getPosition().checkRight(), this.getPosition().getY()) != null)
+				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1)
 				{
 					this.getPosition().goRight();
 				}
 				break;
 			case SLIDINGLEFT:
-				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1
-						&& MapActor.getActor(this.getPosition().checkLeft(), this.getPosition().getY()) != null)
+				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1)
 				{
 					this.getPosition().goLeft();
 				}

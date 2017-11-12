@@ -15,7 +15,8 @@ public abstract class Enemy extends Actor
 
 	public Enemy(Position pos)
 	{
-		super(pos, StatusActorEnum.IDLE);
+		super(pos);
+		this.state = StatusActorEnum.IDLE;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -76,8 +77,7 @@ public abstract class Enemy extends Actor
 		switch (this.state)
 		{
 			case MOVINGUP:
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkUp()).getSolid() < 1)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) < 1)
 				{
 					this.getPosition().goUp();
 				}
@@ -87,8 +87,7 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGDOWN:
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
 				{
 					this.getPosition().goDown();
 				}
@@ -98,8 +97,7 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGRIGHT:
-				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1)
+				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1)
 				{
 					this.getPosition().goRight();
 				}
@@ -109,8 +107,7 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGLEFT:
-				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1)
+				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1)
 				{
 					this.getPosition().goLeft();
 				}
