@@ -7,7 +7,7 @@ package game.item;
  * idle: quieto
  *
  */
-public enum StatusItemEnum
+public enum StatusFallableEnum
 {
-	FALLING, SLIDINGRIGHT, SLIDINGLEFT, IDLE,
+	FALLING, SLIDINGRIGHT, SLIDINGLEFT, IDLE, DEAD
 }

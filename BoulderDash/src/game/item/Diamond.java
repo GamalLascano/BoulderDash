@@ -3,15 +3,22 @@ package game.item;
 import game.Position;
 import game.SpriteChar;
 
-public class Diamond extends Item
+public class Diamond extends Fallable
 {
 	private SpriteChar spritechar = SpriteChar.X;
 	
-	public Diamond(StatusItem state, Position pos)
+	// CONSTRUCTORS
+	
+	public Diamond(Position pos)
 	{
-		super(state, pos, true, false, true, false, true, 1);
+		super(pos, true, false, true, false, true, 1, StatusFallableEnum.IDLE);
 	}
-
+	
+	public Diamond(Position pos, StatusFallableEnum state)
+	{
+		super(pos, true, false, true, false, true, 1, state);
+	}
+	
 	// GETTERS
 	
 	public SpriteChar getSpritechar()
@@ -27,7 +34,7 @@ public class Diamond extends Item
 	public void collected()
 	{
 		this.setCollectable(true);
-		this.spritechar = SpriteChar.E;
+		this.spritechar = SpriteChar._;
 	}
 	
 }

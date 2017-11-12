@@ -23,7 +23,7 @@ public class Dirt extends Cell
 		this.dirty = dirty;
 		if (!dirty)
 		{
-			this.spritechar = SpriteChar.E;
+			this.spritechar = SpriteChar._;
 			this.setSolid(0);
 		}
 		else
@@ -51,6 +51,6 @@ public class Dirt extends Cell
 	{
 		this.dirty = false;
 		this.setSolid(0);
-		spritechar = SpriteChar.E;
+		spritechar = SpriteChar._;
 	}
 }

@@ -7,17 +7,20 @@ import game.actor.Rockford;
 /**Esta clase representa una roca, junto con su caracter de representacion y un booleano
  * para ver si esta siendo empujado o no, junto con otras propiedades de otros items
  */
-public class Rock extends Item
+public class Rock extends Fallable
 {
 	private SpriteChar spritechar = SpriteChar.O;
-
-	/** Permite inicializar a la roca con un estado de movimiento y una posicion predeterminada
-	 * @param state: estado de movimiento
-	 * @param pos: posicion
-	 */
-	public Rock(StatusItem state, Position pos)
+	
+	// CONSTRUCTOR
+	
+	public Rock(Position pos)
 	{
-		super(state, pos, false, true, true, false, true, 2);
+		super(pos, false, true, true, false, true, 2, StatusFallableEnum.IDLE);
+	}
+	
+	public Rock(Position pos, StatusFallableEnum state)
+	{
+		super(pos, false, true, true, false, true, 2, state);
 	}
 
 	// GETTERS
@@ -43,10 +46,10 @@ public class Rock extends Item
 			switch ( player.getState().getMovementState() )
 			{
 				case MOVINGLEFT:
-					this.getState().setStateEnum(StatusItemEnum.SLIDINGLEFT);
+					this.state = StatusFallableEnum.SLIDINGLEFT;
 					break;
 				case MOVINGRIGHT:
-					this.getState().setStateEnum(StatusItemEnum.SLIDINGRIGHT);
+					this.state = StatusFallableEnum.SLIDINGRIGHT;
 					break;
 				default:
 					break;

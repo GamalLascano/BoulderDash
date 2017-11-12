@@ -3,8 +3,7 @@ package game.cell;
 import game.Position;
 import game.item.Diamond;
 import game.item.Rock;
-import game.item.StatusItem;
-import game.item.StatusItemEnum;
+import game.item.StatusFallableEnum;
 import game.map.MapItem;
 import game.SpriteChar;
 
@@ -29,13 +28,12 @@ public class Wall extends Cell
 	//corregir esto dsp
 	public void conversion(Rock stone)
 	{
-		if (( stone.getPosition().getY() == this.getPosition().checkUp() ) && ( stone.getState().getStateEnum() == StatusItemEnum.FALLING) )
+		if (( stone.getPosition().getY() == this.getPosition().checkUp() ) && ( stone.getState() == StatusFallableEnum.FALLING) )
 		{
 
-			stone.getState().setAlive(false);
+			stone.setState(StatusFallableEnum.DEAD);
 			Position diamondPos = this.getPosition();
-			StatusItem diamondState = new StatusItem(StatusItemEnum.FALLING);
-			Diamond diamond = new Diamond(diamondState, diamondPos);
+			Diamond diamond = new Diamond(diamondPos, StatusFallableEnum.FALLING);
 			MapItem.setItem(diamondPos, diamond);
 		}
 

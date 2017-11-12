@@ -5,23 +5,31 @@ import game.SpriteChar;
 import game.map.MapActor;
 import game.map.MapCell;
 import game.map.MapItem;
+import game.item.StatusAmoebaEnum;
 
 public class Amoeba extends Item
 {
 	private SpriteChar spritechar = SpriteChar.A;
 	private boolean expanding;
+	private StatusAmoebaEnum state;
 
-	public Amoeba(StatusItem state, Position pos)
-	{
-		super(state, pos, false, false, false, false, false, 2);
-		this.expanding = true;
-	}
-
-	// COMPORTAMIENTO
+	// CONSTRUCTORS
 	
-	public void expand()
+	public Amoeba(Position pos)
 	{
+		super(pos, false, false, false, false, false, 2);
+		this.expanding = true;
+		this.state = StatusAmoebaEnum.IDLE;
 	}
+	
+	public Amoeba(Position pos, StatusAmoebaEnum state)
+	{
+		super(pos, false, false, false, false, false, 2);
+		this.expanding = true;
+		this.state = state;
+	}
+
+	// CHECK
 
 	public boolean check()
 	{
@@ -62,6 +70,11 @@ public class Amoeba extends Item
 	{
 	}
 	
+	public void expand()
+	{
+		
+	}
+	
 	// REFRESH POSITION
 	
 	public void changePosition()
@@ -75,11 +88,19 @@ public class Amoeba extends Item
 	{
 		if(this.isExpanding())
 		{
-			
-		}
-		else
-		{
-			
+			switch (this.state)
+			{
+				case EXPANDUP:
+					break;
+				case EXPANDRIGHT:
+					break;
+				case EXPANDDOWN:
+					break;
+				case EXPANDLEFT:
+					break;
+				default:
+					break;
+			}
 		}
 	}
 

@@ -104,12 +104,10 @@ public class MapInstance
 			{
 				// Hago un nuevo status para el item/actor nuevo, y uso la
 				// posicion actual
-				StatusItem stateItem = new StatusItem();
 				StatusActor stateActor = new StatusActor();
 				Position pos = new Position();
 
 				pos.setXY(x, y);
-				stateItem.reset(StatusItemEnum.IDLE, true);
 				stateActor.reset(StatusActorEnum.IDLE, true);
 				// y dependiendo de lo que se encuentre, se guarda en cada uno
 				// de los mapas
@@ -117,7 +115,7 @@ public class MapInstance
 				{
 					case EMPTY:
 						MapCell.setCell(pos, new Dirt(pos, false));
-						MapItem.setItem(pos, new Empty(stateItem, pos));
+						MapItem.setItem(pos, new Empty(pos));
 						MapActor.setActor(pos, null);
 						break;
 					case DIRT:
@@ -130,29 +128,27 @@ public class MapInstance
 						MapCell.setCell(pos, new Wall(pos));
 						break;
 					case ROCK:
-						Rock rock = new Rock(stateItem, pos);
+						Rock rock = new Rock(pos);
 						MapItem.setItem(pos, rock);
 						ListOfEntities.getList().add(rock);
 						break;
 					case FALLINGROCK:
-						stateItem.setStateEnum(StatusItemEnum.FALLING);
-						Rock fallingRock = new Rock(stateItem, pos);
+						Rock fallingRock = new Rock(pos, StatusFallableEnum.FALLING);
 						MapItem.setItem(pos, fallingRock);
 						ListOfEntities.getList().add(fallingRock);
 						break;
 					case DIAMOND:
-						Diamond diamond = new Diamond(stateItem, pos);
+						Diamond diamond = new Diamond(pos);
 						MapItem.setItem(pos, diamond);
 						ListOfEntities.getList().add(diamond);
 						break;
 					case FALLINGDIAMOND:
-						stateItem.setStateEnum(StatusItemEnum.FALLING);
-						Diamond fallingDiamond = new Diamond(stateItem, pos);
+						Diamond fallingDiamond = new Diamond(pos,StatusFallableEnum.FALLING);
 						MapItem.setItem(pos, fallingDiamond);
 						ListOfEntities.getList().add(fallingDiamond);
 						break;
 					case AMOEBA:
-						Amoeba amoeba = new Amoeba(stateItem, pos);
+						Amoeba amoeba = new Amoeba(pos);
 						MapItem.setItem(pos, amoeba);
 						ListOfEntities.getList().add(amoeba);
 						break;
