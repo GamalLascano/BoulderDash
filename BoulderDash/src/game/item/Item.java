@@ -1,6 +1,7 @@
 package game.item;
 
 import game.Entity;
+import game.ListOfEntities;
 import game.Position;
 import game.SpriteChar;
 import game.map.MapItem;
@@ -150,6 +151,7 @@ public abstract class Item extends Entity
 	
 	public void die()
 	{
+		ListOfEntities.getList().remove(this);
 		MapItem.removeItem(this.getPosition());
 	}
 }

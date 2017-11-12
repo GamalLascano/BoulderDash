@@ -74,7 +74,7 @@ public abstract class Entity
 		return pos;
 	}
 	
-	public int isSolid()
+	public int getSolid()
 	{
 		return solid;
 	}

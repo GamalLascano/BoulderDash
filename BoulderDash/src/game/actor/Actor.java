@@ -18,20 +18,10 @@ public abstract class Actor extends Entity
 
 	// CONSTRUCTORS
 	
-	public Actor()
-	{
-	}
-	
 	public Actor(Position pos)
 	{
 		super(pos, 1);
 		this.state = StatusActorEnum.IDLE;
-	}
-	
-	public Actor(Position pos, StatusActorEnum state)
-	{
-		super(pos, 1);
-		this.state = state;
 	}
 
 	// GETTERS
@@ -109,7 +99,7 @@ public abstract class Actor extends Entity
 	}
 	
 	// DIE
-	
+
 	public void die()
 	{
 		if (this.state != StatusActorEnum.DEAD)

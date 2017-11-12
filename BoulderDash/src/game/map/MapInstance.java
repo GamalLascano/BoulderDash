@@ -41,6 +41,26 @@ public class MapInstance
 		}
 		return singleton;
 	}
+	
+
+	// INICIALIZACION
+
+	/**
+	 * Con este metodo, creo cada uno de los mapas para que se puedan usar
+	 * independientemente En conjunto con una lista con todas las entidades que
+	 * se mueven
+	 * 
+	 * @param levels:
+	 *            El lector de niveles del juego
+	 */
+	public static void start(BDLevelReader levels)
+	{
+		MapCell.getInstance().start(levels);
+		MapItem.getInstance().start(levels);
+		MapActor.getInstance().start(levels);
+		entitiesAlive = ListOfEntities.getInstance();
+		ListOfEntities.start();
+	}
 
 	// GETTERS
 
@@ -65,24 +85,27 @@ public class MapInstance
 		MapActor.getActor(x, y).die();
 	}
 
-	// INICIALIZACION
-
-	/**
-	 * Con este metodo, creo cada uno de los mapas para que se puedan usar
-	 * independientemente En conjunto con una lista con todas las entidades que
-	 * se mueven
-	 * 
-	 * @param levels:
-	 *            El lector de niveles del juego
-	 */
-	public static void start(BDLevelReader levels)
+	// SOLID
+	
+	public static int solid(Integer x, Integer y)
 	{
-		MapCell.getInstance().start(levels);
-		MapItem.getInstance().start(levels);
-		MapActor.getInstance().start(levels);
-		entitiesAlive = ListOfEntities.getInstance();
-		ListOfEntities.start();
+		int a, b, c, d;
+		a = MapCell.getCell(x, y).getSolid();
+		b = MapItem.getItem(x, y).getSolid();
+		if (MapActor.getActor(x, y) != null)
+		{
+			c = MapActor.getActor(x, y).getSolid();
+		}
+		else
+		{
+			c = 0;
+		}
+
+		d = a > b ? a : b;
+		d = d > c ? d : c;
+		return d;
 	}
+	
 	// TURNOS
 
 	/**

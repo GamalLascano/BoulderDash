@@ -151,8 +151,8 @@ public class Rockford extends Actor
 		{
 			case MOVINGUP:
 				// Si las celdas e items de arriba de rockford no son solidos...
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 2
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 2)
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).getSolid() < 2
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkUp()).getSolid() < 2)
 				{
 					// ..rompo la tierra arriba de rockford y agarro el diamante
 					// en el caso de que haya
@@ -167,8 +167,8 @@ public class Rockford extends Actor
 				break;
 			case MOVINGDOWN:
 				// Si las celdas e items de abajo de rockford no son solidos...
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 2
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 2)
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 2
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 2)
 				{
 					// ..rompo la tierra abajo de rockford y agarro el diamante
 					// en el caso de que haya
@@ -184,8 +184,8 @@ public class Rockford extends Actor
 			case MOVINGRIGHT:
 				// Si las celdas e items en la derecha de rockford no son
 				// solidos...
-				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 2
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 2)
+				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 2
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 2)
 				{
 					// ..rompo la tierra en la derecha de rockford y agarro el
 					// diamante en el caso de que haya
@@ -194,12 +194,12 @@ public class Rockford extends Actor
 					this.collect(MapItem.getDiamond(this.getPosition()));
 				}
 				// Si no es solido, es movible, y no hay tierra al lado.
-				else if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 2
+				else if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 2
 						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
 								.isMoveable() == true
-						&& MapItem.getItem(this.getPosition().checkRight() + 1, this.getPosition().getY()).isSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkRight() + 1, this.getPosition().getY()).getSolid() < 1
 						&& MapCell.getCell(this.getPosition().checkRight() + 1, this.getPosition().getY())
-								.isSolid() < 1)
+								.getSolid() < 1)
 				{
 					// Se pushea lo que haya
 					this.getPosition().goRight();
@@ -215,8 +215,8 @@ public class Rockford extends Actor
 			case MOVINGLEFT:
 				// Si las celdas e items en la izquierda de rockford no son
 				// solidos...
-				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 2
-						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 2)
+				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 2
+						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 2)
 				{
 					// ..rompo la tierra en la derecha de rockford y agarro el
 					// diamante en el caso de que haya
@@ -225,11 +225,11 @@ public class Rockford extends Actor
 					this.collect(MapItem.getDiamond(this.getPosition()));
 				}
 				// Si no es solido, es movible, y no hay tierra al lado
-				else if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 2
+				else if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 2
 						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY())
 								.isMoveable() == true
-						&& MapItem.getItem(this.getPosition().checkLeft() - 1, this.getPosition().getY()).isSolid() < 1
-						&& MapCell.getCell(this.getPosition().checkLeft() - 1, this.getPosition().getY()).isSolid() < 1)
+						&& MapItem.getItem(this.getPosition().checkLeft() - 1, this.getPosition().getY()).getSolid() < 1
+						&& MapCell.getCell(this.getPosition().checkLeft() - 1, this.getPosition().getY()).getSolid() < 1)
 				{
 					// Se pushea lo que haya
 					this.getPosition().goLeft();

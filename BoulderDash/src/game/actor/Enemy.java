@@ -1,5 +1,6 @@
 package game.actor;
 
+import game.ListOfEntities;
 import game.Position;
 import game.item.Diamond;
 import game.map.MapActor;
@@ -60,6 +61,7 @@ public abstract class Enemy extends Actor
 			this.state = StatusActorEnum.DEAD;
 			this.explode();
 		}
+		ListOfEntities.getList().remove(this);
 		MapActor.removeActor(this.getPosition());
 	}
 	
@@ -74,8 +76,8 @@ public abstract class Enemy extends Actor
 		switch (this.state)
 		{
 			case MOVINGUP:
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 1)
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkUp()).getSolid() < 1)
 				{
 					this.getPosition().goUp();
 				}
@@ -85,8 +87,8 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGDOWN:
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1)
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1)
 				{
 					this.getPosition().goDown();
 				}
@@ -96,8 +98,8 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGRIGHT:
-				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1)
+				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1)
 				{
 					this.getPosition().goRight();
 				}
@@ -107,8 +109,8 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGLEFT:
-				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1)
+				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1)
 				{
 					this.getPosition().goLeft();
 				}

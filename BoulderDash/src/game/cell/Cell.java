@@ -60,7 +60,7 @@ public abstract class Cell
 		return pos;
 	}
 	
-	public int isSolid()
+	public int getSolid()
 	{
 		return solid;
 	}

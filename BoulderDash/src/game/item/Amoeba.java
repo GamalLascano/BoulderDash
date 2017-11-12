@@ -2,6 +2,7 @@ package game.item;
 
 import game.Position;
 import game.SpriteChar;
+import game.map.MapInstance;
 import game.map.MapItem;
 import game.item.StatusAmoebaEnum;
 
@@ -61,16 +62,30 @@ public class Amoeba extends Item
 		this.expanding = expanding;
 	}
 
-	/**
-	 * Se convierte en diamantes.
-	 */
-	public void diamonize()
+	// DIE
+	
+	public void die()
 	{
+		MapInstance.kill(this.getPosition());
+		MapItem.setItem(new Diamond(this.getPosition()));
 	}
 	
 	public void expand()
 	{
-		
+		switch (this.state)
+		{
+			case EXPANDUP:
+				if()
+				break;
+			case EXPANDRIGHT:
+				break;
+			case EXPANDDOWN:
+				break;
+			case EXPANDLEFT:
+				break;
+			default:
+				break;
+		}
 	}
 	
 	// REFRESH POSITION

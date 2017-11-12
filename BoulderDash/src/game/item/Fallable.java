@@ -80,24 +80,24 @@ public class Fallable extends Item
 		switch (this.state)
 		{
 			case FALLING:
-				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isSolid() < 1
+				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).getSolid() < 1
 						&& MapActor.getActor(this.getPosition().getX(), this.getPosition().checkDown()) != null)
 				{
 					this.getPosition().goDown();
 				}
 				break;
 			case SLIDINGRIGHT:
-				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isSolid() < 1
+				if (MapCell.getCell(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).getSolid() < 1
 						&& MapActor.getActor(this.getPosition().checkRight(), this.getPosition().getY()) != null)
 				{
 					this.getPosition().goRight();
 				}
 				break;
 			case SLIDINGLEFT:
-				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1
-						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isSolid() < 1
+				if (MapCell.getCell(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1
+						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).getSolid() < 1
 						&& MapActor.getActor(this.getPosition().checkLeft(), this.getPosition().getY()) != null)
 				{
 					this.getPosition().goLeft();
