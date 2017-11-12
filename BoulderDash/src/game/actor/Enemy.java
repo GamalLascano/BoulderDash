@@ -7,17 +7,19 @@ import game.map.MapItem;
 public abstract class Enemy extends Actor
 {
 
-	public Enemy(StatusActor state, Position pos, int solid)
+	// CONSTRUCTOR
+	
+	public Enemy(Position pos)
 	{
-		super(state, pos, solid);
+		super(pos, StatusActorEnum.IDLE);
 		// TODO Auto-generated constructor stub
 	}
 	
-	// S
+	// ROTATE
 
 	protected abstract void rotate();
 
-	// S
+	// EXPLODE
 	
 	/**
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
@@ -52,7 +54,7 @@ public abstract class Enemy extends Actor
 	 */
 	public void makeMove()
 	{
-		switch (this.getState().getMovementState())
+		switch (this.state)
 		{
 			case MOVINGUP:
 				if (MapCell.getCell(this.getPosition().getX(), this.getPosition().checkUp()).isSolid() < 1
@@ -101,7 +103,6 @@ public abstract class Enemy extends Actor
 			default:
 				break;
 		}
-		this.getState().setMovementState(StatusActorEnum.IDLE);
 	}
 	
 }

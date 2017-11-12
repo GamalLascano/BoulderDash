@@ -8,10 +8,12 @@ public class Firefly extends Enemy
 {
 	private SpriteChar spritechar = SpriteChar.F;
 	
-	public Firefly(StatusActor state, Position pos)
+	// CONSTRUCTOR
+	
+	public Firefly(Position pos)
 	{
-		super(state, pos, 1);
-		this.getState().setMovementState(StatusActorEnum.MOVINGUP);
+		super(pos);
+		this.state = StatusActorEnum.MOVINGUP;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,19 +28,19 @@ public class Firefly extends Enemy
 	
 	public void rotate()
 	{
-		switch ( this.getState().getMovementState() )
+		switch ( this.state )
 		{
 			case MOVINGUP:
-				this.getState().setMovementState(StatusActorEnum.MOVINGRIGHT);
+				this.state = StatusActorEnum.MOVINGRIGHT;
 				break;
 			case MOVINGRIGHT:
-				this.getState().setMovementState(StatusActorEnum.MOVINGDOWN);
+				this.state = StatusActorEnum.MOVINGDOWN;
 				break;
 			case MOVINGDOWN:
-				this.getState().setMovementState(StatusActorEnum.MOVINGLEFT);
+				this.state = StatusActorEnum.MOVINGLEFT;
 				break;
 			case MOVINGLEFT:
-				this.getState().setMovementState(StatusActorEnum.MOVINGUP);
+				this.state = StatusActorEnum.MOVINGUP;
 				break;
 			default:
 				break;
@@ -49,7 +51,7 @@ public class Firefly extends Enemy
 	
 	public void explode()
 	{
-		if (!this.getState().isAlive()) {
+		if (this.getState() != StatusActorEnum.DEAD) {
 			int i;
 			for (i = 0 ; i < ListOfEntities.getList().size(); ++i) {
 				if (this.isInRange(ListOfEntities.getList().get(i).getPosition())) {

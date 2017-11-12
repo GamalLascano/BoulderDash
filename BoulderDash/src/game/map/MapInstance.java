@@ -104,11 +104,9 @@ public class MapInstance
 			{
 				// Hago un nuevo status para el item/actor nuevo, y uso la
 				// posicion actual
-				StatusActor stateActor = new StatusActor();
 				Position pos = new Position();
 
 				pos.setXY(x, y);
-				stateActor.reset(StatusActorEnum.IDLE, true);
 				// y dependiendo de lo que se encuentre, se guarda en cada uno
 				// de los mapas
 				switch (level.getTile(x, y))
@@ -153,12 +151,12 @@ public class MapInstance
 						ListOfEntities.getList().add(amoeba);
 						break;
 					case FIREFLY:
-						Firefly firefly = new Firefly(stateActor, pos);
+						Firefly firefly = new Firefly(pos);
 						MapActor.setActor(pos, firefly);
 						ListOfEntities.getList().add(firefly);
 						break;
 					case BUTTERFLY:
-						Butterfly butterfly = new Butterfly(stateActor, pos);
+						Butterfly butterfly = new Butterfly(pos);
 						MapActor.setActor(pos, butterfly);
 						ListOfEntities.getList().add(butterfly);
 						break;
@@ -166,7 +164,7 @@ public class MapInstance
 						MapCell.setCell(pos, new Exit(pos));
 						break;
 					case PLAYER:
-						Rockford player = new Rockford(stateActor, pos);
+						Rockford player = new Rockford(pos);
 						MapActor.setActor(pos, player);
 						ListOfEntities.getList().add(player);
 						break;

@@ -7,9 +7,12 @@ public class Butterfly extends Enemy
 {
 	private SpriteChar spritechar = SpriteChar.B;
 	
-	public Butterfly(StatusActor state, Position pos)
+	// CONSTRUCTOR
+	
+	public Butterfly(Position pos)
 	{
-		super(state, pos, 1);
+		super(pos);
+		this.state = StatusActorEnum.MOVINGUP;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,19 +36,19 @@ public class Butterfly extends Enemy
 	@Override
 	public void rotate()
 	{
-		switch ( this.getState().getMovementState() )
+		switch ( this.state )
 		{
 			case MOVINGUP:
-				this.getState().setMovementState(StatusActorEnum.MOVINGLEFT);
+				this.state = StatusActorEnum.MOVINGLEFT;
 				break;
 			case MOVINGLEFT:
-				this.getState().setMovementState(StatusActorEnum.MOVINGDOWN);
+				this.state = StatusActorEnum.MOVINGDOWN;
 				break;
 			case MOVINGDOWN:
-				this.getState().setMovementState(StatusActorEnum.MOVINGRIGHT);
+				this.state = StatusActorEnum.MOVINGRIGHT;
 				break;
 			case MOVINGRIGHT:
-				this.getState().setMovementState(StatusActorEnum.MOVINGUP);
+				this.state = StatusActorEnum.MOVINGLEFT;
 				break;
 			default:
 				break;

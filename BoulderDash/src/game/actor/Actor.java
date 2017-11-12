@@ -12,7 +12,7 @@ import game.Entity;
  */
 public abstract class Actor extends Entity
 {
-	private StatusActor state = new StatusActor();
+	protected StatusActorEnum state;
 	private SpriteChar spritechar;
 
 	// CONSTRUCTORS
@@ -21,18 +21,18 @@ public abstract class Actor extends Entity
 	{
 	}
 	
-	public Actor(StatusActor state, Position pos)
+	public Actor(Position pos)
 	{
-		super(pos, 0);
-		this.state = state;
+		super(pos, 1);
+		this.state = StatusActorEnum.IDLE;
 	}
 	
-	public Actor(StatusActor state, Position pos, int solid)
+	public Actor(Position pos, StatusActorEnum state)
 	{
-		super(pos, solid);
+		super(pos, 1);
 		this.state = state;
 	}
-	
+
 	// ENTITY TYPE
 	
 	public boolean isRockford()
@@ -66,14 +66,14 @@ public abstract class Actor extends Entity
 		return spritechar;
 	}
 	
-	public StatusActor getState()
+	public StatusActorEnum getState()
 	{
 		return state;
 	}
 
 	// SETTERS
 	
-	public void setState(StatusActor state)
+	public void setState(StatusActorEnum state)
 	{
 		this.state = state;
 	}
@@ -85,16 +85,16 @@ public abstract class Actor extends Entity
 		switch (direction)
 		{
 		case UP:
-			state.setMovementState(StatusActorEnum.MOVINGUP);
+			this.state = StatusActorEnum.MOVINGUP;
 			break;
 		case DOWN:
-			state.setMovementState(StatusActorEnum.MOVINGDOWN);
+			this.state = StatusActorEnum.MOVINGDOWN;
 			break;
 		case LEFT:
-			state.setMovementState(StatusActorEnum.MOVINGLEFT);
+			this.state = StatusActorEnum.MOVINGLEFT;
 			break;
 		case RIGHT:
-			state.setMovementState(StatusActorEnum.MOVINGRIGHT);
+			this.state = StatusActorEnum.MOVINGRIGHT;
 			break;
 		default:
 			break;

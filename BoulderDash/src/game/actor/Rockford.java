@@ -29,9 +29,9 @@ public class Rockford extends Actor
 	 * @param pos:
 	 *            Posicion
 	 */
-	public Rockford(StatusActor state, Position pos)
+	public Rockford(Position pos)
 	{
-		super(state, pos, 1);
+		super(pos);
 		this.score = 0;
 		this.diamonds = 0;
 		this.isPushing = false;
@@ -147,7 +147,7 @@ public class Rockford extends Actor
 	{
 		// En el cado de moverse arriba, abajo, izquierda o derecha, se mueve de
 		// forma diferente
-		switch (this.getState().getMovementState())
+		switch (this.state)
 		{
 			case MOVINGUP:
 				// Si las celdas e items de arriba de rockford no son solidos...
@@ -247,7 +247,7 @@ public class Rockford extends Actor
 				break;
 		}
 		// Por ultimo se setea al jugador en idle
-		this.getState().setMovementState(StatusActorEnum.IDLE);
+		this.state = StatusActorEnum.IDLE;
 	}
 
 }

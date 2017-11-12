@@ -43,7 +43,7 @@ public class Rock extends Fallable
 	{
 		if (player.isPushing() && this.isMoveable())
 		{
-			switch ( player.getState().getMovementState() )
+			switch ( player.getState() )
 			{
 				case MOVINGLEFT:
 					this.state = StatusFallableEnum.SLIDINGLEFT;
