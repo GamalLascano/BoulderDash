@@ -48,12 +48,4 @@ public class Butterfly extends Enemy
 		}
 	}
 	
-	// DIE
-	
-	public void die()
-	{
-		this.explode();
-		MapActor.removeActor(this.getPosition());
-	}
-	
 }

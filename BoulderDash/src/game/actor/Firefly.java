@@ -2,7 +2,6 @@ package game.actor;
 
 import game.Position;
 import game.SpriteChar;
-import game.map.MapActor;
 
 public class Firefly extends Enemy
 {
@@ -46,13 +45,4 @@ public class Firefly extends Enemy
 				break;
 		}
 	}
-
-	// DIE
-	
-	public void die()
-	{
-		this.explode();
-		MapActor.removeActor(this.getPosition());
-	}
-	
 }

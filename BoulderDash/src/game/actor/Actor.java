@@ -112,6 +112,11 @@ public abstract class Actor extends Entity
 	
 	public void die()
 	{
+		if (this.state != StatusActorEnum.DEAD)
+		{
+			this.state = StatusActorEnum.DEAD;
+			this.explode();
+		}
 		MapActor.removeActor(this.getPosition());
 	}
 
