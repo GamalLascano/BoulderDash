@@ -1,6 +1,7 @@
 package game;
 
-import game.actor.Rockford;//
+import game.actor.Rockford;
+import game.map.MapCell;
 import game.map.MapInstance;
 import game.map.MapVisual;
 import game.map.bdlevel.BDLevelReader;
@@ -90,11 +91,14 @@ public class Game
 					default:
 						break;
 				}
+				if (MapCell.findExit().getSolid()==2) {
+					MapCell.findExit().open(levelFrame, player);
+				}
 				// y esto refresca el mapa con el movimiento elegido
 				MapInstance.refresh();
 				MapVisual.drawMap();
 				MapVisual.imprimirMapa();
-
+				quit=player.exitSuccessful();
 			}
 
 			System.out.println("FIN DEL NIVEL: " + nivelElegido);

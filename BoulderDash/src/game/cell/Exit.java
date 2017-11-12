@@ -7,8 +7,8 @@ import game.SpriteChar;
 
 public class Exit extends Cell
 {
+	
 	private SpriteChar spritechar = SpriteChar.E;
-
 	// CONSTRUCTORS
 	
 	public Exit(Position pos)
@@ -32,7 +32,6 @@ public class Exit extends Cell
 	{
 		return spritechar;
 	}
-	
 	// DIE
 	
 	public void clear()
