@@ -3,6 +3,7 @@ package game.item;
 import game.Position;
 import game.SpriteChar;
 import game.actor.Rockford;
+import game.map.MapActor;
 
 /**Esta clase representa una roca, junto con su caracter de representacion y un booleano
  * para ver si esta siendo empujado o no, junto con otras propiedades de otros items
@@ -56,5 +57,36 @@ public class Rock extends Fallable
 			}		
 		}
 	}
+	
+	// REFRESH POSITION
+	
+	public void makeMove()
+	{
+		switch (this.state)
+		{
+			case FALLINGOFF:
+					this.getPosition().goDown();
+				break;
+			case FALLING:
+				this.getPosition().goDown();
+				if(MapActor.getActor(this.getPosition()) != null)
+				{
+					MapActor.getActor(this.getPosition()).die();
+				}
+				this.state = StatusFallableEnum.IDLE;
+			break;
+			case SLIDINGRIGHT:
+					this.getPosition().goRight();
+					this.state = StatusFallableEnum.IDLE;
+				break;
+			case SLIDINGLEFT:
+					this.getPosition().goLeft();
+					this.state = StatusFallableEnum.IDLE;
+				break;
+			default:
+				break;
+		}
+	}
+	
 
 }

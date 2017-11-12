@@ -6,6 +6,7 @@ import game.SpriteChar;
 import game.map.MapActor;
 import game.map.MapInstance;
 import game.Entity;
+import game.ListOfEntities;
 
 /**
  * Esta clase representa a todos los actores, que pueden moverse
@@ -107,6 +108,7 @@ public abstract class Actor extends Entity
 			this.state = StatusActorEnum.DEAD;
 			this.explode();
 		}
+		ListOfEntities.getList().remove(this);
 		MapActor.removeActor(this.getPosition());
 	}
 

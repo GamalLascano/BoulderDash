@@ -1,8 +1,6 @@
 package game.item;
 
 import game.Position;
-import game.map.MapActor;
-import game.map.MapCell;
 import game.map.MapInstance;
 import game.map.MapItem;
 
@@ -33,15 +31,18 @@ public class Fallable extends Item
 	
 	// FALL
 	
-	/** Este metodo se usa para comprobar si el item se cae o no, y setear el estado necesario
-	 * 
-	 */
 	public void fall()
 	{
 		//Ve si la posicion que esta abajo esta vacia
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1
+				&& this.state == StatusFallableEnum.IDLE)
 		{
 			//Si esta vacia, lo deja cayendo
+			this.state = StatusFallableEnum.FALLINGOFF;
+		}
+		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 2
+				&& this.state == StatusFallableEnum.FALLINGOFF)
+		{
 			this.state = StatusFallableEnum.FALLING;
 		}
 		else if (MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded())
@@ -74,28 +75,24 @@ public class Fallable extends Item
 	{
 		switch (this.state)
 		{
-			case FALLING:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
-				{
+			case FALLINGOFF:
 					this.getPosition().goDown();
-				}
+				break;
+			case FALLING:
+					this.getPosition().goDown();
+					this.state = StatusFallableEnum.IDLE;
 				break;
 			case SLIDINGRIGHT:
-				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1)
-				{
 					this.getPosition().goRight();
-				}
+					this.state = StatusFallableEnum.IDLE;
 				break;
 			case SLIDINGLEFT:
-				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1)
-				{
 					this.getPosition().goLeft();
-				}
+					this.state = StatusFallableEnum.IDLE;
 				break;
 			default:
 				break;
 		}
-		this.state = StatusFallableEnum.IDLE;
 	}
 	
 }

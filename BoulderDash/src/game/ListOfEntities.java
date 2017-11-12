@@ -60,17 +60,20 @@ public class ListOfEntities
 	 */
 	public static Rockford findRockford()
 	{
-		Rockford player;
+		Rockford player = null;
 		int i = 0;
 		if (initiated)
 		{
-			while (!(entityList.get(i).isRockford()))
+			while (entityList.size() > i)
 			{
+				if (entityList.get(i).isRockford())
+				{
+					player = (Rockford) entityList.get(i);
+				}
 				i++;
 			}
-			if (entityList.get(i).isRockford())
+			if (player != null)
 			{
-				player = (Rockford) entityList.get(i);
 				return player;
 			}
 			else

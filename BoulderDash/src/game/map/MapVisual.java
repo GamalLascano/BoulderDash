@@ -3,6 +3,7 @@ package game.map;
 import game.ListOfEntities;
 import game.Position;
 import game.SpriteChar;
+import game.actor.Rockford;
 import game.item.Empty;
 import game.cell.Cell;
 import game.map.bdlevel.BDLevelReader;
@@ -95,8 +96,16 @@ public class MapVisual
 			System.out.println();
 
 		}
-		System.out.println("Rockford Pos: " + ListOfEntities.findRockford().getPosition().getX() + "," + ListOfEntities.findRockford().getPosition().getY() );
-		System.out.println("Rockford Diamantes: " + ListOfEntities.findRockford().getDiamonds() );
+		Rockford player = ListOfEntities.findRockford();
+		if(player != null)
+		{
+		System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY() );
+		System.out.println("Rockford Diamantes: " + player.getDiamonds() );
+		}
+		else
+		{
+			System.out.println("Rockford muerto");
+		}
 		System.out.println("..............................................................");
 
 	}

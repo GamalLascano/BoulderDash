@@ -4,7 +4,6 @@ import game.ListOfEntities;
 import game.Position;
 import game.item.Diamond;
 import game.map.MapActor;
-import game.map.MapCell;
 import game.map.MapInstance;
 import game.map.MapItem;
 

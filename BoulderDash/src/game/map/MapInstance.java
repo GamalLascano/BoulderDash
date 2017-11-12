@@ -82,7 +82,10 @@ public class MapInstance
 	{
 		MapCell.getCell(x, y).clear();
 		MapItem.getItem(x, y).die();
-		MapActor.getActor(x, y).die();
+		if (MapActor.getActor(x, y) != null)
+		{
+			MapActor.getActor(x, y).die();
+		}
 	}
 
 	// SOLID

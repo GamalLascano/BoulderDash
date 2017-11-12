@@ -9,5 +9,5 @@ package game.item;
  */
 public enum StatusFallableEnum
 {
-	FALLING, SLIDINGRIGHT, SLIDINGLEFT, IDLE, DEAD
+	FALLINGOFF, FALLING, SLIDINGRIGHT, SLIDINGLEFT, IDLE, DEAD
 }
