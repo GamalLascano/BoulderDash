@@ -48,7 +48,7 @@ public class Butterfly extends Enemy
 				this.state = StatusActorEnum.MOVINGRIGHT;
 				break;
 			case MOVINGRIGHT:
-				this.state = StatusActorEnum.MOVINGLEFT;
+				this.state = StatusActorEnum.MOVINGUP;
 				break;
 			default:
 				break;
