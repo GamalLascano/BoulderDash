@@ -106,6 +106,7 @@ public class Game
 		}
 		System.out.println("FIN DEL PROGRAMA");
 		in.close();
+		
 	}
 
 }
