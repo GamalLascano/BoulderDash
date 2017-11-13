@@ -101,7 +101,7 @@ public class Game
 				MapVisual.drawMap();
 				MapVisual.imprimirMapa();
 				if (!quit) {
-					quit=player.exitSuccessful();
+					quit=player.leaveLevel();
 				}
 			}
 

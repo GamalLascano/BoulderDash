@@ -145,7 +145,7 @@ public class Rockford extends Actor
 	 * destino es solida para moverse. Rockford cava automaticamente la tierra.
 	 * 
 	 */
-	public boolean exitSuccessful()
+	public boolean leaveLevel()
 	{
 		Exit salida = MapCell.findExit();
 		if ((this.getPosition().getX() == salida.getPosition().getX())
