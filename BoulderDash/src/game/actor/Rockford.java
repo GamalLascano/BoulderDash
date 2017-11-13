@@ -5,6 +5,7 @@ import game.item.Diamond;
 import game.item.Rock;
 import game.SpriteChar;
 import game.cell.Dirt;
+import game.cell.Exit;
 import game.map.MapActor;
 import game.map.MapItem;
 import game.map.MapCell;
@@ -144,14 +145,23 @@ public class Rockford extends Actor
 	 * destino es solida para moverse. Rockford cava automaticamente la tierra.
 	 * 
 	 */
-	public boolean exitSuccessful() {
-		if (this.getPosition()==MapCell.findExit().getPosition()){
+	public boolean exitSuccessful()
+	{
+		Exit salida = MapCell.findExit();
+		if ((this.getPosition().getX() == salida.getPosition().getX())
+				&& (this.getPosition().getY() == salida.getPosition().getY()))
+		{
 			return true;
-		}else return false;
+		}
+		else
+		{
+			return false;
+		}
 	}
+
 	public void makeMove()
 	{
-	
+
 		// En el cado de moverse arriba, abajo, izquierda o derecha, se mueve de
 		// forma diferente
 		switch (this.state)

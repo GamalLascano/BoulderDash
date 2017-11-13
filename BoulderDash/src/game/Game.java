@@ -1,6 +1,7 @@
 package game;
 
 import game.actor.Rockford;
+import game.cell.Exit;
 import game.map.MapCell;
 import game.map.MapInstance;
 import game.map.MapVisual;
@@ -54,13 +55,13 @@ public class Game
 			// busco a rockford en la lista de entidades
 			Rockford player = ListOfEntities.findRockford();
 			boolean quit = false;
+			Exit salida=MapCell.findExit();
 			// interpolo el mapa actual con todos los mapas de todos los objetos
 			MapVisual.drawMap();
 			// imprimo el mapa en pantalla
 			MapVisual.imprimirMapa();
 			// hago que se muevan todos los actores
 			MapInstance.refresh();
-
 			System.out.println(
 					"Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
 
@@ -91,8 +92,9 @@ public class Game
 					default:
 						break;
 				}
-				if (MapCell.findExit().getSolid()==2) {
-					MapCell.findExit().open(levelFrame, player);
+				
+				if (salida.getSolid()==2) {
+					salida.open(levelFrame, player);
 				}
 				// y esto refresca el mapa con el movimiento elegido
 				MapInstance.refresh();

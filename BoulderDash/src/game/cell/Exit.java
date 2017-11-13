@@ -20,7 +20,7 @@ public class Exit extends Cell
 	
 	public void open(BDLevelReader levelReader, Rockford player)
 	{
-		if (player.getDiamonds() == levelReader.getDiamondsNeeded())
+		if (player.getDiamonds() >= levelReader.getDiamondsNeeded())
 		{
 			this.setSolid(1);
 		}
