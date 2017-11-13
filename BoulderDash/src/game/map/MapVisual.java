@@ -17,12 +17,12 @@ public class MapVisual
 	private static MapVisual singleton;
 	private static SpriteChar[][] map;
 	private static BDLevelReader level;
-	
+
 	private MapVisual()
 	{
 		map = null;
 	}
-	
+
 	// SINGLETON
 
 	public static MapVisual getInstance()
@@ -35,7 +35,7 @@ public class MapVisual
 	}
 
 	// INICIALIZACION
-	
+
 	public void start(BDLevelReader levels)
 	{
 		level = levels;
@@ -45,13 +45,18 @@ public class MapVisual
 	// GETTERS
 
 	// SETTERS
-	
+
 	// GRAPHICS
-	
-	/** Este metodo recibe todos los mapas y hace un mapa para imprimir
-	 * @param cellMap EL mapa de celdas
-	 * @param itemMap El mapa de items
-	 * @param actorMap El mapa de actores
+
+	/**
+	 * Este metodo recibe todos los mapas y hace un mapa para imprimir
+	 * 
+	 * @param cellMap
+	 *            EL mapa de celdas
+	 * @param itemMap
+	 *            El mapa de items
+	 * @param actorMap
+	 *            El mapa de actores
 	 */
 	public static void drawMap()
 	{
@@ -63,23 +68,24 @@ public class MapVisual
 			for (x = 0; x < level.getWIDTH(); x++)
 			{
 				pos.setXY(x, y);
-				if( MapActor.getActor(pos) != null )
+				if (MapActor.getActor(pos) != null)
 				{
 					map[x][y] = MapActor.getActor(pos).getSpritechar();
 				}
-				else if( MapItem.getItem(pos) instanceof Empty == false )
+				else if (MapItem.getItem(pos) instanceof Empty == false)
 				{
 					map[x][y] = MapItem.getItem(pos).getSpritechar();
 				}
-				else if( MapCell.getCell(pos) instanceof Cell)
+				else if (MapCell.getCell(pos) instanceof Cell)
 				{
 					map[x][y] = MapCell.getCell(pos).getSpritechar();
 				}
 			}
 		}
 	}
-	
-	/** Este metodo usa el mapa creado en drawMap, y lo dibuja en pantalla
+
+	/**
+	 * Este metodo usa el mapa creado en drawMap, y lo dibuja en pantalla
 	 * 
 	 */
 	public static void imprimirMapa()
@@ -97,10 +103,10 @@ public class MapVisual
 
 		}
 		Rockford player = ListOfEntities.findRockford();
-		if(player != null)
+		if (player != null)
 		{
-		System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY() );
-		System.out.println("Rockford Diamantes: " + player.getDiamonds() );
+			System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY());
+			System.out.println("Rockford Diamantes: " + player.getDiamonds());
 		}
 		else
 		{
@@ -108,6 +114,16 @@ public class MapVisual
 		}
 		System.out.println("..............................................................");
 
+	}
+
+	public static SpriteChar getChar(int x, int y)
+	{
+		return map[x][y];
+	}
+
+	public static SpriteChar[][] getMap()
+	{
+		return map;
 	}
 
 }
