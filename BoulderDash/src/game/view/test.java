@@ -3,6 +3,7 @@ package game.view;
 import java.awt.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
@@ -20,7 +21,7 @@ public class test extends JFrame
 	public test()
 	{
 		setTitle("test");
-		setResizable(true);
+		setResizable(false);
 		setSize(600, 600);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -47,7 +48,7 @@ public class test extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		prueba.setLayout(new GridLayout(levelFrame.getWIDTH(),levelFrame.getHEIGHT()));
+		prueba.setLayout(new GridLayout(levelFrame.getHEIGHT(),levelFrame.getWIDTH()));
 		MapInstance.getInstance();
 		// el mapa se empieza con el frame del nivel actual
 		MapInstance.start(levelFrame);
@@ -60,8 +61,11 @@ public class test extends JFrame
 
 			for (int x = 0; x < levelFrame.getWIDTH(); x++)
 			{
-				
-				prueba.add(new JTextField(MapVisual.getChar(x, y).toString()));
+				JLabel cellLabel = new JLabel(MapVisual.getChar(x, y).toString());
+				cellLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+				cellLabel.setAlignmentX(CENTER_ALIGNMENT);
+				cellLabel.setAlignmentY(CENTER_ALIGNMENT);
+				prueba.add(cellLabel);
 			}
 		}
 		prueba.setVisible(true);
