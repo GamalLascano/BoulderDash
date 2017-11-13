@@ -6,6 +6,7 @@ import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 import game.model.map.bdlevel.BDLevelReader;
+import game.view.FrameMap;
 
 import java.util.Scanner;
 
@@ -59,6 +60,7 @@ public class Game
 			Exit salida=MapCell.findExit();
 			// interpolo el mapa actual con todos los mapas de todos los objetos
 			MapVisual.drawMap();
+			FrameMap.draw();
 			// imprimo el mapa en pantalla
 			MapVisual.imprimirMapa();
 			// hago que se muevan todos los actores
@@ -100,6 +102,7 @@ public class Game
 				// y esto refresca el mapa con el movimiento elegido
 				MapInstance.refresh();
 				MapVisual.drawMap();
+				FrameMap.draw();
 				MapVisual.imprimirMapa();
 				if (!quit) {
 					quit=player.leaveLevel();

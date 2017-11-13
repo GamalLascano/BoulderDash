@@ -8,17 +8,17 @@ import javax.swing.border.Border;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 import game.model.map.bdlevel.BDLevelReader;
-import game.view.test;
+import game.view.FrameMap;
 import game.model.map.bdlevel.*;
 
-public class test extends JFrame
+public class FrameMap extends JFrame
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public test()
+	public FrameMap()
 	{
 		setTitle("test");
 		setResizable(false);
@@ -27,10 +27,10 @@ public class test extends JFrame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	public static void main(String[] args)
+	public static void draw()
 	{
 		BDLevelReader levelFrame = new BDLevelReader();
-		test prueba = new test();
+		FrameMap prueba = new FrameMap();
 		try
 		{
 			levelFrame.readLevels("levels.xml");
@@ -62,9 +62,34 @@ public class test extends JFrame
 			for (int x = 0; x < levelFrame.getWIDTH(); x++)
 			{
 				JLabel cellLabel = new JLabel(MapVisual.getChar(x, y).toString());
+				switch(cellLabel.getText().charAt(0))
+				{
+					case 'D':
+						cellLabel.setBackground(Color.GRAY);
+						break;
+					case '_':
+						cellLabel.setBackground(Color.LIGHT_GRAY);
+						break;
+					case 'W':
+						cellLabel.setBackground(Color.BLUE);
+						break;
+					case 'O':
+						cellLabel.setBackground(Color.ORANGE);
+						break;
+					case 'X':
+						cellLabel.setBackground(Color.CYAN);
+						break;
+					case 'T':
+						cellLabel.setBackground(Color.BLACK);
+						break;
+					default:
+						break;
+				}
 				cellLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 				cellLabel.setAlignmentX(CENTER_ALIGNMENT);
 				cellLabel.setAlignmentY(CENTER_ALIGNMENT);
+				cellLabel.setForeground(Color.white);
+				cellLabel.setOpaque(true);
 				prueba.add(cellLabel);
 			}
 		}
