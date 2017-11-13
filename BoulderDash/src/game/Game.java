@@ -98,9 +98,7 @@ public class Game
 				MapInstance.refresh();
 				MapVisual.drawMap();
 				MapVisual.imprimirMapa();
-				if (quit) {
-					break;
-				}else {
+				if (!quit) {
 					quit=player.exitSuccessful();
 				}
 			}
