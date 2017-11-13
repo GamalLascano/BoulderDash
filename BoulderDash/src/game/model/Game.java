@@ -73,7 +73,7 @@ public class Game
 			while (!quit)
 			{
 				// Este case va a obtener los movimientos que va a hacer el
-				// personaje
+				// personaje .
 				String dir = in.next();
 				switch (dir)
 				{
