@@ -31,7 +31,7 @@ public class Fallable extends Item
 	
 	// FALL
 	
-	public void fall()
+	public void fall() // Enumerativo para checkear si puede pasar
 	{
 		//Ve si la posicion que esta abajo esta vacia
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1

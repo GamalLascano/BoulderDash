@@ -10,6 +10,7 @@ import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.util.Singleton;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene un
@@ -22,6 +23,7 @@ public class Rockford extends Actor
 	private int score;
 	private int diamonds;
 	private boolean isPushing;
+//	private static Rockford player;
 
 	/**
 	 * Permite inicializar a Rockford con un status y posicion determinadas
@@ -38,6 +40,15 @@ public class Rockford extends Actor
 		this.diamonds = 0;
 		this.isPushing = false;
 	}
+
+//	public static Rockford getInstance()
+//	{
+//		if (player == null)
+//		{
+//			player = new Rockford();
+//		}
+//		return player;
+//	}
 
 	// GETTERS
 
@@ -159,7 +170,7 @@ public class Rockford extends Actor
 		}
 	}
 
-	public void makeMove()
+	public void makeMove() // hacer 4 metodos
 	{
 
 		// En el cado de moverse arriba, abajo, izquierda o derecha, se mueve de

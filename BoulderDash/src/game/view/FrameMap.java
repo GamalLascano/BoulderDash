@@ -1,42 +1,110 @@
 package game.view;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
+import game.model.CurrentDirection;
+import game.model.ListOfEntities;
+import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
-import game.model.map.bdlevel.BDLevelReader;
+import game.util.Singleton;
 import game.view.FrameMap;
-import game.model.map.bdlevel.*;
 
 public class FrameMap extends JFrame
 {
-
-	private static FrameMap theFrame = new FrameMap();
+	private static JPanel panel = new JPanel();;
+	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 	private static final long serialVersionUID = 1L;
+	private static FrameMap theFrame;
 
-	public FrameMap()
+	
+	private FrameMap()
 	{
 		setTitle("test");
 		setResizable(false);
 		setSize(600, 600);
 		setVisible(true);
+		panel.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
+		add(panel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	public static void remove()
+	public static FrameMap getInstance()
 	{
-		theFrame.removeAll();
+		if (theFrame == null)
+		{
+			theFrame = new FrameMap();
+		}
+		return theFrame;
 	}
 
-	public static void draw()
+	
+	public void remove()
 	{
-		JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		panel.removeAll();
+	}
 
-		theFrame.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
+	public void move()
+	{
+		final Rockford player = ListOfEntities.findRockford();
+		panel.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_W)
+				{
+					player.move(CurrentDirection.UP);
+				}
+				
+			}
+		});
 		
+		panel.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_D)
+				{
+					player.move(CurrentDirection.UP);
+				}
+				
+			}
+		});
+		
+		String dir = in.next();
+		switch (dir)
+		{
+			case "w":
+				player.move(CurrentDirection.UP);
+				break;
+			case "s":
+				player.move(CurrentDirection.DOWN);
+				break;
+			case "d":
+				player.move(CurrentDirection.RIGHT);
+				break;
+			case "a":
+				player.move(CurrentDirection.LEFT);
+				break;
+			case "e":
+				break;
+			case "q":
+				quit = true;
+				break;
+			default:
+				break;
+		}
+	}
+	
+	public void draw()
+	{
 		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 		{
 			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
@@ -70,10 +138,11 @@ public class FrameMap extends JFrame
 				cellLabel[x][y].setAlignmentY(CENTER_ALIGNMENT);
 				cellLabel[x][y].setForeground(Color.white);
 				cellLabel[x][y].setOpaque(true);
-				theFrame.add(cellLabel[x][y]);
+				panel.add(cellLabel[x][y]);
 			}
 		}
 		theFrame.setVisible(true);
+		panel.setVisible(true);
 	}
 
 }

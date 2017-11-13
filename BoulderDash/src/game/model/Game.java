@@ -57,11 +57,12 @@ public class Game
 			;
 			// busco a rockford en la lista de entidades
 			Rockford player = ListOfEntities.findRockford();
-			boolean quit = false;
 			Exit salida=MapCell.findExit();
+			boolean quit = false;
+			
 			// interpolo el mapa actual con todos los mapas de todos los objetos
 			MapVisual.drawMap();
-			FrameMap.draw();
+			FrameMap.getInstance().draw();
 			// imprimo el mapa en pantalla
 			MapVisual.imprimirMapa();
 			// hago que se muevan todos los actores
@@ -73,7 +74,6 @@ public class Game
 			{
 				// Este case va a obtener los movimientos que va a hacer el
 				// personaje
-				FrameMap.remove();
 				String dir = in.next();
 				switch (dir)
 				{
@@ -102,9 +102,10 @@ public class Game
 					salida.open(levelFrame, player);
 				}
 				// y esto refresca el mapa con el movimiento elegido
+				FrameMap.getInstance().remove();
 				MapInstance.refresh();
 				MapVisual.drawMap();
-				FrameMap.draw();
+				FrameMap.getInstance().draw();
 				MapVisual.imprimirMapa();
 				if (!quit) {
 					quit=player.leaveLevel();
