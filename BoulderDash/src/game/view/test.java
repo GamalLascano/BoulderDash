@@ -1,9 +1,13 @@
-package game.model.map;
+package game.view;
 
 import java.awt.*;
 
 import javax.swing.*;
 
+import game.model.map.MapInstance;
+import game.model.map.MapVisual;
+import game.model.map.bdlevel.BDLevelReader;
+import game.view.test;
 import game.model.map.bdlevel.*;
 
 public class test extends JFrame
@@ -26,7 +30,6 @@ public class test extends JFrame
 	{
 		BDLevelReader levelFrame = new BDLevelReader();
 		test prueba = new test();
-		JTextArea mapa = new JTextArea();
 		try
 		{
 			levelFrame.readLevels("levels.xml");
@@ -57,14 +60,10 @@ public class test extends JFrame
 
 			for (int x = 0; x < levelFrame.getWIDTH(); x++)
 			{
-				mapa.setText(MapVisual.getChar(x, y).toString());
 				
+				prueba.add(new JTextField(MapVisual.getChar(x, y).toString()));
 			}
-			texto = texto + "//n";
 		}
-		texto = texto.replaceAll("//n", System.getProperty("line.separator"));
-		mapa.setText(texto);
-		prueba.add(mapa);
 		prueba.setVisible(true);
 	}
 
