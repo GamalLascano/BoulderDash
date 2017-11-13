@@ -3,7 +3,6 @@ package game.view;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
@@ -12,7 +11,6 @@ import game.model.ListOfEntities;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
-import game.util.Singleton;
 import game.view.FrameMap;
 
 public class FrameMap extends JFrame
@@ -57,9 +55,21 @@ public class FrameMap extends JFrame
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_W)
+				if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 				{
 					player.move(CurrentDirection.UP);
+				}
+			}
+		});
+		
+		panel.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
+				{
+					player.move(CurrentDirection.RIGHT);
 				}
 				
 			}
@@ -70,37 +80,27 @@ public class FrameMap extends JFrame
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_D)
+				if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 				{
-					player.move(CurrentDirection.UP);
+					player.move(CurrentDirection.DOWN);
 				}
 				
 			}
 		});
 		
-		String dir = in.next();
-		switch (dir)
+		panel.addKeyListener(new KeyAdapter()
 		{
-			case "w":
-				player.move(CurrentDirection.UP);
-				break;
-			case "s":
-				player.move(CurrentDirection.DOWN);
-				break;
-			case "d":
-				player.move(CurrentDirection.RIGHT);
-				break;
-			case "a":
-				player.move(CurrentDirection.LEFT);
-				break;
-			case "e":
-				break;
-			case "q":
-				quit = true;
-				break;
-			default:
-				break;
-		}
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
+				{
+					player.move(CurrentDirection.LEFT);
+				}
+				
+			}
+		});
+
 	}
 	
 	public void draw()
@@ -130,6 +130,10 @@ public class FrameMap extends JFrame
 					case 'T':
 						cellLabel[x][y].setBackground(Color.BLACK);
 						break;
+					case 'R':
+						cellLabel[x][y].setBackground(Color.LIGHT_GRAY);
+						cellLabel[x][y].setForeground(Color.RED);
+						break;
 					default:
 						break;
 				}
@@ -143,6 +147,7 @@ public class FrameMap extends JFrame
 		}
 		theFrame.setVisible(true);
 		panel.setVisible(true);
+		theFrame.move();
 	}
 
 }
