@@ -33,44 +33,44 @@ public class FrameMap extends JFrame
 
 	public static void draw()
 	{
-		BDLevelReader levelFrame = new BDLevelReader();
+		JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 
-		theFrame.setLayout(new GridLayout(levelFrame.getHEIGHT(),levelFrame.getWIDTH()));
+		theFrame.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
 		
-		for (int y = 0; y < levelFrame.getHEIGHT(); y++)
+		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 		{
-			for (int x = 0; x < levelFrame.getWIDTH(); x++)
+			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
 			{
-				JLabel cellLabel = new JLabel(MapVisual.getChar(x, y).toString());
-				switch(cellLabel.getText().charAt(0))
+				cellLabel[x][y] = new JLabel(MapVisual.getChar(x, y).toString());
+				switch(cellLabel[x][y].getText().charAt(0))
 				{
 					case 'D':
-						cellLabel.setBackground(Color.GRAY);
+						cellLabel[x][y].setBackground(Color.GRAY);
 						break;
 					case '_':
-						cellLabel.setBackground(Color.LIGHT_GRAY);
+						cellLabel[x][y].setBackground(Color.LIGHT_GRAY);
 						break;
 					case 'W':
-						cellLabel.setBackground(Color.BLUE);
+						cellLabel[x][y].setBackground(Color.BLUE);
 						break;
 					case 'O':
-						cellLabel.setBackground(Color.ORANGE);
+						cellLabel[x][y].setBackground(Color.ORANGE);
 						break;
 					case 'X':
-						cellLabel.setBackground(Color.CYAN);
+						cellLabel[x][y].setBackground(Color.CYAN);
 						break;
 					case 'T':
-						cellLabel.setBackground(Color.BLACK);
+						cellLabel[x][y].setBackground(Color.BLACK);
 						break;
 					default:
 						break;
 				}
-				cellLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-				cellLabel.setAlignmentX(CENTER_ALIGNMENT);
-				cellLabel.setAlignmentY(CENTER_ALIGNMENT);
-				cellLabel.setForeground(Color.white);
-				cellLabel.setOpaque(true);
-				theFrame.add(cellLabel);
+				cellLabel[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
+				cellLabel[x][y].setAlignmentX(CENTER_ALIGNMENT);
+				cellLabel[x][y].setAlignmentY(CENTER_ALIGNMENT);
+				cellLabel[x][y].setForeground(Color.white);
+				cellLabel[x][y].setOpaque(true);
+				theFrame.add(cellLabel[x][y]);
 			}
 		}
 		theFrame.setVisible(true);

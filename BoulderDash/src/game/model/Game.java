@@ -48,9 +48,10 @@ public class Game
 			// se empieza la instancia del mapa
 			MapInstance.getInstance();
 			// el mapa se empieza con el frame del nivel actual
-			MapInstance.start(levelFrame);
+			MapInstance.setLevelReader(levelFrame);
+			MapInstance.start();
 			// y luego se arma
-			MapInstance.buildMap(levelFrame);
+			MapInstance.buildMap();
 			// luego, armo las visuales con el levelframe
 			MapVisual.getInstance().start(levelFrame);
 			;
@@ -72,6 +73,7 @@ public class Game
 			{
 				// Este case va a obtener los movimientos que va a hacer el
 				// personaje
+				FrameMap.remove();
 				String dir = in.next();
 				switch (dir)
 				{

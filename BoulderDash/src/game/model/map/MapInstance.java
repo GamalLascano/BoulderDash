@@ -17,12 +17,15 @@ public class MapInstance
 {
 	private static MapInstance singleton;
 	private static ListOfEntities entitiesAlive;
+	private static BDLevelReader levelReader;
 
 	// CONSTRUCTOR
 
 	private MapInstance()
 	{
 		entitiesAlive = null;
+		levelReader = null;
+		
 	}
 
 	// SINGLETON
@@ -53,23 +56,35 @@ public class MapInstance
 	 * @param levels:
 	 *            El lector de niveles del juego
 	 */
-	public static void start(BDLevelReader levels)
+	public static void start()
 	{
-		MapCell.getInstance().start(levels);
-		MapItem.getInstance().start(levels);
-		MapActor.getInstance().start(levels);
+		MapCell.getInstance().start(MapInstance.levelReader);
+		MapItem.getInstance().start(MapInstance.levelReader);
+		MapActor.getInstance().start(MapInstance.levelReader);
 		entitiesAlive = ListOfEntities.getInstance();
 		ListOfEntities.start();
 	}
 
 	// GETTERS
 
+	public static BDLevelReader getLevelReader()
+	{
+		return MapInstance.levelReader;
+	}
+	
 	public static ListOfEntities getEntitiesActive()
 	{
 		return entitiesAlive;
 	}
 
 	// SETTERS
+	
+	public static void setLevelReader(BDLevelReader level)
+	{
+		MapInstance.levelReader = level;
+	}
+	
+	// KILL
 	
 	public static void kill(Position pos)
 	{
@@ -132,15 +147,15 @@ public class MapInstance
 	 * actores, 1 matriz de items, 1 matriz de celdas. Agrega actores y items en
 	 * una lista de entities.
 	 * 
-	 * @param level
+	 * @param levelReader
 	 *            : nivel.
 	 */
-	public static void buildMap(BDLevelReader level)
+	public static void buildMap()
 	{
 		// Para armar el mapa, voy por todo el nivel
-		for (int y = 0; y < level.getHEIGHT(); y++)
+		for (int y = 0; y < levelReader.getHEIGHT(); y++)
 		{
-			for (int x = 0; x < level.getWIDTH(); x++)
+			for (int x = 0; x < levelReader.getWIDTH(); x++)
 			{
 				// Hago un nuevo status para el item/actor nuevo, y uso la
 				// posicion actual
@@ -149,7 +164,7 @@ public class MapInstance
 				pos.setXY(x, y);
 				// y dependiendo de lo que se encuentre, se guarda en cada uno
 				// de los mapas
-				switch (level.getTile(x, y))
+				switch (levelReader.getTile(x, y))
 				{
 					case EMPTY:
 						MapCell.setCell(new Dirt(pos, false));
