@@ -98,7 +98,11 @@ public class Game
 				MapInstance.refresh();
 				MapVisual.drawMap();
 				MapVisual.imprimirMapa();
-				quit=player.exitSuccessful();
+				if (quit) {
+					break;
+				}else {
+					quit=player.exitSuccessful();
+				}
 			}
 
 			System.out.println("FIN DEL NIVEL: " + nivelElegido);
