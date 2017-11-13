@@ -13,9 +13,8 @@ import game.model.map.bdlevel.*;
 
 public class FrameMap extends JFrame
 {
-	/**
-	 * 
-	 */
+
+	private static FrameMap theFrame = new FrameMap();
 	private static final long serialVersionUID = 1L;
 
 	public FrameMap()
@@ -26,39 +25,20 @@ public class FrameMap extends JFrame
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+	
+	public static void remove()
+	{
+		theFrame.removeAll();
+	}
 
 	public static void draw()
 	{
 		BDLevelReader levelFrame = new BDLevelReader();
-		FrameMap prueba = new FrameMap();
-		try
-		{
-			levelFrame.readLevels("levels.xml");
-		}
-		catch (Exception e1)
-		{
-			e1.printStackTrace();
-		}
-		try
-		{
-			levelFrame.setCurrentLevel(1);
-		}
-		catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		prueba.setLayout(new GridLayout(levelFrame.getHEIGHT(),levelFrame.getWIDTH()));
-		MapInstance.getInstance();
-		// el mapa se empieza con el frame del nivel actual
-		MapInstance.start(levelFrame);
-		// y luego se arma
-		MapInstance.buildMap(levelFrame);
-		MapVisual.getInstance().start(levelFrame);
-		MapVisual.drawMap();
+
+		theFrame.setLayout(new GridLayout(levelFrame.getHEIGHT(),levelFrame.getWIDTH()));
+		
 		for (int y = 0; y < levelFrame.getHEIGHT(); y++)
 		{
-
 			for (int x = 0; x < levelFrame.getWIDTH(); x++)
 			{
 				JLabel cellLabel = new JLabel(MapVisual.getChar(x, y).toString());
@@ -90,10 +70,10 @@ public class FrameMap extends JFrame
 				cellLabel.setAlignmentY(CENTER_ALIGNMENT);
 				cellLabel.setForeground(Color.white);
 				cellLabel.setOpaque(true);
-				prueba.add(cellLabel);
+				theFrame.add(cellLabel);
 			}
 		}
-		prueba.setVisible(true);
+		theFrame.setVisible(true);
 	}
 
 }
