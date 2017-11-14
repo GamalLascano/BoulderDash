@@ -61,8 +61,8 @@ public class GameConsole
 			
 			// interpolo el mapa actual con todos los mapas de todos los objetos
 			MapVisual.drawMap();
-			FrameMap.start();
-			FrameMap.draw();
+//			FrameMap.start();
+//			FrameMap.draw();
 			// imprimo el mapa en pantalla
 			MapVisual.imprimirMapa();
 			// hago que se muevan todos los actores
@@ -102,10 +102,10 @@ public class GameConsole
 					salida.open(levelFrame, player);
 				}
 				// y esto refresca el mapa con el movimiento elegido
-				FrameMap.remove();
+//				FrameMap.remove();
 				MapInstance.refresh();
 				MapVisual.drawMap();
-				FrameMap.draw();
+//				FrameMap.draw();
 				MapVisual.imprimirMapa();
 				if (!quit) {
 					quit=player.isInExit();
