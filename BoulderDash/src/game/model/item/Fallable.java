@@ -41,7 +41,7 @@ public class Fallable extends Item
 			//Si esta vacia, lo deja cayendo
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
-		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.PLAYER
+		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.ALL
 				&& this.state == StatusFallableEnum.FALLINGOFF)
 		{
 			this.state = StatusFallableEnum.FALLING;
@@ -80,7 +80,10 @@ public class Fallable extends Item
 					this.getPosition().goDown();
 				break;
 			case FALLING:
-					this.getPosition().goDown();
+					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.ALL)
+					{
+						this.getPosition().goDown();
+					}
 					this.state = StatusFallableEnum.IDLE;
 				break;
 			case SLIDINGRIGHT:

@@ -17,12 +17,12 @@ public class Rock extends Fallable
 	
 	public Rock(Position pos)
 	{
-		super(pos, false, true, true, false, true, SolidTo.PLAYER, StatusFallableEnum.IDLE);
+		super(pos, false, true, true, false, true, SolidTo.ALL, StatusFallableEnum.IDLE);
 	}
 	
 	public Rock(Position pos, StatusFallableEnum state)
 	{
-		super(pos, false, true, true, false, true, SolidTo.PLAYER, state);
+		super(pos, false, true, true, false, true, SolidTo.ALL, state);
 	}
 
 	// GETTERS

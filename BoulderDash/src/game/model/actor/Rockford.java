@@ -11,7 +11,6 @@ import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
-import game.util.Singleton;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene un
@@ -157,7 +156,7 @@ public class Rockford extends Actor
 	 * destino es solida para moverse. Rockford cava automaticamente la tierra.
 	 * 
 	 */
-	public boolean leaveLevel()
+	public boolean isInExit()
 	{
 		Exit salida = MapCell.findExit();
 		if ((this.getPosition().getX() == salida.getPosition().getX())
@@ -170,91 +169,105 @@ public class Rockford extends Actor
 			return false;
 		}
 	}
-
-	public void makeMove() // hacer 4 metodos
+	
+	public void makeMove()
 	{
-
-		// En el cado de moverse arriba, abajo, izquierda o derecha, se mueve de
-		// forma diferente
 		switch (this.state)
 		{
 			case MOVINGUP:
-				// Si las celdas e items de arriba de rockford no son solidos...
-				// ..rompo la tierra arriba de rockford y agarro el diamante
-				// en el caso de que haya
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) != SolidTo.PLAYER)
-				{
-					this.getPosition().goUp();
-					this.dig(MapCell.getDirt(this.getPosition()));
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
-				else
-				{
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
+				makeMoveUp();
 				break;
 			case MOVINGDOWN:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.PLAYER)
-				{
-					this.getPosition().goDown();
-					this.dig(MapCell.getDirt(this.getPosition()));
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
-				else
-				{
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
+				makeMoveDown();
 				break;
 			case MOVINGRIGHT:
-				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) != SolidTo.PLAYER)
-				{
-					this.getPosition().goRight();
-					this.dig(MapCell.getDirt(this.getPosition()));
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
-				// Si no es solido, es movible, y no hay tierra al lado.
-				else if (MapInstance.solid(this.getPosition().checkRight() + 1, this.getPosition().getY()) == SolidTo.NONE
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
-								.isMoveable() == true)
-				{
-					// Se pushea lo que haya
-					this.push(MapItem.getRock(this.getPosition().checkRight(), this.getPosition().getY()));
-					this.getPosition().goRight();
-					this.dig(MapCell.getDirt(this.getPosition()));
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
-				else
-				{
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
+				makeMoveRight();
 				break;
 			case MOVINGLEFT:
-				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) != SolidTo.PLAYER)
-				{
-					this.getPosition().goLeft();
-					this.dig(MapCell.getDirt(this.getPosition()));
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
-				else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) == SolidTo.NONE && MapItem
-						.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isMoveable() == true)
-				{
-					// Se pushea lo que haya
-					this.push(MapItem.getRock(this.getPosition().checkLeft(), this.getPosition().getY()));
-					this.getPosition().goLeft();
-					this.dig(MapCell.getDirt(this.getPosition()));
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
-				else
-				{
-					this.collect(MapItem.getDiamond(this.getPosition()));
-				}
+				makeMoveLeft();
 				break;
 			default:
 				this.collect(MapItem.getDiamond(this.getPosition()));
 				break;
 		}
-		// Por ultimo se setea al jugador en idle
 		this.state = StatusActorEnum.IDLE;
+	}
+	
+	// MAKEMOVEDIR
+	
+	public void makeMoveUp()
+	{
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) != SolidTo.ALL)
+		{
+			this.getPosition().goUp();
+			this.dig(MapCell.getDirt(this.getPosition()));
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+		else
+		{
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+	}
+	
+	public void makeMoveDown()
+	{
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.ALL)
+		{
+			this.getPosition().goDown();
+			this.dig(MapCell.getDirt(this.getPosition()));
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+		else
+		{
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+	}
+	
+	// Si no es solido, es movible, y no hay tierra al lado.
+	// Se pushea lo que haya
+	public void makeMoveRight()
+	{
+		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) != SolidTo.ALL)
+		{
+			this.getPosition().goRight();
+			this.dig(MapCell.getDirt(this.getPosition()));
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+		else if (MapInstance.solid(this.getPosition().checkRight() + 1, this.getPosition().getY()) == SolidTo.NONE
+				&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
+						.isMoveable() == true)
+		{
+			this.push(MapItem.getRock(this.getPosition().checkRight(), this.getPosition().getY()));
+			this.getPosition().goRight();
+			this.dig(MapCell.getDirt(this.getPosition()));
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+		else
+		{
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+	}
+	
+	public void makeMoveLeft()
+	{
+		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) != SolidTo.ALL)
+		{
+			this.getPosition().goLeft();
+			this.dig(MapCell.getDirt(this.getPosition()));
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+		else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) == SolidTo.NONE && MapItem
+				.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isMoveable() == true)
+		{
+			this.push(MapItem.getRock(this.getPosition().checkLeft(), this.getPosition().getY()));
+			this.getPosition().goLeft();
+			this.dig(MapCell.getDirt(this.getPosition()));
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
+		else
+		{
+			this.collect(MapItem.getDiamond(this.getPosition()));
+		}
 	}
 
 }

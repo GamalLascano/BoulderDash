@@ -14,7 +14,7 @@ public class Exit extends Cell
 	
 	public Exit(Position pos)
 	{
-		super(pos, SolidTo.PLAYER);
+		super(pos, SolidTo.ALL);
 	}
 
 	// OPEN

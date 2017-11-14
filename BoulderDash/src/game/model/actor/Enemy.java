@@ -5,6 +5,7 @@ import game.model.Position;
 import game.model.SolidTo;
 import game.model.item.Diamond;
 import game.model.map.MapActor;
+import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
@@ -77,48 +78,70 @@ public abstract class Enemy extends Actor
 		switch (this.state)
 		{
 			case MOVINGUP:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
-				{
-					this.getPosition().goUp();
-				}
-				else
-				{
-					this.rotate();
-				}
+				makeMoveUp();
 				break;
 			case MOVINGDOWN:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
-				{
-					this.getPosition().goDown();
-				}
-				else
-				{
-					this.rotate();
-				}
+				makeMoveDown();
 				break;
 			case MOVINGRIGHT:
-				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
-				{
-					this.getPosition().goRight();
-				}
-				else
-				{
-					this.rotate();
-				}
+				makeMoveRight();
 				break;
 			case MOVINGLEFT:
-				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
-				{
-					this.getPosition().goLeft();
-				}
-				else
-				{
-					this.rotate();
-				}
+				makeMoveLeft();
 				break;
 			default:
 				break;
 		}
 	}
-
+	
+	public void makeMoveUp()
+	{
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
+		{
+			this.getPosition().goUp();
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
+	public void makeMoveDown()
+	{
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
+		{
+			this.getPosition().goDown();
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
+	// Si no es solido, es movible, y no hay tierra al lado.
+	// Se pushea lo que haya
+	public void makeMoveRight()
+	{
+		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
+		{
+			this.getPosition().goRight();
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
+	public void makeMoveLeft()
+	{
+		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
+		{
+			this.getPosition().goLeft();
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
 }

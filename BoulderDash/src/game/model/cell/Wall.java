@@ -17,7 +17,7 @@ public class Wall extends Cell
 	
 	public Wall(Position pos)
 	{
-		super(pos, SolidTo.PLAYER);
+		super(pos, SolidTo.ALL);
 	}
 	
 	// GETTERS

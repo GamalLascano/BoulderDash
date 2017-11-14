@@ -120,7 +120,7 @@ public class FrameMap extends JFrame
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
 				{
-					player.leaveLevel();
+					player.isInExit();
 				}
 			}
 		});

@@ -98,7 +98,7 @@ public class GameConsole
 						break;
 				}
 				
-				if (salida.getSolid() == SolidTo.PLAYER) {
+				if (salida.getSolid() == SolidTo.ALL) {
 					salida.open(levelFrame, player);
 				}
 				// y esto refresca el mapa con el movimiento elegido
@@ -108,7 +108,7 @@ public class GameConsole
 				FrameMap.draw();
 				MapVisual.imprimirMapa();
 				if (!quit) {
-					quit=player.leaveLevel();
+					quit=player.isInExit();
 				}
 			}
 

@@ -69,13 +69,13 @@ public class Game
 					FrameMap.draw();
 					if(player != null)
 					{
-						quit = player.leaveLevel();
+						quit = player.isInExit();
 					}
 					seconds++;
 					System.out.println(seconds);
 				}
 			}
-		}, 500, 250, TimeUnit.MILLISECONDS);
+		}, 1000, 250, TimeUnit.MILLISECONDS);
 		
 		MapVisual.drawMap();
 		MapInstance.refresh();

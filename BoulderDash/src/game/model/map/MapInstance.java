@@ -110,10 +110,7 @@ public class MapInstance
 	
 	public static SolidTo solid(Integer x, Integer y)
 	{
-		SolidTo a, b, c, d = null;
-		SolidTo solidarray[] = new SolidTo[4];
-		solidarray = SolidTo.values();
-		int i;
+		SolidTo a, b, c, d;
 		
 		a = MapCell.getCell(x, y).getSolid();
 		b = MapItem.getItem(x, y).getSolid();
@@ -126,13 +123,9 @@ public class MapInstance
 			c = SolidTo.NONE;
 		}
 		
-		i = 0;
-		while(solidarray[i] != a || solidarray[i] != b || solidarray[i] != c || solidarray[i] != d)
-		{
-			i++;
-		}
-		
-		return solidarray[i];
+		d = a.ordinal() > b.ordinal() ? a : b;
+		d = d.ordinal() > c.ordinal() ? d : c;
+		return d;
 	}
 	
 	// TURNOS

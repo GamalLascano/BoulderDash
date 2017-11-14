@@ -17,14 +17,14 @@ public class Amoeba extends Item
 	
 	public Amoeba(Position pos)
 	{
-		super(pos, false, false, false, false, false, SolidTo.PLAYER);
+		super(pos, false, false, false, false, false, SolidTo.ALL);
 		this.expanding = true;
 		this.state = StatusAmoebaEnum.IDLE;
 	}
 	
 	public Amoeba(Position pos, StatusAmoebaEnum state)
 	{
-		super(pos, false, false, false, false, false, SolidTo.PLAYER);
+		super(pos, false, false, false, false, false, SolidTo.ALL);
 		this.expanding = true;
 		this.state = state;
 	}
@@ -110,48 +110,68 @@ public class Amoeba extends Item
 			switch (this.state)
 			{
 				case EXPANDUP:
-					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
-					{
-						MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())) );
-					}
-					else
-					{
-						this.rotate();
-					}
+					makeMoveUp();
 					break;
 				case EXPANDRIGHT:
-					if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
-					{
-						MapItem.setItem( new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())) );
-					}
-					else
-					{
-						this.rotate();
-					}
+					makeMoveRight();
 					break;
 				case EXPANDDOWN:
-					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
-					{
-						MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())) );
-					}
-					else
-					{
-						this.rotate();
-					}
+					makeMoveDown();
 					break;
 				case EXPANDLEFT:
-					if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
-					{
-						MapItem.setItem( new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())) );
-					}
-					else
-					{
-						this.rotate();
-					}
+					makeMoveLeft();
 					break;
 				default:
 					break;
 			}
+		}
+	}
+	
+	public void makeMoveUp()
+	{
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) != SolidTo.ALL)
+		{
+			MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())) );
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
+	public void makeMoveDown()
+	{
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.ALL)
+		{
+			MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())) );
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
+	public void makeMoveRight()
+	{
+		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) != SolidTo.ALL)
+		{
+			MapItem.setItem( new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())) );
+		}
+		else
+		{
+			this.rotate();
+		}
+	}
+	
+	public void makeMoveLeft()
+	{
+		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) != SolidTo.ALL)
+		{
+			MapItem.setItem( new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())) );
+		}
+		else
+		{
+			this.rotate();
 		}
 	}
 

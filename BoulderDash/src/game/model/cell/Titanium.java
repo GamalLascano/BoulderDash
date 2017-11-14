@@ -12,7 +12,7 @@ public class Titanium extends Cell
 	
 	public Titanium(Position pos)
 	{
-		super(pos, SolidTo.PLAYER);
+		super(pos, SolidTo.ALL);
 	}
 
 	// GETTERS
