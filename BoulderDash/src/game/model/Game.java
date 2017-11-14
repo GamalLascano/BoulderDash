@@ -56,21 +56,30 @@ public class Game
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
 			int seconds = 0;
+			boolean quit = false;
 			@Override
 			public void run()
 			{
 				Rockford player = ListOfEntities.findRockford();
 				FrameMap.remove();
-				if (player.leaveLevel() == false)
+				if (!quit)
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
 					FrameMap.draw();
+					if(player != null)
+					{
+						quit = player.leaveLevel();
+					}
 					seconds++;
 					System.out.println(seconds);
 				}
 			}
-		}, 500, 500, TimeUnit.MILLISECONDS);
+		}, 500, 200, TimeUnit.MILLISECONDS);
+		
+		MapVisual.drawMap();
+		MapInstance.refresh();
+		FrameMap.draw();
 		System.out.println("FIN DEL PROGRAMA");
 	}
 

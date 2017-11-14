@@ -17,7 +17,7 @@ public class FrameMap extends JFrame
 	private static JPanel panel = new JPanel();;
 	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 	private static final long serialVersionUID = 1L;
-	private static FrameMap theFrame;
+	private static FrameMap framemap;
 
 	
 	private FrameMap()
@@ -33,11 +33,11 @@ public class FrameMap extends JFrame
 	
 	public static FrameMap getInstance()
 	{
-		if (theFrame == null)
+		if (framemap == null)
 		{
-			theFrame = new FrameMap();
+			framemap = new FrameMap();
 		}
-		return theFrame;
+		return framemap;
 	}
 
 	
@@ -49,7 +49,7 @@ public class FrameMap extends JFrame
 	public static void move()
 	{
 		final Rockford player = ListOfEntities.findRockford();
-		panel.addKeyListener(new KeyAdapter()
+		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -61,7 +61,7 @@ public class FrameMap extends JFrame
 			}
 		});
 		
-		panel.addKeyListener(new KeyAdapter()
+		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -74,7 +74,7 @@ public class FrameMap extends JFrame
 			}
 		});
 		
-		panel.addKeyListener(new KeyAdapter()
+		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -87,7 +87,7 @@ public class FrameMap extends JFrame
 			}
 		});
 		
-		panel.addKeyListener(new KeyAdapter()
+		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -100,7 +100,7 @@ public class FrameMap extends JFrame
 			}
 		});
 		
-		panel.addKeyListener(new KeyAdapter()
+		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -113,7 +113,7 @@ public class FrameMap extends JFrame
 			}
 		});
 		
-		panel.addKeyListener(new KeyAdapter()
+		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -169,7 +169,7 @@ public class FrameMap extends JFrame
 				panel.add(cellLabel[x][y]);
 			}
 		}
-		theFrame.setVisible(true);
+		framemap.setVisible(true);
 		panel.setVisible(true);
 		FrameMap.move();
 	}
