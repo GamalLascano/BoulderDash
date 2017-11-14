@@ -4,6 +4,7 @@ import game.model.CurrentDirection;
 import game.model.Entity;
 import game.model.ListOfEntities;
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
@@ -21,7 +22,7 @@ public abstract class Actor extends Entity
 	
 	public Actor(Position pos)
 	{
-		super(pos, 1);
+		super(pos, SolidTo.ENEMY);
 		this.state = StatusActorEnum.IDLE;
 	}
 

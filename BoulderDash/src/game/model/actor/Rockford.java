@@ -1,6 +1,7 @@
 package game.model.actor;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.cell.Dirt;
 import game.model.cell.Exit;
@@ -181,7 +182,7 @@ public class Rockford extends Actor
 				// Si las celdas e items de arriba de rockford no son solidos...
 				// ..rompo la tierra arriba de rockford y agarro el diamante
 				// en el caso de que haya
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) < 2)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) != SolidTo.PLAYER)
 				{
 					this.getPosition().goUp();
 					this.dig(MapCell.getDirt(this.getPosition()));
@@ -193,7 +194,7 @@ public class Rockford extends Actor
 				}
 				break;
 			case MOVINGDOWN:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 2)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.PLAYER)
 				{
 					this.getPosition().goDown();
 					this.dig(MapCell.getDirt(this.getPosition()));
@@ -205,14 +206,14 @@ public class Rockford extends Actor
 				}
 				break;
 			case MOVINGRIGHT:
-				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 2)
+				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) != SolidTo.PLAYER)
 				{
 					this.getPosition().goRight();
 					this.dig(MapCell.getDirt(this.getPosition()));
 					this.collect(MapItem.getDiamond(this.getPosition()));
 				}
 				// Si no es solido, es movible, y no hay tierra al lado.
-				else if (MapInstance.solid(this.getPosition().checkRight() + 1, this.getPosition().getY()) < 1
+				else if (MapInstance.solid(this.getPosition().checkRight() + 1, this.getPosition().getY()) == SolidTo.NONE
 						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
 								.isMoveable() == true)
 				{
@@ -228,13 +229,13 @@ public class Rockford extends Actor
 				}
 				break;
 			case MOVINGLEFT:
-				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 2)
+				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) != SolidTo.PLAYER)
 				{
 					this.getPosition().goLeft();
 					this.dig(MapCell.getDirt(this.getPosition()));
 					this.collect(MapItem.getDiamond(this.getPosition()));
 				}
-				else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) < 1 && MapItem
+				else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) == SolidTo.NONE && MapItem
 						.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isMoveable() == true)
 				{
 					// Se pushea lo que haya

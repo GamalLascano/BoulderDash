@@ -2,6 +2,7 @@ package game.model.actor;
 
 import game.model.ListOfEntities;
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.item.Diamond;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
@@ -76,7 +77,7 @@ public abstract class Enemy extends Actor
 		switch (this.state)
 		{
 			case MOVINGUP:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) < 1)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
 				{
 					this.getPosition().goUp();
 				}
@@ -86,7 +87,7 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGDOWN:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
+				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
 				{
 					this.getPosition().goDown();
 				}
@@ -96,7 +97,7 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGRIGHT:
-				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1)
+				if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
 				{
 					this.getPosition().goRight();
 				}
@@ -106,7 +107,7 @@ public abstract class Enemy extends Actor
 				}
 				break;
 			case MOVINGLEFT:
-				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1)
+				if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
 				{
 					this.getPosition().goLeft();
 				}

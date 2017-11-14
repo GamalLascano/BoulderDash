@@ -1,6 +1,7 @@
 package game.model.cell;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.item.Diamond;
 import game.model.item.Rock;
@@ -16,7 +17,7 @@ public class Wall extends Cell
 	
 	public Wall(Position pos)
 	{
-		super(pos, 2);
+		super(pos, SolidTo.PLAYER);
 	}
 	
 	// GETTERS

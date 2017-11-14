@@ -11,7 +11,7 @@ import game.model.item.Item;
 public abstract class Entity
 {
 	private Position pos = new Position();
-	private int solid;
+	private SolidTo solid;
 
 	public Entity()
 	{
@@ -20,13 +20,13 @@ public abstract class Entity
 	public Entity(Position pos)
 	{
 		this.pos = pos;
-		this.solid = 0;
+		this.solid = SolidTo.NONE;
 	}
 	
-	public Entity(Position pos, int solid)
+	public Entity(Position pos, SolidTo solid)
 	{
 		this.pos = pos;
-		this.solid = solid;
+		this.solid = SolidTo.NONE;
 	}
 
 	// ENTITY TYPE
@@ -74,7 +74,7 @@ public abstract class Entity
 		return pos;
 	}
 	
-	public int getSolid()
+	public SolidTo getSolid()
 	{
 		return solid;
 	}
@@ -83,7 +83,7 @@ public abstract class Entity
 
 	public void setSolid(int solid)
 	{
-		this.solid = solid;
+		this.solid = SolidTo.NONE;
 	}
 
 	public void setPosition(Position pos)

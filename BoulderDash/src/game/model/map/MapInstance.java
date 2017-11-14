@@ -3,6 +3,7 @@ package game.model.map;
 import game.model.Entity;
 import game.model.ListOfEntities;
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.actor.*;
 import game.model.cell.*;
 import game.model.item.*;
@@ -107,9 +108,13 @@ public class MapInstance
 
 	// SOLID
 	
-	public static int solid(Integer x, Integer y)
+	public static SolidTo solid(Integer x, Integer y)
 	{
-		int a, b, c, d;
+		SolidTo a, b, c, d = null;
+		SolidTo solidarray[] = new SolidTo[4];
+		solidarray = SolidTo.values();
+		int i;
+		
 		a = MapCell.getCell(x, y).getSolid();
 		b = MapItem.getItem(x, y).getSolid();
 		if (MapActor.getActor(x, y) != null)
@@ -118,12 +123,16 @@ public class MapInstance
 		}
 		else
 		{
-			c = 0;
+			c = SolidTo.NONE;
 		}
-
-		d = a > b ? a : b;
-		d = d > c ? d : c;
-		return d;
+		
+		i = 0;
+		while(solidarray[i] != a || solidarray[i] != b || solidarray[i] != c || solidarray[i] != d)
+		{
+			i++;
+		}
+		
+		return solidarray[i];
 	}
 	
 	// TURNOS

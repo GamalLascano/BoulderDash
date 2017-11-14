@@ -1,6 +1,7 @@
 package game.model.item;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 
 public class Diamond extends Fallable
@@ -11,12 +12,12 @@ public class Diamond extends Fallable
 	
 	public Diamond(Position pos)
 	{
-		super(pos, true, false, true, false, true, 1, StatusFallableEnum.IDLE);
+		super(pos, true, false, true, false, true, SolidTo.ENEMY, StatusFallableEnum.IDLE);
 	}
 	
 	public Diamond(Position pos, StatusFallableEnum state)
 	{
-		super(pos, true, false, true, false, true, 1, state);
+		super(pos, true, false, true, false, true, SolidTo.ENEMY, state);
 	}
 	
 	// GETTERS

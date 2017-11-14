@@ -1,6 +1,7 @@
 package game.model.cell;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 
 public class Dirt extends Cell
@@ -12,24 +13,24 @@ public class Dirt extends Cell
 	
 	public Dirt(Position pos)
 	{
-		super(pos, 1);
+		super(pos, SolidTo.ENEMY);
 		this.dirty = true;
 		this.spritechar = SpriteChar.D;
 	}
 
 	public Dirt(Position pos, boolean dirty)
 	{
-		super(pos, 0);
+		super(pos, SolidTo.NONE);
 		this.dirty = dirty;
 		if (!dirty)
 		{
 			this.spritechar = SpriteChar._;
-			this.setSolid(0);
+			this.setSolid(SolidTo.NONE);
 		}
 		else
 		{
 			this.spritechar = SpriteChar.D;
-			this.setSolid(1);
+			this.setSolid(SolidTo.ENEMY);
 		}
 	}
 	
@@ -50,7 +51,7 @@ public class Dirt extends Cell
 	public void removeDirt()
 	{
 		this.dirty = false;
-		this.setSolid(0);
+		this.setSolid(SolidTo.NONE);
 		spritechar = SpriteChar._;
 	}
 	

@@ -1,6 +1,7 @@
 package game.model.item;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapActor;
@@ -16,12 +17,12 @@ public class Rock extends Fallable
 	
 	public Rock(Position pos)
 	{
-		super(pos, false, true, true, false, true, 2, StatusFallableEnum.IDLE);
+		super(pos, false, true, true, false, true, SolidTo.PLAYER, StatusFallableEnum.IDLE);
 	}
 	
 	public Rock(Position pos, StatusFallableEnum state)
 	{
-		super(pos, false, true, true, false, true, 2, state);
+		super(pos, false, true, true, false, true, SolidTo.PLAYER, state);
 	}
 
 	// GETTERS

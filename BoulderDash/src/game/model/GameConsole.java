@@ -98,7 +98,7 @@ public class GameConsole
 						break;
 				}
 				
-				if (salida.getSolid()==2) {
+				if (salida.getSolid() == SolidTo.PLAYER) {
 					salida.open(levelFrame, player);
 				}
 				// y esto refresca el mapa con el movimiento elegido

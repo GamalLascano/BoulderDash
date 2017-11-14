@@ -1,6 +1,7 @@
 package game.model.item;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
@@ -9,7 +10,7 @@ public class Fallable extends Item
 	protected StatusFallableEnum state;
 	
 	public Fallable(Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
-			boolean rounded, int solid, StatusFallableEnum state)
+			boolean rounded, SolidTo solid, StatusFallableEnum state)
 	{
 		super(pos, collectable, moveable, fallable, explodable, rounded, solid);
 		this.state = state;
@@ -34,13 +35,13 @@ public class Fallable extends Item
 	public void fall() // Enumerativo para checkear si puede pasar
 	{
 		//Ve si la posicion que esta abajo esta vacia
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1
+		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
 				&& this.state == StatusFallableEnum.IDLE)
 		{
 			//Si esta vacia, lo deja cayendo
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
-		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 2
+		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.PLAYER
 				&& this.state == StatusFallableEnum.FALLINGOFF)
 		{
 			this.state = StatusFallableEnum.FALLING;
@@ -48,13 +49,13 @@ public class Fallable extends Item
 		else if (MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded())
 		{
 			// Si estan los los lados vacios, elije el lado de la izquierda
-			if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1
-					&& MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().checkDown()) < 1)
+			if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE
+					&& MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().checkDown()) == SolidTo.NONE)
 			{
 				this.state = StatusFallableEnum.SLIDINGLEFT;
 			}
-			else if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1
-					&& MapInstance.solid(this.getPosition().checkRight(), this.getPosition().checkDown()) < 1)
+			else if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE
+					&& MapInstance.solid(this.getPosition().checkRight(), this.getPosition().checkDown()) == SolidTo.NONE)
 			{
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}

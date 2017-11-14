@@ -1,6 +1,7 @@
 package game.model.item;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 
 public class Empty extends Item
@@ -11,7 +12,7 @@ public class Empty extends Item
 	
 	public Empty(Position pos)
 	{
-		super(pos, false, false, false, false, false, 0);
+		super(pos, false, false, false, false, false, SolidTo.NONE);
 	}
 
 	// GETTERS

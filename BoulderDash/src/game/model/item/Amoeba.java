@@ -1,6 +1,7 @@
 package game.model.item;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.item.StatusAmoebaEnum;
 import game.model.map.MapInstance;
@@ -16,14 +17,14 @@ public class Amoeba extends Item
 	
 	public Amoeba(Position pos)
 	{
-		super(pos, false, false, false, false, false, 2);
+		super(pos, false, false, false, false, false, SolidTo.PLAYER);
 		this.expanding = true;
 		this.state = StatusAmoebaEnum.IDLE;
 	}
 	
 	public Amoeba(Position pos, StatusAmoebaEnum state)
 	{
-		super(pos, false, false, false, false, false, 2);
+		super(pos, false, false, false, false, false, SolidTo.PLAYER);
 		this.expanding = true;
 		this.state = state;
 	}
@@ -109,7 +110,7 @@ public class Amoeba extends Item
 			switch (this.state)
 			{
 				case EXPANDUP:
-					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) < 1)
+					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
 					{
 						MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())) );
 					}
@@ -119,7 +120,7 @@ public class Amoeba extends Item
 					}
 					break;
 				case EXPANDRIGHT:
-					if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) < 1)
+					if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
 					{
 						MapItem.setItem( new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())) );
 					}
@@ -129,7 +130,7 @@ public class Amoeba extends Item
 					}
 					break;
 				case EXPANDDOWN:
-					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) < 1)
+					if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
 					{
 						MapItem.setItem( new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())) );
 					}
@@ -139,7 +140,7 @@ public class Amoeba extends Item
 					}
 					break;
 				case EXPANDLEFT:
-					if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) < 1)
+					if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
 					{
 						MapItem.setItem( new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())) );
 					}

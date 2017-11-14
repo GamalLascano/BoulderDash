@@ -22,7 +22,7 @@ public class Game
 	public static void main(String[] args)
 	{
 		BDLevelReader levelReader = new BDLevelReader();
-		int nivelElegido = 1;
+		int nivelElegido = 5;
 
 		try
 		{
@@ -75,7 +75,7 @@ public class Game
 					System.out.println(seconds);
 				}
 			}
-		}, 500, 200, TimeUnit.MILLISECONDS);
+		}, 500, 250, TimeUnit.MILLISECONDS);
 		
 		MapVisual.drawMap();
 		MapInstance.refresh();

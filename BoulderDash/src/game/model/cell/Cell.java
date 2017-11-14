@@ -1,6 +1,7 @@
 package game.model.cell;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 
 /**
@@ -11,11 +12,11 @@ public abstract class Cell
 {
 	private SpriteChar spritechar;
 	protected Position pos;
-	private int solid; // Si los personajes pueden caminar sobre la celda..
+	private SolidTo solid; // Si los personajes pueden caminar sobre la celda..
 
 	// CONSTRUCTOR
 	
-	Cell(Position pos, int solid)
+	Cell(Position pos, SolidTo solid)
 	{
 		this.pos = pos;
 		this.solid = solid;
@@ -60,7 +61,7 @@ public abstract class Cell
 		return pos;
 	}
 	
-	public int getSolid()
+	public SolidTo getSolid()
 	{
 		return solid;
 	}
@@ -72,7 +73,7 @@ public abstract class Cell
 		this.pos = pos;
 	}
 
-	public void setSolid(int solid)
+	public void setSolid(SolidTo solid)
 	{
 		this.solid = solid;
 	}

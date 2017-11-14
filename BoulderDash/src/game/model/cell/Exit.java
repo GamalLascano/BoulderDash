@@ -1,6 +1,7 @@
 package game.model.cell;
 
 import game.model.Position;
+import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.bdlevel.BDLevelReader;
@@ -13,7 +14,7 @@ public class Exit extends Cell
 	
 	public Exit(Position pos)
 	{
-		super(pos, 2);
+		super(pos, SolidTo.PLAYER);
 	}
 
 	// OPEN
@@ -22,7 +23,7 @@ public class Exit extends Cell
 	{
 		if (player.getDiamonds() >= levelReader.getDiamondsNeeded())
 		{
-			this.setSolid(1);
+			this.setSolid(SolidTo.ENEMY);
 		}
 	}
 	
