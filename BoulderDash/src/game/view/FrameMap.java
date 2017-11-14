@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
-
 import game.model.CurrentDirection;
 import game.model.ListOfEntities;
 import game.model.actor.Rockford;
@@ -42,12 +41,12 @@ public class FrameMap extends JFrame
 	}
 
 	
-	public void remove()
+	public static void remove()
 	{
 		panel.removeAll();
 	}
 
-	public void move()
+	public static void move()
 	{
 		final Rockford player = ListOfEntities.findRockford();
 		panel.addKeyListener(new KeyAdapter()
@@ -100,10 +99,35 @@ public class FrameMap extends JFrame
 				
 			}
 		});
+		
+		panel.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_E)
+				{
+					;
+				}
+				
+			}
+		});
+		
+		panel.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+				{
+					player.leaveLevel();
+				}
+			}
+		});
 
 	}
 	
-	public void draw()
+	public static void draw()
 	{
 		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 		{
@@ -147,7 +171,13 @@ public class FrameMap extends JFrame
 		}
 		theFrame.setVisible(true);
 		panel.setVisible(true);
-		theFrame.move();
+		FrameMap.move();
+	}
+	
+	public static void start()
+	{
+		FrameMap framemap = FrameMap.getInstance();
+		framemap.isEnabled();
 	}
 
 }

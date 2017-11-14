@@ -56,11 +56,13 @@ public class MapInstance
 	 * @param levels:
 	 *            El lector de niveles del juego
 	 */
-	public static void start()
+	public static void start(BDLevelReader levelReader)
 	{
-		MapCell.getInstance().start(MapInstance.levelReader);
-		MapItem.getInstance().start(MapInstance.levelReader);
-		MapActor.getInstance().start(MapInstance.levelReader);
+		MapInstance.getInstance();
+		MapCell.getInstance().start(levelReader);
+		MapItem.getInstance().start(levelReader);
+		MapActor.getInstance().start(levelReader);
+		MapInstance.setLevelReader(levelReader);
 		entitiesAlive = ListOfEntities.getInstance();
 		ListOfEntities.start();
 	}

@@ -8,7 +8,9 @@ import game.model.map.MapVisual;
 import game.model.map.bdlevel.BDLevelReader;
 import game.view.FrameMap;
 
-import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Esta es la clase principal del juego De aqui se maneja la logica del juego,
@@ -16,107 +18,60 @@ import java.util.Scanner;
  */
 public class Game
 {
+
 	public static void main(String[] args)
 	{
-		// Primero armo el scanner para el movimiento, y inicializo el level
-		// reader
-		Scanner in = new Scanner(System.in);
-		BDLevelReader levelFrame = new BDLevelReader();
-		int nivelElegido;
-		// empiezo del nivel 1, y voy iterando por los niveles
-		for (nivelElegido = 1; nivelElegido <= 10; nivelElegido++)
+		BDLevelReader levelReader = new BDLevelReader();
+		int nivelElegido = 1;
+
+		try
 		{
-			// hago que lea los niveles, y cargue el nivel elegido
-			try
-			{
-				levelFrame.readLevels("levels.xml");
-			}
-			catch (Exception e1)
-			{
-				e1.printStackTrace();
-			}
-			try
-			{
-				levelFrame.setCurrentLevel(nivelElegido);
-			}
-			catch (Exception e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			// se empieza la instancia del mapa
-			MapInstance.getInstance();
-			// el mapa se empieza con el frame del nivel actual
-			MapInstance.setLevelReader(levelFrame);
-			MapInstance.start();
-			// y luego se arma
-			MapInstance.buildMap();
-			// luego, armo las visuales con el levelframe
-			MapVisual.getInstance().start(levelFrame);
-			;
-			// busco a rockford en la lista de entidades
-			Rockford player = ListOfEntities.findRockford();
-			Exit salida=MapCell.findExit();
-			boolean quit = false;
-			
-			// interpolo el mapa actual con todos los mapas de todos los objetos
-			MapVisual.drawMap();
-			FrameMap.getInstance().draw();
-			// imprimo el mapa en pantalla
-			MapVisual.imprimirMapa();
-			// hago que se muevan todos los actores
-			MapInstance.refresh();
-			System.out.println(
-					"Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
-
-			while (!quit)
-			{
-				// Este case va a obtener los movimientos que va a hacer el
-				// personaje .
-				String dir = in.next();
-				switch (dir)
-				{
-					case "w":
-						player.move(CurrentDirection.UP);
-						break;
-					case "s":
-						player.move(CurrentDirection.DOWN);
-						break;
-					case "d":
-						player.move(CurrentDirection.RIGHT);
-						break;
-					case "a":
-						player.move(CurrentDirection.LEFT);
-						break;
-					case "e":
-						break;
-					case "q":
-						quit = true;
-						break;
-					default:
-						break;
-				}
-				
-				if (salida.getSolid()==2) {
-					salida.open(levelFrame, player);
-				}
-				// y esto refresca el mapa con el movimiento elegido
-				FrameMap.getInstance().remove();
-				MapInstance.refresh();
-				MapVisual.drawMap();
-				FrameMap.getInstance().draw();
-				MapVisual.imprimirMapa();
-				if (!quit) {
-					quit=player.leaveLevel();
-				}
-			}
-
-			System.out.println("FIN DEL NIVEL: " + nivelElegido);
-
+			levelReader.readLevels("levels.xml");
 		}
+		catch (Exception e1)
+		{
+			e1.printStackTrace();
+		}
+		try
+		{
+			levelReader.setCurrentLevel(nivelElegido);
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		MapInstance.start(levelReader);
+		FrameMap.start();
+		MapVisual.getInstance().start(levelReader);
+
+		MapInstance.buildMap();
+		MapVisual.drawMap();
+		FrameMap.draw();
+		MapInstance.refresh();
+
+		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+		executorService.scheduleAtFixedRate(new Runnable()
+		{
+			int seconds = 0;
+			@Override
+			public void run()
+			{
+				Rockford player = ListOfEntities.findRockford();
+				FrameMap.remove();
+				if (player.leaveLevel() == false)
+				{
+					MapVisual.drawMap();
+					MapInstance.refresh();
+					FrameMap.draw();
+					seconds++;
+					System.out.println(seconds);
+				}
+			}
+		}, 500, 500, TimeUnit.MILLISECONDS);
 		System.out.println("FIN DEL PROGRAMA");
-		in.close();
 	}
 
 }

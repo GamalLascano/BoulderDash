@@ -23,7 +23,7 @@ public class Rockford extends Actor
 	private int score;
 	private int diamonds;
 	private boolean isPushing;
-//	private static Rockford player;
+	// private static Rockford player;
 
 	/**
 	 * Permite inicializar a Rockford con un status y posicion determinadas
@@ -41,14 +41,14 @@ public class Rockford extends Actor
 		this.isPushing = false;
 	}
 
-//	public static Rockford getInstance()
-//	{
-//		if (player == null)
-//		{
-//			player = new Rockford();
-//		}
-//		return player;
-//	}
+	// public static Rockford getInstance()
+	// {
+	// if (player == null)
+	// {
+	// player = new Rockford();
+	// }
+	// return player;
+	// }
 
 	// GETTERS
 
@@ -213,7 +213,8 @@ public class Rockford extends Actor
 				}
 				// Si no es solido, es movible, y no hay tierra al lado.
 				else if (MapInstance.solid(this.getPosition().checkRight() + 1, this.getPosition().getY()) < 1
-						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isMoveable() == true)
+						&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY())
+								.isMoveable() == true)
 				{
 					// Se pushea lo que haya
 					this.push(MapItem.getRock(this.getPosition().checkRight(), this.getPosition().getY()));
@@ -233,8 +234,8 @@ public class Rockford extends Actor
 					this.dig(MapCell.getDirt(this.getPosition()));
 					this.collect(MapItem.getDiamond(this.getPosition()));
 				}
-				else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) < 1
-						&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isMoveable() == true)
+				else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) < 1 && MapItem
+						.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isMoveable() == true)
 				{
 					// Se pushea lo que haya
 					this.push(MapItem.getRock(this.getPosition().checkLeft(), this.getPosition().getY()));
