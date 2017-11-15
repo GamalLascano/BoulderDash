@@ -24,6 +24,7 @@ public class Exit extends Cell
 		if (player.getDiamonds() >= levelReader.getDiamondsNeeded())
 		{
 			this.setSolid(SolidTo.ACTOR);
+			spritechar = SpriteChar.e;
 		}
 	}
 	

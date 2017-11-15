@@ -17,5 +17,5 @@ package game.model;
  */
 public enum SpriteChar
 {
-	R, F, B, D, T, W, E, O, X, A, _,
+	R, F, B, D, T, W, E, e, O, X, A, _,
 }
