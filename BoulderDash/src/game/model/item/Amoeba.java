@@ -21,13 +21,6 @@ public class Amoeba extends Item
 		this.expanding = true;
 		this.state = StatusAmoebaEnum.EXPANDUP;
 	}
-	
-	public Amoeba(Position pos, StatusAmoebaEnum state)
-	{
-		super(pos, false, false, false, false, false, SolidTo.ALL);
-		this.expanding = true;
-		this.state = state;
-	}
 
 	// CHECK
 

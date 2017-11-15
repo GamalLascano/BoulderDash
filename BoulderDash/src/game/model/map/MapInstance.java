@@ -26,7 +26,7 @@ public class MapInstance
 	{
 		entitiesAlive = null;
 		levelReader = null;
-		
+
 	}
 
 	// SINGLETON
@@ -45,7 +45,6 @@ public class MapInstance
 		}
 		return singleton;
 	}
-	
 
 	// INICIALIZACION
 
@@ -74,28 +73,28 @@ public class MapInstance
 	{
 		return MapInstance.levelReader;
 	}
-	
+
 	public static ListOfEntities getEntitiesActive()
 	{
 		return entitiesAlive;
 	}
 
 	// SETTERS
-	
+
 	public static void setLevelReader(BDLevelReader level)
 	{
 		MapInstance.levelReader = level;
 	}
-	
+
 	// KILL
-	
+
 	public static void kill(Position pos)
 	{
 		MapCell.getCell(pos.getX(), pos.getY()).clear();
 		MapItem.getItem(pos.getX(), pos.getY()).die();
 		MapActor.getActor(pos.getX(), pos.getY()).die();
 	}
-	
+
 	public static void kill(Integer x, Integer y)
 	{
 		MapCell.getCell(x, y).clear();
@@ -106,28 +105,48 @@ public class MapInstance
 		}
 	}
 
-	// SOLID
-	
-	public static SolidTo solid(Integer x, Integer y)
+	public static boolean isInMapLimits(Integer x, Integer y)
 	{
-		SolidTo a, b, c, d;
-		
-		a = MapCell.getCell(x, y).getSolid();
-		b = MapItem.getItem(x, y).getSolid();
-		if (MapActor.getActor(x, y) != null)
+		if (MapInstance.getLevelReader().getWIDTH() > x && MapInstance.getLevelReader().getHEIGHT() > y && 0 <= x
+				&& 0 <= y)
 		{
-			c = MapActor.getActor(x, y).getSolid();
+			return true;
 		}
 		else
 		{
-			c = SolidTo.NONE;
+			return false;
 		}
-		
-		d = a.ordinal() > b.ordinal() ? a : b;
-		d = d.ordinal() > c.ordinal() ? d : c;
-		return d;
 	}
-	
+
+	// SOLID
+
+	public static SolidTo solid(Integer x, Integer y)
+	{
+		if (isInMapLimits(x, y))
+		{
+			SolidTo a, b, c, d;
+
+			a = MapCell.getCell(x, y).getSolid();
+			b = MapItem.getItem(x, y).getSolid();
+			if (MapActor.getActor(x, y) != null)
+			{
+				c = MapActor.getActor(x, y).getSolid();
+			}
+			else
+			{
+				c = SolidTo.NONE;
+			}
+
+			d = a.ordinal() > b.ordinal() ? a : b;
+			d = d.ordinal() > c.ordinal() ? d : c;
+			return d;
+		}
+		else
+		{
+			return SolidTo.ALL;
+		}
+	}
+
 	// TURNOS
 
 	/**
@@ -200,7 +219,7 @@ public class MapInstance
 						ListOfEntities.getList().add(diamond);
 						break;
 					case FALLINGDIAMOND:
-						Diamond fallingDiamond = new Diamond(pos,StatusFallableEnum.FALLING);
+						Diamond fallingDiamond = new Diamond(pos, StatusFallableEnum.FALLING);
 						MapItem.setItem(fallingDiamond);
 						ListOfEntities.getList().add(fallingDiamond);
 						break;

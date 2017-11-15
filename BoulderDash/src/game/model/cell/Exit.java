@@ -10,11 +10,13 @@ public class Exit extends Cell
 {
 	
 	private SpriteChar spritechar = SpriteChar.E;
+	private boolean isOpen;
 	// CONSTRUCTORS
 	
 	public Exit(Position pos)
 	{
 		super(pos, SolidTo.ALL);
+		this.isOpen = false;
 	}
 
 	// OPEN
@@ -25,6 +27,7 @@ public class Exit extends Cell
 		{
 			this.setSolid(SolidTo.ACTOR);
 			spritechar = SpriteChar.e;
+			isOpen = true;
 		}
 	}
 	
@@ -34,8 +37,12 @@ public class Exit extends Cell
 	{
 		return spritechar;
 	}
-	// DIE
 	
+	public boolean isOpen()
+	{
+		return isOpen;
+	}
+
 	public void clear()
 	{
 		
