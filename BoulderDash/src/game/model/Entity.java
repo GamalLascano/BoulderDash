@@ -26,7 +26,7 @@ public abstract class Entity
 	public Entity(Position pos, SolidTo solid)
 	{
 		this.pos = pos;
-		this.solid = SolidTo.NONE;
+		this.solid = solid;
 	}
 
 	// ENTITY TYPE
@@ -81,9 +81,9 @@ public abstract class Entity
 
 	// SETTERS
 
-	public void setSolid(int solid)
+	public void setSolid(SolidTo solid)
 	{
-		this.solid = SolidTo.NONE;
+		this.solid = solid;
 	}
 
 	public void setPosition(Position pos)

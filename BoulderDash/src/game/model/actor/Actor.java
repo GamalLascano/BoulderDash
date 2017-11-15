@@ -22,7 +22,7 @@ public abstract class Actor extends Entity
 	
 	public Actor(Position pos)
 	{
-		super(pos, SolidTo.ENEMY);
+		super(pos, SolidTo.ACTOR);
 		this.state = StatusActorEnum.IDLE;
 	}
 

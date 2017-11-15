@@ -74,6 +74,25 @@ public class MapItem
 		}
 	}
 	
+	public static Diamond getDiamond(Integer x, Integer y)
+	{
+		if( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		{
+			if( matrix[x][y].isDiamond() )
+			{
+				return ( (Diamond) matrix[x][y] );
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	public static Rock getRock(Integer x, Integer y)
 	{
 		if( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )

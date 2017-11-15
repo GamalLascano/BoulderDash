@@ -19,7 +19,7 @@ public class Amoeba extends Item
 	{
 		super(pos, false, false, false, false, false, SolidTo.ALL);
 		this.expanding = true;
-		this.state = StatusAmoebaEnum.IDLE;
+		this.state = StatusAmoebaEnum.EXPANDUP;
 	}
 	
 	public Amoeba(Position pos, StatusAmoebaEnum state)
@@ -67,6 +67,7 @@ public class Amoeba extends Item
 	
 	public void die()
 	{
+		this.state = StatusAmoebaEnum.DEAD;
 		MapInstance.kill(this.getPosition());
 		MapItem.setItem(new Diamond(this.getPosition()));
 	}

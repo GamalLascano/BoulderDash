@@ -13,7 +13,7 @@ public class Dirt extends Cell
 	
 	public Dirt(Position pos)
 	{
-		super(pos, SolidTo.ENEMY);
+		super(pos, SolidTo.ITEM);
 		this.dirty = true;
 		this.spritechar = SpriteChar.D;
 	}
@@ -30,7 +30,7 @@ public class Dirt extends Cell
 		else
 		{
 			this.spritechar = SpriteChar.D;
-			this.setSolid(SolidTo.ENEMY);
+			this.setSolid(SolidTo.ITEM);
 		}
 	}
 	
