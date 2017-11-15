@@ -10,11 +10,12 @@ import game.model.Game;
 public class FrameMenu extends JFrame
 {
 	private static final long serialVersionUID = 1L;
-	private static JPanel panel = new JPanel(new GridLayout());
+	private static JPanel panel = new JPanel(new GridLayout(10,1,2,20));
 	private static FrameMenu framemenu;
 	//panel variables
 	private static JButton button[][] = new JButton[1][4];
-	private static JList<String> list = new JList<String>();
+	private static JList<String> listX = new JList<String>();
+	private static JList<Integer> listLevel = new JList<Integer>();
 	private static JTextField textRockford = new JTextField("Rockford: Your hero, guide him through the caves, searching for diamonds in order to activate the exit. Use the arrow keys to control Rockford. PageUp and PageDown to change level. Escape to restart level.");
 	private static JTextField textDirt = new JTextField("Dirt: ");
 	private static JTextField textBoulder = new JTextField("Boulder: ");
@@ -33,8 +34,9 @@ public class FrameMenu extends JFrame
 		setLocationRelativeTo(null);
 		setTitle("Boulder Dash Menu");
 		setResizable(false);
-		setSize(400, 400);
+		setSize(600, 600);
 		setVisible(true);
+		
 		add(panel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		for (int y = 0; y < 4; y++)
@@ -82,7 +84,6 @@ public class FrameMenu extends JFrame
 			{
 				framemenu.setVisible(false);
 				Game.main(new String[0]);
-
 			}
 		});
 		panel.add(button[0][0]);
@@ -155,6 +156,7 @@ public class FrameMenu extends JFrame
 		panel.add(textDiamond);
 		panel.add(textWall);
 		panel.add(textSteel);
+		panel.add(textMagic);
 		panel.add(textFirefly);
 		panel.add(textButterfly);
 		panel.add(textAmoeba);
@@ -179,7 +181,8 @@ public class FrameMenu extends JFrame
 		panel.removeAll();
 		panel.revalidate();
 		
-		panel.add(list);
+		panel.add(listX);
+		panel.add(listLevel);
 		
 		button[0][0].removeActionListener(button[0][0].getActionListeners()[0]);
 		button[0][0].setText("Back");

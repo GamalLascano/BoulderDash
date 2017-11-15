@@ -33,7 +33,7 @@ public class FrameMap extends JFrame
 		setSize(900, 600);
 		setVisible(true);
 		panelmap.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
-		paneltop.setLayout(new GridLayout());
+		paneltop.setLayout(new GridLayout(4,1,2,2));
 		for (int y = 0; y < 4; y++)
 		{
 			for (int x = 0; x < 1; x++)
