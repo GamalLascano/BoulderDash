@@ -50,8 +50,34 @@ public abstract class Enemy extends Actor
 		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkDown())));
 		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
 		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
 		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkUp())));
+	}
+	
+	/**
+	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
+	 * 3x3.
+	 */
+	public boolean isRockfordInRange()
+	{
+		if(
+		MapActor.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
+		|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
+		|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
+		|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
+		|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
+		|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
+		|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
+		|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
+		|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null
+		)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	// DIE
@@ -99,6 +125,10 @@ public abstract class Enemy extends Actor
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
 		{
 			this.getPosition().goUp();
+			if(this.isRockfordInRange())
+			{
+				this.die();
+			}
 		}
 		else
 		{
@@ -111,6 +141,10 @@ public abstract class Enemy extends Actor
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
 		{
 			this.getPosition().goDown();
+			if(this.isRockfordInRange())
+			{
+				this.die();
+			}
 		}
 		else
 		{
@@ -125,6 +159,10 @@ public abstract class Enemy extends Actor
 		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
 		{
 			this.getPosition().goRight();
+			if(this.isRockfordInRange())
+			{
+				this.die();
+			}
 		}
 		else
 		{
@@ -137,6 +175,10 @@ public abstract class Enemy extends Actor
 		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
 		{
 			this.getPosition().goLeft();
+			if(this.isRockfordInRange())
+			{
+				this.die();
+			}
 		}
 		else
 		{

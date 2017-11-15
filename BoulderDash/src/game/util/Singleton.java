@@ -10,7 +10,7 @@ public class Singleton
 
 	}
 
-	public static Singleton getSingleton()
+	public static Singleton getInstance()
 	{
 		if (single == null)
 		{

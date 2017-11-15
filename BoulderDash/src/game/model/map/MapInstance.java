@@ -239,10 +239,10 @@ public class MapInstance
 						ListOfEntities.getList().add(butterfly);
 						break;
 					case EXIT:
-						MapCell.setCell(new Exit(pos));
+						MapCell.setCell(Exit.getInstance(pos));
 						break;
 					case PLAYER:
-						Rockford player = new Rockford(pos);
+						Rockford player = Rockford.getInstance(pos);
 						MapActor.setActor(player);
 						ListOfEntities.getList().add(player);
 						break;

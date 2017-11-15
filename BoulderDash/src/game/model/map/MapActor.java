@@ -2,6 +2,7 @@ package game.model.map;
 
 import game.model.Position;
 import game.model.actor.*;
+import game.model.cell.Dirt;
 import game.model.map.bdlevel.BDLevelReader;
 
 public class MapActor extends Map
@@ -54,6 +55,32 @@ public class MapActor extends Map
 		if ( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
 		{
 			return matrix[x][y];
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public static Rockford getRockford(Integer x, Integer y)
+	{
+		if ( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		{
+			if( matrix[x][y] != null)
+			{
+				if( matrix[x][y].isRockford())
+				{
+					return ( (Rockford) matrix[x][y] );
+				}
+				else
+				{
+					return null;
+				}
+			}
+			else
+			{
+				return null;
+			}
 		}
 		else
 		{

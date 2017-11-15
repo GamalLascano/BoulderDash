@@ -20,11 +20,11 @@ import game.model.map.MapItem;
  */
 public class Rockford extends Actor
 {
-	private SpriteChar spritechar = SpriteChar.R;
-	private int score;
-	private int diamonds;
-	private boolean isPushing;
-	// private static Rockford player;
+	private static SpriteChar spritechar = SpriteChar.R;
+	private static int score;
+	private static int diamonds;
+	private static boolean isPushing;
+	private static Rockford player;
 
 	/**
 	 * Permite inicializar a Rockford con un status y posicion determinadas
@@ -34,22 +34,22 @@ public class Rockford extends Actor
 	 * @param pos:
 	 *            Posicion
 	 */
-	public Rockford(Position pos)
+	private Rockford(Position pos)
 	{
 		super(pos);
-		this.score = 0;
-		this.diamonds = 0;
-		this.isPushing = false;
+		score = 0;
+		diamonds = 0;
+		isPushing = false;
 	}
 
-	// public static Rockford getInstance()
-	// {
-	// if (player == null)
-	// {
-	// player = new Rockford();
-	// }
-	// return player;
-	// }
+	public static Rockford getInstance(Position pos)
+	{
+		if (player == null)
+		{
+			player = new Rockford(pos);
+		}
+		return player;
+	}
 
 	// GETTERS
 
@@ -75,24 +75,24 @@ public class Rockford extends Actor
 
 	// SETTTERS
 
-	public void setScore(int score)
+	public static void setScore(int points)
 	{
-		this.score = score;
+		score = points;
 	}
 
-	public void setDiamonds(int diamonds)
+	public static void setDiamonds(int diamond)
 	{
-		this.diamonds = diamonds;
+		diamonds = diamond;
 	}
 
-	public void setPushing(boolean pushing)
+	public static void setPushing(boolean pushing)
 	{
-		this.isPushing = pushing;
+		isPushing = pushing;
 	}
 
 	// SAVE
 
-	public boolean save()
+	public static boolean save()
 	{
 		return true;
 	}
@@ -121,7 +121,7 @@ public class Rockford extends Actor
 	{
 		if (diamond != null && diamond.isCollectable())
 		{
-			this.diamonds++;
+			diamonds++;
 			diamond.collected();
 		}
 	}
@@ -137,9 +137,9 @@ public class Rockford extends Actor
 	{
 		if (rock != null && rock.isMoveable())
 		{
-			this.isPushing = true;
+			isPushing = true;
 			rock.pushed(this);
-			this.isPushing = false;
+			isPushing = false;
 		}
 	}
 

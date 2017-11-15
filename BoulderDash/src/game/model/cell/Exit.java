@@ -4,28 +4,40 @@ import game.model.Position;
 import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
+import game.model.map.MapInstance;
 import game.model.map.bdlevel.BDLevelReader;
+import game.util.Singleton;
 
 public class Exit extends Cell
 {
 	
-	private SpriteChar spritechar = SpriteChar.E;
-	private boolean isOpen;
-	// CONSTRUCTORS
+	private static SpriteChar spritechar = SpriteChar.E;
+	private static boolean isOpen;
+	private static Exit exit;
 	
-	public Exit(Position pos)
+	private Exit(Position pos)
 	{
 		super(pos, SolidTo.ALL);
-		this.isOpen = false;
+		isOpen = false;
 	}
+	
+	public static Exit getInstance(Position pos)
+	{
+		if (exit == null)
+		{
+			exit = new Exit(pos);
+		}
+		return exit;
+	}
+	
 
 	// OPEN
 	
-	public void open(BDLevelReader levelReader, Rockford player)
+	public static void open(Rockford player)
 	{
-		if (player.getDiamonds() >= levelReader.getDiamondsNeeded())
+		if (player.getDiamonds() >= MapInstance.getLevelReader().getDiamondsNeeded())
 		{
-			this.setSolid(SolidTo.ACTOR);
+			exit.setSolid(SolidTo.ACTOR);
 			spritechar = SpriteChar.e;
 			isOpen = true;
 		}
