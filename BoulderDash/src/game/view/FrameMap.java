@@ -14,20 +14,35 @@ import game.view.FrameMap;
 
 public class FrameMap extends JFrame
 {
-	private static JPanel panel = new JPanel();;
-	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+	private static JPanel panelmap = new JPanel();
+	private static JPanel paneltop = new JPanel();
 	private static final long serialVersionUID = 1L;
 	private static FrameMap framemap;
-
+	
+	//panelmap
+	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+	
+	//panel
+	private static JButton buttontop[][] = new JButton[1][4];
 	
 	private FrameMap()
 	{
+		setLocationRelativeTo(null);
 		setTitle("test");
 		setResizable(false);
-		setSize(600, 600);
+		setSize(900, 600);
 		setVisible(true);
-		panel.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
-		add(panel);
+		panelmap.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
+		paneltop.setLayout(new GridLayout());
+		for (int y = 0; y < 4; y++)
+		{
+			for (int x = 0; x < 1; x++)
+			{
+				buttontop[x][y] = new JButton("0");
+				paneltop.add(buttontop[x][y]);
+			}
+		}
+		add(panelmap);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
@@ -40,13 +55,22 @@ public class FrameMap extends JFrame
 		return framemap;
 	}
 
+	public static void putPanelTop()
+	{
+		
+	}
 	
 	public static void remove()
 	{
-		panel.removeAll();
+		panelmap.removeAll();
+	}
+	
+	public static void disposeFrame()
+	{
+		framemap.dispose();
 	}
 
-	public static void move()
+	public static void returnMove()
 	{
 		final Rockford player = ListOfEntities.findRockford();
 		framemap.addKeyListener(new KeyAdapter()
@@ -191,12 +215,12 @@ public class FrameMap extends JFrame
 				cellLabel[x][y].setAlignmentX(CENTER_ALIGNMENT);
 				cellLabel[x][y].setAlignmentY(CENTER_ALIGNMENT);
 				cellLabel[x][y].setOpaque(true);
-				panel.add(cellLabel[x][y]);
+				panelmap.add(cellLabel[x][y]);
 			}
 		}
 		framemap.setVisible(true);
-		panel.setVisible(true);
-		FrameMap.move();
+		panelmap.setVisible(true);
+		FrameMap.returnMove();
 	}
 	
 	public static void start()

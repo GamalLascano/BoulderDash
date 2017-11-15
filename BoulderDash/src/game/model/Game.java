@@ -7,7 +7,9 @@ import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 import game.model.map.bdlevel.BDLevelReader;
 import game.view.FrameMap;
+import game.view.FrameMenu;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +54,8 @@ public class Game
 		MapInstance.refresh();
 
 		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-
+		final CountDownLatch latch = new CountDownLatch(1);
+		
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
 			int seconds = 0;
@@ -71,16 +74,43 @@ public class Game
 					{
 						quit = player.isInExit();
 					}
+					if (ListOfEntities.findRockford() != null) 
+					{
+						quit = false;
+					}
+					else
+					{
+						quit = true;
+					}
 					seconds++;
 					System.out.println(seconds);
+
+				}
+				else
+				{
+					 latch.countDown();
 				}
 			}
-		}, 1000, 250, TimeUnit.MILLISECONDS);
+		}, 1000, 200, TimeUnit.MILLISECONDS);
+		
+		try
+		{
+			latch.await();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		executorService.shutdownNow();
 		
 		MapVisual.drawMap();
 		MapInstance.refresh();
 		FrameMap.draw();
 		System.out.println("FIN DEL PROGRAMA");
+		FrameMap.disposeFrame();
+		
+		FrameMenu.main(new String[0]);
 	}
 
 }
