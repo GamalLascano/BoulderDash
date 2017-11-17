@@ -6,13 +6,17 @@ import game.model.cell.Dirt;
 import game.model.cell.Exit;
 import game.model.map.bdlevel.BDLevelReader;
 
+/**
+ * 
+ *
+ */
 public class MapCell
 {
 	private static MapCell singleton;
 	private static BDLevelReader level;
 	private static Cell[][] matrix;
 
-	private MapCell() 
+	private MapCell()
 	{
 		matrix = null;
 	}
@@ -27,7 +31,7 @@ public class MapCell
 		}
 		return singleton;
 	}
-	
+
 	// INICIALIZACION
 
 	public void start(BDLevelReader levels)
@@ -36,26 +40,26 @@ public class MapCell
 		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
 		fill();
 	}
-	
+
 	// GETTERS
-	
+
 	public static Cell getCell(Position pos)
 	{
 		return matrix[pos.getX()][pos.getY()];
 	}
-	
+
 	public static Cell getCell(Integer x, Integer y)
 	{
 		return matrix[x][y];
 	}
-	
+
 	public static Dirt getDirt(Position pos)
 	{
-		if( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
-			if( matrix[pos.getX()][pos.getY()].isDirt())
+			if (matrix[pos.getX()][pos.getY()].isDirt())
 			{
-				return ( (Dirt) matrix[pos.getX()][pos.getY()] );
+				return ((Dirt) matrix[pos.getX()][pos.getY()]);
 			}
 			else
 			{
@@ -67,14 +71,14 @@ public class MapCell
 			return null;
 		}
 	}
-	
+
 	public static Dirt getDirt(Integer x, Integer y)
 	{
-		if( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
 		{
-			if( matrix[x][y].isDirt() )
+			if (matrix[x][y].isDirt())
 			{
-				return ( (Dirt) matrix[x][y] );
+				return ((Dirt) matrix[x][y]);
 			}
 			else
 			{
@@ -88,30 +92,29 @@ public class MapCell
 	}
 
 	// SETTERS
-	
+
 	public static boolean setCell(Cell cel)
 	{
-		if ( level.getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX() 
-				&& level.getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY() )
+		if (level.getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX()
+				&& level.getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY())
 		{
 			matrix[cel.getPosition().getX()][cel.getPosition().getY()] = cel;
 			return true;
-		} 
+		}
 		else
 		{
 			return false;
 		}
 	}
-	
+
 	public static boolean removeCell(Position pos)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() 
-				&& level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			matrix[pos.getX()][pos.getY()] = new Dirt(pos, false);
 			return true;
-		} 
+		}
 		else
 		{
 			return false;
@@ -119,22 +122,22 @@ public class MapCell
 	}
 
 	// ENCONTRAR LA CELDA SALIDA
-	
+
 	public static Exit findExit()
 	{
 		Exit exit;
 		for (int x = 0; x < level.getWIDTH(); x++)
 			for (int y = 0; y < level.getHEIGHT(); y++)
 			{
-				if( matrix[x][y].isExit() )
+				if (matrix[x][y].isExit())
 				{
-				exit = (Exit) matrix[x][y];
-				return exit;
+					exit = (Exit) matrix[x][y];
+					return exit;
 				}
 			}
 		return null;
 	}
-	
+
 	// DIRT FILL
 	public void fill()
 	{

@@ -1,11 +1,7 @@
 package game.model;
 
 /**
- * Este enum indica el movimiento de los actores: 
- * UP:arriba
- * DOWN: abajo 
- * RIGHT: derecha
- * LEFT: izquierda
+ * Este enum indica el movimiento de los actores.
  *
  */
 public enum CurrentDirection

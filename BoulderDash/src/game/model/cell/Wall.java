@@ -9,29 +9,39 @@ import game.model.item.StatusFallableEnum;
 import game.model.map.MapCell;
 import game.model.map.MapItem;
 
+/**
+ * 
+ *
+ */
 public class Wall extends Cell
 {
 	private SpriteChar spritechar = SpriteChar.W;
 
-	// CONSTRUCTORS
-	
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Wall(Position pos)
 	{
 		super(pos, SolidTo.ALL);
 	}
-	
-	// GETTERS
-	
+
+	/**
+	 * 
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
 
-	// CONVERSION
-
+	/**
+	 * 
+	 * @param stone
+	 */
 	public void conversion(Rock stone)
 	{
-		if (( stone.getPosition().getY() == this.getPosition().checkUp() ) && ( stone.getState() == StatusFallableEnum.FALLING) )
+		if ((stone.getPosition().getY() == this.getPosition().checkUp())
+				&& (stone.getState() == StatusFallableEnum.FALLING))
 		{
 
 			stone.setState(StatusFallableEnum.DEAD);
@@ -40,13 +50,6 @@ public class Wall extends Cell
 			MapItem.setItem(diamond);
 		}
 
-	}
-	
-	// DIE
-	
-	public void clear()
-	{
-		MapCell.removeCell(this.pos);
 	}
 
 }

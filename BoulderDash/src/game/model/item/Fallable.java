@@ -5,10 +5,25 @@ import game.model.Position;
 import game.model.SolidTo;
 import game.model.map.MapItem;
 
+/**
+ * 
+ *
+ */
 public class Fallable extends Item
 {
 	protected StatusFallableEnum state;
 
+	/**
+	 * 
+	 * @param pos
+	 * @param collectable
+	 * @param moveable
+	 * @param fallable
+	 * @param explodable
+	 * @param rounded
+	 * @param solid
+	 * @param state
+	 */
 	public Fallable(Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
 			boolean rounded, SolidTo solid, StatusFallableEnum state)
 	{
@@ -16,30 +31,37 @@ public class Fallable extends Item
 		this.state = state;
 	}
 
-	// GETTERS
-
+	/**
+	 * 
+	 * @return
+	 */
 	public StatusFallableEnum getState()
 	{
 		return state;
 	}
 
-	// SETTERS
-
+	/**
+	 * 
+	 * @param state
+	 */
 	public void setState(StatusFallableEnum state)
 	{
 		this.state = state;
 	}
 
-	// DIE
+	/**
+	 * 
+	 */
 	public void die()
 	{
 		this.state = StatusFallableEnum.DEAD;
 		ListOfEntities.getList().remove(this);
 		MapItem.removeItem(this.getPosition());
 	}
-	
-	// REFRESH POSITION
 
+	/**
+	 * 
+	 */
 	public void changePosition()
 	{
 		MapItem.removeItem(this.getPosition());
@@ -48,14 +70,17 @@ public class Fallable extends Item
 		MapItem.setItem(this);
 	}
 
-	
-	// FALL
-
+	/**
+	 * 
+	 */
 	public void fall()
 	{
 
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void makeMove()
 	{
 

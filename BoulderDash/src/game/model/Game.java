@@ -1,21 +1,13 @@
 package game.model;
 
 import game.model.actor.Rockford;
-import game.model.cell.Exit;
-import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 import game.model.map.bdlevel.BDLevelReader;
 import game.view.FrameMap;
-import game.view.FrameMenu;
-
-import java.util.Timer;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import javax.imageio.ImageIO;
 
 /**
  * Esta es la clase principal del juego De aqui se maneja la logica del juego,
@@ -26,6 +18,9 @@ public class Game
 
 	public static void main(String[] args)
 	{
+		final int TASKSPEED = 200;
+		final int TASKDELAY = 1000;
+
 		BDLevelReader levelReader = new BDLevelReader();
 		int nivelElegido = 1;
 
@@ -56,34 +51,33 @@ public class Game
 		FrameMap.draw();
 		MapInstance.refresh();
 
-//		Timer timer = new Timer("Imprimir..");
-//		Mitarea tarea = new MiTarea(timer);
-//		timer.schedule(tarea, 0, 2000);
-		
-		
-		final ScheduledExecutorService executorService = 
-				Executors.newSingleThreadScheduledExecutor();
-		final CountDownLatch latch = new CountDownLatch(1);
-		
+		// Timer timer = new Timer("Imprimir..");
+		// Mitarea tarea = new MiTarea(timer);
+		// timer.schedule(tarea, 0, 2000);
+		// final CountDownLatch latch = new CountDownLatch(1);
+
+		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
 			int seconds = 0;
 			boolean quit = false;
+
 			@Override
 			public void run()
 			{
-				Rockford player = ListOfEntities.findRockford();
+				Rockford player = Rockford.getInstance();
 				FrameMap.remove();
 				if (!quit)
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
 					FrameMap.draw();
-					if(player != null)
+					if (player != null)
 					{
 						quit = player.isInExit();
 					}
-					if (ListOfEntities.findRockford() != null) 
+					if (Rockford.getInstance() != null)
 					{
 						quit = false;
 					}
@@ -96,33 +90,33 @@ public class Game
 
 				}
 				else
-				{					
+				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
 					FrameMap.draw();
-					 latch.countDown();
+					// latch.countDown();
 				}
 			}
-		}, 1000, 100, TimeUnit.MILLISECONDS);
-		
-//		try
-//		{
-//			latch.await();
-//		}
-//		catch (InterruptedException e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		executorService.shutdownNow();
-//		
-//		MapVisual.drawMap();
-//		MapInstance.refresh();
-//		FrameMap.draw();
-//		System.out.println("FIN DEL PROGRAMA");
-//		FrameMap.disposeFrame();
-//		
-//		FrameMenu.main(new String[0]);
+		}, TASKDELAY, TASKSPEED, TimeUnit.MILLISECONDS);
+
+		// try
+		// {
+		// latch.await();
+		// }
+		// catch (InterruptedException e)
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// executorService.shutdownNow();
+		//
+		// MapVisual.drawMap();
+		// MapInstance.refresh();
+		// FrameMap.draw();
+		// System.out.println("FIN DEL PROGRAMA");
+		// FrameMap.disposeFrame();
+		//
+		// FrameMenu.main(new String[0]);
 	}
 
 }

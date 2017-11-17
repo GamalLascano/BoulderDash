@@ -20,8 +20,9 @@ public class MapInstance
 	private static ListOfEntities entitiesAlive;
 	private static BDLevelReader levelReader;
 
-	// CONSTRUCTOR
-
+	/**
+	 * 
+	 */
 	private MapInstance()
 	{
 		entitiesAlive = null;
@@ -29,12 +30,9 @@ public class MapInstance
 
 	}
 
-	// SINGLETON
-
 	/**
-	 * Devuelve la unica instancia del mapa
 	 * 
-	 * @return el singleton de la clase
+	 * @return
 	 */
 	public static MapInstance getInstance()
 	{
@@ -46,15 +44,9 @@ public class MapInstance
 		return singleton;
 	}
 
-	// INICIALIZACION
-
 	/**
-	 * Con este metodo, creo cada uno de los mapas para que se puedan usar
-	 * independientemente En conjunto con una lista con todas las entidades que
-	 * se mueven
 	 * 
-	 * @param levels:
-	 *            El lector de niveles del juego
+	 * @param levelReader
 	 */
 	public static void start(BDLevelReader levelReader)
 	{
@@ -67,27 +59,37 @@ public class MapInstance
 		ListOfEntities.start();
 	}
 
-	// GETTERS
-
+	/**
+	 * 
+	 * @return
+	 */
 	public static BDLevelReader getLevelReader()
 	{
 		return MapInstance.levelReader;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static ListOfEntities getEntitiesActive()
 	{
 		return entitiesAlive;
 	}
 
-	// SETTERS
-
+	/**
+	 * 
+	 * @param level
+	 */
 	public static void setLevelReader(BDLevelReader level)
 	{
 		MapInstance.levelReader = level;
 	}
 
-	// KILL
-
+	/**
+	 * 
+	 * @param pos
+	 */
 	public static void kill(Position pos)
 	{
 		MapCell.getCell(pos.getX(), pos.getY()).clear();
@@ -95,6 +97,11 @@ public class MapInstance
 		MapActor.getActor(pos.getX(), pos.getY()).die();
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public static void kill(Integer x, Integer y)
 	{
 		MapCell.getCell(x, y).clear();
@@ -105,6 +112,12 @@ public class MapInstance
 		}
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static boolean isInMapLimits(Integer x, Integer y)
 	{
 		if (MapInstance.getLevelReader().getWIDTH() > x && MapInstance.getLevelReader().getHEIGHT() > y && 0 <= x
@@ -118,8 +131,12 @@ public class MapInstance
 		}
 	}
 
-	// SOLID
-
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static SolidTo solid(Integer x, Integer y)
 	{
 		if (isInMapLimits(x, y))
@@ -147,11 +164,8 @@ public class MapInstance
 		}
 	}
 
-	// TURNOS
-
 	/**
-	 * Actualiza el mapa. Actualiza la posicion de todas las entidades en la
-	 * matriz.
+	 * 
 	 */
 	public static void refresh()
 	{
@@ -163,15 +177,8 @@ public class MapInstance
 		}
 	}
 
-	// MAPA
-
 	/**
-	 * Construye el mapa. Convierte la matriz tiles a 3 matrices. 1 matriz de
-	 * actores, 1 matriz de items, 1 matriz de celdas. Agrega actores y items en
-	 * una lista de entities.
 	 * 
-	 * @param levelReader
-	 *            : nivel.
 	 */
 	public static void buildMap()
 	{
@@ -182,11 +189,9 @@ public class MapInstance
 			{
 				// Hago un nuevo status para el item/actor nuevo, y uso la
 				// posicion actual
-				Position pos = new Position();
-
-				pos.setXY(x, y);
 				// y dependiendo de lo que se encuentre, se guarda en cada uno
 				// de los mapas
+				Position pos = new Position(x, y);
 				switch (levelReader.getTile(x, y))
 				{
 					case EMPTY:

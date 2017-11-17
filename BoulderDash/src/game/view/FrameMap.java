@@ -1,22 +1,15 @@
 package game.view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.model.CurrentDirection;
-import game.model.ListOfEntities;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
@@ -30,8 +23,7 @@ public class FrameMap extends JFrame
 	private static FrameMap framemap;
 
 	// panelmap
-	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance
-			.getLevelReader().getHEIGHT()];
+	private static Paint paint = new Paint();
 
 	// panel
 	private static JButton buttontop[][] = new JButton[1][4];
@@ -85,7 +77,7 @@ public class FrameMap extends JFrame
 
 	public static void returnMove()
 	{
-		final Rockford player = ListOfEntities.findRockford();
+		final Rockford player = Rockford.getInstance();
 		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -166,161 +158,60 @@ public class FrameMap extends JFrame
 
 	public static void draw()
 	{
-		Graphics gr = panelmap.getGraphics();
+		Graphics graphic = panelmap.getGraphics();
+		framemap.repaint();
+		framemap.revalidate();
+		
 		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT() * CELLSIZE; y += CELLSIZE)
 		{
 			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH() * CELLSIZE; x += CELLSIZE)
 			{
-				BufferedImage buffer = null;
-
 
 				String cellChar = MapVisual.getChar(x / CELLSIZE, y / CELLSIZE).toString();
+				
 				switch (cellChar.charAt(0))
 				{
 					case 'D':
-						
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getDirt(), x, y, null);
 						break;
 					case '_':
-						try
-						{q
-							buffer = ImageIO.read(framemap.getClass().getResource("empty.jpeg"));
-						}
-						catch (IOException e)
-						{
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getEmpty(), x, y, null);
 						break;
 					case 'W':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("wall.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
-						break;
-					case 'E':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("steel.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
-						break;
-					case 'e':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("exit.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getWall(), x, y, null);
 						break;
 					case 'F':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("firefly.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getFirefly(), x, y, null);
 						break;
 					case 'B':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("butterfly.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getButterfly(), x, y, null);
 						break;
 					case 'A':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("amoeba.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getAmoeba(), x, y, null);
 						break;
 					case 'O':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("boulder.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getBoulder(), x, y, null);
 						break;
 					case 'X':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("diamond.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getDiamond(), x, y, null);
 						break;
 					case 'T':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("steel.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getSteel(), x, y, null);
 						break;
 					case 'R':
-						try
-						{
-							buffer = ImageIO.read(framemap.getClass().getResource("rockford.gif"));
-						}
-						catch (IOException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						gr.drawImage(buffer, x, y, null);
+						graphic.drawImage(paint.getRockford(), x, y, null);
+						break;
+					case 'E':
+						graphic.drawImage(paint.getSteel(), x, y, null);
+						break;
+					case 'e':
+						graphic.drawImage(paint.getExit(), x, y, null);
 						break;
 					default:
 						break;
 				}
 			}
 		}
-
-		framemap.repaint();
-
-		framemap.revalidate();
 		FrameMap.returnMove();
 	}
 

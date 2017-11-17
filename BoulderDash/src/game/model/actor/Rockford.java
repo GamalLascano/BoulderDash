@@ -20,28 +20,31 @@ import game.model.map.MapItem;
  */
 public class Rockford extends Actor
 {
-	private static SpriteChar spritechar = SpriteChar.R;
-	private static int score;
-	private static int diamonds;
-	private static boolean isPushing;
+	private SpriteChar spritechar = SpriteChar.R;
+	private int score;
+	private int lives;
+	private int diamonds;
+	private boolean isPushing;
 	private static Rockford player;
 
 	/**
-	 * Permite inicializar a Rockford con un status y posicion determinadas
 	 * 
-	 * @param state:
-	 *            Contiene movimiento y estado de vida
-	 * @param pos:
-	 *            Posicion
+	 * @param pos
 	 */
 	private Rockford(Position pos)
 	{
 		super(pos);
 		score = 0;
 		diamonds = 0;
+		lives = 3;
 		isPushing = false;
 	}
 
+	/**
+	 * 
+	 * @param pos
+	 * @return
+	 */
 	public static Rockford getInstance(Position pos)
 	{
 		if (player == null)
@@ -51,48 +54,98 @@ public class Rockford extends Actor
 		return player;
 	}
 
-	// GETTERS
+	/**
+	 * 
+	 * @return
+	 */
+	public static Rockford getInstance()
+	{
+		return player;
+	}
 
+	/**
+	 * 
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getScore()
 	{
 		return score;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getDiamonds()
 	{
 		return diamonds;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isPushing()
 	{
 		return isPushing;
 	}
 
-	// SETTTERS
-
-	public static void setScore(int points)
+	/**
+	 * 
+	 * @param points
+	 */
+	public void setScore(int points)
 	{
-		score = points;
+		this.score = points;
 	}
 
-	public static void setDiamonds(int diamond)
+	/**
+	 * 
+	 * @param diamond
+	 */
+	public void setDiamonds(int diamond)
 	{
-		diamonds = diamond;
+		this.diamonds = diamond;
 	}
 
-	public static void setPushing(boolean pushing)
+	/**
+	 * 
+	 * @param pushing
+	 */
+	public void setPushing(boolean pushing)
 	{
-		isPushing = pushing;
+		this.isPushing = pushing;
 	}
 
-	// SAVE
+	/**
+	 * 
+	 */
+	public void die()
+	{
+		if (state != StatusActorEnum.DEAD)
+		{
+			state = StatusActorEnum.DEAD;
+			if (this.lives != 0)
+				this.lives = lives--;
+			this.explode();
+		}
+		ListOfEntities.getList().remove(this);
+		MapActor.removeActor(getPosition());
+	}
 
-	public static boolean save()
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean save()
 	{
 		return true;
 	}
@@ -143,11 +196,12 @@ public class Rockford extends Actor
 		}
 	}
 
-	// REFRESH POSITION
-
+	/**
+	 * 
+	 */
 	public void changePosition()
 	{
-		MapActor.removeActor(this.getPosition());
+		MapActor.removeActor(getPosition());
 		this.makeMove();
 		MapActor.setActor(this);
 	}
@@ -159,8 +213,8 @@ public class Rockford extends Actor
 	 */
 	public boolean isInExit()
 	{
-		Exit salida = MapCell.findExit();
-		if (this.getPosition().equals(salida.getPosition()))
+		Exit door = Exit.getInstance();
+		if (player.getPosition().equals(door.getPosition()))
 		{
 			return true;
 		}
@@ -170,9 +224,12 @@ public class Rockford extends Actor
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void makeMove()
 	{
-		switch (this.state)
+		switch (state)
 		{
 			case MOVINGUP:
 				makeMoveUp();
@@ -187,93 +244,101 @@ public class Rockford extends Actor
 				makeMoveLeft();
 				break;
 			default:
-				this.collect(MapItem.getDiamond(this.getPosition()));
+				this.collect(MapItem.getDiamond(getPosition()));
 				break;
 		}
-		this.state = StatusActorEnum.IDLE;
+		state = StatusActorEnum.IDLE;
 	}
 
-	// MAKEMOVEDIR
-
+	/**
+	 * 
+	 */
 	public void makeMoveUp()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.ITEM
-				|| MapItem.getDiamond(this.getPosition().getX(), this.getPosition().checkUp()) != null)
+		if (MapInstance.solid(getPosition().getX(), getPosition().checkUp()) == SolidTo.NONE
+				|| MapInstance.solid(getPosition().getX(), getPosition().checkUp()) == SolidTo.ITEM
+				|| MapItem.getDiamond(getPosition().getX(), getPosition().checkUp()) != null)
 		{
-			this.getPosition().goUp();
-			this.dig(MapCell.getDirt(this.getPosition()));
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			getPosition().goUp();
+			this.dig(MapCell.getDirt(getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void makeMoveDown()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ITEM
-				|| MapItem.getDiamond(this.getPosition().getX(), this.getPosition().checkDown()) != null)
+		if (MapInstance.solid(getPosition().getX(), getPosition().checkDown()) == SolidTo.NONE
+				|| MapInstance.solid(getPosition().getX(), getPosition().checkDown()) == SolidTo.ITEM
+				|| MapItem.getDiamond(getPosition().getX(), getPosition().checkDown()) != null)
 		{
-			this.getPosition().goDown();
-			this.dig(MapCell.getDirt(this.getPosition()));
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			getPosition().goDown();
+			this.dig(MapCell.getDirt(getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 	}
 
-	// Si no es solido, es movible, y no hay tierra al lado.
-	// Se pushea lo que haya
+	/**
+	 * 
+	 */
 	public void makeMoveRight()
 	{
-		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.ITEM
-				|| MapItem.getDiamond(this.getPosition().checkRight(), this.getPosition().getY()) != null)
+		if (MapInstance.solid(getPosition().checkRight(), getPosition().getY()) == SolidTo.NONE
+				|| MapInstance.solid(getPosition().checkRight(), getPosition().getY()) == SolidTo.ITEM
+				|| MapItem.getDiamond(getPosition().checkRight(), getPosition().getY()) != null)
 		{
-			this.getPosition().goRight();
-			this.dig(MapCell.getDirt(this.getPosition()));
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			getPosition().goRight();
+			this.dig(MapCell.getDirt(getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
-		else if (MapInstance.solid(this.getPosition().checkRight() + 1, this.getPosition().getY()) == SolidTo.NONE
-				&& MapItem.getItem(this.getPosition().checkRight(), this.getPosition().getY()).isMoveable() == true)
+		else if (MapInstance.solid(getPosition().checkRight() + 1, getPosition().getY()) == SolidTo.NONE
+				&& MapItem.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable() == true)
 		{
-			this.push(MapItem.getRock(this.getPosition().checkRight(), this.getPosition().getY()));
-			this.getPosition().goRight();
-			this.dig(MapCell.getDirt(this.getPosition()));
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			this.push(MapItem.getRock(getPosition().checkRight(), getPosition().getY()));
+			getPosition().goRight();
+			this.dig(MapCell.getDirt(getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void makeMoveLeft()
 	{
-		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.ITEM
-				|| MapItem.getDiamond(this.getPosition().checkLeft(), this.getPosition().getY()) != null)
+		if (MapInstance.solid(getPosition().checkLeft(), getPosition().getY()) == SolidTo.NONE
+				|| MapInstance.solid(getPosition().checkLeft(), getPosition().getY()) == SolidTo.ITEM
+				|| MapItem.getDiamond(getPosition().checkLeft(), getPosition().getY()) != null)
 		{
-			this.getPosition().goLeft();
-			this.dig(MapCell.getDirt(this.getPosition()));
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			getPosition().goLeft();
+			this.dig(MapCell.getDirt(getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
-		else if (MapInstance.solid(this.getPosition().checkLeft() - 1, this.getPosition().getY()) == SolidTo.NONE
-				&& MapItem.getItem(this.getPosition().checkLeft(), this.getPosition().getY()).isMoveable() == true)
+		else if (MapInstance.solid(getPosition().checkLeft() - 1, getPosition().getY()) == SolidTo.NONE
+				&& MapItem.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable() == true)
 		{
-			this.push(MapItem.getRock(this.getPosition().checkLeft(), this.getPosition().getY()));
-			this.getPosition().goLeft();
-			this.dig(MapCell.getDirt(this.getPosition()));
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			this.push(MapItem.getRock(getPosition().checkLeft(), getPosition().getY()));
+			getPosition().goLeft();
+			this.dig(MapCell.getDirt(getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(this.getPosition()));
+			this.collect(MapItem.getDiamond(getPosition()));
 		}
 	}
 

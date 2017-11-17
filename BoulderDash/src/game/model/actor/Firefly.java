@@ -3,12 +3,18 @@ package game.model.actor;
 import game.model.Position;
 import game.model.SpriteChar;
 
+/**
+ * 
+ *
+ */
 public class Firefly extends Enemy
 {
 	private SpriteChar spritechar = SpriteChar.F;
-	
-	// CONSTRUCTOR
-	
+
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Firefly(Position pos)
 	{
 		super(pos);
@@ -16,18 +22,20 @@ public class Firefly extends Enemy
 		// TODO Auto-generated constructor stub
 	}
 
-	// GETTERS
-	
+	/**
+	 * 
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-	
-	// ROTACION
-	
+
+	/**
+	 * 
+	 */
 	public void rotate()
 	{
-		switch ( this.state )
+		switch (this.state)
 		{
 			case MOVINGUP:
 				this.state = StatusActorEnum.MOVINGRIGHT;

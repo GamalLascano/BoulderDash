@@ -17,30 +17,32 @@ public class Rock extends Fallable
 {
 	private SpriteChar spritechar = SpriteChar.O;
 
-	// CONSTRUCTOR
-
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Rock(Position pos)
 	{
 		super(pos, false, true, true, false, true, SolidTo.ALL, StatusFallableEnum.IDLE);
 	}
 
+	/**
+	 * 
+	 * @param pos
+	 * @param state
+	 */
 	public Rock(Position pos, StatusFallableEnum state)
 	{
 		super(pos, false, true, true, false, true, SolidTo.ALL, state);
 	}
 
-	// GETTERS
-
 	/**
-	 * Permite obtener al caracter de una roca
 	 * 
 	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-
-	// MOVIMIENTO
 
 	/**
 	 * Permite modificar el estado de la roca si esta siendo pusheada por
@@ -67,8 +69,9 @@ public class Rock extends Fallable
 		}
 	}
 
-	// FALL
-
+	/**
+	 * 
+	 */
 	public void fall()
 	{
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
@@ -104,6 +107,9 @@ public class Rock extends Fallable
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void makeMove()
 	{
 		switch (this.state)
@@ -113,7 +119,8 @@ public class Rock extends Fallable
 				break;
 			case FALLING:
 				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ACTOR)
+						|| MapInstance.solid(this.getPosition().getX(),
+								this.getPosition().checkDown()) == SolidTo.ACTOR)
 				{
 					this.getPosition().goDown();
 				}

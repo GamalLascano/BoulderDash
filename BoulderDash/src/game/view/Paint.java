@@ -13,18 +13,18 @@ public class Paint extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	BufferedImage empty;
-	BufferedImage dirt;
-	BufferedImage boulder;
-	BufferedImage diamond;
-	BufferedImage steel;
-	BufferedImage wall;
-	BufferedImage firefly;
-	BufferedImage butterfly;
-	BufferedImage magic;
-	BufferedImage amoeba;
-	BufferedImage rockford;
-	BufferedImage exit;
+	private BufferedImage empty;
+	private BufferedImage dirt;
+	private BufferedImage boulder;
+	private BufferedImage diamond;
+	private BufferedImage steel;
+	private BufferedImage wall;
+	private BufferedImage firefly;
+	private BufferedImage butterfly;
+	private BufferedImage magic;
+	private BufferedImage amoeba;
+	private BufferedImage rockford;
+	private BufferedImage exit;
 	
 	@Override
 	public void paintComponents(Graphics graphic)
@@ -141,4 +141,67 @@ public class Paint extends JPanel
 		
 		super.paintComponents(graphic);
 	}
+
+	public BufferedImage getEmpty()
+	{
+		return empty;
+	}
+
+	public BufferedImage getDirt()
+	{
+		return dirt;
+	}
+
+	public BufferedImage getBoulder()
+	{
+		return boulder;
+	}
+
+	public BufferedImage getDiamond()
+	{
+		return diamond;
+	}
+
+	public BufferedImage getSteel()
+	{
+		return steel;
+	}
+
+	public BufferedImage getWall()
+	{
+		return wall;
+	}
+
+	public BufferedImage getFirefly()
+	{
+		return firefly;
+	}
+
+	public BufferedImage getButterfly()
+	{
+		return butterfly;
+	}
+
+	public BufferedImage getMagic()
+	{
+		return magic;
+	}
+
+	public BufferedImage getAmoeba()
+	{
+		return amoeba;
+	}
+
+	public BufferedImage getRockford()
+	{
+		return rockford;
+	}
+
+	public BufferedImage getExit()
+	{
+		return exit;
+	}
+	
+	
+	
 }

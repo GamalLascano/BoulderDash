@@ -2,7 +2,6 @@ package game.model.actor;
 
 import game.model.CurrentDirection;
 import game.model.Entity;
-import game.model.ListOfEntities;
 import game.model.Position;
 import game.model.SolidTo;
 import game.model.SpriteChar;
@@ -18,35 +17,43 @@ public abstract class Actor extends Entity
 	protected StatusActorEnum state;
 	private SpriteChar spritechar;
 
-	// CONSTRUCTORS
-	
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Actor(Position pos)
 	{
 		super(pos, SolidTo.ACTOR);
-		this.state = StatusActorEnum.IDLE;
+		state = StatusActorEnum.IDLE;
 	}
 
-	// GETTERS
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public StatusActorEnum getState()
 	{
 		return state;
 	}
 
-	// SETTERS
-	
-	public void setState(StatusActorEnum state)
+	/**
+	 * 
+	 * @param stat
+	 */
+	public void setState(StatusActorEnum stat)
 	{
-		this.state = state;
+		state = stat;
 	}
 
-	// EXPLODE
-	
 	/**
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
 	 * 3x3.
@@ -63,54 +70,51 @@ public abstract class Actor extends Entity
 		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
 		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
 	}
-	
-	// MOVE
-	
+
+	/**
+	 * 
+	 * @param direction
+	 */
 	public void move(CurrentDirection direction)
 	{
 		switch (direction)
 		{
-		case UP:
-			this.state = StatusActorEnum.MOVINGUP;
-			break;
-		case DOWN:
-			this.state = StatusActorEnum.MOVINGDOWN;
-			break;
-		case LEFT:
-			this.state = StatusActorEnum.MOVINGLEFT;
-			break;
-		case RIGHT:
-			this.state = StatusActorEnum.MOVINGRIGHT;
-			break;
-		default:
-			break;
+			case UP:
+				this.state = StatusActorEnum.MOVINGUP;
+				break;
+			case DOWN:
+				this.state = StatusActorEnum.MOVINGDOWN;
+				break;
+			case LEFT:
+				this.state = StatusActorEnum.MOVINGLEFT;
+				break;
+			case RIGHT:
+				this.state = StatusActorEnum.MOVINGRIGHT;
+				break;
+			default:
+				break;
 		}
 	}
-	
-	// REFRESH POSITION
-	
+
+	/**
+	 * 
+	 */
 	public void changePosition()
 	{
 		MapActor.removeActor(this.getPosition());
 		this.makeMove();
 		MapActor.setActor(this);
 	}
-	
-	public void makeMove()
-	{
-	}
-	
-	// DIE
 
-	public void die()
-	{
-		if (this.state != StatusActorEnum.DEAD)
-		{
-			this.state = StatusActorEnum.DEAD;
-			this.explode();
-		}
-		ListOfEntities.getList().remove(this);
-		MapActor.removeActor(this.getPosition());
-	}
+	// public void die()
+	// {
+	// if (state != StatusActorEnum.DEAD)
+	// {
+	// state = StatusActorEnum.DEAD;
+	// this.explode();
+	// }
+	// ListOfEntities.getList().remove(this);
+	// MapActor.removeActor(this.getPosition());
+	// }
 
 }

@@ -5,35 +5,42 @@ import game.model.actor.Rockford;
 import game.model.item.Item;
 
 /**
- * Esta clase representa todas las unidades que se pueden mover
- * Tiene lo intrinseco de una unidad, su posicion
+ * Esta clase representa todas las unidades que se pueden mover Tiene lo
+ * intrinseco de una unidad, su posicion
  */
 public abstract class Entity
 {
-	private Position pos = new Position();
+	private Position pos;
 	private SolidTo solid;
 
-	public Entity()
+	/**
+	 * 
+	 * @param po
+	 */
+	public Entity(Position po)
 	{
-	}
-	
-	public Entity(Position pos)
-	{
-		this.pos = pos;
+		pos = po;
 		this.solid = SolidTo.NONE;
 	}
-	
-	public Entity(Position pos, SolidTo solid)
+
+	/**
+	 * 
+	 * @param po
+	 * @param solid
+	 */
+	public Entity(Position po, SolidTo solid)
 	{
-		this.pos = pos;
+		pos = po;
 		this.solid = solid;
 	}
 
-	// ENTITY TYPE
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isActor()
 	{
-		if(this instanceof Actor)
+		if (this instanceof Actor)
 		{
 			return true;
 		}
@@ -42,10 +49,14 @@ public abstract class Entity
 			return false;
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isRockford()
 	{
-		if(this instanceof Rockford)
+		if (this instanceof Rockford)
 		{
 			return true;
 		}
@@ -54,10 +65,14 @@ public abstract class Entity
 			return false;
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isItem()
 	{
-		if(this instanceof Item)
+		if (this instanceof Item)
 		{
 			return true;
 		}
@@ -66,40 +81,56 @@ public abstract class Entity
 			return false;
 		}
 	}
-	
-	// GETTERS
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public Position getPosition()
 	{
 		return pos;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public SolidTo getSolid()
 	{
 		return solid;
 	}
 
-	// SETTERS
-
+	/**
+	 * 
+	 * @param solid
+	 */
 	public void setSolid(SolidTo solid)
 	{
 		this.solid = solid;
 	}
 
-	public void setPosition(Position pos)
+	/**
+	 * 
+	 * @param po
+	 */
+	public void setPosition(Position po)
 	{
-		this.pos = pos;
+		pos = po;
 	}
-	
-	// POSITION
-	
+
+	/**
+	 * 
+	 */
 	abstract public void changePosition();
-	
+
+	/**
+	 * 
+	 */
 	abstract public void makeMove();
-	
-	// DIE
-	
+
+	/**
+	 * 
+	 */
 	abstract public void die();
-	
-	
+
 }

@@ -4,13 +4,19 @@ import game.model.Position;
 import game.model.SolidTo;
 import game.model.SpriteChar;
 
+/**
+ * 
+ *
+ */
 public class Dirt extends Cell
 {
 	private SpriteChar spritechar;
 	private boolean dirty; // True = is dirt, false = is normal
 
-	// CONSTRUCTORS
-	
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Dirt(Position pos)
 	{
 		super(pos, SolidTo.ITEM);
@@ -18,6 +24,11 @@ public class Dirt extends Cell
 		this.spritechar = SpriteChar.D;
 	}
 
+	/**
+	 * 
+	 * @param pos
+	 * @param dirty
+	 */
 	public Dirt(Position pos, boolean dirty)
 	{
 		super(pos, SolidTo.NONE);
@@ -33,30 +44,37 @@ public class Dirt extends Cell
 			this.setSolid(SolidTo.ITEM);
 		}
 	}
-	
-	// GETTERS
-	
+
+	/**
+	 * 
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isDirty()
 	{
 		return dirty;
 	}
 
-	// SETTERS
-	
+	/**
+	 * 
+	 */
 	public void removeDirt()
 	{
 		this.dirty = false;
 		this.setSolid(SolidTo.NONE);
 		spritechar = SpriteChar._;
 	}
-	
-	// DIE
-	
+
+	/**
+	 * 
+	 */
 	public void clear()
 	{
 		this.removeDirt();

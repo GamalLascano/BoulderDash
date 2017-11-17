@@ -6,30 +6,40 @@ import game.model.SpriteChar;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
+/**
+ * 
+ *
+ */
 public class Diamond extends Fallable
 {
 	private SpriteChar spritechar = SpriteChar.X;
 
-	// CONSTRUCTORS
-
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Diamond(Position pos)
 	{
 		super(pos, true, false, true, false, true, SolidTo.ACTOR, StatusFallableEnum.IDLE);
 	}
 
+	/**
+	 * 
+	 * @param pos
+	 * @param state
+	 */
 	public Diamond(Position pos, StatusFallableEnum state)
 	{
 		super(pos, true, false, true, false, true, SolidTo.ACTOR, state);
 	}
 
-	// GETTERS
-
+	/**
+	 * 
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-
-	// COLLECTED
 
 	/**
 	 * Collected setea el diamante como recolectado
@@ -40,8 +50,9 @@ public class Diamond extends Fallable
 		this.die();
 	}
 
-	// FALL
-
+	/**
+	 * 
+	 */
 	public void fall()
 	{
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
@@ -53,7 +64,7 @@ public class Diamond extends Fallable
 		}
 		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
 				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ACTOR
-				&& MapItem.getDiamond(this.getPosition().getX(), this.getPosition().checkDown()) == null
+						&& MapItem.getDiamond(this.getPosition().getX(), this.getPosition().checkDown()) == null
 						&& this.state == StatusFallableEnum.FALLINGOFF
 				|| this.state == StatusFallableEnum.FALLING)
 		{
@@ -80,6 +91,9 @@ public class Diamond extends Fallable
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void makeMove()
 	{
 		switch (this.state)
@@ -89,7 +103,8 @@ public class Diamond extends Fallable
 				break;
 			case FALLING:
 				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-						|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ACTOR)
+						|| MapInstance.solid(this.getPosition().getX(),
+								this.getPosition().checkDown()) == SolidTo.ACTOR)
 				{
 					this.getPosition().goDown();
 				}

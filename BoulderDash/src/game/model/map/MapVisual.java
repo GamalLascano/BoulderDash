@@ -1,6 +1,5 @@
 package game.model.map;
 
-import game.model.ListOfEntities;
 import game.model.Position;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
@@ -18,13 +17,18 @@ public class MapVisual
 	private static SpriteChar[][] map;
 	private static BDLevelReader level;
 
+	/**
+	 * 
+	 */
 	private MapVisual()
 	{
 		map = null;
 	}
 
-	// SINGLETON
-
+	/**
+	 * 
+	 * @return
+	 */
 	public static MapVisual getInstance()
 	{
 		if (singleton == null)
@@ -34,33 +38,22 @@ public class MapVisual
 		return singleton;
 	}
 
-	// INICIALIZACION
-
+	/**
+	 * 
+	 * @param levels
+	 */
 	public void start(BDLevelReader levels)
 	{
 		level = levels;
 		map = new SpriteChar[level.getWIDTH()][level.getHEIGHT()];
 	}
 
-	// GETTERS
-
-	// SETTERS
-
-	// GRAPHICS
-
 	/**
-	 * Este metodo recibe todos los mapas y hace un mapa para imprimir
 	 * 
-	 * @param cellMap
-	 *            EL mapa de celdas
-	 * @param itemMap
-	 *            El mapa de items
-	 * @param actorMap
-	 *            El mapa de actores
 	 */
 	public static void drawMap()
 	{
-		Position pos = new Position();
+		Position pos = new Position(0, 0);
 		int y;
 		int x;
 		for (y = 0; y < level.getHEIGHT(); y++)
@@ -85,7 +78,6 @@ public class MapVisual
 	}
 
 	/**
-	 * Este metodo usa el mapa creado en drawMap, y lo dibuja en pantalla
 	 * 
 	 */
 	public static void imprimirMapa()
@@ -102,7 +94,8 @@ public class MapVisual
 			System.out.println();
 
 		}
-		Rockford player = ListOfEntities.findRockford();
+
+		Rockford player = Rockford.getInstance();
 		if (player != null)
 		{
 			System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY());
@@ -116,14 +109,15 @@ public class MapVisual
 
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static SpriteChar getChar(int x, int y)
 	{
 		return map[x][y];
-	}
-
-	public static SpriteChar[][] getMap()
-	{
-		return map;
 	}
 
 }

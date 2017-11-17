@@ -3,6 +3,7 @@ package game.model.cell;
 import game.model.Position;
 import game.model.SolidTo;
 import game.model.SpriteChar;
+import game.model.map.MapCell;
 
 /**
  * Esta clase contiene todos los objetos del mapa que no se mueven
@@ -12,22 +13,26 @@ public abstract class Cell
 {
 	private SpriteChar spritechar;
 	protected Position pos;
-	private SolidTo solid; // Si los personajes pueden caminar sobre la celda..
+	private SolidTo solid;
 
-	// CONSTRUCTOR
-	
-	Cell(Position pos, SolidTo solid)
+	/**
+	 * 
+	 * @param po
+	 * @param soli
+	 */
+	Cell(Position po, SolidTo soli)
 	{
-		this.pos = pos;
-		this.solid = solid;
+		pos = po;
+		solid = soli;
 	}
-	
 
-	// CELL TYPE
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isDirt()
 	{
-		if(this instanceof Dirt)
+		if (this instanceof Dirt)
 		{
 			return true;
 		}
@@ -36,10 +41,14 @@ public abstract class Cell
 			return false;
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isExit()
 	{
-		if(this instanceof Exit)
+		if (this instanceof Exit)
 		{
 			return true;
 		}
@@ -48,37 +57,58 @@ public abstract class Cell
 			return false;
 		}
 	}
-	
-	// GETTERS
 
+	/**
+	 * 
+	 * @return
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public Position getPosition()
 	{
 		return pos;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public SolidTo getSolid()
 	{
 		return solid;
 	}
 
-	// SETTERS
-
-	public void setPosition(Position pos)
+	/**
+	 * 
+	 * @param po
+	 */
+	public void setPosition(Position po)
 	{
-		this.pos = pos;
+		pos = po;
 	}
 
-	public void setSolid(SolidTo solid)
+	/**
+	 * 
+	 * @param soli
+	 */
+	public void setSolid(SolidTo soli)
 	{
-		this.solid = solid;
+		solid = soli;
 	}
 	
-	// DIE
-	
-	abstract public void clear();
+	/**
+	 * 
+	 */
+	public void clear()
+	{
+		MapCell.removeCell(this.pos);
+	}
+
 }

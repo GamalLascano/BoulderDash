@@ -5,22 +5,33 @@ import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
-import game.model.map.bdlevel.BDLevelReader;
-import game.util.Singleton;
 
+/**
+ * 
+ *
+ */
 public class Exit extends Cell
 {
-	
+
 	private static SpriteChar spritechar = SpriteChar.E;
 	private static boolean isOpen;
 	private static Exit exit;
-	
+
+	/**
+	 * 
+	 * @param pos
+	 */
 	private Exit(Position pos)
 	{
 		super(pos, SolidTo.ALL);
 		isOpen = false;
 	}
-	
+
+	/**
+	 * 
+	 * @param pos
+	 * @return
+	 */
 	public static Exit getInstance(Position pos)
 	{
 		if (exit == null)
@@ -29,12 +40,22 @@ public class Exit extends Cell
 		}
 		return exit;
 	}
-	
 
-	// OPEN
-	
-	public static void open(Rockford player)
+	/**
+	 * 
+	 * @return
+	 */
+	public static Exit getInstance()
 	{
+		return exit;
+	}
+
+	/**
+	 * 
+	 */
+	public static void open()
+	{
+		Rockford player = Rockford.getInstance();
 		if (player.getDiamonds() >= MapInstance.getLevelReader().getDiamondsNeeded())
 		{
 			exit.setSolid(SolidTo.ACTOR);
@@ -42,22 +63,22 @@ public class Exit extends Cell
 			isOpen = true;
 		}
 	}
-	
-	// GETTERS
-	
+
+	/**
+	 * 
+	 */
 	public SpriteChar getSpritechar()
 	{
 		return spritechar;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isOpen()
 	{
 		return isOpen;
-	}
-
-	public void clear()
-	{
-		
 	}
 
 }

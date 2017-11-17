@@ -2,22 +2,30 @@ package game.model.map;
 
 import game.model.Position;
 import game.model.actor.*;
-import game.model.cell.Dirt;
 import game.model.map.bdlevel.BDLevelReader;
 
+/**
+ * 
+ *
+ */
 public class MapActor extends Map
 {
 	private static MapActor singleton;
 	private static BDLevelReader level;
 	private static Actor[][] matrix;
 
+	/**
+	 * 
+	 */
 	private MapActor()
 	{
 		matrix = null;
 	}
 
-	// SINGLETON
-
+	/**
+	 * 
+	 * @return
+	 */
 	public static MapActor getInstance()
 	{
 		if (singleton == null)
@@ -26,9 +34,10 @@ public class MapActor extends Map
 		}
 		return singleton;
 	}
-	
-	// INICIALIZACION
-	
+
+	/**
+	 * 
+	 */
 	public void start(BDLevelReader levels)
 	{
 		level = levels;
@@ -36,11 +45,14 @@ public class MapActor extends Map
 		fill();
 	}
 
-	// GETTERS
-
+	/**
+	 * 
+	 * @param pos
+	 * @return
+	 */
 	public static Actor getActor(Position pos)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			return matrix[pos.getX()][pos.getY()];
 		}
@@ -49,10 +61,16 @@ public class MapActor extends Map
 			return null;
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static Actor getActor(Integer x, Integer y)
 	{
-		if ( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
 		{
 			return matrix[x][y];
 		}
@@ -61,16 +79,22 @@ public class MapActor extends Map
 			return null;
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static Rockford getRockford(Integer x, Integer y)
 	{
-		if ( level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y )
+		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
 		{
-			if( matrix[x][y] != null)
+			if (matrix[x][y] != null)
 			{
-				if( matrix[x][y].isRockford())
+				if (matrix[x][y].isRockford())
 				{
-					return ( (Rockford) matrix[x][y] );
+					return ((Rockford) matrix[x][y]);
 				}
 				else
 				{
@@ -88,18 +112,15 @@ public class MapActor extends Map
 		}
 	}
 
-	// SETTERS
-
 	/**
 	 * 
-	 * @param pos
 	 * @param act
-	 * @return : true si se agrego correctamente
+	 * @return
 	 */
 	public static boolean setActor(Actor act)
 	{
-		if ( level.getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX() 
-				&& level.getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY() )
+		if (level.getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX()
+				&& level.getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY())
 		{
 			matrix[act.getPosition().getX()][act.getPosition().getY()] = act;
 			return true;
@@ -109,11 +130,15 @@ public class MapActor extends Map
 			return false;
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @param pos
+	 * @return
+	 */
 	public static boolean removeActor(Position pos)
 	{
-		if ( level.getWIDTH() >= pos.getX() && 0 <= pos.getX() 
-				&& level.getHEIGHT() >= pos.getY() && 0 <= pos.getY() )
+		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			return true;
@@ -124,8 +149,9 @@ public class MapActor extends Map
 		}
 	}
 
-	// NULL FILL
-	
+	/**
+	 * 
+	 */
 	public void fill()
 	{
 		for (int x = 0; x < level.getWIDTH(); x++)
@@ -134,5 +160,5 @@ public class MapActor extends Map
 				matrix[x][y] = null;
 			}
 	}
-	
+
 }

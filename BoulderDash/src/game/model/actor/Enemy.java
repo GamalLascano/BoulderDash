@@ -5,15 +5,20 @@ import game.model.Position;
 import game.model.SolidTo;
 import game.model.item.Diamond;
 import game.model.map.MapActor;
-import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
+/**
+ * 
+ *
+ */
 public abstract class Enemy extends Actor
 {
 
-	// CONSTRUCTOR
-
+	/**
+	 * 
+	 * @param pos
+	 */
 	public Enemy(Position pos)
 	{
 		super(pos);
@@ -21,11 +26,10 @@ public abstract class Enemy extends Actor
 		// TODO Auto-generated constructor stub
 	}
 
-	// ROTATE
-
+	/**
+	 * 
+	 */
 	protected abstract void rotate();
-
-	// EXPLODE WITH DIAMONDS
 
 	/**
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
@@ -53,24 +57,24 @@ public abstract class Enemy extends Actor
 		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
 		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkUp())));
 	}
-	
+
 	/**
 	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
 	 * 3x3.
+	 * 
+	 * @return
 	 */
 	public boolean isRockfordInRange()
 	{
-		if(
-		MapActor.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
-		|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
-		|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
-		|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
-		|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
-		|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
-		|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
-		|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
-		|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null
-		)
+		if (MapActor.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
+				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
+				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
+				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
+				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
+				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
+				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
+				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
+				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null)
 		{
 			return true;
 		}
@@ -80,8 +84,9 @@ public abstract class Enemy extends Actor
 		}
 	}
 
-	// DIE
-	
+	/**
+	 * 
+	 */
 	public void die()
 	{
 		if (this.state != StatusActorEnum.DEAD)
@@ -92,8 +97,6 @@ public abstract class Enemy extends Actor
 		ListOfEntities.getList().remove(this);
 		MapActor.removeActor(this.getPosition());
 	}
-	
-	// MAKE MOVE
 
 	/**
 	 * Se occupa de hacer mover a los enemigos.
@@ -119,13 +122,16 @@ public abstract class Enemy extends Actor
 				break;
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void makeMoveUp()
 	{
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
 		{
 			this.getPosition().goUp();
-			if(this.isRockfordInRange())
+			if (this.isRockfordInRange())
 			{
 				this.die();
 			}
@@ -135,13 +141,16 @@ public abstract class Enemy extends Actor
 			this.rotate();
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void makeMoveDown()
 	{
 		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
 		{
 			this.getPosition().goDown();
-			if(this.isRockfordInRange())
+			if (this.isRockfordInRange())
 			{
 				this.die();
 			}
@@ -151,15 +160,16 @@ public abstract class Enemy extends Actor
 			this.rotate();
 		}
 	}
-	
-	// Si no es solido, es movible, y no hay tierra al lado.
-	// Se pushea lo que haya
+
+	/**
+	 * 
+	 */
 	public void makeMoveRight()
 	{
 		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
 		{
 			this.getPosition().goRight();
-			if(this.isRockfordInRange())
+			if (this.isRockfordInRange())
 			{
 				this.die();
 			}
@@ -169,13 +179,16 @@ public abstract class Enemy extends Actor
 			this.rotate();
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void makeMoveLeft()
 	{
 		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
 		{
 			this.getPosition().goLeft();
-			if(this.isRockfordInRange())
+			if (this.isRockfordInRange())
 			{
 				this.die();
 			}
@@ -185,5 +198,5 @@ public abstract class Enemy extends Actor
 			this.rotate();
 		}
 	}
-	
+
 }
