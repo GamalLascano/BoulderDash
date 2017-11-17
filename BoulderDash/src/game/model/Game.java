@@ -9,10 +9,13 @@ import game.model.map.bdlevel.BDLevelReader;
 import game.view.FrameMap;
 import game.view.FrameMenu;
 
+import java.util.Timer;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 /**
  * Esta es la clase principal del juego De aqui se maneja la logica del juego,
@@ -24,7 +27,7 @@ public class Game
 	public static void main(String[] args)
 	{
 		BDLevelReader levelReader = new BDLevelReader();
-		int nivelElegido = 5;
+		int nivelElegido = 1;
 
 		try
 		{
@@ -53,7 +56,13 @@ public class Game
 		FrameMap.draw();
 		MapInstance.refresh();
 
-		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+//		Timer timer = new Timer("Imprimir..");
+//		Mitarea tarea = new MiTarea(timer);
+//		timer.schedule(tarea, 0, 2000);
+		
+		
+		final ScheduledExecutorService executorService = 
+				Executors.newSingleThreadScheduledExecutor();
 		final CountDownLatch latch = new CountDownLatch(1);
 		
 		executorService.scheduleAtFixedRate(new Runnable()
@@ -87,30 +96,33 @@ public class Game
 
 				}
 				else
-				{
+				{					
+					MapVisual.drawMap();
+					MapInstance.refresh();
+					FrameMap.draw();
 					 latch.countDown();
 				}
 			}
-		}, 1000, 200, TimeUnit.MILLISECONDS);
+		}, 1000, 100, TimeUnit.MILLISECONDS);
 		
-		try
-		{
-			latch.await();
-		}
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		executorService.shutdownNow();
-		
-		MapVisual.drawMap();
-		MapInstance.refresh();
-		FrameMap.draw();
-		System.out.println("FIN DEL PROGRAMA");
-		FrameMap.disposeFrame();
-		
-		FrameMenu.main(new String[0]);
+//		try
+//		{
+//			latch.await();
+//		}
+//		catch (InterruptedException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		executorService.shutdownNow();
+//		
+//		MapVisual.drawMap();
+//		MapInstance.refresh();
+//		FrameMap.draw();
+//		System.out.println("FIN DEL PROGRAMA");
+//		FrameMap.disposeFrame();
+//		
+//		FrameMenu.main(new String[0]);
 	}
 
 }

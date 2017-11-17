@@ -10,7 +10,7 @@ import game.model.Game;
 public class FrameMenu extends JFrame
 {
 	private static final long serialVersionUID = 1L;
-	private static JPanel panel = new JPanel(new GridLayout(10,1,2,20));
+	private static JPanel panel = new JPanel(new GridBagLayout());
 	private static FrameMenu framemenu;
 	//panel variables
 	private static JButton button[][] = new JButton[1][4];
@@ -73,9 +73,10 @@ public class FrameMenu extends JFrame
 	public static void menu()
 	{
 		panel.removeAll();
+		removeAllActionsListeners();
 		panel.revalidate();
 		
-		button[0][0].setText("¡QUIERO JUGAR!");
+		button[0][0].setText("QUIERO JUGAR!");
 		button[0][0].addActionListener(new ActionListener()
 		{
 
@@ -87,6 +88,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 		panel.add(button[0][0]);
+		
 
 		button[0][1].setText("TOP X");
 		button[0][1].addActionListener(new ActionListener()
@@ -200,8 +202,7 @@ public class FrameMenu extends JFrame
 
 	public static void main(String[] args)
 	{
-		FrameMenu frame = FrameMenu.getInstance();
-		frame.isEnabled();
+		FrameMenu.getInstance();
 	}
 
 }

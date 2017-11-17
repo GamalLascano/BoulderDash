@@ -1,39 +1,50 @@
 package game.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import game.model.CurrentDirection;
 import game.model.ListOfEntities;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
-import game.view.FrameMap;
 
 public class FrameMap extends JFrame
 {
+	final static int CELLSIZE = 15;
 	private static JPanel panelmap = new JPanel();
 	private static JPanel paneltop = new JPanel();
 	private static final long serialVersionUID = 1L;
 	private static FrameMap framemap;
-	
-	//panelmap
-	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
-	
-	//panel
+
+	// panelmap
+	private static JLabel cellLabel[][] = new JLabel[MapInstance.getLevelReader().getWIDTH()][MapInstance
+			.getLevelReader().getHEIGHT()];
+
+	// panel
 	private static JButton buttontop[][] = new JButton[1][4];
-	
+
 	private FrameMap()
 	{
 		setLocationRelativeTo(null);
-		setTitle("test");
+		setTitle("Boulder Dash");
 		setResizable(false);
 		setSize(900, 600);
-		setVisible(true);
-		panelmap.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(),MapInstance.getLevelReader().getWIDTH()));
-		paneltop.setLayout(new GridLayout(4,1,2,2));
+		panelmap.setLayout(
+				new GridLayout(MapInstance.getLevelReader().getHEIGHT(), MapInstance.getLevelReader().getWIDTH()));
+		paneltop.setLayout(new GridLayout(4, 1, 2, 2));
 		for (int y = 0; y < 4; y++)
 		{
 			for (int x = 0; x < 1; x++)
@@ -43,9 +54,11 @@ public class FrameMap extends JFrame
 			}
 		}
 		add(panelmap);
+
+		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
+
 	public static FrameMap getInstance()
 	{
 		if (framemap == null)
@@ -57,14 +70,14 @@ public class FrameMap extends JFrame
 
 	public static void putPanelTop()
 	{
-		
+
 	}
-	
+
 	public static void remove()
 	{
 		panelmap.removeAll();
 	}
-	
+
 	public static void disposeFrame()
 	{
 		framemap.dispose();
@@ -78,71 +91,71 @@ public class FrameMap extends JFrame
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
+				if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 				{
 					player.move(CurrentDirection.UP);
 				}
 			}
 		});
-		
+
 		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
+				if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 				{
 					player.move(CurrentDirection.RIGHT);
 				}
-				
+
 			}
 		});
-		
+
 		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
+				if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 				{
 					player.move(CurrentDirection.DOWN);
 				}
-				
+
 			}
 		});
-		
+
 		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
+				if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 				{
 					player.move(CurrentDirection.LEFT);
 				}
-				
+
 			}
 		});
-		
+
 		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_E)
+				if (e.getKeyCode() == KeyEvent.VK_E)
 				{
 					;
 				}
-				
+
 			}
 		});
-		
+
 		framemap.addKeyListener(new KeyAdapter()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+				if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 				{
 					player.isInExit();
 				}
@@ -150,83 +163,170 @@ public class FrameMap extends JFrame
 		});
 
 	}
-	
+
 	public static void draw()
 	{
-		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		Graphics gr = panelmap.getGraphics();
+		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT() * CELLSIZE; y += CELLSIZE)
 		{
-			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH() * CELLSIZE; x += CELLSIZE)
 			{
-				cellLabel[x][y] = new JLabel(MapVisual.getChar(x, y).toString());
-				switch(cellLabel[x][y].getText().charAt(0))
+				BufferedImage buffer = null;
+
+
+				String cellChar = MapVisual.getChar(x / CELLSIZE, y / CELLSIZE).toString();
+				switch (cellChar.charAt(0))
 				{
 					case 'D':
-						cellLabel[x][y].setBackground(Color.GRAY);
-						cellLabel[x][y].setForeground(Color.GRAY);
+						
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case '_':
-						cellLabel[x][y].setBackground(Color.LIGHT_GRAY);
-						cellLabel[x][y].setForeground(Color.LIGHT_GRAY);
+						try
+						{q
+							buffer = ImageIO.read(framemap.getClass().getResource("empty.jpeg"));
+						}
+						catch (IOException e)
+						{
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'W':
-						cellLabel[x][y].setBackground(Color.BLUE);
-						cellLabel[x][y].setForeground(Color.BLUE);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("wall.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'E':
-						cellLabel[x][y].setBackground(Color.YELLOW);
-						cellLabel[x][y].setForeground(Color.YELLOW);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("steel.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'e':
-						cellLabel[x][y].setBackground(Color.GREEN);
-						cellLabel[x][y].setForeground(Color.GREEN);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("exit.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'F':
-						cellLabel[x][y].setBackground(Color.RED);
-						cellLabel[x][y].setForeground(Color.YELLOW);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("firefly.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'B':
-						cellLabel[x][y].setBackground(Color.RED);
-						cellLabel[x][y].setForeground(Color.YELLOW);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("butterfly.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'A':
-						cellLabel[x][y].setBackground(Color.MAGENTA);
-						cellLabel[x][y].setForeground(Color.YELLOW);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("amoeba.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'O':
-						cellLabel[x][y].setBackground(Color.ORANGE);
-						cellLabel[x][y].setForeground(Color.RED);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("boulder.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'X':
-						cellLabel[x][y].setBackground(Color.CYAN);
-						cellLabel[x][y].setForeground(Color.WHITE);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("diamond.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'T':
-						cellLabel[x][y].setBackground(Color.BLACK);
-						cellLabel[x][y].setForeground(Color.BLACK);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("steel.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					case 'R':
-						cellLabel[x][y].setBackground(Color.LIGHT_GRAY);
-						cellLabel[x][y].setForeground(Color.RED);
+						try
+						{
+							buffer = ImageIO.read(framemap.getClass().getResource("rockford.gif"));
+						}
+						catch (IOException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gr.drawImage(buffer, x, y, null);
 						break;
 					default:
 						break;
 				}
-				cellLabel[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
-				cellLabel[x][y].setAlignmentX(CENTER_ALIGNMENT);
-				cellLabel[x][y].setAlignmentY(CENTER_ALIGNMENT);
-				cellLabel[x][y].setOpaque(true);
-				panelmap.add(cellLabel[x][y]);
 			}
 		}
-		framemap.setVisible(true);
-		panelmap.setVisible(true);
+
+		framemap.repaint();
+
+		framemap.revalidate();
 		FrameMap.returnMove();
 	}
-	
+
 	public static void start()
 	{
-		FrameMap framemap = FrameMap.getInstance();
-		framemap.isEnabled();
+		FrameMap.getInstance();
 	}
 
 }
