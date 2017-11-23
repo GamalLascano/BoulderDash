@@ -66,7 +66,7 @@ public class PanelMap extends JPanel
 
 				String cellChar = MapVisual.getChar(x / FrameMap.getCellsize(), y / FrameMap.getCellsize()).toString();
 
-				switch (cellChar.charAt(0))
+				switch (cellChar.charAt(0))//
 				{
 					case 'D':
 						graphic.drawImage(this.getDirt(), x, y, null);
