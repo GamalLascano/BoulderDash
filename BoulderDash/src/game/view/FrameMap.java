@@ -16,6 +16,7 @@ import game.model.map.MapInstance;
 
 public class FrameMap extends JFrame implements KeyListener
 {
+	//
 	private static final long serialVersionUID = 1L;
 	private static final int CELLSIZE = 15;
 	private static JPanel panelmap = new PanelMap();
