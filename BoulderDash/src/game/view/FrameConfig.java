@@ -37,9 +37,9 @@ public class FrameConfig extends JFrame implements ActionListener {
 		fullScr = new JCheckBox("Pantalla Completa");
 		fullScr.addItemListener(new MiItemListener());
 		fullScr.setSelected(false);
-		boton = new JButton("salida");
+		boton = new JButton("Volver al menu");
 		boton.setBounds(0, 0, 100, 25);
-		boton.addMouseListener(new miMouseListener());
+		boton.addMouseListener(new mouseListenerSalida());
 		add(top);
 		add(resoluciones);
 		add(fullScr);
@@ -73,7 +73,13 @@ public class FrameConfig extends JFrame implements ActionListener {
 			}
 		}
 	}
-
+	public class mouseListenerSalida extends MouseAdapter{
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			FrameMenu.getInstance().setVisible(true);
+			FrameConfig.getInstance().setVisible(false);
+		}
+	}
 	public class miMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
