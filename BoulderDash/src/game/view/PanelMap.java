@@ -1,6 +1,8 @@
 package game.view;
 
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -23,15 +25,15 @@ public class PanelMap extends JPanel
 	private BufferedImage empty;
 	private BufferedImage dirt;
 	private BufferedImage boulder;
-	private BufferedImage diamond;
+	private Image diamond;
 	private BufferedImage steel;
 	private BufferedImage wall;
-	private BufferedImage firefly;
-	private BufferedImage butterfly;
-	private BufferedImage magic;
-	private BufferedImage amoeba;
-	private BufferedImage rockford;
-	private BufferedImage exit;
+	private Image firefly;
+	private Image butterfly;
+	private Image magic;
+	private Image amoeba;
+	private Image rockford;
+	private Image exit;
 
 	public PanelMap()
 	{
@@ -40,15 +42,15 @@ public class PanelMap extends JPanel
 			empty = ImageIO.read(this.getClass().getResource("empty.jpeg"));
 			dirt = ImageIO.read(this.getClass().getResource("dirt.gif"));
 			boulder = ImageIO.read(this.getClass().getResource("boulder.gif"));
-			diamond = ImageIO.read(this.getClass().getResource("diamond.gif"));
+			diamond = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("diamond.gif"));
 			steel = ImageIO.read(this.getClass().getResource("steel.gif"));
 			wall = ImageIO.read(this.getClass().getResource("wall.gif"));
-			firefly = ImageIO.read(this.getClass().getResource("firefly.gif"));
-			butterfly = ImageIO.read(this.getClass().getResource("butterfly.gif"));
-			magic = ImageIO.read(this.getClass().getResource("magic.gif"));
-			amoeba = ImageIO.read(this.getClass().getResource("amoeba.gif"));
-			rockford = ImageIO.read(this.getClass().getResource("rockford.gif"));
-			exit = ImageIO.read(this.getClass().getResource("exit.gif"));
+			firefly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("firefly.gif"));
+			butterfly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("butterfly.gif"));
+			magic = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("magic.gif"));
+			amoeba = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("amoeba.gif"));
+			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockford.gif"));
+			exit = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("exit.gif"));
 		}
 		catch (IOException e)
 		{
@@ -66,111 +68,52 @@ public class PanelMap extends JPanel
 
 				String cellChar = MapVisual.getChar(x / FrameMap.getCellsize(), y / FrameMap.getCellsize()).toString();
 
-				switch (cellChar.charAt(0))//
+				switch (cellChar.charAt(0))
 				{
 					case 'D':
-						graphic.drawImage(this.getDirt(), x, y, null);
+						graphic.drawImage(dirt, x, y, null);
 						break;
 					case '_':
-						graphic.drawImage(this.getEmpty(), x, y, null);
+						graphic.drawImage(empty, x, y, null);
 						break;
 					case 'W':
-						graphic.drawImage(this.getWall(), x, y, null);
+						graphic.drawImage(wall, x, y, null);
+						break;
+					case 'w':
+						graphic.drawImage(wall, x, y, null);
 						break;
 					case 'F':
-						graphic.drawImage(this.getFirefly(), x, y, null);
+						graphic.drawImage(firefly, x, y, null);
 						break;
 					case 'B':
-						graphic.drawImage(this.getButterfly(), x, y, null);
+						graphic.drawImage(butterfly, x, y, null);
 						break;
 					case 'A':
-						graphic.drawImage(this.getAmoeba(), x, y, null);
+						graphic.drawImage(amoeba, x, y, null);
 						break;
 					case 'O':
-						graphic.drawImage(this.getBoulder(), x, y, null);
+						graphic.drawImage(boulder, x, y, null);
 						break;
 					case 'X':
-						graphic.drawImage(this.getDiamond(), x, y, null);
+						graphic.drawImage(diamond, x, y, null);
 						break;
 					case 'T':
-						graphic.drawImage(this.getSteel(), x, y, null);
+						graphic.drawImage(steel, x, y, null);
 						break;
 					case 'R':
-						graphic.drawImage(this.getRockford(), x, y, null);
+						graphic.drawImage(rockford, x, y, null);
 						break;
 					case 'E':
-						graphic.drawImage(this.getSteel(), x, y, null);
+						graphic.drawImage(steel, x, y, null);
 						break;
 					case 'e':
-						graphic.drawImage(this.getExit(), x, y, null);
+						graphic.drawImage(exit, x, y, null);
 						break;
 					default:
 						break;
 				}
 			}
 		}
-	}
-	
-
-
-	public BufferedImage getEmpty()
-	{
-		return empty;
-	}
-
-	public BufferedImage getDirt()
-	{
-		return dirt;
-	}
-
-	public BufferedImage getBoulder()
-	{
-		return boulder;
-	}
-
-	public BufferedImage getDiamond()
-	{
-		return diamond;
-	}
-
-	public BufferedImage getSteel()
-	{
-		return steel;
-	}
-
-	public BufferedImage getWall()
-	{
-		return wall;
-	}
-
-	public BufferedImage getFirefly()
-	{
-		return firefly;
-	}
-
-	public BufferedImage getButterfly()
-	{
-		return butterfly;
-	}
-
-	public BufferedImage getMagic()
-	{
-		return magic;
-	}
-
-	public BufferedImage getAmoeba()
-	{
-		return amoeba;
-	}
-
-	public BufferedImage getRockford()
-	{
-		return rockford;
-	}
-
-	public BufferedImage getExit()
-	{
-		return exit;
 	}
 
 }
