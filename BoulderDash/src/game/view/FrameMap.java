@@ -1,5 +1,6 @@
 package game.view;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -31,9 +32,10 @@ public class FrameMap extends JFrame implements KeyListener
 		setResizable(false);
 		setSize(900, 600);
 		addKeyListener(this);
+		setLayout(new GridLayout(0,1,1,1));
 		panelmap.setLayout(
 				new GridLayout(MapInstance.getLevelReader().getHEIGHT(), MapInstance.getLevelReader().getWIDTH()));
-		paneltop.setLayout(new GridLayout(4, 1, 2, 2));
+		paneltop.setLayout(new FlowLayout());
 		for (int y = 0; y < 4; y++)
 		{
 			for (int x = 0; x < 1; x++)
@@ -42,6 +44,7 @@ public class FrameMap extends JFrame implements KeyListener
 				paneltop.add(buttontop[x][y]);
 			}
 		}
+		add(paneltop);
 		add(panelmap);
 
 		setVisible(true);
