@@ -1,13 +1,20 @@
 package game.view;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class Paint extends JPanel
+import game.model.CurrentDirection;
+import game.model.actor.Rockford;
+import game.model.map.MapInstance;
+import game.model.map.MapVisual;
+
+public class PanelMap extends JPanel
 {
 	/**
 	 * 
@@ -25,122 +32,86 @@ public class Paint extends JPanel
 	private BufferedImage amoeba;
 	private BufferedImage rockford;
 	private BufferedImage exit;
-	
-	@Override
-	public void paintComponents(Graphics graphic)
+
+	public PanelMap()
 	{
-		int x = 0,y = 0;
 		try
 		{
 			empty = ImageIO.read(this.getClass().getResource("empty.jpeg"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(empty, x, y, null);
-		try
-		{
 			dirt = ImageIO.read(this.getClass().getResource("dirt.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(dirt, x, y, null);
-		try
-		{
 			boulder = ImageIO.read(this.getClass().getResource("boulder.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(boulder, x, y, null);
-		try
-		{
 			diamond = ImageIO.read(this.getClass().getResource("diamond.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(diamond, x, y, null);
-		try
-		{
 			steel = ImageIO.read(this.getClass().getResource("steel.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(steel, x, y, null);
-		try
-		{
 			wall = ImageIO.read(this.getClass().getResource("wall.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(wall, x, y, null);
-		try
-		{
 			firefly = ImageIO.read(this.getClass().getResource("firefly.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(firefly, x, y, null);
-		try
-		{
 			butterfly = ImageIO.read(this.getClass().getResource("butterfly.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(butterfly, x, y, null);
-		try
-		{
 			magic = ImageIO.read(this.getClass().getResource("magic.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(magic, x, y, null);
-		try
-		{
 			amoeba = ImageIO.read(this.getClass().getResource("amoeba.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(amoeba, x, y, null);
-		try
-		{
 			rockford = ImageIO.read(this.getClass().getResource("rockford.gif"));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		graphic.drawImage(rockford, x, y, null);
-		try
-		{
 			exit = ImageIO.read(this.getClass().getResource("exit.gif"));
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		graphic.drawImage(exit, x, y, null);
-		
-		super.paintComponents(graphic);
 	}
+
+	public void paintComponent(Graphics graphic)
+	{
+		super.paintComponent(graphic);
+		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT() * FrameMap.getCellsize(); y += FrameMap.getCellsize())
+		{
+			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH() * FrameMap.getCellsize(); x += FrameMap.getCellsize())
+			{
+
+				String cellChar = MapVisual.getChar(x / FrameMap.getCellsize(), y / FrameMap.getCellsize()).toString();
+
+				switch (cellChar.charAt(0))
+				{
+					case 'D':
+						graphic.drawImage(this.getDirt(), x, y, null);
+						break;
+					case '_':
+						graphic.drawImage(this.getEmpty(), x, y, null);
+						break;
+					case 'W':
+						graphic.drawImage(this.getWall(), x, y, null);
+						break;
+					case 'F':
+						graphic.drawImage(this.getFirefly(), x, y, null);
+						break;
+					case 'B':
+						graphic.drawImage(this.getButterfly(), x, y, null);
+						break;
+					case 'A':
+						graphic.drawImage(this.getAmoeba(), x, y, null);
+						break;
+					case 'O':
+						graphic.drawImage(this.getBoulder(), x, y, null);
+						break;
+					case 'X':
+						graphic.drawImage(this.getDiamond(), x, y, null);
+						break;
+					case 'T':
+						graphic.drawImage(this.getSteel(), x, y, null);
+						break;
+					case 'R':
+						graphic.drawImage(this.getRockford(), x, y, null);
+						break;
+					case 'E':
+						graphic.drawImage(this.getSteel(), x, y, null);
+						break;
+					case 'e':
+						graphic.drawImage(this.getExit(), x, y, null);
+						break;
+					default:
+						break;
+				}
+			}
+		}
+	}
+	
+
 
 	public BufferedImage getEmpty()
 	{
@@ -201,7 +172,5 @@ public class Paint extends JPanel
 	{
 		return exit;
 	}
-	
-	
-	
+
 }

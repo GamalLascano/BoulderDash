@@ -48,7 +48,8 @@ public class Game
 
 		MapInstance.buildMap();
 		MapVisual.drawMap();
-		FrameMap.draw();
+		FrameMap.repaintFrame();
+		FrameMap.getPanelmap().repaint();
 		MapInstance.refresh();
 
 		// Timer timer = new Timer("Imprimir..");
@@ -72,7 +73,8 @@ public class Game
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
-					FrameMap.draw();
+					FrameMap.repaintFrame();
+					FrameMap.getPanelmap().repaint();
 					if (player != null)
 					{
 						quit = player.isInExit();
@@ -93,7 +95,8 @@ public class Game
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
-					FrameMap.draw();
+					FrameMap.repaintFrame();
+					FrameMap.getPanelmap().repaint();
 					// latch.countDown();
 				}
 			}
