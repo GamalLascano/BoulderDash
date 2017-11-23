@@ -57,7 +57,6 @@ public class FrameMenu extends JFrame
 		}
 		return framemenu;
 	}
-	
 	//panel
 	public static void removeAllActionsListeners()
 	{
@@ -121,7 +120,8 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				config();
+				FrameMenu.getInstance().setVisible(false);
+				FrameConfig.getInstance().setVisible(true);
 			}
 		});
 		panel.add(button[0][3]);
