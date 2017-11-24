@@ -243,8 +243,10 @@ public class Rockford extends Actor
 			case MOVINGLEFT:
 				makeMoveLeft();
 				break;
-			default:
+			case IDLE:
 				this.collect(MapItem.getDiamond(getPosition()));
+				break;
+			default:
 				break;
 		}
 		state = StatusActorEnum.IDLE;

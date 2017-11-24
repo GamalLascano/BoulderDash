@@ -3,6 +3,7 @@ package game.model.item;
 import game.model.Position;
 import game.model.SolidTo;
 import game.model.SpriteChar;
+import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
@@ -85,6 +86,10 @@ public class Diamond extends Fallable
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
 		}
+		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() != 0)
+		{
+			this.state = StatusFallableEnum.CONVERT;
+		}
 		else
 		{
 			this.state = StatusFallableEnum.IDLE;
@@ -120,6 +125,9 @@ public class Diamond extends Fallable
 			case SLIDINGLEFT:
 				this.getPosition().goLeft();
 				this.state = StatusFallableEnum.IDLE;
+				break;
+			case CONVERT:
+				MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
 				break;
 			default:
 				break;

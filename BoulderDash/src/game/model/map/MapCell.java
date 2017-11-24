@@ -4,6 +4,7 @@ import game.model.Position;
 import game.model.cell.Cell;
 import game.model.cell.Dirt;
 import game.model.cell.Exit;
+import game.model.cell.Wall;
 import game.model.map.bdlevel.BDLevelReader;
 
 /**
@@ -79,6 +80,25 @@ public class MapCell
 			if (matrix[x][y].isDirt())
 			{
 				return ((Dirt) matrix[x][y]);
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public static Wall getWall(Integer x, Integer y)
+	{
+		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		{
+			if (matrix[x][y].isWall())
+			{
+				return ((Wall) matrix[x][y]);
 			}
 			else
 			{

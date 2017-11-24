@@ -5,6 +5,7 @@ import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapActor;
+import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
@@ -101,6 +102,10 @@ public class Rock extends Fallable
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
 		}
+		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() != 0)
+		{
+			this.state = StatusFallableEnum.CONVERT;
+		}
 		else
 		{
 			this.state = StatusFallableEnum.IDLE;
@@ -140,6 +145,9 @@ public class Rock extends Fallable
 			case SLIDINGLEFT:
 				this.getPosition().goLeft();
 				this.state = StatusFallableEnum.IDLE;
+				break;
+			case CONVERT:
+				MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
 				break;
 			default:
 				break;

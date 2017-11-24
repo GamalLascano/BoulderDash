@@ -13,7 +13,7 @@ import game.model.map.MapInstance;
 public class Exit extends Cell
 {
 
-	private static SpriteChar spritechar = SpriteChar.E;
+	private static SpriteChar spritechar;
 	private static boolean isOpen;
 	private static Exit exit;
 
@@ -24,6 +24,7 @@ public class Exit extends Cell
 	private Exit(Position pos)
 	{
 		super(pos, SolidTo.ALL);
+		spritechar = SpriteChar.E;
 		isOpen = false;
 	}
 

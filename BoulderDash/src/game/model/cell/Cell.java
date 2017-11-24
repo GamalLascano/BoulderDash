@@ -41,6 +41,22 @@ public abstract class Cell
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isWall()
+	{
+		if (this instanceof Wall)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	/**
 	 * 
