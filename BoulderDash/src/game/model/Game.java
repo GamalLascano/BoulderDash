@@ -22,7 +22,7 @@ public class Game
 		final int TASKDELAY = 1000;
 
 		BDLevelReader levelReader = new BDLevelReader();
-		int nivelElegido = 10;
+		int nivelElegido = 5;
 
 		try
 		{
