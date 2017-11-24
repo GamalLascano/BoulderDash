@@ -208,6 +208,9 @@ public class MapInstance
 					case WALL:
 						MapCell.setCell(new Wall(pos));
 						break;
+//					case MAGIC:
+//						MapCell.setCell(new Wall(pos,5));
+//						break;
 					case ROCK:
 						Rock rock = new Rock(pos);
 						MapItem.setItem(rock);

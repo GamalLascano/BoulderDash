@@ -45,7 +45,7 @@ public class FrameMap extends JFrame implements KeyListener
 				paneltop.add(buttontop[x][y]);
 			}
 		}
-		add(paneltop);
+		//add(paneltop);
 		add(panelmap);
 
 		setVisible(true);

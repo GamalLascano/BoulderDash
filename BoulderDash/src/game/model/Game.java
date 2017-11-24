@@ -18,11 +18,11 @@ public class Game
 
 	public static void main(String[] args)
 	{
-		final int TASKSPEED = 200;
+		final int TASKSPEED = 120;
 		final int TASKDELAY = 1000;
 
 		BDLevelReader levelReader = new BDLevelReader();
-		int nivelElegido = 1;
+		int nivelElegido = 10;
 
 		try
 		{

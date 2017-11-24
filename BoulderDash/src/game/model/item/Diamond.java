@@ -86,9 +86,12 @@ public class Diamond extends Fallable
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
 		}
-		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() != 0)
+		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()) != null)
 		{
-			this.state = StatusFallableEnum.CONVERT;
+			if(MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() > 0)
+			{
+				this.state = StatusFallableEnum.CONVERT;
+			}
 		}
 		else
 		{
@@ -128,8 +131,10 @@ public class Diamond extends Fallable
 				break;
 			case CONVERT:
 				MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
+				this.state = StatusFallableEnum.IDLE;
 				break;
 			default:
+				this.state = StatusFallableEnum.IDLE;
 				break;
 		}
 	}
