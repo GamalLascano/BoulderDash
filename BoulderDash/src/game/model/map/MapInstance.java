@@ -16,9 +16,10 @@ import game.model.map.bdlevel.BDLevelReader;
  */
 public class MapInstance
 {
-	private static MapInstance singleton;
+	private static MapInstance mapinstance;
 	private static ListOfEntities entitiesAlive;
 	private static BDLevelReader levelReader;
+	private static Integer selectedLevel;
 
 	/**
 	 * 
@@ -37,19 +38,20 @@ public class MapInstance
 	public static MapInstance getInstance()
 	{
 		// Si la instancia no se creo, se crea, y se devuelve la instancia
-		if (singleton == null)
+		if (mapinstance == null)
 		{
-			singleton = new MapInstance();
+			mapinstance = new MapInstance();
 		}
-		return singleton;
+		return mapinstance;
 	}
 
 	/**
 	 * 
 	 * @param levelReader
 	 */
-	public static void start(BDLevelReader levelReader)
+	public static void start()
 	{
+		BDLevelReader levelReader = new BDLevelReader();
 		MapInstance.getInstance();
 		MapCell.getInstance().start(levelReader);
 		MapItem.getInstance().start(levelReader);
@@ -58,7 +60,40 @@ public class MapInstance
 		entitiesAlive = ListOfEntities.getInstance();
 		ListOfEntities.start();
 	}
-
+	
+	/**
+	 * 
+	 */
+	public static void clear()
+	{
+		ListOfEntities.getList().clear();
+		entitiesAlive = null;
+	}
+	
+	/**
+	 * 
+	 */
+	public static void readLevel()
+	{
+		try
+		{
+			levelReader.readLevels("levels.xml");
+		}
+		catch (Exception e1)
+		{
+			e1.printStackTrace();
+		}
+		try
+		{
+			levelReader.setCurrentLevel(selectedLevel);
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 
 	 * @return
@@ -84,6 +119,24 @@ public class MapInstance
 	public static void setLevelReader(BDLevelReader level)
 	{
 		MapInstance.levelReader = level;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static Integer getSelectedLevel()
+	{
+		return selectedLevel;
+	}
+
+	/**
+	 * 
+	 * @param selectedLevel
+	 */
+	public static void setSelectedLevel(Integer selectedLevel)
+	{
+		MapInstance.selectedLevel = selectedLevel;
 	}
 
 	/**

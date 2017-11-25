@@ -21,9 +21,9 @@ import game.model.map.MapItem;
 public class Rockford extends Actor
 {
 	private SpriteChar spritechar;
-	private int score;
-	private int lives;
-	private int diamonds;
+	private Integer score;
+	private Integer lives;
+	private Integer diamonds;
 	private boolean isPushing;
 	private static Rockford player;
 
@@ -48,7 +48,7 @@ public class Rockford extends Actor
 	 */
 	public static Rockford getInstance(Position pos)
 	{
-		if (player == null)
+		if (player == null || player.getPosition() == null)
 		{
 			player = new Rockford(pos);
 		}
@@ -61,6 +61,10 @@ public class Rockford extends Actor
 	 */
 	public static Rockford getInstance()
 	{
+		if (player == null)
+		{
+			player = new Rockford(null);
+		}
 		return player;
 	}
 
@@ -76,7 +80,7 @@ public class Rockford extends Actor
 	 * 
 	 * @return
 	 */
-	public int getScore()
+	public Integer getScore()
 	{
 		return score;
 	}
@@ -85,9 +89,18 @@ public class Rockford extends Actor
 	 * 
 	 * @return
 	 */
-	public int getDiamonds()
+	public Integer getDiamonds()
 	{
 		return diamonds;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Integer getLives()
+	{
+		return lives;
 	}
 
 	/**

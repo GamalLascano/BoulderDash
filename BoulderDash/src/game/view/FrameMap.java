@@ -1,13 +1,21 @@
 package game.view;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.print.Pageable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.model.CurrentDirection;
@@ -18,35 +26,37 @@ public class FrameMap extends JFrame implements KeyListener
 {
 	//
 	private static final long serialVersionUID = 1L;
-	private static final int CELLSIZE = 15;
+	private static final int CELLSIZE = 16;
 	private static JPanel panelmap = new PanelMap();
 	private static JPanel paneltop = new JPanel();
 	private static FrameMap framemap;
 
 	// panel
-	private static JButton buttontop[][] = new JButton[1][4];
+	private static JLabel labeltop[][] = new JLabel[1][9];
 
 	private FrameMap()
 	{
+		GridBagConstraints c = new GridBagConstraints();
+
 		setLocationRelativeTo(null);
 		setTitle("Boulder Dash");
 		setResizable(false);
-		setSize(900, 600);
+		setSize(643, 433);
+		getContentPane().setBackground(Color.BLACK);
 		addKeyListener(this);
-		setLayout(new GridLayout(0,1,1,1));
+		setLayout(new GridBagLayout());
 		panelmap.setLayout(
 				new GridLayout(MapInstance.getLevelReader().getHEIGHT(), MapInstance.getLevelReader().getWIDTH()));
-		paneltop.setLayout(new FlowLayout());
-		for (int y = 0; y < 4; y++)
-		{
-			for (int x = 0; x < 1; x++)
-			{
-				buttontop[x][y] = new JButton("0");
-				paneltop.add(buttontop[x][y]);
-			}
-		}
-		//add(paneltop);
-		add(panelmap);
+		buildPaneltop();
+		add(paneltop, c);
+		
+		c.weighty = 10;
+		c.weightx = 10;
+		c.fill = GridBagConstraints.BOTH;
+		c.gridx = 0;
+		c.gridy = 1;
+		panelmap.setBackground(Color.BLACK);
+		add(panelmap, c);
 
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,9 +71,140 @@ public class FrameMap extends JFrame implements KeyListener
 		return framemap;
 	}
 
-	public static void putPanelTop()
+	public static void buildPaneltop()
 	{
-
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.weighty = 1;
+		c.fill = GridBagConstraints.VERTICAL;
+		c.gridx = 0;
+		c.gridy = 0;
+		paneltop.setBackground(Color.BLACK);
+		
+		paneltop.setLayout(new FlowLayout());
+		paneltop.setSize(300, 100);
+		
+		labeltop[0][0] = new JLabel("<");
+		labeltop[0][0].setForeground(Color.WHITE);
+		labeltop[0][0].addMouseListener(new MouseListener()
+		{
+			
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				MapInstance.clear();
+				Integer level = MapInstance.getSelectedLevel() - 1;
+				MapInstance.setSelectedLevel(level);
+				MapInstance.readLevel();
+				MapInstance.buildMap();
+				labeltop[0][1].setText(level.toString());
+			}
+		});
+		paneltop.add(labeltop[0][0]);
+		
+		labeltop[0][1] = new JLabel(MapInstance.getSelectedLevel().toString());
+		labeltop[0][1].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][1]);
+		
+		labeltop[0][2] = new JLabel(">");
+		labeltop[0][2].setForeground(Color.WHITE);
+		labeltop[0][2].addMouseListener(new MouseListener()
+		{
+			
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				MapInstance.clear();
+				Integer level = MapInstance.getSelectedLevel() + 1;
+				MapInstance.setSelectedLevel(level);
+				MapInstance.readLevel();
+				MapInstance.buildMap();
+				labeltop[0][1].setText(level.toString());
+			}
+		});
+		paneltop.add(labeltop[0][2]);
+		
+		labeltop[0][3] = new JLabel(Rockford.getInstance().getDiamonds().toString());
+		labeltop[0][3].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][3]);
+		
+		labeltop[0][4] = new JLabel(":");
+		labeltop[0][4].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][4]);
+		
+		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
+		labeltop[0][5] = new JLabel(diamondsneeded.toString());
+		labeltop[0][5].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][5]);
+		
+		labeltop[0][6] = new JLabel("TIMER");
+		labeltop[0][6].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][6]);
+		
+		labeltop[0][7] = new JLabel(Rockford.getInstance().getLives().toString());
+		labeltop[0][7].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][7]);
+		
+		labeltop[0][8] = new JLabel(Rockford.getInstance().getScore().toString());
+		labeltop[0][8].setForeground(Color.WHITE);
+		paneltop.add(labeltop[0][6]);
+		
 	}
 
 	public static void remove()
@@ -78,12 +219,12 @@ public class FrameMap extends JFrame implements KeyListener
 	
 	public static void revalidateFrame()
 	{
-		framemap.revalidate();
+//		framemap.revalidate();
 	}
 	
 	public static void repaintFrame()
 	{
-		framemap.repaint();
+//		framemap.repaint();
 	}
 
 	public static void start()

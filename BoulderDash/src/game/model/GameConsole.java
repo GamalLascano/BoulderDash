@@ -16,32 +16,14 @@ public class GameConsole
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
-		BDLevelReader levelFrame = new BDLevelReader();
-		int nivelElegido;
-
-		for (nivelElegido = 1; nivelElegido <= 10; nivelElegido++)
-		{
-			try
-			{
-				levelFrame.readLevels("levels.xml");
-			}
-			catch (Exception e1)
-			{
-				e1.printStackTrace();
-			}
-			try
-			{
-				levelFrame.setCurrentLevel(nivelElegido);
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-
-			MapInstance.getInstance();
-			MapInstance.start(levelFrame);
+	
+			final int STARTLEVEL = 1;
+	
+			MapInstance.start();
+			MapInstance.setSelectedLevel(STARTLEVEL);
+			MapInstance.readLevel();
 			MapInstance.buildMap();
-			MapVisual.getInstance().start(levelFrame);
+			MapVisual.getInstance().start(MapInstance.getLevelReader());
 
 			boolean quit = false;
 
@@ -93,11 +75,9 @@ public class GameConsole
 				}
 			}
 
-			System.out.println("FIN DEL NIVEL: " + nivelElegido);
-
+			System.out.println("FIN DEL NIVEL: " + MapInstance.getSelectedLevel());
+			System.out.println("FIN DEL PROGRAMA");
+			in.close();
 		}
-		System.out.println("FIN DEL PROGRAMA");
-		in.close();
-	}
 
 }

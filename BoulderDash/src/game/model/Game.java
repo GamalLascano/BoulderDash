@@ -18,33 +18,15 @@ public class Game
 
 	public static void main(String[] args)
 	{
-		final int TASKSPEED = 120;
+		final int TASKSPEED = 110;
 		final int TASKDELAY = 1000;
+		final int STARTLEVEL = 1;
 
-		BDLevelReader levelReader = new BDLevelReader();
-		int nivelElegido = 5;
-
-		try
-		{
-			levelReader.readLevels("levels.xml");
-		}
-		catch (Exception e1)
-		{
-			e1.printStackTrace();
-		}
-		try
-		{
-			levelReader.setCurrentLevel(nivelElegido);
-		}
-		catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		MapInstance.start(levelReader);
+		MapInstance.start();
+		MapInstance.setSelectedLevel(STARTLEVEL);
+		MapInstance.readLevel();
 		FrameMap.start();
-		MapVisual.getInstance().start(levelReader);
+		MapVisual.getInstance().start(MapInstance.getLevelReader());
 
 		MapInstance.buildMap();
 		MapVisual.drawMap();
