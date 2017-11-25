@@ -20,7 +20,7 @@ import game.model.map.MapItem;
  */
 public class Rockford extends Actor
 {
-	private SpriteChar spritechar = SpriteChar.R;
+	private SpriteChar spritechar;
 	private int score;
 	private int lives;
 	private int diamonds;
@@ -34,6 +34,7 @@ public class Rockford extends Actor
 	private Rockford(Position pos)
 	{
 		super(pos);
+		spritechar = SpriteChar.R;
 		score = 0;
 		diamonds = 0;
 		lives = 3;
@@ -239,12 +240,15 @@ public class Rockford extends Actor
 				break;
 			case MOVINGRIGHT:
 				makeMoveRight();
+				spritechar = SpriteChar.b;
 				break;
 			case MOVINGLEFT:
 				makeMoveLeft();
+				spritechar = SpriteChar.d;
 				break;
 			case IDLE:
 				this.collect(MapItem.getDiamond(getPosition()));
+				spritechar = SpriteChar.R;
 				break;
 			default:
 				break;

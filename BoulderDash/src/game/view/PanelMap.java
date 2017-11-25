@@ -33,13 +33,15 @@ public class PanelMap extends JPanel
 	private Image magic;
 	private Image amoeba;
 	private Image rockford;
+	private Image rockfordleft;
+	private Image rockfordright;
 	private Image exit;
 
 	public PanelMap()
 	{
 		try
 		{
-			empty = ImageIO.read(this.getClass().getResource("empty.jpeg"));
+			empty = ImageIO.read(this.getClass().getResource("empty.gif"));
 			dirt = ImageIO.read(this.getClass().getResource("dirt.gif"));
 			boulder = ImageIO.read(this.getClass().getResource("boulder.gif"));
 			diamond = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("diamond.gif"));
@@ -50,6 +52,8 @@ public class PanelMap extends JPanel
 			magic = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("magic.gif"));
 			amoeba = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("amoeba.gif"));
 			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockford.gif"));
+			rockfordleft = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordleft.gif"));
+			rockfordright = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordright.gif"));
 			exit = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("exit.gif"));
 		}
 		catch (IOException e)
@@ -102,6 +106,12 @@ public class PanelMap extends JPanel
 						break;
 					case 'R':
 						graphic.drawImage(rockford, x, y, null);
+						break;
+					case 'd':
+						graphic.drawImage(rockfordleft, x, y, null);
+						break;
+					case 'b':
+						graphic.drawImage(rockfordright, x, y, null);
 						break;
 					case 'E':
 						graphic.drawImage(steel, x, y, null);
