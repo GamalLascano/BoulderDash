@@ -1,7 +1,6 @@
 package game.model.actor;
 
 import game.model.ListOfEntities;
-import game.model.Position;
 import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.cell.Dirt;

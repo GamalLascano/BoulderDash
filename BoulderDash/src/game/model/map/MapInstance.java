@@ -129,6 +129,14 @@ public class MapInstance
 	 */
 	public static void buildSelectedLevel(Integer selectedLevel)
 	{
+		// bugfix porq
+		MapInstance.getInstance();
+		entitiesAlive = ListOfEntities.getInstance();
+		MapCell.getInstance().start();
+		MapItem.getInstance().start();
+		MapActor.getInstance().start();
+		ListOfEntities.start();
+		
 		MapInstance.selectedLevel = selectedLevel;
 		MapInstance.readLevel();
 		MapInstance.buildMap();
