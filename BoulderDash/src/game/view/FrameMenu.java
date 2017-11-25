@@ -37,7 +37,6 @@ public class FrameMenu extends JFrame
 		setSize(600, 600);
 		setVisible(true);
 		
-		add(panel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		for (int y = 0; y < 5; y++)
 		{
@@ -47,6 +46,7 @@ public class FrameMenu extends JFrame
 			}
 		}
 		menu();
+		add(panel);
 	}
 
 	public static FrameMenu getInstance()
@@ -88,7 +88,9 @@ public class FrameMenu extends JFrame
 				Game.main(new String[0]);
 			}
 		});
-		panel.add(button[0][0]);
+		c.gridx = 1;
+		c.gridy = 1;
+		panel.add(button[0][0],c);
 		
 
 		button[0][1].setText("TOP X");
@@ -101,6 +103,8 @@ public class FrameMenu extends JFrame
 				topX();
 			}
 		});
+		c.gridx = 1;
+		c.gridy = 2;
 		panel.add(button[0][1]);
 
 		button[0][2].setText("REGLAS DEL JUEGO");
@@ -113,6 +117,8 @@ public class FrameMenu extends JFrame
 				rules();
 			}
 		});
+		c.gridx = 1;
+		c.gridy = 3;
 		panel.add(button[0][2]);
 
 		button[0][3].setText("CONFIGURACION");
@@ -126,6 +132,8 @@ public class FrameMenu extends JFrame
 				FrameConfig.getInstance().setVisible(true);
 			}
 		});
+		c.gridx = 1;
+		c.gridy = 4;
 		panel.add(button[0][3]);
 		
 		button[0][4].setText("QUITAR");
@@ -136,8 +144,11 @@ public class FrameMenu extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				framemenu.dispose();
+				System.exit(0);
 			}
 		});
+		c.gridx = 1;
+		c.gridy = 5;
 		panel.add(button[0][4]);
 	}
 
