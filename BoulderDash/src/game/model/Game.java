@@ -27,7 +27,7 @@ public class Game
 		final int LIVES = 3;
 
 		MapInstance.start();
-		MapVisual.start();//
+		MapVisual.start();
 		
 		MapInstance.buildSelectedLevel(STARTLEVEL);
 		Rockford.getRockford().setLives(LIVES);
