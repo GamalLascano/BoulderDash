@@ -19,6 +19,7 @@ public class Game
 
 	public static void main(String[] args)
 	{
+		//
 		final int TASKSPEED = 110;
 		final int TASKDELAY = 1000;
 		final int STARTLEVEL = 1;
