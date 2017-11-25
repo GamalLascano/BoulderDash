@@ -13,8 +13,7 @@ import game.model.map.bdlevel.BDLevelReader;
  */
 public class MapItem
 {
-	private static MapItem singleton;
-	private static BDLevelReader level;
+	private static MapItem mapitem;
 	private static Item[][] matrix;
 
 	/**
@@ -31,21 +30,20 @@ public class MapItem
 	 */
 	public static MapItem getInstance()
 	{
-		if (singleton == null)
+		if (mapitem == null)
 		{
-			singleton = new MapItem();
+			mapitem = new MapItem();
 		}
-		return singleton;
+		return mapitem;
 	}
 
 	/**
 	 * 
 	 * @param levels
 	 */
-	public void start(BDLevelReader levels)
+	public void start()
 	{
-		level = levels;
-		matrix = new Item[level.getWIDTH()][level.getHEIGHT()];
+		matrix = new Item[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 		fill();
 	}
 
@@ -86,7 +84,7 @@ public class MapItem
 	 */
 	public static Diamond getDiamond(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			if (matrix[pos.getX()][pos.getY()].isDiamond())
 			{
@@ -111,7 +109,7 @@ public class MapItem
 	 */
 	public static Diamond getDiamond(Integer x, Integer y)
 	{
-		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isDiamond())
 			{
@@ -136,7 +134,7 @@ public class MapItem
 	 */
 	public static Rock getRock(Integer x, Integer y)
 	{
-		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isRock())
 			{
@@ -160,8 +158,8 @@ public class MapItem
 	 */
 	public static boolean setItem(Item ite)
 	{
-		if (level.getWIDTH() >= ite.getPosition().getX() && 0 <= ite.getPosition().getX()
-				&& level.getHEIGHT() >= ite.getPosition().getY() && 0 <= ite.getPosition().getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= ite.getPosition().getX() && 0 <= ite.getPosition().getX()
+				&& MapInstance.getLevelReader().getHEIGHT() >= ite.getPosition().getY() && 0 <= ite.getPosition().getY())
 		{
 			matrix[ite.getPosition().getX()][ite.getPosition().getY()] = ite;
 			return true;
@@ -179,7 +177,7 @@ public class MapItem
 	 */
 	public static boolean removeItem(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = new Empty(pos);
 			return true;
@@ -196,8 +194,8 @@ public class MapItem
 	public void fill()
 	{
 		Position pos = new Position(0, 0);
-		for (int x = 0; x < level.getWIDTH(); x++)
-			for (int y = 0; y < level.getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 			{
 				pos.setXY(x, y);
 				matrix[x][y] = new Empty(pos);

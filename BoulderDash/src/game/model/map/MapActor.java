@@ -1,8 +1,8 @@
 package game.model.map;
 
 import game.model.Position;
-import game.model.actor.*;
-import game.model.map.bdlevel.BDLevelReader;
+import game.model.actor.Actor;
+import game.model.actor.Rockford;
 
 /**
  * 
@@ -10,8 +10,7 @@ import game.model.map.bdlevel.BDLevelReader;
  */
 public class MapActor extends Map
 {
-	private static MapActor singleton;
-	private static BDLevelReader level;
+	private static MapActor mapactor;
 	private static Actor[][] matrix;
 
 	/**
@@ -28,20 +27,19 @@ public class MapActor extends Map
 	 */
 	public static MapActor getInstance()
 	{
-		if (singleton == null)
+		if (mapactor == null)
 		{
-			singleton = new MapActor();
+			mapactor = new MapActor();
 		}
-		return singleton;
+		return mapactor;
 	}
 
 	/**
 	 * 
 	 */
-	public void start(BDLevelReader levels)
+	public void start()
 	{
-		level = levels;
-		matrix = new Actor[level.getWIDTH()][level.getHEIGHT()];
+		matrix = new Actor[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 		fill();
 	}
 
@@ -52,7 +50,7 @@ public class MapActor extends Map
 	 */
 	public static Actor getActor(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			return matrix[pos.getX()][pos.getY()];
 		}
@@ -70,7 +68,7 @@ public class MapActor extends Map
 	 */
 	public static Actor getActor(Integer x, Integer y)
 	{
-		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			return matrix[x][y];
 		}
@@ -88,7 +86,7 @@ public class MapActor extends Map
 	 */
 	public static Rockford getRockford(Integer x, Integer y)
 	{
-		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y] != null)
 			{
@@ -119,8 +117,8 @@ public class MapActor extends Map
 	 */
 	public static boolean setActor(Actor act)
 	{
-		if (level.getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX()
-				&& level.getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX()
+				&& MapInstance.getLevelReader().getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY())
 		{
 			matrix[act.getPosition().getX()][act.getPosition().getY()] = act;
 			return true;
@@ -138,7 +136,7 @@ public class MapActor extends Map
 	 */
 	public static boolean removeActor(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			return true;
@@ -154,8 +152,8 @@ public class MapActor extends Map
 	 */
 	public void fill()
 	{
-		for (int x = 0; x < level.getWIDTH(); x++)
-			for (int y = 0; y < level.getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 			{
 				matrix[x][y] = null;
 			}

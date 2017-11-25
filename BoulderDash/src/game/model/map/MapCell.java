@@ -13,8 +13,7 @@ import game.model.map.bdlevel.BDLevelReader;
  */
 public class MapCell
 {
-	private static MapCell singleton;
-	private static BDLevelReader level;
+	private static MapCell mapcell;
 	private static Cell[][] matrix;
 
 	private MapCell()
@@ -26,19 +25,18 @@ public class MapCell
 
 	public static MapCell getInstance()
 	{
-		if (singleton == null)
+		if (mapcell == null)
 		{
-			singleton = new MapCell();
+			mapcell = new MapCell();
 		}
-		return singleton;
+		return mapcell;
 	}
 
 	// INICIALIZACION
 
-	public void start(BDLevelReader levels)
+	public void start()
 	{
-		level = levels;
-		matrix = new Cell[level.getWIDTH()][level.getHEIGHT()];
+		matrix = new Cell[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 		fill();
 	}
 
@@ -56,7 +54,7 @@ public class MapCell
 
 	public static Dirt getDirt(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			if (matrix[pos.getX()][pos.getY()].isDirt())
 			{
@@ -75,7 +73,7 @@ public class MapCell
 
 	public static Dirt getDirt(Integer x, Integer y)
 	{
-		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isDirt())
 			{
@@ -94,7 +92,7 @@ public class MapCell
 	
 	public static Wall getWall(Integer x, Integer y)
 	{
-		if (level.getWIDTH() >= x && 0 <= x && level.getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isWall())
 			{
@@ -115,8 +113,8 @@ public class MapCell
 
 	public static boolean setCell(Cell cel)
 	{
-		if (level.getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX()
-				&& level.getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX()
+				&& MapInstance.getLevelReader().getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY())
 		{
 			matrix[cel.getPosition().getX()][cel.getPosition().getY()] = cel;
 			return true;
@@ -129,7 +127,7 @@ public class MapCell
 
 	public static boolean removeCell(Position pos)
 	{
-		if (level.getWIDTH() >= pos.getX() && 0 <= pos.getX() && level.getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			matrix[pos.getX()][pos.getY()] = new Dirt(pos, false);
@@ -146,8 +144,8 @@ public class MapCell
 	public static Exit findExit()
 	{
 		Exit exit;
-		for (int x = 0; x < level.getWIDTH(); x++)
-			for (int y = 0; y < level.getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 			{
 				if (matrix[x][y].isExit())
 				{
@@ -161,8 +159,8 @@ public class MapCell
 	// DIRT FILL
 	public void fill()
 	{
-		for (int x = 0; x < level.getWIDTH(); x++)
-			for (int y = 0; y < level.getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 			{
 				Position pos = new Position(x, y);
 				Dirt dirt = new Dirt(pos, false);

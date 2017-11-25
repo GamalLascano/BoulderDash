@@ -11,12 +11,6 @@ public abstract class Map
 
 	/**
 	 * 
-	 * @param levels
-	 */
-	abstract public void start(BDLevelReader levels);
-	
-	/**
-	 * 
 	 */
 	abstract public void fill();
 

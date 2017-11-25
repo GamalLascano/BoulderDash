@@ -23,14 +23,14 @@ public class Game
 		final int STARTLEVEL = 1;
 
 		MapInstance.start();
+		FrameMap.start();
+		
 		MapInstance.setSelectedLevel(STARTLEVEL);
 		MapInstance.readLevel();
-		FrameMap.start();
 		MapVisual.getInstance().start(MapInstance.getLevelReader());
 
 		MapInstance.buildMap();
 		MapVisual.drawMap();
-		FrameMap.repaintFrame();
 		FrameMap.getPanelmap().repaint();
 		MapInstance.refresh();
 
@@ -55,7 +55,7 @@ public class Game
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
-					FrameMap.repaintFrame();
+					FrameMap.refreshPaneltop();
 					FrameMap.getPanelmap().repaint();
 					if (player != null)
 					{
@@ -77,7 +77,6 @@ public class Game
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
-					FrameMap.repaintFrame();
 					FrameMap.getPanelmap().repaint();
 					// latch.countDown();
 				}

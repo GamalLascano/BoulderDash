@@ -51,13 +51,13 @@ public class MapInstance
 	 */
 	public static void start()
 	{
-		BDLevelReader levelReader = new BDLevelReader();
+		BDLevelReader bdlevel = new BDLevelReader();
 		MapInstance.getInstance();
-		MapCell.getInstance().start(levelReader);
-		MapItem.getInstance().start(levelReader);
-		MapActor.getInstance().start(levelReader);
-		MapInstance.setLevelReader(levelReader);
+		levelReader = bdlevel;
 		entitiesAlive = ListOfEntities.getInstance();
+		MapCell.getInstance().start();
+		MapItem.getInstance().start();
+		MapActor.getInstance().start();
 		ListOfEntities.start();
 	}
 	

@@ -13,9 +13,8 @@ import game.model.map.bdlevel.BDLevelReader;
  */
 public class MapVisual
 {
-	private static MapVisual singleton;
+	private static MapVisual mapvisual;
 	private static SpriteChar[][] map;
-	private static BDLevelReader level;
 
 	/**
 	 * 
@@ -31,21 +30,19 @@ public class MapVisual
 	 */
 	public static MapVisual getInstance()
 	{
-		if (singleton == null)
+		if (mapvisual == null)
 		{
-			singleton = new MapVisual();
+			mapvisual = new MapVisual();
 		}
-		return singleton;
+		return mapvisual;
 	}
 
 	/**
 	 * 
-	 * @param levels
 	 */
-	public void start(BDLevelReader levels)
+	public void start()
 	{
-		level = levels;
-		map = new SpriteChar[level.getWIDTH()][level.getHEIGHT()];
+		map = new SpriteChar[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 	}
 
 	/**
@@ -56,9 +53,9 @@ public class MapVisual
 		Position pos = new Position(0, 0);
 		int y;
 		int x;
-		for (y = 0; y < level.getHEIGHT(); y++)
+		for (y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 		{
-			for (x = 0; x < level.getWIDTH(); x++)
+			for (x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
 			{
 				pos.setXY(x, y);
 				if (MapActor.getActor(pos) != null)
@@ -84,9 +81,9 @@ public class MapVisual
 	{
 		System.out.println("..............................................................");
 
-		for (int y = 0; y < level.getHEIGHT(); y++)
+		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
 		{
-			for (int x = 0; x < level.getWIDTH(); x++)
+			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
 			{
 				System.out.print(map[x][y]);
 				System.out.print(" ");
