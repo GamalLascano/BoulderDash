@@ -13,7 +13,7 @@ public class FrameMenu extends JFrame
 	private static JPanel panel = new JPanel(new GridBagLayout());
 	private static FrameMenu framemenu;
 	//panel variables
-	private static JButton button[][] = new JButton[1][4];
+	private static JButton button[][] = new JButton[1][5];
 	private static JList<String> listX = new JList<String>();
 	private static JList<Integer> listLevel = new JList<Integer>();
 	private static JTextField textRockford = new JTextField("Rockford: Your hero, guide him through the caves, searching for diamonds in order to activate the exit. Use the arrow keys to control Rockford. PageUp and PageDown to change level. Escape to restart level.");
@@ -39,7 +39,7 @@ public class FrameMenu extends JFrame
 		
 		add(panel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		for (int y = 0; y < 4; y++)
+		for (int y = 0; y < 5; y++)
 		{
 			for (int x = 0; x < 1; x++)
 			{
@@ -71,6 +71,8 @@ public class FrameMenu extends JFrame
 
 	public static void menu()
 	{
+		GridBagConstraints c = new GridBagConstraints();
+		
 		panel.removeAll();
 		removeAllActionsListeners();
 		panel.revalidate();
@@ -125,6 +127,18 @@ public class FrameMenu extends JFrame
 			}
 		});
 		panel.add(button[0][3]);
+		
+		button[0][4].setText("QUITAR");
+		button[0][4].addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				framemenu.dispose();
+			}
+		});
+		panel.add(button[0][4]);
 	}
 
 	public static void topX()
