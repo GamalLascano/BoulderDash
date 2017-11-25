@@ -26,6 +26,7 @@ public class FrameMap extends JFrame implements KeyListener
 	private static JPanel panelmap = new PanelMap();
 	private static JPanel paneltop = new JPanel();
 	private static FrameMap framemap;
+	private static boolean up,down,right,left;
 
 	// panel
 	private static JLabel labeltop[][] = new JLabel[1][9];
@@ -69,12 +70,14 @@ public class FrameMap extends JFrame implements KeyListener
 	
 	public static void refresh()
 	{	
+		FrameMap.updateMove();
 		FrameMap.refreshPaneltop();
 		FrameMap.panelmap.repaint();
 	}
 	
 	public static void refreshPaneltop()
 	{	
+		labeltop[0][1].setText(MapInstance.getSelectedLevel().toString());
 		labeltop[0][3].setText(Rockford.getRockford().getDiamonds().toString());
 		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
 		labeltop[0][5].setText(diamondsneeded.toString());
@@ -104,44 +107,78 @@ public class FrameMap extends JFrame implements KeyListener
 		return CELLSIZE;
 	}
 
+	public static void updateMove()
+	{
+		Rockford player = Rockford.getRockford();
+		if (up)
+		{
+			player.move(CurrentDirection.UP);
+		}
+		if (down)
+		{
+			player.move(CurrentDirection.DOWN);
+		}
+		if (left)
+		{
+			player.move(CurrentDirection.LEFT);
+		}
+		if (right)
+		{
+			player.move(CurrentDirection.RIGHT);
+		}
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		final Rockford player = Rockford.getRockford();
-		
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			player.move(CurrentDirection.UP);
+			up = true;
 		}
 		
 		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			player.move(CurrentDirection.RIGHT);
+			right = true;
 		}
 		
 		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
-			player.move(CurrentDirection.DOWN);
+			down = true;
 		}
 		
 		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			player.move(CurrentDirection.LEFT);
+			left = true;
 		}
-		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
+	{	
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			up = false;
+		}
 		
+		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			right = false;
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			down = false;
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			left = false;
+		}
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	

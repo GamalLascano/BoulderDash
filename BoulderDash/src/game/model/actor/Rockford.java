@@ -151,6 +151,7 @@ public class Rockford extends Actor
 			state = StatusActorEnum.DEAD;
 			if (this.lives > 0)
 				this.lives--;
+			this.diamonds = 0;
 			this.explode();
 		}
 		ListOfEntities.getList().remove(this);

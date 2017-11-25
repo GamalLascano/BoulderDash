@@ -332,6 +332,7 @@ public class MapInstance
 						break;
 					case PLAYER:
 						Rockford player = Rockford.getInstance();
+						player.setDiamonds(0);
 						player.setPosition(pos);
 						MapActor.setActor(player);
 						ListOfEntities.getList().add(player);

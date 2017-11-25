@@ -5,6 +5,7 @@ import game.model.actor.StatusActorEnum;
 import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
+import game.view.FrameEnd;
 import game.view.FrameMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -40,7 +41,7 @@ public class Game
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
 			int turn = 0;
-			int currentlevel = STARTLEVEL;
+			int currentlevel = MapInstance.getSelectedLevel();
 			boolean lost = false;
 			boolean won = false;
 			Rockford player = Rockford.getRockford();
@@ -82,6 +83,8 @@ public class Game
 					if(Rockford.getRockford().getLives() == 0)
 					{
 						executorService.shutdownNow();
+						FrameMap.disposeFrame();
+						FrameEnd.main(null);
 					}
 				}
 				else if (won)
@@ -89,7 +92,7 @@ public class Game
 					MapInstance.refresh();
 					FrameMap.refresh();
 					won = false;
-					MapInstance.buildSelectedLevel(currentlevel + 1);
+					MapInstance.buildSelectedLevel(++currentlevel);
 				}
 			}
 		}, TASKDELAY, TASKSPEED, TimeUnit.MILLISECONDS);
