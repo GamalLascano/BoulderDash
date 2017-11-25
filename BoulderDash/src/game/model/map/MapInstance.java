@@ -65,15 +65,6 @@ public class MapInstance
 	/**
 	 * 
 	 */
-	public static void clear()
-	{
-		ListOfEntities.getList().clear();
-		entitiesAlive = null;
-	}
-	
-	/**
-	 * 
-	 */
 	public static void readLevel()
 	{
 		try
@@ -136,9 +127,12 @@ public class MapInstance
 	 * 
 	 * @param selectedLevel
 	 */
-	public static void setSelectedLevel(Integer selectedLevel)
+	public static void buildSelectedLevel(Integer selectedLevel)
 	{
 		MapInstance.selectedLevel = selectedLevel;
+		MapInstance.readLevel();
+		MapInstance.buildMap();
+		MapVisual.drawMap();
 	}
 	
 	/**
@@ -245,6 +239,8 @@ public class MapInstance
 	 */
 	public static void refresh()
 	{
+		MapInstance.decrementTimer();
+		MapVisual.drawMap();
 		int i;
 		for (i = 0; i < ListOfEntities.getList().size(); ++i)
 		{
@@ -258,6 +254,7 @@ public class MapInstance
 	 */
 	public static void buildMap()
 	{
+		ListOfEntities.getList().clear();
 		// Para armar el mapa, voy por todo el nivel
 		for (int y = 0; y < levelReader.getHEIGHT(); y++)
 		{
@@ -326,7 +323,8 @@ public class MapInstance
 						MapCell.setCell(Exit.getInstance(pos));
 						break;
 					case PLAYER:
-						Rockford player = Rockford.getInstance(pos);
+						Rockford player = Rockford.getInstance();
+						player.setPosition(pos);
 						MapActor.setActor(player);
 						ListOfEntities.getList().add(player);
 						break;

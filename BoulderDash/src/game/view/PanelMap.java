@@ -35,6 +35,8 @@ public class PanelMap extends JPanel
 	private Image rockford;
 	private Image rockfordleft;
 	private Image rockfordright;
+	private Image rockfordup;
+	private Image rockforddown;
 	private Image exit;
 
 	public PanelMap()
@@ -54,6 +56,8 @@ public class PanelMap extends JPanel
 			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockford.gif"));
 			rockfordleft = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordleft.gif"));
 			rockfordright = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordright.gif"));
+			rockfordup = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordup.gif"));
+			rockforddown = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockforddown.gif"));
 			exit = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("exit.gif"));
 		}
 		catch (IOException e)
@@ -112,6 +116,12 @@ public class PanelMap extends JPanel
 						break;
 					case 'b':
 						graphic.drawImage(rockfordright, x, y, null);
+						break;
+					case 'n':
+						graphic.drawImage(rockfordup, x, y, null);
+						break;
+					case 'u':
+						graphic.drawImage(rockforddown, x, y, null);
 						break;
 					case 'E':
 						graphic.drawImage(steel, x, y, null);

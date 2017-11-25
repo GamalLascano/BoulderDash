@@ -22,36 +22,22 @@ public class Rockford extends Actor
 {
 	private SpriteChar spritechar;
 	private Integer score;
-	private Integer lives = 0;
+	private Integer lives;
 	private Integer diamonds;
 	private boolean isPushing;
 	private static Rockford player;
 
 	/**
 	 * 
-	 * @param pos
 	 */
-	private Rockford(Position pos)
+	private Rockford()
 	{
-		super(pos);
-		spritechar = SpriteChar.R;
-		score = 0;
-		diamonds = 0;
-		isPushing = false;
-	}
-
-	/**
-	 * 
-	 * @param pos
-	 * @return
-	 */
-	public static Rockford getInstance(Position pos)
-	{
-		if (player == null || player.getPosition() == null)
-		{
-			player = new Rockford(pos);
-		}
-		return player;
+		super(null);
+		this.spritechar = SpriteChar.R;
+		this.lives = 0;
+		this.score = 0;
+		this.diamonds = 0;
+		this.isPushing = false;
 	}
 
 	/**
@@ -62,8 +48,17 @@ public class Rockford extends Actor
 	{
 		if (player == null)
 		{
-			player = new Rockford(null);
+			player = new Rockford();
 		}
+		return player;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static Rockford getRockford()
+	{
 		return player;
 	}
 
@@ -156,7 +151,7 @@ public class Rockford extends Actor
 		{
 			state = StatusActorEnum.DEAD;
 			if (this.lives > 0)
-				this.lives = lives--;
+				this.lives--;
 			this.explode();
 		}
 		ListOfEntities.getList().remove(this);
@@ -198,6 +193,7 @@ public class Rockford extends Actor
 		{
 			diamonds++;
 			diamond.collected();
+			score+= 10 * MapInstance.getSelectedLevel();
 		}
 	}
 
@@ -238,6 +234,7 @@ public class Rockford extends Actor
 		Exit door = Exit.getInstance();
 		if (player.getPosition().equals(door.getPosition()))
 		{
+			score+= 1 + MapInstance.getSelectedLevel();
 			return true;
 		}
 		else
@@ -255,9 +252,11 @@ public class Rockford extends Actor
 		{
 			case MOVINGUP:
 				makeMoveUp();
+				spritechar = SpriteChar.n;
 				break;
 			case MOVINGDOWN:
 				makeMoveDown();
+				spritechar = SpriteChar.u;
 				break;
 			case MOVINGRIGHT:
 				makeMoveRight();

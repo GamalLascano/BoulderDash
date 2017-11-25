@@ -21,19 +21,16 @@ public class GameConsole
 			MapInstance.start();
 			MapVisual.start();
 			
-			MapInstance.setSelectedLevel(STARTLEVEL);
-			MapInstance.readLevel();
-			MapInstance.buildMap();
+			MapInstance.buildSelectedLevel(STARTLEVEL);
 
 			boolean quit = false;
 
-			MapVisual.drawMap();
-			MapVisual.imprimirMapa();
 			MapInstance.refresh();
+			MapVisual.imprimirMapa();
 			System.out.println(
 					"Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
 
-			Rockford player = Rockford.getInstance();
+			Rockford player = Rockford.getRockford();
 			Exit door = Exit.getInstance();
 			while (!quit)
 			{
@@ -67,7 +64,6 @@ public class GameConsole
 				}
 
 				MapInstance.refresh();
-				MapVisual.drawMap();
 				MapVisual.imprimirMapa();
 				if (!quit)
 				{

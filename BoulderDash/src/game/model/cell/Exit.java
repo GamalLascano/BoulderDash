@@ -56,7 +56,7 @@ public class Exit extends Cell
 	 */
 	public static void open()
 	{
-		Rockford player = Rockford.getInstance();
+		Rockford player = Rockford.getRockford();
 		if (player.getDiamonds() >= MapInstance.getLevelReader().getDiamondsNeeded())
 		{
 			exit.setSolid(SolidTo.ITEM);

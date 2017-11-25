@@ -5,15 +5,11 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.print.Pageable;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -70,7 +66,85 @@ public class FrameMap extends JFrame implements KeyListener
 		}
 		return framemap;
 	}
+	
+	public static void refresh()
+	{	
+		FrameMap.refreshPaneltop();
+		FrameMap.panelmap.repaint();
+	}
+	
+	public static void refreshPaneltop()
+	{	
+		labeltop[0][3].setText(Rockford.getRockford().getDiamonds().toString());
+		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
+		labeltop[0][5].setText(diamondsneeded.toString());
+		Integer timer = MapInstance.getTimer().intValue();
+		labeltop[0][6].setText(timer.toString());
+		labeltop[0][7].setText(Rockford.getRockford().getLives().toString());
+		labeltop[0][8].setText(Rockford.getRockford().getScore().toString());
+	}
 
+	public static void remove()
+	{
+		panelmap.removeAll();
+	}
+
+	public static void disposeFrame()
+	{
+		framemap.dispose();
+	}
+
+	public static void start()
+	{
+		FrameMap.getInstance();
+	}
+	
+	public static int getCellsize()
+	{
+		return CELLSIZE;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		final Rockford player = Rockford.getRockford();
+		
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			player.move(CurrentDirection.UP);
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			player.move(CurrentDirection.RIGHT);
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			player.move(CurrentDirection.DOWN);
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			player.move(CurrentDirection.LEFT);
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public static void buildPaneltop()
 	{
 		GridBagConstraints c = new GridBagConstraints();
@@ -120,11 +194,8 @@ public class FrameMap extends JFrame implements KeyListener
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				MapInstance.clear();
 				Integer level = MapInstance.getSelectedLevel() - 1;
-				MapInstance.setSelectedLevel(level);
-				MapInstance.readLevel();
-				MapInstance.buildMap();
+				MapInstance.buildSelectedLevel(level);
 				labeltop[0][1].setText(level.toString());
 			}
 		});
@@ -170,17 +241,14 @@ public class FrameMap extends JFrame implements KeyListener
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				MapInstance.clear();
 				Integer level = MapInstance.getSelectedLevel() + 1;
-				MapInstance.setSelectedLevel(level);
-				MapInstance.readLevel();
-				MapInstance.buildMap();
+				MapInstance.buildSelectedLevel(level);
 				labeltop[0][1].setText(level.toString());
 			}
 		});
 		paneltop.add(labeltop[0][2]);
 		
-		labeltop[0][3] = new JLabel(Rockford.getInstance().getDiamonds().toString());
+		labeltop[0][3] = new JLabel(Rockford.getRockford().getDiamonds().toString());
 		labeltop[0][3].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][3]);
 		
@@ -198,95 +266,14 @@ public class FrameMap extends JFrame implements KeyListener
 		labeltop[0][6].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][6]);
 		
-		labeltop[0][7] = new JLabel(Rockford.getInstance().getLives().toString());
+		labeltop[0][7] = new JLabel(Rockford.getRockford().getLives().toString());
 		labeltop[0][7].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][7]);
 		
-		labeltop[0][8] = new JLabel(Rockford.getInstance().getScore().toString());
+		labeltop[0][8] = new JLabel(Rockford.getRockford().getScore().toString());
 		labeltop[0][8].setForeground(Color.WHITE);
-		paneltop.add(labeltop[0][6]);
+		paneltop.add(labeltop[0][8]);
 		
 	}
-	
-	public static void refreshPaneltop()
-	{	
-		labeltop[0][3].setText(Rockford.getInstance().getDiamonds().toString());
-		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
-		labeltop[0][5].setText(diamondsneeded.toString());
-		Integer timer = MapInstance.getTimer().intValue();
-		labeltop[0][6].setText(timer.toString());
-		labeltop[0][7].setText(Rockford.getInstance().getLives().toString());
-		labeltop[0][8].setText(Rockford.getInstance().getScore().toString());
-	}
-
-	public static void remove()
-	{
-		panelmap.removeAll();
-	}
-
-	public static void disposeFrame()
-	{
-		framemap.dispose();
-	}
-
-	public static void start()
-	{
-		FrameMap.getInstance();
-	}
-	
-	public static int getCellsize()
-	{
-		return CELLSIZE;
-	}
-
-	public static JPanel getPanelmap()
-	{
-		return panelmap;
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		final Rockford player = Rockford.getInstance();
-		
-		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			player.move(CurrentDirection.UP);
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
-		{
-			player.move(CurrentDirection.RIGHT);
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			player.move(CurrentDirection.DOWN);
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			player.move(CurrentDirection.LEFT);
-		}
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
-	
 
 }

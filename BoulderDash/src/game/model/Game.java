@@ -1,6 +1,7 @@
 package game.model;
 
 import game.model.actor.Rockford;
+import game.model.actor.StatusActorEnum;
 import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
@@ -25,15 +26,12 @@ public class Game
 
 		MapInstance.start();
 		MapVisual.start();
-		Rockford.getInstance().setLives(LIVES);
 		
-		MapInstance.setSelectedLevel(STARTLEVEL);
-		MapInstance.readLevel();
-		MapInstance.buildMap();
+		MapInstance.buildSelectedLevel(STARTLEVEL);
+		Rockford.getRockford().setLives(LIVES);
 		
 		FrameMap.start();
-		MapVisual.drawMap();
-		FrameMap.getPanelmap().repaint();
+		FrameMap.refresh();
 		MapInstance.refresh();
 
 		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -41,50 +39,56 @@ public class Game
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
 			int turn = 0;
-			boolean quit = false;
-
+			int currentlevel = STARTLEVEL;
+			boolean lost = false;
+			boolean won = false;
+			Rockford player = Rockford.getRockford();
+			
 			@Override
 			public void run()
 			{
-				Rockford player = Rockford.getInstance();
+
 				FrameMap.remove();
-				if (!quit)
+				if (!lost && !won)
 				{
-					MapInstance.decrementTimer();
-					MapVisual.drawMap();
 					MapInstance.refresh();
-					FrameMap.refreshPaneltop();
-					FrameMap.getPanelmap().repaint();
+					FrameMap.refresh();
 					
 					if (player != null)
 					{
-						quit = player.isInExit();
+						won = player.isInExit();
 					}
-					if (Rockford.getInstance() != null)
+					if (Rockford.getRockford().getState() == StatusActorEnum.DEAD)
 					{
-						quit = false;
-					}
-					else
-					{
-						quit = true;
+						lost = true;
 					}
 					
 					if(MapInstance.getTimer() == 0)
 					{
-						Rockford.getInstance().die();
+						Rockford.getRockford().die();
 					}
 					Exit.open();
 					turn++;
 					System.out.println(turn);
 
 				}
-				else
+				else if (lost)
 				{
-					MapVisual.drawMap();
 					MapInstance.refresh();
-					FrameMap.refreshPaneltop();
-					FrameMap.getPanelmap().repaint();
-					// latch.countDown();
+					FrameMap.refresh();
+					lost = false;
+					MapInstance.buildSelectedLevel(currentlevel);
+					if(Rockford.getRockford().getLives() == 0)
+					{
+						executorService.shutdownNow();
+					}
+				}
+				else if (won)
+				{
+					MapInstance.refresh();
+					FrameMap.refresh();
+					won = false;
+					MapInstance.buildSelectedLevel(currentlevel + 1);
 				}
 			}
 		}, TASKDELAY, TASKSPEED, TimeUnit.MILLISECONDS);
