@@ -1,9 +1,9 @@
 package game.model;
 
 import game.model.actor.Rockford;
+import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
-import game.model.map.bdlevel.BDLevelReader;
 import game.view.FrameMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -21,29 +21,26 @@ public class Game
 		final int TASKSPEED = 110;
 		final int TASKDELAY = 1000;
 		final int STARTLEVEL = 1;
+		final int LIVES = 3;
 
 		MapInstance.start();
-		FrameMap.start();
+		MapVisual.start();
+		Rockford.getInstance().setLives(LIVES);
 		
 		MapInstance.setSelectedLevel(STARTLEVEL);
 		MapInstance.readLevel();
-		MapVisual.getInstance().start(MapInstance.getLevelReader());
-
 		MapInstance.buildMap();
+		
+		FrameMap.start();
 		MapVisual.drawMap();
 		FrameMap.getPanelmap().repaint();
 		MapInstance.refresh();
-
-		// Timer timer = new Timer("Imprimir..");
-		// Mitarea tarea = new MiTarea(timer);
-		// timer.schedule(tarea, 0, 2000);
-		// final CountDownLatch latch = new CountDownLatch(1);
 
 		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
-			int seconds = 0;
+			int turn = 0;
 			boolean quit = false;
 
 			@Override
@@ -53,10 +50,12 @@ public class Game
 				FrameMap.remove();
 				if (!quit)
 				{
+					MapInstance.decrementTimer();
 					MapVisual.drawMap();
 					MapInstance.refresh();
 					FrameMap.refreshPaneltop();
 					FrameMap.getPanelmap().repaint();
+					
 					if (player != null)
 					{
 						quit = player.isInExit();
@@ -69,14 +68,21 @@ public class Game
 					{
 						quit = true;
 					}
-					seconds++;
-					System.out.println(seconds);
+					
+					if(MapInstance.getTimer() == 0)
+					{
+						Rockford.getInstance().die();
+					}
+					Exit.open();
+					turn++;
+					System.out.println(turn);
 
 				}
 				else
 				{
 					MapVisual.drawMap();
 					MapInstance.refresh();
+					FrameMap.refreshPaneltop();
 					FrameMap.getPanelmap().repaint();
 					// latch.countDown();
 				}

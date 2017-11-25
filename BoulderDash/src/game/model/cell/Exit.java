@@ -59,7 +59,7 @@ public class Exit extends Cell
 		Rockford player = Rockford.getInstance();
 		if (player.getDiamonds() >= MapInstance.getLevelReader().getDiamondsNeeded())
 		{
-			exit.setSolid(SolidTo.ACTOR);
+			exit.setSolid(SolidTo.ITEM);
 			spritechar = SpriteChar.e;
 			isOpen = true;
 		}

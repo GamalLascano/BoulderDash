@@ -20,6 +20,7 @@ public class MapInstance
 	private static ListOfEntities entitiesAlive;
 	private static BDLevelReader levelReader;
 	private static Integer selectedLevel;
+	private static Double timer;
 
 	/**
 	 * 
@@ -92,6 +93,7 @@ public class MapInstance
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		timer = 150.0;
 	}
 	
 	/**
@@ -137,6 +139,27 @@ public class MapInstance
 	public static void setSelectedLevel(Integer selectedLevel)
 	{
 		MapInstance.selectedLevel = selectedLevel;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static Double getTimer()
+	{
+		return timer;
+	}
+
+	/**
+	 * 
+	 * @param timer
+	 */
+	public static void decrementTimer()
+	{
+		if (MapInstance.timer > 0)
+		{
+			MapInstance.timer-= 0.1;
+		}
 	}
 
 	/**

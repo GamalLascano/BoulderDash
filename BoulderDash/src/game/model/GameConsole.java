@@ -4,7 +4,6 @@ import game.model.actor.Rockford;
 import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
-import game.model.map.bdlevel.BDLevelReader;
 import java.util.Scanner;
 
 /**
@@ -20,10 +19,11 @@ public class GameConsole
 			final int STARTLEVEL = 1;
 	
 			MapInstance.start();
+			MapVisual.start();
+			
 			MapInstance.setSelectedLevel(STARTLEVEL);
 			MapInstance.readLevel();
 			MapInstance.buildMap();
-			MapVisual.getInstance().start(MapInstance.getLevelReader());
 
 			boolean quit = false;
 

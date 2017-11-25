@@ -193,7 +193,8 @@ public class FrameMap extends JFrame implements KeyListener
 		labeltop[0][5].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][5]);
 		
-		labeltop[0][6] = new JLabel("TIMER");
+		Integer timer = MapInstance.getTimer().intValue();
+		labeltop[0][6] = new JLabel(timer.toString());
 		labeltop[0][6].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][6]);
 		
@@ -209,12 +210,13 @@ public class FrameMap extends JFrame implements KeyListener
 	
 	public static void refreshPaneltop()
 	{	
-		labeltop[0][3] = new JLabel(Rockford.getInstance().getDiamonds().toString());
+		labeltop[0][3].setText(Rockford.getInstance().getDiamonds().toString());
 		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
-		labeltop[0][5] = new JLabel(diamondsneeded.toString());
-		labeltop[0][6] = new JLabel("TIMER");
-		labeltop[0][7] = new JLabel(Rockford.getInstance().getLives().toString());
-		labeltop[0][8] = new JLabel(Rockford.getInstance().getScore().toString());
+		labeltop[0][5].setText(diamondsneeded.toString());
+		Integer timer = MapInstance.getTimer().intValue();
+		labeltop[0][6].setText(timer.toString());
+		labeltop[0][7].setText(Rockford.getInstance().getLives().toString());
+		labeltop[0][8].setText(Rockford.getInstance().getScore().toString());
 	}
 
 	public static void remove()

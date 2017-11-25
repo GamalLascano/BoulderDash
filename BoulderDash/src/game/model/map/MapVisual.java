@@ -5,7 +5,6 @@ import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.cell.Cell;
 import game.model.item.Empty;
-import game.model.map.bdlevel.BDLevelReader;
 
 /**
  * Esta clase es la encargada de agarrar los objetos y imprimirlos en pantalla
@@ -40,8 +39,9 @@ public class MapVisual
 	/**
 	 * 
 	 */
-	public void start()
+	public static void start()
 	{
+		MapVisual.getInstance();
 		map = new SpriteChar[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 	}
 

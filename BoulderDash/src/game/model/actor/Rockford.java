@@ -22,7 +22,7 @@ public class Rockford extends Actor
 {
 	private SpriteChar spritechar;
 	private Integer score;
-	private Integer lives;
+	private Integer lives = 0;
 	private Integer diamonds;
 	private boolean isPushing;
 	private static Rockford player;
@@ -37,7 +37,6 @@ public class Rockford extends Actor
 		spritechar = SpriteChar.R;
 		score = 0;
 		diamonds = 0;
-		lives = 3;
 		isPushing = false;
 	}
 
@@ -138,6 +137,15 @@ public class Rockford extends Actor
 	{
 		this.isPushing = pushing;
 	}
+	
+	/**
+	 * 
+	 * @param lives
+	 */
+	public void setLives(int lives)
+	{
+		this.lives = lives;
+	}
 
 	/**
 	 * 
@@ -147,7 +155,7 @@ public class Rockford extends Actor
 		if (state != StatusActorEnum.DEAD)
 		{
 			state = StatusActorEnum.DEAD;
-			if (this.lives != 0)
+			if (this.lives > 0)
 				this.lives = lives--;
 			this.explode();
 		}

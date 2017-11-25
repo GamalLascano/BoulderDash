@@ -5,7 +5,6 @@ import game.model.cell.Cell;
 import game.model.cell.Dirt;
 import game.model.cell.Exit;
 import game.model.cell.Wall;
-import game.model.map.bdlevel.BDLevelReader;
 
 /**
  * 

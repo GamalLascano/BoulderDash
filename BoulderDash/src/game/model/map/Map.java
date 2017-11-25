@@ -1,7 +1,5 @@
 package game.model.map;
 
-import game.model.map.bdlevel.BDLevelReader;
-
 /**
  * 
  *

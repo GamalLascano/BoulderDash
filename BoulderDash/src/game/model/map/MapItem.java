@@ -5,7 +5,6 @@ import game.model.item.Diamond;
 import game.model.item.Empty;
 import game.model.item.Item;
 import game.model.item.Rock;
-import game.model.map.bdlevel.BDLevelReader;
 
 /**
  * 
