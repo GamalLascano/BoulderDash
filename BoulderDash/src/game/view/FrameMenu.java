@@ -19,6 +19,8 @@ public class FrameMenu extends JFrame
 	private static Background panel;
 
 	// panel variables
+	private static GridBagConstraints cons = new GridBagConstraints();
+	private static Insets ins = new Insets(0,0,0,0);
 	// menu
 	private static String imgFileName = "game/view/wallpaper.png";
 	private static Image img;
@@ -37,7 +39,16 @@ public class FrameMenu extends JFrame
 	private static JTextField textAmoeba = new JTextField("Amoeba: ");
 	private static JTextField textExit = new JTextField("Exit: ");
 	// top X
-	private static JTable table = new JTable();
+	private static String[] columnNames = {"TOP","NAME","SCORE",};
+	private static Object[][] data = {
+		    {"1", "Max", new Integer(5000)},
+		    {"2", "Walter", new Integer(3000)},
+		    {"3", "Jesse", new Integer(2000)},
+		    {"4", "Frank", new Integer(1000)},
+		    {"5", "Tortuga", new Integer(10)}
+		};
+	private static JTable table = new JTable(data, columnNames);
+	private static JScrollPane scrollPane = new JScrollPane(table);
 	// config
 	private static JComboBox<String> resoluciones;
 	private static JCheckBox fullScr;
@@ -135,10 +146,7 @@ public class FrameMenu extends JFrame
 		panel.removeAll();
 		removeAllActionsListeners();
 		panel.revalidate();
-
-		GridBagConstraints cons = new GridBagConstraints();
-		cons.fill = GridBagConstraints.NONE;
-		cons.weighty = 1;
+		panel.repaint();
 		
 		button[0][0].setText("QUIERO JUGAR!");
 		button[0][0].addActionListener(new ActionListener()
@@ -151,8 +159,22 @@ public class FrameMenu extends JFrame
 				Game.main(new String[0]);
 			}
 		});
+		
 		cons.gridx = 0;
 		cons.gridy = 0;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 0.5;
+		cons.weighty = 0.5;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 5;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
 		panel.add(button[0][0], cons);
 
 		button[1][0].setText("TOP X");
@@ -167,6 +189,19 @@ public class FrameMenu extends JFrame
 		});
 		cons.gridx = 0;
 		cons.gridy = 1;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 0.5;
+		cons.weighty = 0.5;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
 		panel.add(button[1][0]);
 
 		button[2][0].setText("REGLAS DEL JUEGO");
@@ -181,6 +216,19 @@ public class FrameMenu extends JFrame
 		});
 		cons.gridx = 0;
 		cons.gridy = 2;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 0.5;
+		cons.weighty = 0.5;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
 		panel.add(button[2][0]);
 
 		button[3][0].setText("CONFIGURACION");
@@ -195,8 +243,21 @@ public class FrameMenu extends JFrame
 				//config();
 			}
 		});
-		cons.gridx = 1;
-		cons.gridy = 0;
+		cons.gridx = 0;
+		cons.gridy = 3;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 0.5;
+		cons.weighty = 0.5;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
 		panel.add(button[3][0]);
 
 		button[4][0].setText("QUITAR");
@@ -210,8 +271,21 @@ public class FrameMenu extends JFrame
 				System.exit(0);
 			}
 		});
-		cons.gridx = 1;
-		cons.gridy = 1;
+		cons.gridx = 0;
+		cons.gridy = 4;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 0.5;
+		cons.weighty = 0.5;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
 		panel.add(button[4][0]);
 	}
 
@@ -219,9 +293,11 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
+		panel.repaint();
 		removeAllActionsListeners();
 
-		
+		table.setFillsViewportHeight(true);
+		table.setAutoCreateRowSorter(true);
 
 		button[0][0].setText("Back");
 		button[0][0].addActionListener(new ActionListener()
@@ -233,7 +309,39 @@ public class FrameMenu extends JFrame
 				menu();
 			}
 		});
-		panel.add(button[0][0]);
+		cons.gridx = 0;
+		cons.gridy = 0;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 1;
+		cons.weighty = 1;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
+		panel.add(table, cons);
+		
+		cons.gridx = 0;
+		cons.gridy = 1;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 1;
+		cons.weighty = 1;
+		cons.anchor = GridBagConstraints.BASELINE;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
+		panel.add(button[0][0], cons);
 
 	}
 
@@ -241,6 +349,7 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
+		panel.repaint();
 		removeAllActionsListeners();
 
 		panel.add(textRockford);
@@ -273,6 +382,8 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
+		panel.repaint();
+		
 		removeAllActionsListeners();
 		button[0][0].removeActionListener(button[0][0].getActionListeners()[0]);
 		button[0][0].setText("Back");
