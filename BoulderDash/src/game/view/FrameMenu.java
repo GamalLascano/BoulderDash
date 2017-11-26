@@ -104,6 +104,7 @@ public class FrameMenu extends JFrame
 			try
 			{
 				img = ImageIO.read(imgUrl);
+				img = img.getScaledInstance(this.getSize().width, this.getSize().height, Image.SCALE_DEFAULT);
 			}
 			catch (IOException ex)
 			{
@@ -187,9 +188,9 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-//				FrameMenu.getInstance().setVisible(false);
-//				FrameConfig.getInstance().setVisible(true);
-				config();
+				FrameMenu.getInstance().setVisible(false);
+				FrameConfig.getInstance().setVisible(true);
+				//config();
 			}
 		});
 		cons.gridx = 1;
@@ -270,18 +271,6 @@ public class FrameMenu extends JFrame
 		panel.removeAll();
 		panel.revalidate();
 		removeAllActionsListeners();
-		
-		String[] resolutions = { "800x600", "1024x768", "1366x768","1920x1080" };
-		String[] tops = { "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
-		top = new JComboBox(tops);
-		top.setSelectedIndex(0);
-		resoluciones = new JComboBox(resolutions);
-		resoluciones.setSelectedIndex(0);
-		//resoluciones.addActionListener(this);
-		fullScr = new JCheckBox("Pantalla Completa");
-		fullScr.addItemListener(new MiItemListener());
-		fullScr.setSelected(false);
-
 		button[0][0].removeActionListener(button[0][0].getActionListeners()[0]);
 		button[0][0].setText("Back");
 		button[0][0].setBounds(0, 0, 100, 25);
@@ -297,7 +286,6 @@ public class FrameMenu extends JFrame
 
 		panel.add(top);
 		panel.add(resoluciones);
-		panel.add(fullScr);
 		panel.add(button[0][0]);
 	}
 

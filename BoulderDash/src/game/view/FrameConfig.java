@@ -10,7 +10,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-public class FrameConfig extends JFrame implements ActionListener {
+public class FrameConfig extends JFrame implements ActionListener
+{
 	/**
 	 * 
 	 */
@@ -20,15 +21,19 @@ public class FrameConfig extends JFrame implements ActionListener {
 	private JCheckBox fullScr;
 	private JComboBox<String> top;
 	private JButton boton;
+	private Dimension pastScreenSize = new Dimension(800, 600);
 
-	private FrameConfig() {
+	private FrameConfig()
+	{
 		setTitle("Settings");
 		setResizable(true);
 		setSize(800, 600);
 		setLayout(new GridLayout(4, 1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		String[] resolutions = { "800x600", "1024x768", "1366x768","1920x1080" };
-		String[] tops = { "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
+		String[] resolutions =
+		{ "800x600", "1024x768", "1366x768", "1920x1080" };
+		String[] tops =
+		{ "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
 		top = new JComboBox(tops);
 		top.setSelectedIndex(0);
 		resoluciones = new JComboBox(resolutions);
@@ -47,75 +52,110 @@ public class FrameConfig extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	public static FrameConfig getInstance() {
-		if (single == null) {
+	public static FrameConfig getInstance()
+	{
+		if (single == null)
+		{
 			single = new FrameConfig();
 		}
 		return single;
 	}
 
-	public class MiItemListener implements ItemListener {
+	public class MiItemListener implements ItemListener
+	{
 		@Override
-		public void itemStateChanged(ItemEvent e) {
-			if (e.getStateChange() == ItemEvent.SELECTED) {
+		public void itemStateChanged(ItemEvent e)
+		{
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			if (e.getStateChange() == ItemEvent.SELECTED)
+			{
 				FrameConfig.getInstance().getContentPane().getComponent(1).setEnabled(false);
 				FrameConfig.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
 				FrameConfig.getInstance().dispose();
 				FrameConfig.getInstance().setUndecorated(true);
 				FrameConfig.getInstance().setVisible(true);
+				pastScreenSize = FrameMenu.getInstance().getSize();
+				FrameMenu.getInstance().setSize(screenSize);
+				FrameMenu.getInstance().putBackground();
 				FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
 				FrameMenu.getInstance().dispose();
 				FrameMenu.getInstance().setUndecorated(true);
-			} else {
+			}
+			else
+			{
 				FrameConfig.getInstance().getContentPane().getComponent(1).setEnabled(true);
 				FrameConfig.getInstance().setExtendedState(JFrame.NORMAL);
 				FrameConfig.getInstance().dispose();
 				FrameConfig.getInstance().setUndecorated(false);
 				FrameConfig.getInstance().setVisible(true);
-				FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
+				FrameMenu.getInstance().setSize(pastScreenSize);
+				FrameMenu.getInstance().putBackground();
+				FrameMenu.getInstance().setExtendedState(JFrame.NORMAL);
 				FrameMenu.getInstance().dispose();
 				FrameMenu.getInstance().setUndecorated(false);
 
 			}
 		}
 	}
-	public class mouseListenerSalida extends MouseAdapter{
+
+	public class mouseListenerSalida extends MouseAdapter
+	{
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(MouseEvent e)
+		{
 			FrameMenu.getInstance().setVisible(true);
 			FrameConfig.getInstance().setVisible(false);
 		}
 	}
-	public class miMouseListener extends MouseAdapter {
+
+	public class miMouseListener extends MouseAdapter
+	{
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(MouseEvent e)
+		{
 			System.exit(0);
 		}
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == resoluciones) {
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getSource() == resoluciones)
+		{
 			JComboBox cb = (JComboBox) e.getSource();
 			String res = (String) cb.getSelectedItem();
-			if (res.equals("800x600")) {
+			if (res.equals("800x600"))
+			{
 				FrameMenu.getInstance().setSize(800, 600);
+				FrameMenu.getInstance().putBackground();
 				this.setSize(800, 600);
 				this.repaint();
-			} else {
-				if (res.equals("1024x768")) {
+			}
+			else
+			{
+				if (res.equals("1024x768"))
+				{
 					FrameMenu.getInstance().setSize(1024, 768);
+					FrameMenu.getInstance().putBackground();
 					this.setSize(1024, 768);
 					this.repaint();
-				} else {
-					if (res.equals("1366x768")) {
+				}
+				else
+				{
+					if (res.equals("1366x768"))
+					{
 						FrameMenu.getInstance().setSize(1366, 768);
+						FrameMenu.getInstance().putBackground();
 						this.setSize(1366, 768);
 						this.repaint();
-					}else {
-						if (res.equals("1920x1080")) {
+					}
+					else
+					{
+						if (res.equals("1920x1080"))
+						{
 							FrameMenu.getInstance().setSize(1920, 1080);
-							this.setSize(1920,1080);
+							FrameMenu.getInstance().putBackground();
+							this.setSize(1920, 1080);
 							this.repaint();
 						}
 					}
@@ -124,7 +164,8 @@ public class FrameConfig extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		FrameConfig.getInstance();
 	}
 
