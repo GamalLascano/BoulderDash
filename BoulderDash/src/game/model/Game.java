@@ -35,9 +35,9 @@ public class Game
 		FrameMap.start();
 		FrameMap.refresh();
 		MapInstance.refresh();
+		FrameMap.getInstance().setVisible(true);
 
 		final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-
 		executorService.scheduleAtFixedRate(new Runnable()
 		{
 			int turn = 0;
@@ -83,6 +83,7 @@ public class Game
 					if(Rockford.getRockford().getLives() == 0)
 					{
 						executorService.shutdownNow();
+						FrameMap.getInstance().setVisible(false);
 						FrameMap.disposeFrame();
 						FrameEnd.main(null);
 					}
