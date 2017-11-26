@@ -27,7 +27,8 @@ public class Game
 		final int LIVES = 3;
 		MapInstance.start();
 		MapVisual.start();
-		if (MapInstance.getSelectedLevel()==null) {
+		if (MapInstance.getSelectedLevel() == null)
+		{
 			MapInstance.setSelectedLevel(STARTLEVEL);
 		}
 		MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
@@ -45,7 +46,7 @@ public class Game
 			boolean lost = false;
 			boolean won = false;
 			Rockford player = Rockford.getRockford();
-			
+
 			@Override
 			public void run()
 			{
@@ -55,7 +56,7 @@ public class Game
 				{
 					MapInstance.refresh();
 					FrameMap.refresh();
-					
+
 					if (player != null)
 					{
 						won = player.isInExit();
@@ -64,8 +65,8 @@ public class Game
 					{
 						lost = true;
 					}
-					
-					if(MapInstance.getTimer() == 0)
+
+					if (MapInstance.getTimer() == 0)
 					{
 						Rockford.getRockford().die();
 					}
@@ -80,7 +81,7 @@ public class Game
 					FrameMap.refresh();
 					lost = false;
 					MapInstance.buildSelectedLevel(currentlevel);
-					if(Rockford.getRockford().getLives() == 0)
+					if (Rockford.getRockford().getLives() == 0)
 					{
 						executorService.shutdownNow();
 						FrameMap.getInstance().setVisible(false);
