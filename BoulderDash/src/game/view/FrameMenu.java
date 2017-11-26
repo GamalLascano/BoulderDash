@@ -9,6 +9,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 import game.model.Game;
 import game.model.map.MapInstance;
@@ -626,6 +627,12 @@ public class FrameMenu extends JFrame
 		panel.add(button[0], cons);
 	}
 
+	public void addNameTable(String name, Integer score, Integer time)
+	{
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.addRow(new Object[]{name, score.toString(), time.toString()});
+	}
+	
 	public static void main(String[] args)
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();

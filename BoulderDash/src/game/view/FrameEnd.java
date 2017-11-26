@@ -26,6 +26,7 @@ public class FrameEnd extends JFrame
 	private JTextField field;
 	private JButton button;
 	private JLabel scoreinfo;
+	private Integer time;
 	
 	private FrameEnd()
 	{
@@ -78,12 +79,40 @@ public class FrameEnd extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				setVisible(false);
-				FrameMenu.main(null);
+				String name = field.getText();
+				if(nameIsValid(name))
+				{
+					if(name.length() > 20)
+						name = name.substring(0, 20);
+					setVisible(false);
+					FrameMenu.getInstance().addNameTable(name, Rockford.getRockford().getScore(), frameend.time);
+					FrameMenu.main(null);
+				}
+				else
+				{
+					field.setText("INVALIDO!");
+				}
 			}
 		});
 		c.gridy = 2;
 		panelend.add(button,c);		
+	}
+	
+	public boolean nameIsValid(String name)
+	{
+		if(name.length() > 2 && !name.contains(" ") && !name.equals("INVALIDO!"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static void setTime(Integer time)
+	{
+		frameend.time = time;
 	}
 	
 	public static void main(String[] args)

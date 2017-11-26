@@ -86,6 +86,7 @@ public class Game
 						executorService.shutdownNow();
 						FrameMap.getInstance().setVisible(false);
 						FrameMap.disposeFrame();
+						FrameEnd.setTime(turn);
 						FrameEnd.main(null);
 					}
 				}
@@ -97,8 +98,9 @@ public class Game
 					MapInstance.buildSelectedLevel(++currentlevel);
 				}
 			}
+			
 		}, TASKDELAY, TASKSPEED, TimeUnit.MILLISECONDS);
-
+		
 		// try
 		// {
 		// latch.await();
