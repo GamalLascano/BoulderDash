@@ -55,7 +55,7 @@ public class FrameMenu extends JFrame
 		return framemenu;
 	}
 
-	// frame
+	// framee
 	public void setupFrameMenu()
 	{
 		setLocationRelativeTo(null);
