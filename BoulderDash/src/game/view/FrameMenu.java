@@ -36,6 +36,8 @@ public class FrameMenu extends JFrame
 	private static JTextField textButterfly = new JTextField("Butterfly: ");
 	private static JTextField textAmoeba = new JTextField("Amoeba: ");
 	private static JTextField textExit = new JTextField("Exit: ");
+	// top X
+	private static JTable table = new JTable();
 	// config
 	private static JComboBox<String> resoluciones;
 	private static JCheckBox fullScr;
@@ -219,6 +221,7 @@ public class FrameMenu extends JFrame
 		panel.revalidate();
 		removeAllActionsListeners();
 
+		
 
 		button[0][0].setText("Back");
 		button[0][0].addActionListener(new ActionListener()

@@ -193,7 +193,7 @@ public class FrameMap extends JFrame implements KeyListener
 		paneltop.setBackground(Color.BLACK);
 		
 		paneltop.setLayout(new FlowLayout());
-		paneltop.setSize(300, 100);
+		paneltop.setSize(643, 100);
 		
 		labeltop[0][0] = new JLabel("<");
 		labeltop[0][0].setForeground(Color.WHITE);
