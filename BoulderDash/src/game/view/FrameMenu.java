@@ -2,15 +2,16 @@ package game.view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import game.model.Game;
 import game.model.map.MapInstance;
-import game.view.bak.FrameConfig;
 
 public class FrameMenu extends JFrame
 {
@@ -20,50 +21,61 @@ public class FrameMenu extends JFrame
 
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
-	private static Insets ins = new Insets(0,0,0,0);
+	private static Insets ins = new Insets(0, 0, 0, 0);
 	// menu
-	private static String imgFileName = "game/view/wallpaper.png";
+	private static String imgFileName = "game/view/wallpaper.jpg";
 	private static Image img;
 	private static JButton button[] = new JButton[5];
 	// rules
-	private static JTextField textRockford = new JTextField(
-			"Rockford: Your hero, guide him through the caves, searching for diamonds in order to activate the exit. Use the arrow keys to control Rockford. PageUp and PageDown to change level. Escape to restart level.");
-	private static JTextField textDirt = new JTextField("Dirt: ");
-	private static JTextField textBoulder = new JTextField("Boulder: ");
-	private static JTextField textDiamond = new JTextField("Diamond: ");
-	private static JTextField textWall = new JTextField("Wall: ");
-	private static JTextField textSteel = new JTextField("Steel: ");
-	private static JTextField textMagic = new JTextField("Magic: ");
-	private static JTextField textFirefly = new JTextField("Firefly: ");
-	private static JTextField textButterfly = new JTextField("Butterfly: ");
-	private static JTextField textAmoeba = new JTextField("Amoeba: ");
-	private static JTextField textExit = new JTextField("Exit: ");
+	private static BufferedImage instructionsImg;
+	private static JLabel instructions;
 	// top X
-	private static String[] columnNames = {"TOP","NAME","SCORE",};
-	private static Object[][] data = {
-		    {"1", "Max", new Integer(5000)},
-		    {"2", "Walter", new Integer(3000)},
-		    {"3", "Jesse", new Integer(2000)},
-		    {"4", "Frank", new Integer(1000)},
-		    {"5", "Tortuga", new Integer(10)}
-		};
+	private static String[] columnNames =
+	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
+	private static Object[][] data =
+	{
+			{ "1", "Max", new Integer(5000), new Integer(2000) },
+			{ "2", "Walter", new Integer(3000), new Integer(2000) },
+			{ "3", "Jesse", new Integer(2000), new Integer(2000) },
+			{ "4", "Frank", new Integer(1000), new Integer(2000) },
+			{ "5", "Tortuga", new Integer(10), new Integer(2000) },
+			{ "6", "-", new Integer(0), new Integer(0) },
+			{ "7", "-", new Integer(0), new Integer(0) },
+			{ "8", "-", new Integer(0), new Integer(0) },
+			{ "9", "-", new Integer(0), new Integer(0) },
+			{ "10", "-", new Integer(0), new Integer(0) },
+			{ "11", "-", new Integer(0), new Integer(0) },
+			{ "12", "-", new Integer(0), new Integer(0) },
+			{ "13", "-", new Integer(0), new Integer(0) },
+			{ "14", "-", new Integer(0), new Integer(0) },
+			{ "15", "-", new Integer(0), new Integer(0) },
+			{ "16", "-", new Integer(0), new Integer(0) },
+			{ "17", "-", new Integer(0), new Integer(0) },
+			{ "18", "-", new Integer(0), new Integer(0) },
+			{ "19", "-", new Integer(0), new Integer(0) },
+			{ "20", "-", new Integer(0), new Integer(0) }, };
 	private static JTable table = new JTable(data, columnNames);
 	private static JScrollPane scrollPane = new JScrollPane(table);
+	private static JLabel toptitle;
+	RowFilter<Object, Object> filter;
 	// config
 	private static JComboBox<String> resoluciones;
 	private static JCheckBox fullScr;
 	private static JComboBox<String> top;
 	private static JComboBox<String> levelsel;
-	private static String[] levels= {"1","2","3","4","5","6","7","8","9","10"};
-	private static String[] resolutions = { "800x600", "1024x768", "1366x768", "1920x1080" };
-	private static String[] tops = { "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
+	private static String[] levels =
+	{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+	private static String[] resolutions =
+	{ "800x600", "1024x768", "1366x768", "1920x1080" };
+	private static String[] tops =
+	{ "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
 	private static Dimension pastScreenSize = new Dimension(800, 600);
 
 	private FrameMenu()
 	{
 		setupFrameMenu();
 		setupPanelMenu();
-		
+
 		add(panel);
 		setPreferredSize(new Dimension(img.getWidth(null), img.getHeight(null)));
 		pack();
@@ -86,10 +98,10 @@ public class FrameMenu extends JFrame
 		setTitle("Boulder Dash Menu");
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setSize(600, 600);
+		setSize(800, 600);
 		setVisible(true);
 	}
-	
+
 	public void setupPanelMenu()
 	{
 		panel = new Background(new GridBagLayout());
@@ -97,7 +109,7 @@ public class FrameMenu extends JFrame
 		putButtons();
 		menu();
 	}
-	
+
 	public void putButtons()
 	{
 		for (int y = 0; y < 5; y++)
@@ -141,12 +153,12 @@ public class FrameMenu extends JFrame
 	}
 
 	public static void menu()
-	{		
+	{
 		panel.removeAll();
 		removeAllActionsListeners();
 		panel.revalidate();
 		panel.repaint();
-		
+
 		button[0].setText("QUIERO JUGAR!");
 		button[0].addActionListener(new ActionListener()
 		{
@@ -158,14 +170,14 @@ public class FrameMenu extends JFrame
 				Game.main(new String[0]);
 			}
 		});
-		
+
 		cons.gridx = 0;
 		cons.gridy = 0;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 0.5;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.CENTER;
+		cons.weighty = 5;
+		cons.anchor = GridBagConstraints.SOUTH;
 		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
 		ins.left = 0;
@@ -186,13 +198,13 @@ public class FrameMenu extends JFrame
 				topX();
 			}
 		});
-		cons.gridx = 0;
-		cons.gridy = 1;
+		cons.gridx = 1;
+		cons.gridy = 0;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 0.5;
 		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.CENTER;
+		cons.anchor = GridBagConstraints.SOUTH;
 		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
 		ins.left = 0;
@@ -213,13 +225,13 @@ public class FrameMenu extends JFrame
 				rules();
 			}
 		});
-		cons.gridx = 0;
-		cons.gridy = 2;
+		cons.gridx = 2;
+		cons.gridy = 0;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 0.5;
 		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.CENTER;
+		cons.anchor = GridBagConstraints.SOUTH;
 		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
 		ins.left = 0;
@@ -241,12 +253,12 @@ public class FrameMenu extends JFrame
 			}
 		});
 		cons.gridx = 0;
-		cons.gridy = 3;
+		cons.gridy = 1;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 0.5;
 		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.CENTER;
+		cons.anchor = GridBagConstraints.ABOVE_BASELINE;
 		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
 		ins.left = 0;
@@ -268,13 +280,13 @@ public class FrameMenu extends JFrame
 				System.exit(0);
 			}
 		});
-		cons.gridx = 0;
-		cons.gridy = 4;
+		cons.gridx = 2;
+		cons.gridy = 1;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 0.5;
 		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.CENTER;
+		cons.anchor = GridBagConstraints.ABOVE_BASELINE;
 		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
 		ins.left = 0;
@@ -306,14 +318,17 @@ public class FrameMenu extends JFrame
 				menu();
 			}
 		});
+		toptitle = new JLabel("TOP X");
+		toptitle.setForeground(Color.WHITE);
+
 		cons.gridx = 0;
 		cons.gridy = 0;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 1;
-		cons.weighty = 0.1;
+		cons.weighty = 0.5;
 		cons.anchor = GridBagConstraints.ABOVE_BASELINE;
-		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
 		ins.left = 0;
 		ins.right = 0;
@@ -321,14 +336,31 @@ public class FrameMenu extends JFrame
 		cons.insets = ins;
 		cons.ipadx = 0;
 		cons.ipady = 0;
-		panel.add(table, cons);
-		
+		panel.add(toptitle, cons);
+
 		cons.gridx = 0;
 		cons.gridy = 1;
+		cons.gridwidth = 5;
+		cons.gridheight = 1;
+		cons.weightx = 1;
+		cons.weighty = 1;
+		cons.anchor = GridBagConstraints.CENTER;
+		cons.fill = GridBagConstraints.BOTH;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
+		panel.add(scrollPane, cons);
+
+		cons.gridx = 0;
+		cons.gridy = 2;
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.weightx = 1;
-		cons.weighty = 0.5;
+		cons.weighty = 0.8;
 		cons.anchor = GridBagConstraints.BELOW_BASELINE;
 		cons.fill = GridBagConstraints.CENTER;
 		ins.bottom = 0;
@@ -349,17 +381,15 @@ public class FrameMenu extends JFrame
 		panel.repaint();
 		removeAllActionsListeners();
 
-		panel.add(textRockford);
-		panel.add(textDirt);
-		panel.add(textBoulder);
-		panel.add(textDiamond);
-		panel.add(textWall);
-		panel.add(textSteel);
-		panel.add(textMagic);
-		panel.add(textFirefly);
-		panel.add(textButterfly);
-		panel.add(textAmoeba);
-		panel.add(textExit);
+		try
+		{
+			instructionsImg = ImageIO.read(framemenu.getClass().getResource("instructions.png"));
+		}
+		catch (IOException e1)
+		{
+			e1.printStackTrace();
+		}
+		instructions = new JLabel(new ImageIcon(instructionsImg));
 
 		button[0].setText("Back");
 		button[0].addActionListener(new ActionListener()
@@ -371,7 +401,40 @@ public class FrameMenu extends JFrame
 				menu();
 			}
 		});
-		panel.add(button[0]);
+
+		cons.gridx = 0;
+		cons.gridy = 0;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 1;
+		cons.weighty = 1;
+		cons.anchor = GridBagConstraints.BELOW_BASELINE;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
+		panel.add(instructions, cons);
+
+		cons.gridx = 0;
+		cons.gridy = 1;
+		cons.gridwidth = 1;
+		cons.gridheight = 1;
+		cons.weightx = 1;
+		cons.weighty = 0.8;
+		cons.anchor = GridBagConstraints.BELOW_BASELINE;
+		cons.fill = GridBagConstraints.CENTER;
+		ins.bottom = 0;
+		ins.left = 0;
+		ins.right = 0;
+		ins.top = 0;
+		cons.insets = ins;
+		cons.ipadx = 0;
+		cons.ipady = 0;
+		panel.add(button[0], cons);
 	}
 
 	public static void config()
@@ -380,7 +443,7 @@ public class FrameMenu extends JFrame
 		panel.revalidate();
 		panel.repaint();
 		removeAllActionsListeners();
-		
+
 		top = new JComboBox<>(tops);
 		top.setSelectedIndex(0);
 		resoluciones = new JComboBox<>(resolutions);
@@ -391,9 +454,10 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
-				switch(res)
+				switch (res)
 				{
 					case "800x600":
 					{
@@ -434,31 +498,18 @@ public class FrameMenu extends JFrame
 				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 				if (e.getStateChange() == ItemEvent.SELECTED)
 				{
-					FrameConfig.getInstance().getContentPane().getComponent(1).setEnabled(false);
-					FrameConfig.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
-					FrameConfig.getInstance().dispose();
-					FrameConfig.getInstance().setUndecorated(true);
-					FrameConfig.getInstance().setVisible(true);
 					pastScreenSize = FrameMenu.getInstance().getSize();
 					FrameMenu.getInstance().setSize(screenSize);
 					FrameMenu.getInstance().putBackground();
 					FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
-					FrameMenu.getInstance().dispose();
 					FrameMenu.getInstance().setUndecorated(true);
 				}
 				else
 				{
-					FrameConfig.getInstance().getContentPane().getComponent(1).setEnabled(true);
-					FrameConfig.getInstance().setExtendedState(JFrame.NORMAL);
-					FrameConfig.getInstance().dispose();
-					FrameConfig.getInstance().setUndecorated(false);
-					FrameConfig.getInstance().setVisible(true);
 					FrameMenu.getInstance().setSize(pastScreenSize);
 					FrameMenu.getInstance().putBackground();
 					FrameMenu.getInstance().setExtendedState(JFrame.NORMAL);
-					FrameMenu.getInstance().dispose();
 					FrameMenu.getInstance().setUndecorated(false);
-
 				}
 			}
 		});
@@ -471,12 +522,13 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
 				MapInstance.setSelectedLevel(Integer.parseInt(res));
 			}
 		});
-		
+
 		button[0].setText("Back");
 		button[0].addActionListener(new ActionListener()
 		{
@@ -487,7 +539,7 @@ public class FrameMenu extends JFrame
 				menu();
 			}
 		});
-		
+
 		cons.gridx = 0;
 		cons.gridy = 1;
 		cons.gridwidth = 1;
@@ -504,7 +556,7 @@ public class FrameMenu extends JFrame
 		cons.ipadx = 0;
 		cons.ipady = 0;
 		panel.add(top, cons);
-		
+
 		cons.gridx = 0;
 		cons.gridy = 2;
 		cons.gridwidth = 1;
@@ -521,7 +573,7 @@ public class FrameMenu extends JFrame
 		cons.ipadx = 0;
 		cons.ipady = 0;
 		panel.add(resoluciones, cons);
-		
+
 		cons.gridx = 0;
 		cons.gridy = 3;
 		cons.gridwidth = 1;
@@ -538,7 +590,7 @@ public class FrameMenu extends JFrame
 		cons.ipadx = 0;
 		cons.ipady = 0;
 		panel.add(fullScr, cons);
-		
+
 		cons.gridx = 0;
 		cons.gridy = 4;
 		cons.gridwidth = 1;
@@ -555,7 +607,7 @@ public class FrameMenu extends JFrame
 		cons.ipadx = 0;
 		cons.ipady = 0;
 		panel.add(levelsel, cons);
-		
+
 		cons.gridx = 0;
 		cons.gridy = 5;
 		cons.gridwidth = 1;

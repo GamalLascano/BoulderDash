@@ -150,6 +150,24 @@ public class FrameMap extends JFrame implements KeyListener
 		{
 			left = true;
 		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		{
+			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel());
+			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_PAGE_UP)
+		{
+			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
+			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
+		{
+			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() - 1);
+			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+		}
 	}
 
 	@Override
