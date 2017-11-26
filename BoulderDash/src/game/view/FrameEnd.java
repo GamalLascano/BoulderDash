@@ -36,7 +36,7 @@ public class FrameEnd extends JFrame
 		buildPanelEnd();
 		add(panelend);
 		pack();
-		setSize(300, 300);
+		setSize(250, 150);
 		setVisible(true);
 	}
 
