@@ -22,7 +22,7 @@ public class FrameEnd extends JFrame
 	private static JPanel panelend;
 	
 
-	// panelend
+	// panelendd
 	private JTextField field;
 	private JButton button;
 	private JLabel scoreinfo;
