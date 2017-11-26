@@ -3,16 +3,13 @@ package game.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import game.model.CurrentDirection;
-import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 
@@ -30,7 +27,7 @@ public class PanelMap extends JPanel
 	private BufferedImage wall;
 	private Image firefly;
 	private Image butterfly;
-	private Image magic;
+	//private Image magic;
 	private Image amoeba;
 	private Image rockford;
 	private Image rockfordleft;
@@ -51,7 +48,7 @@ public class PanelMap extends JPanel
 			wall = ImageIO.read(this.getClass().getResource("wall.gif"));
 			firefly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("firefly.gif"));
 			butterfly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("butterfly.gif"));
-			magic = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("magic.gif"));
+			//magic = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("magic.gif"));
 			amoeba = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("amoeba.gif"));
 			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockford.gif"));
 			rockfordleft = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordleft.gif"));

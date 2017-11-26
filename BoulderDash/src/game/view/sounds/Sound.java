@@ -1,4 +1,4 @@
-package game.view;
+package game.view.sounds;
 
 import java.io.File;
 import java.io.IOException;
