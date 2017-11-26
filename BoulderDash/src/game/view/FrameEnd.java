@@ -24,10 +24,11 @@ public class FrameEnd extends JFrame
 	private FrameEnd()
 	{
 		setLayout(new FlowLayout());
-		setVisible(true);
-		setSize(400, 400);
 		buildPanelEnd();
 		add(panelend);
+		pack();
+		setVisible(true);
+		
 	}
 
 	public static FrameEnd getInstance()
@@ -67,8 +68,7 @@ public class FrameEnd extends JFrame
 		c.weighty = 1;
 		c.gridx = 1;
 		c.gridy = 2;
-		panelend.add(button,c);
-		
+		panelend.add(button,c);		
 	}
 	
 	public static void main(String[] args)
