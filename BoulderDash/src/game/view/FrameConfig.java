@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import game.model.map.MapInstance;
+
 public class FrameConfig extends JFrame implements ActionListener
 {
 	/**
@@ -20,6 +22,7 @@ public class FrameConfig extends JFrame implements ActionListener
 	private JComboBox<String> resoluciones;
 	private JCheckBox fullScr;
 	private JComboBox<String> top;
+	private JComboBox<String> niveles;
 	private JButton boton;
 	private Dimension pastScreenSize = new Dimension(800, 600);
 
@@ -30,6 +33,7 @@ public class FrameConfig extends JFrame implements ActionListener
 		setSize(800, 600);
 		setLayout(new GridLayout(4, 1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		String[] levels= {"1","2","3","4","5","6","7","8","9","10"};
 		String[] resolutions =
 		{ "800x600", "1024x768", "1366x768", "1920x1080" };
 		String[] tops =
@@ -42,6 +46,9 @@ public class FrameConfig extends JFrame implements ActionListener
 		fullScr = new JCheckBox("Pantalla Completa");
 		fullScr.addItemListener(new MiItemListener());
 		fullScr.setSelected(false);
+		niveles = new JComboBox(levels);
+		niveles.setSelectedItem(0);
+		niveles.addActionListener(this);
 		boton = new JButton("Volver al menu");
 		boton.setBounds(0, 0, 100, 25);
 		boton.addActionListener(new ActionListener()
@@ -57,6 +64,7 @@ public class FrameConfig extends JFrame implements ActionListener
 		add(top);
 		add(resoluciones);
 		add(fullScr);
+		add(niveles);
 		add(boton);
 		setVisible(true);
 	}
@@ -169,6 +177,12 @@ public class FrameConfig extends JFrame implements ActionListener
 						}
 					}
 				}
+			}
+		}else {
+			if (e.getSource()==niveles) {
+				JComboBox cb = (JComboBox) e.getSource();
+				String res = (String) cb.getSelectedItem();
+				MapInstance.setSelectedLevel(Integer.parseInt(res));
 			}
 		}
 	}

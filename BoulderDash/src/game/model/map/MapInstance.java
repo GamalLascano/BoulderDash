@@ -122,7 +122,9 @@ public class MapInstance
 	{
 		return selectedLevel;
 	}
-
+	public static void setSelectedLevel(Integer selectedlevels) {
+		selectedLevel=selectedlevels;
+	}
 	/**
 	 * 
 	 * @param selectedLevel

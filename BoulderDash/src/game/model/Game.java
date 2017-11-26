@@ -28,10 +28,8 @@ public class Game
 
 		MapInstance.start();
 		MapVisual.start();
-		
-		MapInstance.buildSelectedLevel(STARTLEVEL);
+		MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
 		Rockford.getRockford().setLives(LIVES);
-		
 		FrameMap.start();
 		FrameMap.refresh();
 		MapInstance.refresh();
