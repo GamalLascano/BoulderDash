@@ -27,7 +27,7 @@ public class FrameConfig extends JFrame implements ActionListener {
 		setSize(800, 600);
 		setLayout(new GridLayout(4, 1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		String[] resolutions = { "800x600", "1024x768", "1366x768" };
+		String[] resolutions = { "800x600", "1024x768", "1366x768","1920x1080" };
 		String[] tops = { "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
 		top = new JComboBox(tops);
 		top.setSelectedIndex(0);
@@ -103,6 +103,11 @@ public class FrameConfig extends JFrame implements ActionListener {
 					if (res.equals("1366x768")) {
 						this.setSize(1366, 768);
 						this.repaint();
+					}else {
+						if (res.equals("1920x1080")) {
+							this.setSize(1920,1080);
+							this.repaint();
+						}
 					}
 				}
 			}
