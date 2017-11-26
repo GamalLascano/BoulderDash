@@ -2,7 +2,10 @@ package game.view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import game.model.Game;
@@ -10,13 +13,17 @@ import game.model.Game;
 public class FrameMenu extends JFrame
 {
 	private static final long serialVersionUID = 1L;
-	private static JPanel panel = new JPanel(new GridBagLayout());
 	private static FrameMenu framemenu;
-	//panel variables
-	private static JButton button[][] = new JButton[1][5];
+	private static Background panel;
+
+	// panel variables
+	private static String imgFileName = "game/view/wallpaper.png";
+	private static Image img;
+	private static JButton button[][] = new JButton[5][1];
 	private static JList<String> listX = new JList<String>();
 	private static JList<Integer> listLevel = new JList<Integer>();
-	private static JTextField textRockford = new JTextField("Rockford: Your hero, guide him through the caves, searching for diamonds in order to activate the exit. Use the arrow keys to control Rockford. PageUp and PageDown to change level. Escape to restart level.");
+	private static JTextField textRockford = new JTextField(
+			"Rockford: Your hero, guide him through the caves, searching for diamonds in order to activate the exit. Use the arrow keys to control Rockford. PageUp and PageDown to change level. Escape to restart level.");
 	private static JTextField textDirt = new JTextField("Dirt: ");
 	private static JTextField textBoulder = new JTextField("Boulder: ");
 	private static JTextField textDiamond = new JTextField("Diamond: ");
@@ -27,26 +34,16 @@ public class FrameMenu extends JFrame
 	private static JTextField textButterfly = new JTextField("Butterfly: ");
 	private static JTextField textAmoeba = new JTextField("Amoeba: ");
 	private static JTextField textExit = new JTextField("Exit: ");
-	
 
-	FrameMenu()
+	private FrameMenu()
 	{
-		setLocationRelativeTo(null);
-		setTitle("Boulder Dash Menu");
-		setResizable(false);
-		setSize(600, 600);
-		setVisible(true);
+		setupFrameMenu();
+		setupPanelMenu();
 		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		for (int y = 0; y < 5; y++)
-		{
-			for (int x = 0; x < 1; x++)
-			{
-				button[x][y] = new JButton();
-			}
-		}
-		menu();
 		add(panel);
+		setPreferredSize(new Dimension(img.getWidth(null), img.getHeight(null)));
+		pack();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	public static FrameMenu getInstance()
@@ -57,26 +54,81 @@ public class FrameMenu extends JFrame
 		}
 		return framemenu;
 	}
-	//panel
+
+	// frame
+	public void setupFrameMenu()
+	{
+		setLocationRelativeTo(null);
+		setTitle("Boulder Dash Menu");
+		setResizable(false);
+		setSize(600, 600);
+		setVisible(true);
+	}
+	
+	public void setupPanelMenu()
+	{
+		panel = new Background(new GridBagLayout());
+		putBackground();
+		putButtons();
+		menu();
+	}
+	
+	public void putButtons()
+	{
+		for (int y = 0; y < 5; y++)
+		{
+			for (int x = 0; x < 1; x++)
+			{
+				button[y][x] = new JButton();
+			}
+		}
+	}
+
+	// panel
+	public void putBackground()
+	{
+		URL imgUrl = getClass().getClassLoader().getResource(imgFileName);
+		if (imgUrl == null)
+		{
+			System.err.println("No se encuetra el archivo: " + imgFileName);
+		}
+		else
+		{
+			try
+			{
+				img = ImageIO.read(imgUrl);
+			}
+			catch (IOException ex)
+			{
+				ex.printStackTrace();
+			}
+		}
+		panel.setImage(img);
+	}
+
 	public static void removeAllActionsListeners()
 	{
-		for( JButton[] xButton: button ) {
-			for( JButton currentButton: xButton ) {
-			    for( ActionListener al : currentButton.getActionListeners() ) {
-			        currentButton.removeActionListener( al );
-			    }
+		for (JButton[] xButton : button)
+		{
+			for (JButton currentButton : xButton)
+			{
+				for (ActionListener al : currentButton.getActionListeners())
+				{
+					currentButton.removeActionListener(al);
+				}
 			}
 		}
 	}
 
 	public static void menu()
 	{
-		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints cons = new GridBagConstraints();
+		Insets inset = new Insets (0,0,0,0);
 		
 		panel.removeAll();
 		removeAllActionsListeners();
 		panel.revalidate();
-		
+
 		button[0][0].setText("QUIERO JUGAR!");
 		button[0][0].addActionListener(new ActionListener()
 		{
@@ -88,13 +140,15 @@ public class FrameMenu extends JFrame
 				Game.main(new String[0]);
 			}
 		});
-		c.gridx = 1;
-		c.gridy = 1;
-		panel.add(button[0][0],c);
-		
+		cons.gridx = cons.gridx;
+		cons.gridy = cons.gridy;
+		cons.weighty = cons.weighty;
+		cons.gridheight = cons.gridheight;
+		cons.fill = cons.fill;
+		panel.add(button[0][0], cons);
 
-		button[0][1].setText("TOP X");
-		button[0][1].addActionListener(new ActionListener()
+		button[1][0].setText("TOP X");
+		button[1][0].addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -103,12 +157,15 @@ public class FrameMenu extends JFrame
 				topX();
 			}
 		});
-		c.gridx = 1;
-		c.gridy = 2;
-		panel.add(button[0][1]);
+		cons.gridx = cons.gridx;
+		cons.gridy = cons.gridy;
+		cons.weighty = cons.weighty;
+		cons.gridheight = cons.gridheight;
+		cons.fill = cons.fill;
+		panel.add(button[1][0]);
 
-		button[0][2].setText("REGLAS DEL JUEGO");
-		button[0][2].addActionListener(new ActionListener()
+		button[2][0].setText("REGLAS DEL JUEGO");
+		button[2][0].addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -117,12 +174,15 @@ public class FrameMenu extends JFrame
 				rules();
 			}
 		});
-		c.gridx = 1;
-		c.gridy = 3;
-		panel.add(button[0][2]);
+		cons.gridx = cons.gridx;
+		cons.gridy = cons.gridy;
+		cons.weighty = cons.weighty;
+		cons.gridheight = cons.gridheight;
+		cons.fill = cons.fill;
+		panel.add(button[2][0]);
 
-		button[0][3].setText("CONFIGURACION");
-		button[0][3].addActionListener(new ActionListener()
+		button[3][0].setText("CONFIGURACION");
+		button[3][0].addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -132,12 +192,15 @@ public class FrameMenu extends JFrame
 				FrameConfig.getInstance().setVisible(true);
 			}
 		});
-		c.gridx = 1;
-		c.gridy = 4;
-		panel.add(button[0][3]);
-		
-		button[0][4].setText("QUITAR");
-		button[0][4].addActionListener(new ActionListener()
+		cons.gridx = cons.gridx;
+		cons.gridy = cons.gridy;
+		cons.weighty = cons.weighty;
+		cons.gridheight = cons.gridheight;
+		cons.fill = cons.fill;
+		panel.add(button[3][0]);
+
+		button[4][0].setText("QUITAR");
+		button[4][0].addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -147,16 +210,19 @@ public class FrameMenu extends JFrame
 				System.exit(0);
 			}
 		});
-		c.gridx = 1;
-		c.gridy = 5;
-		panel.add(button[0][4]);
+		cons.gridx = cons.gridx;
+		cons.gridy = cons.gridy;
+		cons.weighty = cons.weighty;
+		cons.gridheight = cons.gridheight;
+		cons.fill = cons.fill;
+		panel.add(button[4][0]);
 	}
 
 	public static void topX()
 	{
 		panel.removeAll();
 		panel.revalidate();
-		
+
 		removeAllActionsListeners();
 		button[0][0].setText("Back");
 		button[0][0].addActionListener(new ActionListener()
@@ -176,7 +242,7 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
-		
+
 		panel.add(textRockford);
 		panel.add(textDirt);
 		panel.add(textBoulder);
@@ -188,7 +254,7 @@ public class FrameMenu extends JFrame
 		panel.add(textButterfly);
 		panel.add(textAmoeba);
 		panel.add(textExit);
-		
+
 		button[0][0].removeActionListener(button[0][0].getActionListeners()[0]);
 		button[0][0].setText("Back");
 		button[0][0].addActionListener(new ActionListener()
@@ -207,10 +273,10 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
-		
+
 		panel.add(listX);
 		panel.add(listLevel);
-		
+
 		button[0][0].removeActionListener(button[0][0].getActionListeners()[0]);
 		button[0][0].setText("Back");
 		button[0][0].addActionListener(new ActionListener()
