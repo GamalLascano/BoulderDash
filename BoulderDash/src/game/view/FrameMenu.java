@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import game.model.Game;
+import game.view.FrameConfig.MiItemListener;
+import game.view.FrameConfig.mouseListenerSalida;
 
 public class FrameMenu extends JFrame
 {
@@ -17,11 +19,11 @@ public class FrameMenu extends JFrame
 	private static Background panel;
 
 	// panel variables
+	// menu
 	private static String imgFileName = "game/view/wallpaper.png";
 	private static Image img;
 	private static JButton button[][] = new JButton[5][1];
-	private static JList<String> listX = new JList<String>();
-	private static JList<Integer> listLevel = new JList<Integer>();
+	// rules
 	private static JTextField textRockford = new JTextField(
 			"Rockford: Your hero, guide him through the caves, searching for diamonds in order to activate the exit. Use the arrow keys to control Rockford. PageUp and PageDown to change level. Escape to restart level.");
 	private static JTextField textDirt = new JTextField("Dirt: ");
@@ -34,6 +36,10 @@ public class FrameMenu extends JFrame
 	private static JTextField textButterfly = new JTextField("Butterfly: ");
 	private static JTextField textAmoeba = new JTextField("Amoeba: ");
 	private static JTextField textExit = new JTextField("Exit: ");
+	// config
+	private static JComboBox<String> resoluciones;
+	private static JCheckBox fullScr;
+	private static JComboBox<String> top;
 
 	private FrameMenu()
 	{
@@ -181,8 +187,9 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				FrameMenu.getInstance().setVisible(false);
-				FrameConfig.getInstance().setVisible(true);
+//				FrameMenu.getInstance().setVisible(false);
+//				FrameConfig.getInstance().setVisible(true);
+				config();
 			}
 		});
 		cons.gridx = 1;
@@ -209,8 +216,9 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
-
 		removeAllActionsListeners();
+
+
 		button[0][0].setText("Back");
 		button[0][0].addActionListener(new ActionListener()
 		{
@@ -229,6 +237,7 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
+		removeAllActionsListeners();
 
 		panel.add(textRockford);
 		panel.add(textDirt);
@@ -260,12 +269,22 @@ public class FrameMenu extends JFrame
 	{
 		panel.removeAll();
 		panel.revalidate();
-
-		panel.add(listX);
-		panel.add(listLevel);
+		removeAllActionsListeners();
+		
+		String[] resolutions = { "800x600", "1024x768", "1366x768","1920x1080" };
+		String[] tops = { "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
+		top = new JComboBox(tops);
+		top.setSelectedIndex(0);
+		resoluciones = new JComboBox(resolutions);
+		resoluciones.setSelectedIndex(0);
+		//resoluciones.addActionListener(this);
+		fullScr = new JCheckBox("Pantalla Completa");
+		fullScr.addItemListener(new MiItemListener());
+		fullScr.setSelected(false);
 
 		button[0][0].removeActionListener(button[0][0].getActionListeners()[0]);
 		button[0][0].setText("Back");
+		button[0][0].setBounds(0, 0, 100, 25);
 		button[0][0].addActionListener(new ActionListener()
 		{
 
@@ -275,6 +294,10 @@ public class FrameMenu extends JFrame
 				menu();
 			}
 		});
+
+		panel.add(top);
+		panel.add(resoluciones);
+		panel.add(fullScr);
 		panel.add(button[0][0]);
 	}
 
