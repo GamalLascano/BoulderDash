@@ -54,19 +54,17 @@ public class FrameEnd extends JFrame
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
 		c.weighty = 1;
+		c.gridx = 0;
 		
 		scoreinfo = new JLabel("Tu puntuación es: " + Rockford.getInstance().getScore().toString(),SwingConstants.CENTER);
 		scoreinfo.setSize(100, 50);
 		scoreinfo.setHorizontalAlignment(SwingConstants.CENTER);
-		c.gridx=1;
 		c.gridy=0;
 		panelend.add(scoreinfo);
 		
 		field = new JTextField();
 		field.setEditable(true);
 		field.setSize(100, 50);
-		c.weighty = 1;
-		c.gridx = 1;
 		c.gridy = 1;
 		panelend.add(field,c);
 		
@@ -81,8 +79,6 @@ public class FrameEnd extends JFrame
 				FrameMenu.main(null);
 			}
 		});
-		c.weighty = 1;
-		c.gridx = 1;
 		c.gridy = 2;
 		panelend.add(button,c);		
 	}
