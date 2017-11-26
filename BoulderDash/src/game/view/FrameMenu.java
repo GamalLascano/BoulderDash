@@ -121,14 +121,15 @@ public class FrameMenu extends JFrame
 	}
 
 	public static void menu()
-	{
-		GridBagConstraints cons = new GridBagConstraints();
-		Insets inset = new Insets (0,0,0,0);
-		
+	{		
 		panel.removeAll();
 		removeAllActionsListeners();
 		panel.revalidate();
 
+		GridBagConstraints cons = new GridBagConstraints();
+		cons.fill = GridBagConstraints.NONE;
+		cons.weighty = 1;
+		
 		button[0][0].setText("QUIERO JUGAR!");
 		button[0][0].addActionListener(new ActionListener()
 		{
@@ -140,11 +141,8 @@ public class FrameMenu extends JFrame
 				Game.main(new String[0]);
 			}
 		});
-		cons.gridx = cons.gridx;
-		cons.gridy = cons.gridy;
-		cons.weighty = cons.weighty;
-		cons.gridheight = cons.gridheight;
-		cons.fill = cons.fill;
+		cons.gridx = 0;
+		cons.gridy = 0;
 		panel.add(button[0][0], cons);
 
 		button[1][0].setText("TOP X");
@@ -157,11 +155,8 @@ public class FrameMenu extends JFrame
 				topX();
 			}
 		});
-		cons.gridx = cons.gridx;
-		cons.gridy = cons.gridy;
-		cons.weighty = cons.weighty;
-		cons.gridheight = cons.gridheight;
-		cons.fill = cons.fill;
+		cons.gridx = 0;
+		cons.gridy = 1;
 		panel.add(button[1][0]);
 
 		button[2][0].setText("REGLAS DEL JUEGO");
@@ -174,11 +169,8 @@ public class FrameMenu extends JFrame
 				rules();
 			}
 		});
-		cons.gridx = cons.gridx;
-		cons.gridy = cons.gridy;
-		cons.weighty = cons.weighty;
-		cons.gridheight = cons.gridheight;
-		cons.fill = cons.fill;
+		cons.gridx = 0;
+		cons.gridy = 2;
 		panel.add(button[2][0]);
 
 		button[3][0].setText("CONFIGURACION");
@@ -192,11 +184,8 @@ public class FrameMenu extends JFrame
 				FrameConfig.getInstance().setVisible(true);
 			}
 		});
-		cons.gridx = cons.gridx;
-		cons.gridy = cons.gridy;
-		cons.weighty = cons.weighty;
-		cons.gridheight = cons.gridheight;
-		cons.fill = cons.fill;
+		cons.gridx = 1;
+		cons.gridy = 0;
 		panel.add(button[3][0]);
 
 		button[4][0].setText("QUITAR");
@@ -210,11 +199,8 @@ public class FrameMenu extends JFrame
 				System.exit(0);
 			}
 		});
-		cons.gridx = cons.gridx;
-		cons.gridy = cons.gridy;
-		cons.weighty = cons.weighty;
-		cons.gridheight = cons.gridheight;
-		cons.fill = cons.fill;
+		cons.gridx = 1;
+		cons.gridy = 1;
 		panel.add(button[4][0]);
 	}
 

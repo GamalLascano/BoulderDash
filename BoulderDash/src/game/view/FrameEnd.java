@@ -30,6 +30,7 @@ public class FrameEnd extends JFrame
 	private FrameEnd()
 	{
 		setLayout(new FlowLayout());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildPanelEnd();
 		add(panelend);
 		pack();
