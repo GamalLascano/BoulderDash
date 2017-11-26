@@ -10,17 +10,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JLabel;
+
+import game.model.actor.*;
 
 public class FrameEnd extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private static FrameEnd frameend;
 	private static JPanel panelend;
+	
 
 	// panelend
 	private JTextField field;
 	private JButton button;
-
+	private JLabel scoreinfo;
+	
 	private FrameEnd()
 	{
 		setLayout(new FlowLayout());
@@ -45,6 +51,16 @@ public class FrameEnd extends JFrame
 		GridBagConstraints c = new GridBagConstraints();
 		panelend = new JPanel();
 		panelend.setLayout(new GridBagLayout());
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.CENTER;
+		c.weighty = 1;
+		
+		scoreinfo = new JLabel("Tu puntuación es: " + Rockford.getInstance().getScore().toString(),SwingConstants.CENTER);
+		scoreinfo.setSize(100, 50);
+		scoreinfo.setHorizontalAlignment(SwingConstants.CENTER);
+		c.gridx=1;
+		c.gridy=0;
+		panelend.add(scoreinfo);
 		
 		field = new JTextField();
 		field.setEditable(true);
