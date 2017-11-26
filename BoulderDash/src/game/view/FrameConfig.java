@@ -44,7 +44,16 @@ public class FrameConfig extends JFrame implements ActionListener
 		fullScr.setSelected(false);
 		boton = new JButton("Volver al menu");
 		boton.setBounds(0, 0, 100, 25);
-		boton.addMouseListener(new mouseListenerSalida());
+		boton.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				FrameMenu.getInstance().setVisible(true);
+				FrameConfig.getInstance().setVisible(false);
+			}
+		});
 		add(top);
 		add(resoluciones);
 		add(fullScr);
