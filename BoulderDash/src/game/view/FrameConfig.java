@@ -63,12 +63,18 @@ public class FrameConfig extends JFrame implements ActionListener {
 				FrameConfig.getInstance().dispose();
 				FrameConfig.getInstance().setUndecorated(true);
 				FrameConfig.getInstance().setVisible(true);
+				FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
+				FrameMenu.getInstance().dispose();
+				FrameMenu.getInstance().setUndecorated(true);
 			} else {
 				FrameConfig.getInstance().getContentPane().getComponent(1).setEnabled(true);
 				FrameConfig.getInstance().setExtendedState(JFrame.NORMAL);
 				FrameConfig.getInstance().dispose();
 				FrameConfig.getInstance().setUndecorated(false);
 				FrameConfig.getInstance().setVisible(true);
+				FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
+				FrameMenu.getInstance().dispose();
+				FrameMenu.getInstance().setUndecorated(false);
 
 			}
 		}
@@ -93,18 +99,22 @@ public class FrameConfig extends JFrame implements ActionListener {
 			JComboBox cb = (JComboBox) e.getSource();
 			String res = (String) cb.getSelectedItem();
 			if (res.equals("800x600")) {
+				FrameMenu.getInstance().setSize(800, 600);
 				this.setSize(800, 600);
 				this.repaint();
 			} else {
 				if (res.equals("1024x768")) {
+					FrameMenu.getInstance().setSize(1024, 768);
 					this.setSize(1024, 768);
 					this.repaint();
 				} else {
 					if (res.equals("1366x768")) {
+						FrameMenu.getInstance().setSize(1366, 768);
 						this.setSize(1366, 768);
 						this.repaint();
 					}else {
 						if (res.equals("1920x1080")) {
+							FrameMenu.getInstance().setSize(1920, 1080);
 							this.setSize(1920,1080);
 							this.repaint();
 						}
