@@ -25,9 +25,11 @@ public class Game
 		final int TASKDELAY = 1000;
 		final int STARTLEVEL = 1;
 		final int LIVES = 3;
-
 		MapInstance.start();
 		MapVisual.start();
+		if (MapInstance.getSelectedLevel()==null) {
+			MapInstance.setSelectedLevel(STARTLEVEL);
+		}
 		MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
 		Rockford.getRockford().setLives(LIVES);
 		FrameMap.start();
