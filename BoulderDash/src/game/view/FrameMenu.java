@@ -61,6 +61,7 @@ public class FrameMenu extends JFrame
 		setLocationRelativeTo(null);
 		setTitle("Boulder Dash Menu");
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setSize(600, 600);
 		setVisible(true);
 	}
@@ -279,7 +280,8 @@ public class FrameMenu extends JFrame
 
 	public static void main(String[] args)
 	{
-		FrameMenu.getInstance();
+		FrameMenu runFrameMenu = FrameMenu.getInstance();
+		runFrameMenu.setVisible(true);
 	}
 
 }

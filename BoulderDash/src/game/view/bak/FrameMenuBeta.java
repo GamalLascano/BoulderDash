@@ -1,6 +1,9 @@
-package game.view;
+package game.view.bak;
 
 import javax.swing.JFrame;
+
+import game.view.Background;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.imageio.ImageIO;

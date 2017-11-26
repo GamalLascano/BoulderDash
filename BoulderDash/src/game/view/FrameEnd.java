@@ -31,11 +31,13 @@ public class FrameEnd extends JFrame
 	{
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		buildPanelEnd();
 		add(panelend);
 		pack();
+		setSize(300, 300);
 		setVisible(true);
-		
 	}
 
 	public static FrameEnd getInstance()
@@ -87,7 +89,7 @@ public class FrameEnd extends JFrame
 	public static void main(String[] args)
 	{
 		FrameEnd runFrameEnd = FrameEnd.getInstance();
-		runFrameEnd.isActive();
+		runFrameEnd.setVisible(true);
 	}
 
 }
