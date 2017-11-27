@@ -296,7 +296,9 @@ public class MapInstance
 						ListOfEntities.getList().add(butterfly);
 						break;
 					case EXIT:
-						MapCell.setCell(Exit.getInstance(pos));
+						Exit door = Exit.getInstance();
+						door.setPosition(pos);
+						MapCell.setCell(door);
 						break;
 					case PLAYER:
 						Rockford player = Rockford.getInstance();

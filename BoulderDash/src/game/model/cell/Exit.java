@@ -1,6 +1,5 @@
 package game.model.cell;
 
-import game.model.Position;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
@@ -20,25 +19,11 @@ public class Exit extends Cell
 	 * 
 	 * @param pos
 	 */
-	private Exit(Position pos)
+	private Exit()
 	{
-		super(pos);
+		super(null);
 		spritechar = SpriteChar.E;
 		isOpen = false;
-	}
-
-	/**
-	 * 
-	 * @param pos
-	 * @return
-	 */
-	public static Exit getInstance(Position pos)
-	{
-		if (exit == null)
-		{
-			exit = new Exit(pos);
-		}
-		return exit;
 	}
 
 	/**
@@ -47,6 +32,10 @@ public class Exit extends Cell
 	 */
 	public static Exit getInstance()
 	{
+		if (exit == null)
+		{
+			exit = new Exit();
+		}
 		return exit;
 	}
 

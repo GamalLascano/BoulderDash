@@ -83,11 +83,11 @@ public abstract class Entity
 
 	/**
 	 * 
-	 * @param po
+	 * @param pos
 	 */
-	public void setPosition(Position po)
+	public void setPosition(Position pos)
 	{
-		pos = po;
+		this.pos = pos;
 	}
 	
 
