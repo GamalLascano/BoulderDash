@@ -5,7 +5,6 @@ import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapActor;
 import game.model.map.MapCell;
-import game.model.map.MapInstance;
 import game.model.map.MapItem;
 import game.model.map.MapVisual;
 
@@ -56,15 +55,15 @@ public class Rock extends Fallable
 	 */
 	public void pushed(Rockford player)
 	{
-		if (player.isPushing() && this.isMoveable())
+		if (player.isPushing())
 		{
 			switch (player.getState())
 			{
 				case MOVINGLEFT:
-					this.state = StatusFallableEnum.SLIDINGLEFT;
+					this.state = StatusFallableEnum.PUSHEDLEFT;
 					break;
 				case MOVINGRIGHT:
-					this.state = StatusFallableEnum.SLIDINGRIGHT;
+					this.state = StatusFallableEnum.PUSHEDRIGHT;
 					break;
 				default:
 					break;
@@ -83,8 +82,7 @@ public class Rock extends Fallable
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
 		else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
-						&& this.state == StatusFallableEnum.FALLINGOFF
-				|| this.state == StatusFallableEnum.FALLING)
+				&& this.state == StatusFallableEnum.FALLINGOFF || this.state == StatusFallableEnum.FALLING)
 		{
 			this.state = StatusFallableEnum.FALLING;
 		}
@@ -101,12 +99,18 @@ public class Rock extends Fallable
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
 		}
-		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()) != null)
+		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()) != null
+				&& MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() > 0)
 		{
-			if(MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() > 0)
-			{
-				this.state = StatusFallableEnum.CONVERT;
-			}
+			this.state = StatusFallableEnum.CONVERT;
+		}
+		else if (this.state == StatusFallableEnum.PUSHEDLEFT)
+		{
+			this.state = StatusFallableEnum.SLIDINGLEFT;
+		}
+		else if (this.state == StatusFallableEnum.PUSHEDRIGHT)
+		{
+			this.state = StatusFallableEnum.SLIDINGRIGHT;
 		}
 		else
 		{
@@ -123,6 +127,13 @@ public class Rock extends Fallable
 		{
 			case FALLINGOFF:
 				this.getPosition().goDown();
+				this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
+				this.getPassable().put(SpriteChar.n.hashCode(), SpriteChar.n);
+				this.getPassable().put(SpriteChar.u.hashCode(), SpriteChar.u);
+				this.getPassable().put(SpriteChar.d.hashCode(), SpriteChar.d);
+				this.getPassable().put(SpriteChar.b.hashCode(), SpriteChar.b);
+				this.getPassable().put(SpriteChar.B.hashCode(), SpriteChar.B);
+				this.getPassable().put(SpriteChar.F.hashCode(), SpriteChar.F);
 				break;
 			case FALLING:
 				if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
@@ -131,6 +142,13 @@ public class Rock extends Fallable
 				}
 				else
 				{
+					this.getPassable().remove(SpriteChar.R.hashCode(), SpriteChar.R);
+					this.getPassable().remove(SpriteChar.n.hashCode(), SpriteChar.n);
+					this.getPassable().remove(SpriteChar.u.hashCode(), SpriteChar.u);
+					this.getPassable().remove(SpriteChar.d.hashCode(), SpriteChar.d);
+					this.getPassable().remove(SpriteChar.b.hashCode(), SpriteChar.b);
+					this.getPassable().remove(SpriteChar.B.hashCode(), SpriteChar.B);
+					this.getPassable().remove(SpriteChar.F.hashCode(), SpriteChar.F);
 					this.state = StatusFallableEnum.IDLE;
 				}
 				if (MapActor.getActor(this.getPosition()) != null)

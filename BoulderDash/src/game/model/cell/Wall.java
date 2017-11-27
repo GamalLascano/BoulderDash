@@ -59,7 +59,7 @@ public class Wall extends Cell
 	public void conversion(Rock stone)
 	{
 		if ((stone.getPosition().getY() == this.getPosition().checkUp())
-				&& (stone.getState() == StatusFallableEnum.FALLING) && this.magicTimer != 0)
+				&& (stone.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
 		{
 
 			this.spritechar = SpriteChar.w;
@@ -83,7 +83,7 @@ public class Wall extends Cell
 	public void conversion(Diamond diamond)
 	{
 		if ((diamond.getPosition().getY() == this.getPosition().checkUp())
-				&& (diamond.getState() == StatusFallableEnum.FALLING) && this.magicTimer != 0)
+				&& (diamond.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
 		{
 			this.spritechar = SpriteChar.w;
 			diamond.die();

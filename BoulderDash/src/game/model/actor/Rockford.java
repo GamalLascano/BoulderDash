@@ -202,23 +202,6 @@ public class Rockford extends Actor
 	}
 
 	/**
-	 * Este metodo hace que si esta empujando a una roca, se le ponga el estado
-	 * correspondiente
-	 * 
-	 * @param rock:
-	 *            Bloque de roca
-	 */
-	public void push(Rock rock)
-	{
-		if (rock != null && rock.isMoveable())
-		{
-			isPushing = true;
-			rock.pushed(this);
-			isPushing = false;
-		}
-	}
-
-	/**
 	 * 
 	 */
 	public void changePosition()
@@ -328,9 +311,6 @@ public class Rockford extends Actor
 		else if (MapItem.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable() == true)
 		{
 			this.push(MapItem.getRock(getPosition().checkRight(), getPosition().getY()));
-			getPosition().goRight();
-			this.dig(MapCell.getDirt(getPosition()));
-			this.collect(MapItem.getDiamond(getPosition()));
 		}
 		else
 		{
@@ -352,14 +332,49 @@ public class Rockford extends Actor
 		else if (MapItem.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable() == true)
 		{
 			this.push(MapItem.getRock(getPosition().checkLeft(), getPosition().getY()));
-			getPosition().goLeft();
-			this.dig(MapCell.getDirt(getPosition()));
-			this.collect(MapItem.getDiamond(getPosition()));
 		}
 		else
 		{
 			this.collect(MapItem.getDiamond(getPosition()));
 		}
 	}
+	
+	/**
+	 * Este metodo hace que si esta empujando a una roca, se le ponga el estado
+	 * correspondiente
+	 * 
+	 * @param rock:Bloque de roca
+	 */
+	public void push(Rock rock)
+	{
+		switch (state)
+		{
+			case MOVINGRIGHT:
+				if (rock != null && rock.isMoveable() && rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkRight(), rock.getPosition().getY()).hashCode()))
+				{
+					isPushing = true;
+					rock.pushed(this);
+					isPushing = false;
+					getPosition().goRight();
+					this.dig(MapCell.getDirt(getPosition()));
+					this.collect(MapItem.getDiamond(getPosition()));
+				}
+				break;
+			case MOVINGLEFT:
+				if (rock != null && rock.isMoveable() && rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkLeft(), rock.getPosition().getY()).hashCode()))
+				{
+					isPushing = true;
+					rock.pushed(this);
+					isPushing = false;
+					getPosition().goLeft();
+					this.dig(MapCell.getDirt(getPosition()));
+					this.collect(MapItem.getDiamond(getPosition()));
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
 
 }
