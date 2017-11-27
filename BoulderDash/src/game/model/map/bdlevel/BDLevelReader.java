@@ -137,7 +137,7 @@ public class BDLevelReader {
 
 	
 	/*
-	 * ?ste m?todo crea una instancia del level reader a modo de ejemplo
+	 * Éste método crea una instancia del level reader a modo de ejemplo
 	 * para demostrar como se lee el NIVEL 1
 	 * */
 	public static void main(String[] args) {
@@ -167,11 +167,11 @@ public class BDLevelReader {
 	}
 
 	/*
-	 * Este m?todo imprime como se ver?a el mapa en formato texto
+	 * Este método imprime como se vería el mapa en formato texto
 	 * */
 	public void imprimirMapa() {
 		System.out.println("..............................................................");
-		System.out.println("...Y as? se ve el mapa!");
+		System.out.println("...Y así se ve el mapa!");
 		for (int y = 0; y < ROW; y++) {
 			for (int x = 0; x < COLUMN; x++) {
 				System.out.print(field[x][y]);

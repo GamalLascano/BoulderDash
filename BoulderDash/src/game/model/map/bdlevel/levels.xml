@@ -6,7 +6,7 @@
 <titanium x="2" y="0"/>
 <titanium x="3" y="0"/>
 <titanium x="4" y="0"/>
-<titanium x="5" y="0"></titanium>
+<titanium x="5" y="0"/>
 <titanium x="6" y="0"/>
 <titanium x="7" y="0"/>
 <titanium x="8" y="0"/>
@@ -1463,7 +1463,7 @@
 <wall x="38" y="21"/>
 <titanium x="39" y="21"/>
 </level>
-<level diamonds="2">
+<level diamonds="8">
 <titanium x="0" y="0"/>
 <wall x="1" y="0"/>
 <wall x="2" y="0"/>
@@ -1523,7 +1523,7 @@
 <titanium x="0" y="8"/>
 <empty x="8" y="8"/>
 <empty x="9" y="8"/>
-<amoeba x="10" y="8"/>
+<firefly x="10" y="8"/>
 <empty x="16" y="8"/>
 <empty x="17" y="8"/>
 <firefly x="18" y="8"/>
@@ -3746,8 +3746,8 @@
 <rock x="5" y="19"/>
 <wall x="9" y="19"/>
 <rock x="12" y="19"/>
-
-<firefly x="15" y="19"/><rock x="14" y="19" />
+<rock x="14" y="19"/>
+<firefly x="15" y="19"/>
 <rock x="22" y="19"/>
 <empty x="26" y="19"/>
 <rock x="27" y="19"/>
