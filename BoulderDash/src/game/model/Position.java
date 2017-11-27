@@ -94,6 +94,7 @@ public class Position
 	 */
 	public Integer checkDown()
 	{
+		//array bound
 		return this.Y + 1;
 	}
 
