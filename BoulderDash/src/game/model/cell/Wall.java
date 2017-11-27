@@ -1,7 +1,6 @@
 package game.model.cell;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.item.Diamond;
 import game.model.item.Rock;
@@ -23,7 +22,7 @@ public class Wall extends Cell
 	 */
 	public Wall(Position pos)
 	{
-		super(pos, SolidTo.ALL);
+		super(pos);
 		this.magicTimer = 0;
 		this.spritechar = SpriteChar.W;
 	}
@@ -35,7 +34,7 @@ public class Wall extends Cell
 	 */
 	public Wall(Position pos, int magicTime)
 	{
-		super(pos, SolidTo.ALL);
+		super(pos);
 		this.magicTimer = magicTime;
 		this.spritechar = SpriteChar.W;
 	}

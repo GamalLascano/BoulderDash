@@ -3,7 +3,6 @@ package game.model.actor;
 import game.model.CurrentDirection;
 import game.model.Entity;
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
@@ -23,8 +22,9 @@ public abstract class Actor extends Entity
 	 */
 	public Actor(Position pos)
 	{
-		super(pos, SolidTo.ACTOR);
-		state = StatusActorEnum.IDLE;
+		super(pos);
+		this.state = StatusActorEnum.IDLE;
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**

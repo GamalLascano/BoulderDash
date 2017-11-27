@@ -1,5 +1,7 @@
 package game.model;
 
+import java.util.HashMap;
+
 import game.model.actor.Actor;
 import game.model.actor.Rockford;
 import game.model.item.Item;
@@ -11,27 +13,15 @@ import game.model.item.Item;
 public abstract class Entity
 {
 	private Position pos;
-	private SolidTo solid;
+	private HashMap<Integer, SpriteChar> passable = new HashMap<>();
 
 	/**
 	 * 
-	 * @param po
+	 * @param pos
 	 */
-	public Entity(Position po)
+	public Entity(Position pos)
 	{
-		pos = po;
-		this.solid = SolidTo.NONE;
-	}
-
-	/**
-	 * 
-	 * @param po
-	 * @param solid
-	 */
-	public Entity(Position po, SolidTo solid)
-	{
-		pos = po;
-		this.solid = solid;
+		this.pos = pos;
 	}
 
 	/**
@@ -93,29 +83,30 @@ public abstract class Entity
 
 	/**
 	 * 
-	 * @return
-	 */
-	public SolidTo getSolid()
-	{
-		return solid;
-	}
-
-	/**
-	 * 
-	 * @param solid
-	 */
-	public void setSolid(SolidTo solid)
-	{
-		this.solid = solid;
-	}
-
-	/**
-	 * 
 	 * @param po
 	 */
 	public void setPosition(Position po)
 	{
 		pos = po;
+	}
+	
+
+	/**
+	 * 
+	 * @return
+	 */
+	public HashMap<Integer, SpriteChar> getPassable()
+	{
+		return passable;
+	}
+
+	/**
+	 * 
+	 * @param passable
+	 */
+	public void setPassable(HashMap<Integer, SpriteChar> passable)
+	{
+		this.passable = passable;
 	}
 
 	/**

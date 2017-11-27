@@ -1,7 +1,6 @@
 package game.model.cell;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
@@ -23,7 +22,7 @@ public class Exit extends Cell
 	 */
 	private Exit(Position pos)
 	{
-		super(pos, SolidTo.ALL);
+		super(pos);
 		spritechar = SpriteChar.E;
 		isOpen = false;
 	}
@@ -59,7 +58,6 @@ public class Exit extends Cell
 		Rockford player = Rockford.getRockford();
 		if (player.getDiamonds() >= MapInstance.getLevelReader().getDiamondsNeeded())
 		{
-			exit.setSolid(SolidTo.ITEM);
 			spritechar = SpriteChar.e;
 			isOpen = true;
 		}

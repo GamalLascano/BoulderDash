@@ -1,13 +1,13 @@
 package game.model.item;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.model.map.MapVisual;
 
 /**
  * Esta clase representa una roca, junto con su caracter de representacion y un
@@ -24,7 +24,8 @@ public class Rock extends Fallable
 	 */
 	public Rock(Position pos)
 	{
-		super(pos, false, true, true, false, true, SolidTo.ALL, StatusFallableEnum.IDLE);
+		super(pos, false, true, true, false, true, StatusFallableEnum.IDLE);
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
@@ -34,7 +35,8 @@ public class Rock extends Fallable
 	 */
 	public Rock(Position pos, StatusFallableEnum state)
 	{
-		super(pos, false, true, true, false, true, SolidTo.ALL, state);
+		super(pos, false, true, true, false, true, state);
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
@@ -75,13 +77,12 @@ public class Rock extends Fallable
 	 */
 	public void fall()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
 				&& this.state == StatusFallableEnum.IDLE)
 		{
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
-		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ACTOR
+		else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
 						&& this.state == StatusFallableEnum.FALLINGOFF
 				|| this.state == StatusFallableEnum.FALLING)
 		{
@@ -89,15 +90,13 @@ public class Rock extends Fallable
 		}
 		else if (MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded())
 		{
-			if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE
-					&& MapInstance.solid(this.getPosition().checkLeft(),
-							this.getPosition().checkDown()) == SolidTo.NONE)
+			if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode())
+					&& this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().checkDown()).hashCode()))
 			{
 				this.state = StatusFallableEnum.SLIDINGLEFT;
 			}
-			else if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE
-					&& MapInstance.solid(this.getPosition().checkRight(),
-							this.getPosition().checkDown()) == SolidTo.NONE)
+			else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode())
+					&& this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().checkDown()).hashCode()))
 			{
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
@@ -126,9 +125,7 @@ public class Rock extends Fallable
 				this.getPosition().goDown();
 				break;
 			case FALLING:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-						|| MapInstance.solid(this.getPosition().getX(),
-								this.getPosition().checkDown()) == SolidTo.ACTOR)
+				if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
 				{
 					this.getPosition().goDown();
 				}

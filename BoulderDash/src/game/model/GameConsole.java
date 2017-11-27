@@ -1,7 +1,6 @@
 package game.model;
 
 import game.model.actor.Rockford;
-import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 import java.util.Scanner;
@@ -31,7 +30,6 @@ public class GameConsole
 					"Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
 
 			Rockford player = Rockford.getRockford();
-			Exit door = Exit.getInstance();
 			while (!quit)
 			{
 				String dir = in.next();
@@ -56,11 +54,6 @@ public class GameConsole
 						break;
 					default:
 						break;
-				}
-
-				if (door.getSolid() == SolidTo.ALL)
-				{
-					Exit.open();
 				}
 
 				MapInstance.refresh();

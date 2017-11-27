@@ -2,7 +2,6 @@ package game.model.item;
 
 import game.model.ListOfEntities;
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.map.MapItem;
 
 /**
@@ -25,9 +24,9 @@ public class Fallable extends Item
 	 * @param state
 	 */
 	public Fallable(Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
-			boolean rounded, SolidTo solid, StatusFallableEnum state)
+			boolean rounded, StatusFallableEnum state)
 	{
-		super(pos, collectable, moveable, fallable, explodable, rounded, solid);
+		super(pos, collectable, moveable, fallable, explodable, rounded);
 		this.state = state;
 	}
 

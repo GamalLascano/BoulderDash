@@ -3,7 +3,6 @@ package game.model.map;
 import game.model.Entity;
 import game.model.ListOfEntities;
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.actor.*;
 import game.model.cell.*;
 import game.model.item.*;
@@ -208,39 +207,6 @@ public class MapInstance
 		else
 		{
 			return false;
-		}
-	}
-
-	/**
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
-	 */
-	public static SolidTo solid(Integer x, Integer y)
-	{
-		if (isInMapLimits(x, y))
-		{
-			SolidTo a, b, c, d;
-
-			a = MapCell.getCell(x, y).getSolid();
-			b = MapItem.getItem(x, y).getSolid();
-			if (MapActor.getActor(x, y) != null)
-			{
-				c = MapActor.getActor(x, y).getSolid();
-			}
-			else
-			{
-				c = SolidTo.NONE;
-			}
-
-			d = a.ordinal() > b.ordinal() ? a : b;
-			d = d.ordinal() > c.ordinal() ? d : c;
-			return d;
-		}
-		else
-		{
-			return SolidTo.ALL;
 		}
 	}
 

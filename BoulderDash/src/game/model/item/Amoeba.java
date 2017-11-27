@@ -1,11 +1,11 @@
 package game.model.item;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.item.StatusAmoebaEnum;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.model.map.MapVisual;
 
 /**
  * 
@@ -23,9 +23,11 @@ public class Amoeba extends Item
 	 */
 	public Amoeba(Position pos)
 	{
-		super(pos, false, false, false, false, false, SolidTo.ALL);
+		super(pos, false, false, false, false, false);
 		this.expanding = true;
 		this.state = StatusAmoebaEnum.EXPANDUP;
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
 	}
 
 	/**
@@ -148,7 +150,7 @@ public class Amoeba extends Item
 	 */
 	public void makeMoveUp()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) != SolidTo.ALL)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
 		}
@@ -163,7 +165,7 @@ public class Amoeba extends Item
 	 */
 	public void makeMoveDown()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) != SolidTo.ALL)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
 		}
@@ -178,7 +180,7 @@ public class Amoeba extends Item
 	 */
 	public void makeMoveRight()
 	{
-		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) != SolidTo.ALL)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
 		}
@@ -193,7 +195,7 @@ public class Amoeba extends Item
 	 */
 	public void makeMoveLeft()
 	{
-		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) != SolidTo.ALL)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
 		}

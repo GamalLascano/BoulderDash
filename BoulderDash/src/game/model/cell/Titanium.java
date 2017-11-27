@@ -1,7 +1,6 @@
 package game.model.cell;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 
 /**
@@ -18,7 +17,7 @@ public class Titanium extends Cell
 	 */
 	public Titanium(Position pos)
 	{
-		super(pos, SolidTo.ALL);
+		super(pos);
 	}
 
 	/**

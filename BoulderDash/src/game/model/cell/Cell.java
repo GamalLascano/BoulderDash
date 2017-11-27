@@ -1,7 +1,6 @@
 package game.model.cell;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.map.MapCell;
 
@@ -13,17 +12,14 @@ public abstract class Cell
 {
 	private SpriteChar spritechar;
 	protected Position pos;
-	private SolidTo solid;
 
 	/**
 	 * 
-	 * @param po
-	 * @param soli
+	 * @param pos
 	 */
-	Cell(Position po, SolidTo soli)
+	Cell(Position pos)
 	{
-		pos = po;
-		solid = soli;
+		this.pos = pos;
 	}
 
 	/**
@@ -94,29 +90,11 @@ public abstract class Cell
 
 	/**
 	 * 
-	 * @return
-	 */
-	public SolidTo getSolid()
-	{
-		return solid;
-	}
-
-	/**
-	 * 
 	 * @param po
 	 */
 	public void setPosition(Position po)
 	{
 		pos = po;
-	}
-
-	/**
-	 * 
-	 * @param soli
-	 */
-	public void setSolid(SolidTo soli)
-	{
-		solid = soli;
 	}
 	
 	/**

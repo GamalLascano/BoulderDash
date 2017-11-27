@@ -1,7 +1,6 @@
 package game.model.actor;
 
 import game.model.ListOfEntities;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.cell.Dirt;
 import game.model.cell.Exit;
@@ -11,6 +10,7 @@ import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.model.map.MapVisual;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene un
@@ -37,6 +37,10 @@ public class Rockford extends Actor
 		this.score = 0;
 		this.diamonds = 0;
 		this.isPushing = false;
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
+		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
+		this.getPassable().put(SpriteChar.e.hashCode(), SpriteChar.e);
 	}
 
 	/**
@@ -281,9 +285,7 @@ public class Rockford extends Actor
 	 */
 	public void makeMoveUp()
 	{
-		if (MapInstance.solid(getPosition().getX(), getPosition().checkUp()) == SolidTo.NONE
-				|| MapInstance.solid(getPosition().getX(), getPosition().checkUp()) == SolidTo.ITEM
-				|| MapItem.getDiamond(getPosition().getX(), getPosition().checkUp()) != null)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
 		{
 			getPosition().goUp();
 			this.dig(MapCell.getDirt(getPosition()));
@@ -300,9 +302,7 @@ public class Rockford extends Actor
 	 */
 	public void makeMoveDown()
 	{
-		if (MapInstance.solid(getPosition().getX(), getPosition().checkDown()) == SolidTo.NONE
-				|| MapInstance.solid(getPosition().getX(), getPosition().checkDown()) == SolidTo.ITEM
-				|| MapItem.getDiamond(getPosition().getX(), getPosition().checkDown()) != null)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
 		{
 			getPosition().goDown();
 			this.dig(MapCell.getDirt(getPosition()));
@@ -319,16 +319,13 @@ public class Rockford extends Actor
 	 */
 	public void makeMoveRight()
 	{
-		if (MapInstance.solid(getPosition().checkRight(), getPosition().getY()) == SolidTo.NONE
-				|| MapInstance.solid(getPosition().checkRight(), getPosition().getY()) == SolidTo.ITEM
-				|| MapItem.getDiamond(getPosition().checkRight(), getPosition().getY()) != null)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
 		{
 			getPosition().goRight();
 			this.dig(MapCell.getDirt(getPosition()));
 			this.collect(MapItem.getDiamond(getPosition()));
 		}
-		else if (MapInstance.solid(getPosition().checkRight() + 1, getPosition().getY()) == SolidTo.NONE
-				&& MapItem.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable() == true)
+		else if (MapItem.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable() == true)
 		{
 			this.push(MapItem.getRock(getPosition().checkRight(), getPosition().getY()));
 			getPosition().goRight();
@@ -346,16 +343,13 @@ public class Rockford extends Actor
 	 */
 	public void makeMoveLeft()
 	{
-		if (MapInstance.solid(getPosition().checkLeft(), getPosition().getY()) == SolidTo.NONE
-				|| MapInstance.solid(getPosition().checkLeft(), getPosition().getY()) == SolidTo.ITEM
-				|| MapItem.getDiamond(getPosition().checkLeft(), getPosition().getY()) != null)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
 		{
 			getPosition().goLeft();
 			this.dig(MapCell.getDirt(getPosition()));
 			this.collect(MapItem.getDiamond(getPosition()));
 		}
-		else if (MapInstance.solid(getPosition().checkLeft() - 1, getPosition().getY()) == SolidTo.NONE
-				&& MapItem.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable() == true)
+		else if (MapItem.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable() == true)
 		{
 			this.push(MapItem.getRock(getPosition().checkLeft(), getPosition().getY()));
 			getPosition().goLeft();

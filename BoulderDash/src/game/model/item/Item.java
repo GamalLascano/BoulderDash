@@ -3,7 +3,6 @@ package game.model.item;
 import game.model.Entity;
 import game.model.ListOfEntities;
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.map.MapItem;
 
@@ -31,12 +30,11 @@ public abstract class Item extends Entity
 	 * @param fallable
 	 * @param explodable
 	 * @param rounded
-	 * @param solid
 	 */
 	public Item(Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
-			boolean rounded, SolidTo solid)
+			boolean rounded)
 	{
-		super(pos, solid);
+		super(pos);
 		this.collectable = collectable;
 		this.moveable = moveable;
 		this.fallable = fallable;

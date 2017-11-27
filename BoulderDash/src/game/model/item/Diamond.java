@@ -1,11 +1,10 @@
 package game.model.item;
 
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.SpriteChar;
 import game.model.map.MapCell;
-import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.model.map.MapVisual;
 
 /**
  * 
@@ -21,7 +20,8 @@ public class Diamond extends Fallable
 	 */
 	public Diamond(Position pos)
 	{
-		super(pos, true, false, true, false, true, SolidTo.ACTOR, StatusFallableEnum.IDLE);
+		super(pos, true, false, true, false, true, StatusFallableEnum.IDLE);
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
@@ -31,7 +31,8 @@ public class Diamond extends Fallable
 	 */
 	public Diamond(Position pos, StatusFallableEnum state)
 	{
-		super(pos, true, false, true, false, true, SolidTo.ACTOR, state);
+		super(pos, true, false, true, false, true, state);
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
@@ -56,16 +57,12 @@ public class Diamond extends Fallable
 	 */
 	public void fall()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ACTOR
-						&& MapItem.getDiamond(this.getPosition().getX(), this.getPosition().checkDown()) == null
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
 						&& this.state == StatusFallableEnum.IDLE)
 		{
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
-		else if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-				|| MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.ACTOR
-						&& MapItem.getDiamond(this.getPosition().getX(), this.getPosition().checkDown()) == null
+		else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
 						&& this.state == StatusFallableEnum.FALLINGOFF
 				|| this.state == StatusFallableEnum.FALLING)
 		{
@@ -73,15 +70,13 @@ public class Diamond extends Fallable
 		}
 		else if (MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded())
 		{
-			if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE
-					&& MapInstance.solid(this.getPosition().checkLeft(),
-							this.getPosition().checkDown()) == SolidTo.NONE)
+			if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode())
+					&& this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().checkDown()).hashCode()))
 			{
 				this.state = StatusFallableEnum.SLIDINGLEFT;
 			}
-			else if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE
-					&& MapInstance.solid(this.getPosition().checkRight(),
-							this.getPosition().checkDown()) == SolidTo.NONE)
+			else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode())
+					&& this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().checkDown()).hashCode()))
 			{
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
@@ -110,9 +105,7 @@ public class Diamond extends Fallable
 				this.getPosition().goDown();
 				break;
 			case FALLING:
-				if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE
-						|| MapInstance.solid(this.getPosition().getX(),
-								this.getPosition().checkDown()) == SolidTo.ACTOR)
+				if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
 				{
 					this.getPosition().goDown();
 				}

@@ -2,11 +2,11 @@ package game.model.actor;
 
 import game.model.ListOfEntities;
 import game.model.Position;
-import game.model.SolidTo;
 import game.model.item.Diamond;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.model.map.MapVisual;
 
 /**
  * 
@@ -128,7 +128,7 @@ public abstract class Enemy extends Actor
 	 */
 	public void makeMoveUp()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkUp()) == SolidTo.NONE)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()) )
 		{
 			this.getPosition().goUp();
 			if (this.isRockfordInRange())
@@ -147,7 +147,7 @@ public abstract class Enemy extends Actor
 	 */
 	public void makeMoveDown()
 	{
-		if (MapInstance.solid(this.getPosition().getX(), this.getPosition().checkDown()) == SolidTo.NONE)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
 		{
 			this.getPosition().goDown();
 			if (this.isRockfordInRange())
@@ -166,7 +166,7 @@ public abstract class Enemy extends Actor
 	 */
 	public void makeMoveRight()
 	{
-		if (MapInstance.solid(this.getPosition().checkRight(), this.getPosition().getY()) == SolidTo.NONE)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
 		{
 			this.getPosition().goRight();
 			if (this.isRockfordInRange())
@@ -185,7 +185,7 @@ public abstract class Enemy extends Actor
 	 */
 	public void makeMoveLeft()
 	{
-		if (MapInstance.solid(this.getPosition().checkLeft(), this.getPosition().getY()) == SolidTo.NONE)
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
 		{
 			this.getPosition().goLeft();
 			if (this.isRockfordInRange())
