@@ -20,17 +20,13 @@ public class Game
 
 	public static void main(String[] args)
 	{
-		//
 		final int TASKSPEED = 110;
 		final int TASKDELAY = 1000;
-		final int STARTLEVEL = 1;
+		//final int STARTLEVEL = 1;
 		final int LIVES = 3;
 		MapInstance.start();
 		MapVisual.start();
-		if (MapInstance.getSelectedLevel() == null)
-		{
-			MapInstance.setSelectedLevel(STARTLEVEL);
-		}
+		
 		MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
 		Rockford.getRockford().setLives(LIVES);
 		FrameMap.start();
