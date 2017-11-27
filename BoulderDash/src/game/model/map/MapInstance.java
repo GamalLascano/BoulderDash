@@ -297,6 +297,7 @@ public class MapInstance
 						break;
 					case EXIT:
 						Exit door = Exit.getInstance();
+						door.reset();
 						door.setPosition(pos);
 						MapCell.setCell(door);
 						break;

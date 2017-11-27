@@ -42,6 +42,16 @@ public class Exit extends Cell
 	/**
 	 * 
 	 */
+	public void reset()
+	{
+		exit.pos = null;
+		spritechar = SpriteChar.E;
+		isOpen = false;
+	}
+	
+	/**
+	 * 
+	 */
 	public static void open()
 	{
 		Rockford player = Rockford.getRockford();
