@@ -87,7 +87,10 @@ public class Diamond extends Fallable
 			{
 				this.state = StatusFallableEnum.CONVERT;
 			}
-			this.state = StatusFallableEnum.IDLE;
+			else
+			{
+				this.state = StatusFallableEnum.IDLE;
+			}
 		}
 		else
 		{
