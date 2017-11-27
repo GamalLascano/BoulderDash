@@ -31,7 +31,8 @@ public class FrameMenu extends JFrame
 	// top X
 	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
-	private static Object[][] tabledata =
+	private static Object[][] tabledata;
+	private static Object[][] tableinfo =
 	{
 			{ "1", "Max", new Integer(5000), new Integer(2000) },
 			{ "2", "Walter", new Integer(3000), new Integer(2000) },
@@ -54,7 +55,7 @@ public class FrameMenu extends JFrame
 			{ "19", "-", new Integer(0), new Integer(0) },
 			{ "20", "-", new Integer(0), new Integer(0) }, };
 	private static JTable table = new JTable();
-	private static DefaultTableModel tablemodel = new DefaultTableModel(tabledata, tablecolumn);
+	private static DefaultTableModel tablemodel;
 	private static JScrollPane scrollPane = new JScrollPane(table);
 	private static JLabel toptitle;
 	RowFilter<Object, Object> filter;
@@ -68,7 +69,7 @@ public class FrameMenu extends JFrame
 	private static String[] resolutions =
 	{ "800x600", "1024x768", "1366x768", "1920x1080" };
 	private static String[] tops =
-	{ "TOP 5", "TOP 10", "TOP 15", "TOP 20" };
+	{ "5", "10", "15", "20" };
 	private static Dimension pastScreenSize = new Dimension(800, 600);
 
 	private FrameMenu()
@@ -256,7 +257,8 @@ public class FrameMenu extends JFrame
 
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
-		table.setModel(tablemodel);
+		Integer rowx = Integer.parseInt((String)top.getSelectedItem());
+		framemenu.showXrow(rowx);
 
 		button[0].setText("Back");
 		button[0].addActionListener(new ActionListener()
@@ -430,10 +432,21 @@ public class FrameMenu extends JFrame
 		panel.add(button[0], cons);
 	}
 
+	public void showXrow(Integer x)
+	{
+		tablemodel = new DefaultTableModel(tabledata, tablecolumn);
+		for(int i = 0; i < x; i++)
+		{
+			tablemodel.addRow(tableinfo[i]);
+		}
+		table.setModel(tablemodel);
+	}
+	
 	public void addNameTable(String name, Integer score, Integer time)
 	{
+		
 		tablemodel.addRow(new Object[]
-		{ name, score.toString(), time.toString() });
+		{name, score.toString(), time.toString() });
 	}
 
 	public static void main(String[] args)
