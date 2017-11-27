@@ -21,7 +21,6 @@ public class FrameMenu extends JFrame
 
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
-	private static Insets ins = new Insets(0, 0, 0, 0);
 	// menu
 	private static String imgFileName = "game/view/wallpaper.jpg";
 	private static Image img;
@@ -30,9 +29,9 @@ public class FrameMenu extends JFrame
 	private static BufferedImage instructionsImg;
 	private static JLabel instructions;
 	// top X
-	private static String[] columnNames =
+	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
-	private static Object[][] data =
+	private static Object[][] tabledata =
 	{
 			{ "1", "Max", new Integer(5000), new Integer(2000) },
 			{ "2", "Walter", new Integer(3000), new Integer(2000) },
@@ -54,7 +53,8 @@ public class FrameMenu extends JFrame
 			{ "18", "-", new Integer(0), new Integer(0) },
 			{ "19", "-", new Integer(0), new Integer(0) },
 			{ "20", "-", new Integer(0), new Integer(0) }, };
-	private static JTable table = new JTable(data, columnNames);
+	private static JTable table = new JTable();
+	private static DefaultTableModel tablemodel = new DefaultTableModel(tabledata, tablecolumn);
 	private static JScrollPane scrollPane = new JScrollPane(table);
 	private static JLabel toptitle;
 	RowFilter<Object, Object> filter;
@@ -141,9 +141,9 @@ public class FrameMenu extends JFrame
 		panel.setImage(img);
 	}
 
-	public static void removeAllActionsListeners()
+	public static void removeListeners(JButton[] jbutton)
 	{
-		for (JButton xButton : button)
+		for (JButton xButton : jbutton)
 		{
 			for (ActionListener al : xButton.getActionListeners())
 			{
@@ -152,12 +152,30 @@ public class FrameMenu extends JFrame
 		}
 	}
 
+	public static void refreshPanel(JPanel jpanel)
+	{
+		jpanel.removeAll();
+		removeListeners(button);
+		jpanel.revalidate();
+		jpanel.repaint();
+	}
+
+	public static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height,
+			double weightx, double weighty, int anchor, int fill)
+	{
+		constraint.gridx = x;
+		constraint.gridy = y;
+		constraint.gridwidth = width;
+		constraint.gridheight = height;
+		constraint.weightx = weightx;
+		constraint.weighty = weighty;
+		constraint.anchor = anchor;
+		constraint.fill = fill;
+	}
+
 	public static void menu()
 	{
-		panel.removeAll();
-		removeAllActionsListeners();
-		panel.revalidate();
-		panel.repaint();
+		refreshPanel(panel);
 
 		button[0].setText("QUIERO JUGAR!");
 		button[0].addActionListener(new ActionListener()
@@ -171,21 +189,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		cons.gridx = 0;
-		cons.gridy = 0;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 0.5;
-		cons.weighty = 5;
-		cons.anchor = GridBagConstraints.SOUTH;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 0, 1, 1, 0.5, 5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
 		panel.add(button[0], cons);
 
 		button[1].setText("TOP X");
@@ -198,21 +202,8 @@ public class FrameMenu extends JFrame
 				topX();
 			}
 		});
-		cons.gridx = 1;
-		cons.gridy = 0;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 0.5;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.SOUTH;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+
+		setupConstraint(cons, 1, 0, 1, 1, 0.5, 0.5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
 		panel.add(button[1], cons);
 
 		button[2].setText("REGLAS DEL JUEGO");
@@ -225,21 +216,8 @@ public class FrameMenu extends JFrame
 				rules();
 			}
 		});
-		cons.gridx = 2;
-		cons.gridy = 0;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 0.5;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.SOUTH;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+
+		setupConstraint(cons, 2, 0, 1, 1, 0.5, 0.5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
 		panel.add(button[2], cons);
 
 		button[3].setText("CONFIGURACION");
@@ -252,21 +230,8 @@ public class FrameMenu extends JFrame
 				config();
 			}
 		});
-		cons.gridx = 0;
-		cons.gridy = 1;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 0.5;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.ABOVE_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+
+		setupConstraint(cons, 0, 1, 1, 1, 0.5, 0.5, GridBagConstraints.ABOVE_BASELINE, GridBagConstraints.CENTER);
 		panel.add(button[3], cons);
 
 		button[4].setText("QUITAR");
@@ -280,33 +245,18 @@ public class FrameMenu extends JFrame
 				System.exit(0);
 			}
 		});
-		cons.gridx = 2;
-		cons.gridy = 1;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 0.5;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.ABOVE_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+
+		setupConstraint(cons, 2, 1, 1, 1, 0.5, 0.5, GridBagConstraints.ABOVE_BASELINE, GridBagConstraints.CENTER);
 		panel.add(button[4], cons);
 	}
 
 	public static void topX()
 	{
-		panel.removeAll();
-		panel.revalidate();
-		panel.repaint();
-		removeAllActionsListeners();
+		refreshPanel(panel);
 
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
+		table.setModel(tablemodel);
 
 		button[0].setText("Back");
 		button[0].addActionListener(new ActionListener()
@@ -321,65 +271,20 @@ public class FrameMenu extends JFrame
 		toptitle = new JLabel("TOP X");
 		toptitle.setForeground(Color.WHITE);
 
-		cons.gridx = 0;
-		cons.gridy = 0;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.ABOVE_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 0, 1, 1, 1, 0.5, GridBagConstraints.ABOVE_BASELINE, GridBagConstraints.CENTER);
 		panel.add(toptitle, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 1;
-		cons.gridwidth = 5;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 1;
-		cons.anchor = GridBagConstraints.CENTER;
-		cons.fill = GridBagConstraints.BOTH;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 1, 5, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		panel.add(scrollPane, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 2;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.8;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 2, 1, 1, 1, 0.8, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(button[0], cons);
 
 	}
 
 	public static void rules()
 	{
-		panel.removeAll();
-		panel.revalidate();
-		panel.repaint();
-		removeAllActionsListeners();
+		refreshPanel(panel);
 
 		try
 		{
@@ -402,47 +307,16 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		cons.gridx = 0;
-		cons.gridy = 0;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 1;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 0, 1, 1, 1, 1, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(instructions, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 1;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.8;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 1, 1, 1, 1, 0.8, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(button[0], cons);
 	}
 
 	public static void config()
 	{
-		panel.removeAll();
-		panel.revalidate();
-		panel.repaint();
-		removeAllActionsListeners();
+		refreshPanel(panel);
 
 		top = new JComboBox<>(tops);
 		top.setSelectedIndex(0);
@@ -540,98 +414,28 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		cons.gridx = 0;
-		cons.gridy = 1;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 1, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(top, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 2;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 2, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(resoluciones, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 3;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 3, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(fullScr, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 4;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 4, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(levelsel, cons);
 
-		cons.gridx = 0;
-		cons.gridy = 5;
-		cons.gridwidth = 1;
-		cons.gridheight = 1;
-		cons.weightx = 1;
-		cons.weighty = 0.5;
-		cons.anchor = GridBagConstraints.BELOW_BASELINE;
-		cons.fill = GridBagConstraints.CENTER;
-		ins.bottom = 0;
-		ins.left = 0;
-		ins.right = 0;
-		ins.top = 0;
-		cons.insets = ins;
-		cons.ipadx = 0;
-		cons.ipady = 0;
+		setupConstraint(cons, 0, 5, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(button[0], cons);
 	}
 
 	public void addNameTable(String name, Integer score, Integer time)
 	{
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.addRow(new Object[]{name, score.toString(), time.toString()});
+		tablemodel.addRow(new Object[]
+		{ name, score.toString(), time.toString() });
 	}
-	
+
 	public static void main(String[] args)
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();

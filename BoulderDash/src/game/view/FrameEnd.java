@@ -20,14 +20,13 @@ public class FrameEnd extends JFrame
 	private static final long serialVersionUID = 1L;
 	private static FrameEnd frameend;
 	private static JPanel panelend;
-	
 
-	// panelendd
+	// panelend
 	private JTextField field;
 	private JButton button;
 	private JLabel scoreinfo;
 	private Integer time;
-	
+
 	private FrameEnd()
 	{
 		setLayout(new FlowLayout());
@@ -49,7 +48,7 @@ public class FrameEnd extends JFrame
 		}
 		return frameend;
 	}
-	
+
 	public void buildPanelEnd()
 	{
 		GridBagConstraints c = new GridBagConstraints();
@@ -59,30 +58,31 @@ public class FrameEnd extends JFrame
 		c.anchor = GridBagConstraints.CENTER;
 		c.weighty = 1;
 		c.gridx = 0;
-		
-		scoreinfo = new JLabel("Tu puntuación es: " + Rockford.getInstance().getScore().toString(),SwingConstants.CENTER);
+
+		scoreinfo = new JLabel("Tu puntuacion es: " + Rockford.getInstance().getScore().toString(),
+				SwingConstants.CENTER);
 		scoreinfo.setSize(100, 50);
 		scoreinfo.setHorizontalAlignment(SwingConstants.CENTER);
-		c.gridy=0;
+		c.gridy = 0;
 		panelend.add(scoreinfo);
-		
+
 		field = new JTextField();
 		field.setEditable(true);
 		field.setSize(100, 50);
 		c.gridy = 1;
-		panelend.add(field,c);
-		
+		panelend.add(field, c);
+
 		button = new JButton("Save score");
 		button.addActionListener(new ActionListener()
 		{
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				String name = field.getText();
-				if(nameIsValid(name))
+				if (nameIsValid(name))
 				{
-					if(name.length() > 20)
+					if (name.length() > 20)
 						name = name.substring(0, 20);
 					setVisible(false);
 					FrameMenu.getInstance().addNameTable(name, Rockford.getRockford().getScore(), frameend.time);
@@ -95,12 +95,12 @@ public class FrameEnd extends JFrame
 			}
 		});
 		c.gridy = 2;
-		panelend.add(button,c);		
+		panelend.add(button, c);
 	}
-	
+
 	public boolean nameIsValid(String name)
 	{
-		if(name.length() > 2 && !name.contains(" ") && !name.equals("INVALIDO!"))
+		if (name.length() > 2 && !name.contains(" ") && !name.equals("INVALIDO!"))
 		{
 			return true;
 		}
@@ -109,12 +109,12 @@ public class FrameEnd extends JFrame
 			return false;
 		}
 	}
-	
+
 	public static void setTime(Integer time)
 	{
 		frameend.time = time;
 	}
-	
+
 	public static void main(String[] args)
 	{
 		FrameEnd runFrameEnd = FrameEnd.getInstance();

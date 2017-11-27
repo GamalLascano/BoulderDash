@@ -83,11 +83,12 @@ public class Game
 					MapInstance.buildSelectedLevel(currentlevel);
 					if (Rockford.getRockford().getLives() == 0)
 					{
-						executorService.shutdownNow();
+						Integer time = turn;
 						FrameMap.getInstance().setVisible(false);
-						FrameMap.disposeFrame();
-						FrameEnd.setTime(turn);
+						FrameEnd.setTime(time);
 						FrameEnd.main(null);
+						executorService.shutdownNow();
+						FrameMap.disposeFrame();
 					}
 				}
 				else if (won)
