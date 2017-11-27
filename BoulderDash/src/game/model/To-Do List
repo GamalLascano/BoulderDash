@@ -4,28 +4,22 @@
 - otro sleep: Thread.sleep(1000);
 
 		=== INFO ===
-- si alive = false explota.
-- lo que se actualiza: posicion, estatus.
-- alive de player es false cuando el tiempo se acaba
-- explosion de butterfly genera diamantes
+	nada
 
 		=== TODO ===
-- hacer los turnos..
-- hacer lista linked list de actores y items
-- hacer link de la posicion y index de la matriz
-- hacer la explosion y consecuencia
-- hacer status para actor y status para items de manera separada
-- poner explode en enemy
-- poner variables de instancias en clases especificas y no todo en items
-- hacer mas enumeraciones ej:status
-- hacer el main (for de turnos)
-- Agregar Singleton a Rockford?
 - Actualizar el UML
-- hacer clase consola
+- Actualizar Javadoc
+- Terminar menu
+- Arreglar bugs:
+	fallables
+	nivel 7
+	amoeba
+	explosiones
 
 		=== PREGUNTAR ===
+	
 		
-	    === FEEDBACK SIN RESOLVER===
+	    === FEEDBACK===
 UML
 
 *Está dos veces las clase MapCell.
@@ -54,5 +48,3 @@ POO
 Funcionamiento
 
 *Hay funcionalidad sin programar, por ejemplo las explosiones de mariposas y luciérnagas, el crecimiento de las amebas.
-
-- 
