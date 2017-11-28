@@ -20,6 +20,8 @@ public class MapInstance
 	private static BDLevelReader levelReader;
 	private static Integer selectedLevel;
 	private static Double timer;
+	private static Integer diamondvalue;
+	private static Integer diamondbonus;
 
 	/**
 	 * 
@@ -28,6 +30,10 @@ public class MapInstance
 	{
 		entitiesAlive = null;
 		levelReader = null;
+		selectedLevel = null;
+		timer = null;
+		diamondvalue = null;
+		diamondbonus = null;
 
 	}
 
@@ -60,7 +66,7 @@ public class MapInstance
 		MapActor.getInstance().start();
 		ListOfEntities.start();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -83,9 +89,12 @@ public class MapInstance
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		timer = 150.0;
+		
+		timer = 150.0 - selectedLevel;
+		diamondvalue = 10 * selectedLevel;
+		diamondbonus = 15 * selectedLevel;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -112,7 +121,7 @@ public class MapInstance
 	{
 		MapInstance.levelReader = level;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -121,29 +130,35 @@ public class MapInstance
 	{
 		return selectedLevel;
 	}
-	public static void setSelectedLevel(Integer selectedlevels) {
-		selectedLevel=selectedlevels;
+
+	/**
+	 * 
+	 * @param selectedlevels
+	 */
+	public static void setSelectedLevel(Integer selectedlevels)
+	{
+		selectedLevel = selectedlevels;
 	}
+
 	/**
 	 * 
 	 * @param selectedLevel
 	 */
 	public static void buildSelectedLevel(Integer selectedLevel)
 	{
-		// bugfix porq
 		MapInstance.getInstance();
 		entitiesAlive = ListOfEntities.getInstance();
 		MapCell.getInstance().start();
 		MapItem.getInstance().start();
 		MapActor.getInstance().start();
 		ListOfEntities.start();
-		
+
 		MapInstance.selectedLevel = selectedLevel;
 		MapInstance.readLevel();
 		MapInstance.buildMap();
 		MapVisual.drawMap();
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -155,13 +170,31 @@ public class MapInstance
 
 	/**
 	 * 
+	 * @return
+	 */
+	public static Integer getDiamondvalue()
+	{
+		return diamondvalue;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public static Integer getDiamondbonus()
+	{
+		return diamondbonus;
+	}
+
+	/**
+	 * 
 	 * @param timer
 	 */
 	public static void decrementTimer()
 	{
 		if (MapInstance.timer > 0)
 		{
-			MapInstance.timer-= 0.1;
+			MapInstance.timer -= 0.1;
 		}
 	}
 
@@ -199,8 +232,7 @@ public class MapInstance
 	 */
 	public static boolean isInMapLimits(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() > x && MapInstance.getLevelReader().getHEIGHT() > y && 0 <= x
-				&& 0 <= y)
+		if (MapInstance.getLevelReader().getWIDTH() > x && MapInstance.getLevelReader().getHEIGHT() > y && 0 <= x && 0 <= y)
 		{
 			return true;
 		}
@@ -257,9 +289,9 @@ public class MapInstance
 					case WALL:
 						MapCell.setCell(new Wall(pos));
 						break;
-//					case MAGIC:
-//						MapCell.setCell(new Wall(pos,5));
-//						break;
+					// case MAGIC:
+					// MapCell.setCell(new Wall(pos,5));
+					// break;
 					case ROCK:
 						Rock rock = new Rock(pos);
 						MapItem.setItem(rock);

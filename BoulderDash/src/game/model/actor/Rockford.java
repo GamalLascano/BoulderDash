@@ -188,8 +188,7 @@ public class Rockford extends Actor
 	/**
 	 * Si es un diamante, lo recolecta
 	 * 
-	 * @param diamond:
-	 *            Bloque de diamante
+	 * @param diamond: Bloque de diamante
 	 */
 	public void collect(Diamond diamond)
 	{
@@ -197,7 +196,14 @@ public class Rockford extends Actor
 		{
 			diamonds++;
 			diamond.collected();
-			score+= 10 * MapInstance.getSelectedLevel();
+			if(!Exit.getInstance().isOpen())
+			{
+				score+= MapInstance.getDiamondvalue();
+			}
+			else
+			{
+				score+= MapInstance.getDiamondbonus();
+			}
 		}
 	}
 
