@@ -24,8 +24,8 @@ public class FrameMenu extends JFrame
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
 	// menu
-	private static String imgFileName = "game/view/wallpaper.jpg";
-	private static Image img;
+	private static String dirwallpaper = "game/view/wallpaper.png";
+	private static Image wallpaperimg;
 	private static JButton button[] = new JButton[5];
 	// rules
 	private static BufferedImage instructionsImg;
@@ -57,10 +57,10 @@ public class FrameMenu extends JFrame
 		setupFrameMenu();
 		setupPanelMenu();
 		tabledata = new Object[4][20];
-		ScoreBoard.getInstance().loadMatrix(tabledata);
+		// ScoreBoard.getInstance().loadMatrix(tabledata);
 
 		add(panel);
-		setPreferredSize(new Dimension(img.getWidth(null), img.getHeight(null)));
+		setPreferredSize(new Dimension(wallpaperimg.getWidth(null), wallpaperimg.getHeight(null)));
 		pack();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -118,33 +118,62 @@ public class FrameMenu extends JFrame
 
 	public void putButtons()
 	{
+		Image buttonimg0;
+		Image buttonimg1;
+		Image buttonimg2;
+		try
+		{
+			buttonimg0 = ImageIO.read(getClass().getResource("button0.png"));
+			buttonimg1 = ImageIO.read(getClass().getResource("button1.png"));
+			buttonimg2 = ImageIO.read(getClass().getResource("button2.png"));
+		}
+		catch (Exception ex)
+		{
+			System.out.println(ex);
+			buttonimg0 = null;
+			buttonimg1 = null;
+			buttonimg2 = null;
+		}
+		
 		for (int y = 0; y < 5; y++)
 		{
 			button[y] = new JButton();
+			button[y].setPreferredSize(new Dimension(buttonimg0.getWidth(null), buttonimg0.getHeight(null)));
+			button[y].setIcon(new ImageIcon(buttonimg0));
+			button[y].setRolloverIcon(new ImageIcon(buttonimg1));
+			button[y].setPressedIcon(new ImageIcon(buttonimg2));
+			button[y].setContentAreaFilled(false);
+			button[y].setMargin(new Insets(0, 0, 0, 0));
+			button[y].setHorizontalAlignment(SwingConstants.CENTER);
+			button[y].setBorder(BorderFactory.createEmptyBorder());
+			button[y].setBorderPainted(false);
+			button[y].setFocusPainted(false);
+			button[y].setVerticalTextPosition(SwingConstants.CENTER);
+			button[y].setHorizontalTextPosition(SwingConstants.CENTER);
 		}
 	}
 
 	// panel
 	public void putBackground()
 	{
-		URL imgUrl = getClass().getClassLoader().getResource(imgFileName);
+		URL imgUrl = getClass().getClassLoader().getResource(dirwallpaper);
 		if (imgUrl == null)
 		{
-			System.err.println("No se encuetra el archivo: " + imgFileName);
+			System.err.println("No se encuetra el archivo: " + dirwallpaper);
 		}
 		else
 		{
 			try
 			{
-				img = ImageIO.read(imgUrl);
-				img = img.getScaledInstance(this.getSize().width, this.getSize().height, Image.SCALE_DEFAULT);
+				wallpaperimg = ImageIO.read(imgUrl);
+				wallpaperimg = wallpaperimg.getScaledInstance(this.getSize().width, this.getSize().height, Image.SCALE_DEFAULT);
 			}
 			catch (IOException ex)
 			{
 				ex.printStackTrace();
 			}
 		}
-		panel.setImage(img);
+		panel.setImage(wallpaperimg);
 	}
 
 	public static void removeListeners(JButton[] jbutton)
@@ -166,8 +195,7 @@ public class FrameMenu extends JFrame
 		jpanel.repaint();
 	}
 
-	public static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height,
-			double weightx, double weighty, int anchor, int fill)
+	public static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height, double weightx, double weighty, int anchor, int fill)
 	{
 		constraint.gridx = x;
 		constraint.gridy = y;
@@ -182,6 +210,7 @@ public class FrameMenu extends JFrame
 	public static void menu()
 	{
 		refreshPanel(panel);
+		final double SPACEX = 0.3;
 
 		button[0].setText("QUIERO JUGAR!");
 		button[0].addActionListener(new ActionListener()
@@ -195,7 +224,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		setupConstraint(cons, 0, 0, 1, 1, 0.5, 5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 0, 1, 1, 0.5, 5, GridBagConstraints.SOUTH, GridBagConstraints.NONE);
 		panel.add(button[0], cons);
 
 		button[1].setText("TOP X");
@@ -217,7 +246,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		setupConstraint(cons, 1, 0, 1, 1, 0.5, 0.5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 1, 1, 1, 0.5, SPACEX, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 		panel.add(button[1], cons);
 
 		button[2].setText("REGLAS DEL JUEGO");
@@ -231,7 +260,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		setupConstraint(cons, 2, 0, 1, 1, 0.5, 0.5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 2, 1, 1, 0.5, SPACEX, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 		panel.add(button[2], cons);
 
 		button[3].setText("CONFIGURACION");
@@ -245,7 +274,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		setupConstraint(cons, 0, 1, 1, 1, 0.5, 0.5, GridBagConstraints.ABOVE_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 3, 1, 1, 0.5, SPACEX, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 		panel.add(button[3], cons);
 
 		button[4].setText("QUITAR");
@@ -260,7 +289,7 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		setupConstraint(cons, 2, 1, 1, 1, 0.5, 0.5, GridBagConstraints.ABOVE_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 4, 1, 1, 0.5, SPACEX, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 		panel.add(button[4], cons);
 	}
 
@@ -270,7 +299,7 @@ public class FrameMenu extends JFrame
 
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
-		Integer rowx = Integer.parseInt((String)top.getSelectedItem());
+		Integer rowx = Integer.parseInt((String) top.getSelectedItem());
 		framemenu.showXrow(rowx);
 
 		button[0].setText("Back");
@@ -286,7 +315,7 @@ public class FrameMenu extends JFrame
 		toptitle = new JLabel("TOP X");
 		toptitle.setForeground(Color.WHITE);
 
-		setupConstraint(cons, 0, 0, 1, 1, 1, 0.5, GridBagConstraints.ABOVE_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 0, 1, 1, 1, 0.5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
 		panel.add(toptitle, cons);
 
 		setupConstraint(cons, 0, 1, 5, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
@@ -335,8 +364,10 @@ public class FrameMenu extends JFrame
 
 		top = new JComboBox<>(tops);
 		top.setSelectedIndex(0);
+		top.setPreferredSize(new Dimension(250, 40));
 		resoluciones = new JComboBox<>(resolutions);
 		resoluciones.setSelectedIndex(0);
+		resoluciones.setPreferredSize(new Dimension(250, 40));
 		resoluciones.addActionListener(new ActionListener()
 		{
 
@@ -403,8 +434,10 @@ public class FrameMenu extends JFrame
 			}
 		});
 		fullScr.setSelected(false);
+		fullScr.setPreferredSize(new Dimension(250, 40));
 		levelsel = new JComboBox<>(levels);
 		levelsel.setSelectedItem(0);
+		levelsel.setPreferredSize(new Dimension(250, 40));
 		levelsel.addActionListener(new ActionListener()
 		{
 
@@ -429,19 +462,19 @@ public class FrameMenu extends JFrame
 			}
 		});
 
-		setupConstraint(cons, 0, 1, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 1, 1, 1, 1, 5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
 		panel.add(top, cons);
 
-		setupConstraint(cons, 0, 2, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 2, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(resoluciones, cons);
 
-		setupConstraint(cons, 0, 3, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 3, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
+		panel.add(levelsel, cons);
+		
+		setupConstraint(cons, 0, 4, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(fullScr, cons);
 
-		setupConstraint(cons, 0, 4, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
-		panel.add(levelsel, cons);
-
-		setupConstraint(cons, 0, 5, 1, 1, 1, 0.5, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
+		setupConstraint(cons, 0, 5, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(button[0], cons);
 	}
 
@@ -449,23 +482,24 @@ public class FrameMenu extends JFrame
 	{
 		ScoreBoard.getInstance().loadMatrix(tabledata);
 		tablemodel = new DefaultTableModel(tabledata, tablecolumn);
-		for(int i = 0; i < x; i++)
+		for (int i = 0; i < x; i++)
 		{
 			tablemodel.addRow(tabledata[i]);
 		}
 		table.setModel(tablemodel);
 	}
-	
+
 	public void addNameTable(String name, Integer score, Integer time)
 	{
-		tablemodel.addRow(new Object[] {"999",name, score.toString(), time.toString() });
+		tablemodel.addRow(new Object[]
+		{ "999", name, score.toString(), time.toString() });
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();
 		runFrameMenu.setVisible(true);
-		ScoreBoard.getInstance().saveMatrix(tabledata);
+		// ScoreBoard.getInstance().saveMatrix(tabledata);
 	}
 
 }
