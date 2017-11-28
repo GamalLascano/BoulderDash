@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import game.model.Game;
 import game.model.map.MapInstance;
+import game.view.sounds.Sound;
 
 public class FrameMenu extends JFrame
 {
@@ -23,6 +24,7 @@ public class FrameMenu extends JFrame
 
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
+	private static Sound playsound;
 	// menu
 	private static String dirwallpaper = "game/view/wallpaper.png";
 	private static Image wallpaperimg;
@@ -219,6 +221,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				framemenu.setVisible(false);
 				Game.main(new String[0]);
 			}
@@ -234,6 +237,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				try
 				{
 					topX();
@@ -256,6 +260,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				rules();
 			}
 		});
@@ -270,6 +275,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				config();
 			}
 		});
@@ -284,6 +290,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				framemenu.dispose();
 				System.exit(0);
 			}
@@ -309,6 +316,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				menu();
 			}
 		});
@@ -347,6 +355,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				menu();
 			}
 		});
@@ -374,6 +383,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
@@ -411,7 +421,6 @@ public class FrameMenu extends JFrame
 		fullScr = new JCheckBox("Pantalla Completa");
 		fullScr.addItemListener(new ItemListener()
 		{
-
 			@Override
 			public void itemStateChanged(ItemEvent e)
 			{
@@ -444,6 +453,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
@@ -458,6 +468,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				playsound.button();
 				menu();
 			}
 		});
