@@ -3,7 +3,9 @@ package game.view;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -32,28 +34,6 @@ public class FrameMenu extends JFrame
 	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
 	private static Object[][] tabledata;
-	private static Object[][] tableinfo =
-	{
-			{ "1", "Max", new Integer(5000), new Integer(2000) },
-			{ "2", "Walter", new Integer(3000), new Integer(2000) },
-			{ "3", "Jesse", new Integer(2000), new Integer(2000) },
-			{ "4", "Frank", new Integer(1000), new Integer(2000) },
-			{ "5", "Tortuga", new Integer(10), new Integer(2000) },
-			{ "6", "-", new Integer(0), new Integer(0) },
-			{ "7", "-", new Integer(0), new Integer(0) },
-			{ "8", "-", new Integer(0), new Integer(0) },
-			{ "9", "-", new Integer(0), new Integer(0) },
-			{ "10", "-", new Integer(0), new Integer(0) },
-			{ "11", "-", new Integer(0), new Integer(0) },
-			{ "12", "-", new Integer(0), new Integer(0) },
-			{ "13", "-", new Integer(0), new Integer(0) },
-			{ "14", "-", new Integer(0), new Integer(0) },
-			{ "15", "-", new Integer(0), new Integer(0) },
-			{ "16", "-", new Integer(0), new Integer(0) },
-			{ "17", "-", new Integer(0), new Integer(0) },
-			{ "18", "-", new Integer(0), new Integer(0) },
-			{ "19", "-", new Integer(0), new Integer(0) },
-			{ "20", "-", new Integer(0), new Integer(0) }, };
 	private static JTable table = new JTable();
 	private static DefaultTableModel tablemodel;
 	private static JScrollPane scrollPane = new JScrollPane(table);
@@ -72,10 +52,12 @@ public class FrameMenu extends JFrame
 	{ "5", "10", "15", "20" };
 	private static Dimension pastScreenSize = new Dimension(800, 600);
 
-	private FrameMenu()
+	private FrameMenu() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		setupFrameMenu();
 		setupPanelMenu();
+		tabledata = new Object[4][20];
+		ScoreBoard.getInstance().loadMatrix(tabledata);
 
 		add(panel);
 		setPreferredSize(new Dimension(img.getWidth(null), img.getHeight(null)));
@@ -87,7 +69,30 @@ public class FrameMenu extends JFrame
 	{
 		if (framemenu == null)
 		{
-			framemenu = new FrameMenu();
+			try
+			{
+				framemenu = new FrameMenu();
+			}
+			catch (ClassNotFoundException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (FileNotFoundException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (URISyntaxException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return framemenu;
 	}
@@ -200,7 +205,15 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				topX();
+				try
+				{
+					topX();
+				}
+				catch (ClassNotFoundException | IOException | URISyntaxException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -251,7 +264,7 @@ public class FrameMenu extends JFrame
 		panel.add(button[4], cons);
 	}
 
-	public static void topX()
+	public static void topX() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		refreshPanel(panel);
 
@@ -432,27 +445,27 @@ public class FrameMenu extends JFrame
 		panel.add(button[0], cons);
 	}
 
-	public void showXrow(Integer x)
+	public void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
+		ScoreBoard.getInstance().loadMatrix(tabledata);
 		tablemodel = new DefaultTableModel(tabledata, tablecolumn);
 		for(int i = 0; i < x; i++)
 		{
-			tablemodel.addRow(tableinfo[i]);
+			tablemodel.addRow(tabledata[i]);
 		}
 		table.setModel(tablemodel);
 	}
 	
 	public void addNameTable(String name, Integer score, Integer time)
 	{
-		
-		tablemodel.addRow(new Object[]
-		{name, score.toString(), time.toString() });
+		tablemodel.addRow(new Object[] {"999",name, score.toString(), time.toString() });
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();
 		runFrameMenu.setVisible(true);
+		ScoreBoard.getInstance().saveMatrix(tabledata);
 	}
 
 }

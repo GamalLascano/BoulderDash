@@ -5,6 +5,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -86,7 +89,30 @@ public class FrameEnd extends JFrame
 						name = name.substring(0, 20);
 					setVisible(false);
 					FrameMenu.getInstance().addNameTable(name, Rockford.getRockford().getScore(), frameend.time);
-					FrameMenu.main(null);
+					try
+					{
+						FrameMenu.main(null);
+					}
+					catch (ClassNotFoundException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					catch (FileNotFoundException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					catch (IOException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					catch (URISyntaxException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				else
 				{
