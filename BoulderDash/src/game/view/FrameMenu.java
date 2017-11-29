@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 
 import game.model.Game;
 import game.model.map.MapInstance;
-import game.view.sounds.Sound;
 
 public class FrameMenu extends JFrame
 {
@@ -56,6 +55,7 @@ public class FrameMenu extends JFrame
 
 	private FrameMenu() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
+		playsound = new Sound();
 		setupFrameMenu();
 		setupPanelMenu();
 		tabledata = new Object[4][20];
