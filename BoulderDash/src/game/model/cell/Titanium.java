@@ -11,6 +11,7 @@ public class Titanium extends Cell
 
 	/**
 	 * Constructor del titanio.
+	 * 
 	 * @param pos
 	 */
 	public Titanium(Position pos)

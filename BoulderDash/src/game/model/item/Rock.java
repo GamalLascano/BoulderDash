@@ -15,35 +15,30 @@ import game.model.map.MapVisual;
  */
 public class Rock extends Fallable
 {
-	private SpriteChar spritechar = SpriteChar.O;
 
 	/**
+	 * Constructor de rocas.
 	 * 
 	 * @param pos
 	 */
 	public Rock(Position pos)
 	{
-		super(pos, false, true, true, false, true, StatusFallableEnum.IDLE);
+		super(pos, false, true, true, StatusFallableEnum.IDLE);
+		this.setSpritechar(SpriteChar.O);
 		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
+	 * Constructor de rocas con estado inicial.
 	 * 
 	 * @param pos
 	 * @param state
 	 */
 	public Rock(Position pos, StatusFallableEnum state)
 	{
-		super(pos, false, true, true, false, true, state);
+		super(pos, false, true, true, state);
+		this.setSpritechar(SpriteChar.O);
 		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-	}
-
-	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
 	}
 
 	/**
@@ -71,9 +66,7 @@ public class Rock extends Fallable
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void fall()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
@@ -118,9 +111,7 @@ public class Rock extends Fallable
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMove()
 	{
 		switch (this.state)

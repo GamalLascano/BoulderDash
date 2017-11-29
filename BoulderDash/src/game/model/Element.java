@@ -7,9 +7,10 @@ public abstract class Element
 {
 	private SpriteChar spritechar;
 	private Position pos;
-	
+
 	/**
 	 * Constructor de elementos.
+	 * 
 	 * @param pos
 	 */
 	public Element(Position pos)
@@ -20,6 +21,7 @@ public abstract class Element
 
 	/**
 	 * Retorna la representacion del elemento (SpriteChar) de la entidad.
+	 * 
 	 * @return SpriteChar
 	 */
 	public SpriteChar getSpritechar()
@@ -29,6 +31,7 @@ public abstract class Element
 
 	/**
 	 * Setea la representacion del elemento (SpriteChar) de la entidad.
+	 * 
 	 * @param spritechar
 	 */
 	public void setSpritechar(SpriteChar spritechar)
@@ -38,6 +41,7 @@ public abstract class Element
 
 	/**
 	 * Devuelve el objeto posicion.
+	 * 
 	 * @return objeto posicion, coord x,y
 	 */
 	public Position getPosition()
@@ -47,6 +51,7 @@ public abstract class Element
 
 	/**
 	 * Setea el objeto posicion.
+	 * 
 	 * @param pos
 	 */
 	public void setPosition(Position pos)

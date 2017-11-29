@@ -13,59 +13,57 @@ public class GameConsole
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
-	
-			final int STARTLEVEL = 1;
-	
-			MapInstance.start();
-			MapVisual.start();
-			
-			MapInstance.buildSelectedLevel(STARTLEVEL);
 
-			boolean quit = false;
+		final int STARTLEVEL = 1;
+
+		MapInstance.start();
+
+		MapInstance.buildSelectedLevel(STARTLEVEL);
+
+		boolean quit = false;
+
+		MapInstance.refresh();
+		MapVisual.imprimirMapa();
+		System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
+
+		Rockford player = Rockford.getRockford();
+		while (!quit)
+		{
+			String dir = in.next();
+			switch (dir)
+			{
+				case "w":
+					player.move(Direction.UP);
+					break;
+				case "s":
+					player.move(Direction.DOWN);
+					break;
+				case "d":
+					player.move(Direction.RIGHT);
+					break;
+				case "a":
+					player.move(Direction.LEFT);
+					break;
+				case "e":
+					break;
+				case "q":
+					quit = true;
+					break;
+				default:
+					break;
+			}
 
 			MapInstance.refresh();
 			MapVisual.imprimirMapa();
-			System.out.println(
-					"Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
-
-			Rockford player = Rockford.getRockford();
-			while (!quit)
+			if (!quit)
 			{
-				String dir = in.next();
-				switch (dir)
-				{
-					case "w":
-						player.move(Direction.UP);
-						break;
-					case "s":
-						player.move(Direction.DOWN);
-						break;
-					case "d":
-						player.move(Direction.RIGHT);
-						break;
-					case "a":
-						player.move(Direction.LEFT);
-						break;
-					case "e":
-						break;
-					case "q":
-						quit = true;
-						break;
-					default:
-						break;
-				}
-
-				MapInstance.refresh();
-				MapVisual.imprimirMapa();
-				if (!quit)
-				{
-					quit = player.isInExit();
-				}
+				quit = player.isInExit();
 			}
-
-			System.out.println("FIN DEL NIVEL: " + MapInstance.getSelectedLevel());
-			System.out.println("FIN DEL PROGRAMA");
-			in.close();
 		}
+
+		System.out.println("FIN DEL NIVEL: " + MapInstance.getSelectedLevel());
+		System.out.println("FIN DEL PROGRAMA");
+		in.close();
+	}
 
 }

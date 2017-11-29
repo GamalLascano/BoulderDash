@@ -12,6 +12,7 @@ public class Dirt extends Cell
 
 	/**
 	 * Constructor tierra.
+	 * 
 	 * @param pos
 	 */
 	public Dirt(Position pos)
@@ -22,8 +23,9 @@ public class Dirt extends Cell
 	}
 
 	/**
-	 * Constructor tierra para generar una celda vacia
-	 * con un argumento dirty para sacar la tierra de la celda.
+	 * Constructor tierra para generar una celda vacia con un argumento dirty
+	 * para sacar la tierra de la celda.
+	 * 
 	 * @param pos
 	 * @param dirty
 	 */
@@ -43,6 +45,7 @@ public class Dirt extends Cell
 
 	/**
 	 * Devuelve si hay tierra en la celda.
+	 * 
 	 * @return dirty
 	 */
 	public boolean isDirty()

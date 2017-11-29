@@ -1,5 +1,6 @@
 package game.model.item;
 
+import game.model.Moveable;
 import game.model.Position;
 import game.model.SpriteChar;
 import game.model.item.StatusAmoebaEnum;
@@ -8,22 +9,22 @@ import game.model.map.MapItem;
 import game.model.map.MapVisual;
 
 /**
- * 
- *
+ * Clase que representa el Amoeba. Se mueve y se copia a si mismo.
  */
-public class Amoeba extends Item
+public class Amoeba extends Item implements Moveable
 {
-	private SpriteChar spritechar = SpriteChar.A;
 	private boolean expanding;
 	private StatusAmoebaEnum state;
 
 	/**
+	 * Constructor del Amoeba.
 	 * 
 	 * @param pos
 	 */
 	public Amoeba(Position pos)
 	{
-		super(pos, false, false, false, false, false);
+		super(pos, false, false, false);
+		this.setSpritechar(SpriteChar.A);
 		this.expanding = true;
 		this.state = StatusAmoebaEnum.EXPANDUP;
 		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
@@ -31,8 +32,9 @@ public class Amoeba extends Item
 	}
 
 	/**
+	 * Verifica si esta expandiandose.
 	 * 
-	 * @return
+	 * @return boolean
 	 */
 	public boolean check()
 	{
@@ -48,35 +50,7 @@ public class Amoeba extends Item
 		}
 	}
 
-	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean isExpanding()
-	{
-		return expanding;
-	}
-
-	/**
-	 * 
-	 * @param expanding
-	 */
-	public void setExpanding(boolean expanding)
-	{
-		this.expanding = expanding;
-	}
-
-	/**
-	 * 
-	 */
+	@Override
 	public void die()
 	{
 		this.state = StatusAmoebaEnum.DEAD;
@@ -84,9 +58,7 @@ public class Amoeba extends Item
 		MapItem.setItem(new Diamond(this.getPosition()));
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void rotate()
 	{
 		switch (this.state)
@@ -108,9 +80,7 @@ public class Amoeba extends Item
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void changePosition()
 	{
 		MapItem.removeItem(this.getPosition());
@@ -118,12 +88,10 @@ public class Amoeba extends Item
 		MapItem.setItem(this);
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMove()
 	{
-		if (this.isExpanding())
+		if (this.expanding)
 		{
 			switch (this.state)
 			{
@@ -145,9 +113,7 @@ public class Amoeba extends Item
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveUp()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
@@ -160,9 +126,7 @@ public class Amoeba extends Item
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveDown()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
@@ -175,9 +139,7 @@ public class Amoeba extends Item
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveRight()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
@@ -190,9 +152,7 @@ public class Amoeba extends Item
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveLeft()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))

@@ -7,21 +7,26 @@ import game.model.cell.Exit;
 import game.model.cell.Wall;
 
 /**
- * 
- *
+ * Matriz que contiene a los elementos celda.
  */
-public class MapCell
+public class MapCell extends Map
 {
 	private static MapCell mapcell;
 	private static Cell[][] matrix;
 
+	/**
+	 * Constructor de mapcell.
+	 */
 	private MapCell()
 	{
 		matrix = null;
 	}
 
-	// SINGLETON
-
+	/**
+	 * Singleton de MapCell.
+	 * 
+	 * @return mapcell
+	 */
 	public static MapCell getInstance()
 	{
 		if (mapcell == null)
@@ -31,21 +36,24 @@ public class MapCell
 		return mapcell;
 	}
 
-	// INICIALIZACION
-
-	public void start()
-	{
-		matrix = new Cell[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
-		fill();
-	}
-
-	// GETTERS
-
+	/**
+	 * Retorna una celda de la matriz.
+	 * 
+	 * @param pos
+	 * @return cell
+	 */
 	public static Cell getCell(Position pos)
 	{
 		return matrix[pos.getX()][pos.getY()];
 	}
 
+	/**
+	 * Retorna una celda de la matriz, utilizando coordenadas X,Y.
+	 * 
+	 * @param x
+	 * @param y
+	 * @return cell
+	 */
 	public static Cell getCell(Integer x, Integer y)
 	{
 		return matrix[x][y];
@@ -53,7 +61,8 @@ public class MapCell
 
 	public static Dirt getDirt(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+				&& 0 <= pos.getY())
 		{
 			if (matrix[pos.getX()][pos.getY()].isDirt())
 			{
@@ -70,6 +79,13 @@ public class MapCell
 		}
 	}
 
+	/**
+	 * Devuelve tierra si puede sino devuelve null.
+	 * 
+	 * @param x
+	 * @param y
+	 * @return dirt
+	 */
 	public static Dirt getDirt(Integer x, Integer y)
 	{
 		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
@@ -88,7 +104,14 @@ public class MapCell
 			return null;
 		}
 	}
-	
+
+	/**
+	 * Devuelve un muro si puede, sino devuelve null.
+	 * 
+	 * @param x
+	 * @param y
+	 * @return wall
+	 */
 	public static Wall getWall(Integer x, Integer y)
 	{
 		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
@@ -108,8 +131,12 @@ public class MapCell
 		}
 	}
 
-	// SETTERS
-
+	/**
+	 * Setea una celda en el mapa.
+	 * 
+	 * @param cel
+	 * @return
+	 */
 	public static boolean setCell(Cell cel)
 	{
 		if (MapInstance.getLevelReader().getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX()
@@ -124,9 +151,16 @@ public class MapCell
 		}
 	}
 
+	/**
+	 * Remueve una celda del mapa.
+	 * 
+	 * @param pos
+	 * @return
+	 */
 	public static boolean removeCell(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+				&& 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			matrix[pos.getX()][pos.getY()] = new Dirt(pos, false);
@@ -138,8 +172,11 @@ public class MapCell
 		}
 	}
 
-	// ENCONTRAR LA CELDA SALIDA
-
+	/**
+	 * Devuelve la salida si esta, sino devuelve null.
+	 * 
+	 * @return exit
+	 */
 	public static Exit findExit()
 	{
 		Exit exit;
@@ -155,7 +192,14 @@ public class MapCell
 		return null;
 	}
 
-	// DIRT FILL
+	@Override
+	public void start()
+	{
+		matrix = new Cell[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		fill();
+	}
+
+	@Override
 	public void fill()
 	{
 		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)

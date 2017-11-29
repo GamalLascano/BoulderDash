@@ -9,14 +9,15 @@ import game.model.item.*;
 import game.model.map.bdlevel.BDLevelReader;
 
 /**
- * Esta clase contiene la instancia del mapa principal del juego, y controla la
- * gran parte del movimiento del juego Es singleton, y contiene a un mapa de
- * celdas, items y actores, junto con una lista con todas las entidades vivas
+ * Esta clase administra los 3 mapas de elementos y se ocupa de refresar la
+ * lista de entidades, de construir y almacenar informacion del nivel. Contiene
+ * a un mapa de celdas, items y actores, junto con una lista con todas las
+ * entidades vivas.
  */
 public class MapInstance
 {
 	private static MapInstance mapinstance;
-	private static ListOfEntities entitiesAlive;
+	private static ListOfEntities listentity;
 	private static BDLevelReader levelReader;
 	private static Integer selectedLevel;
 	private static Double timer;
@@ -25,11 +26,11 @@ public class MapInstance
 	private static Integer playerscore;
 
 	/**
-	 * 
+	 * Constructor de MapInstance.
 	 */
 	private MapInstance()
 	{
-		entitiesAlive = null;
+		listentity = null;
 		levelReader = null;
 		selectedLevel = null;
 		timer = null;
@@ -40,8 +41,9 @@ public class MapInstance
 	}
 
 	/**
+	 * Singleton de mapInstance.
 	 * 
-	 * @return
+	 * @return mapinstance
 	 */
 	public static MapInstance getInstance()
 	{
@@ -54,6 +56,8 @@ public class MapInstance
 	}
 
 	/**
+	 * Inicializa mapinstance, inicializa los tres mapas de elementos, carga el
+	 * levelreader y inicializa la lista de entidades.
 	 * 
 	 * @param levelReader
 	 */
@@ -62,15 +66,17 @@ public class MapInstance
 		BDLevelReader bdlevel = new BDLevelReader();
 		MapInstance.getInstance();
 		levelReader = bdlevel;
-		entitiesAlive = ListOfEntities.getInstance();
+		listentity = ListOfEntities.getInstance();
 		MapCell.getInstance().start();
 		MapItem.getInstance().start();
 		MapActor.getInstance().start();
+		MapVisual.getInstance().start();
 		ListOfEntities.start();
 	}
 
 	/**
-	 * 
+	 * Se occupa de leer el levelreader utilizando el nivel eligido y saca
+	 * informacion de este.
 	 */
 	public static void readLevel()
 	{
@@ -91,15 +97,16 @@ public class MapInstance
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		timer = 150.0 - selectedLevel;
 		diamondvalue = 10 * selectedLevel;
 		diamondbonus = 15 * selectedLevel;
 	}
 
 	/**
+	 * Devuelve el levelreader. Util para acceder a su tamanio.
 	 * 
-	 * @return
+	 * @return levelreader
 	 */
 	public static BDLevelReader getLevelReader()
 	{
@@ -107,15 +114,17 @@ public class MapInstance
 	}
 
 	/**
+	 * Devuelve la lista de entidades.
 	 * 
-	 * @return
+	 * @return listentity
 	 */
 	public static ListOfEntities getEntitiesActive()
 	{
-		return entitiesAlive;
+		return listentity;
 	}
 
 	/**
+	 * Setea el levelreader.
 	 * 
 	 * @param level
 	 */
@@ -125,8 +134,9 @@ public class MapInstance
 	}
 
 	/**
+	 * Devuelve el numero del nivel actual.
 	 * 
-	 * @return
+	 * @return selectedlevel
 	 */
 	public static Integer getSelectedLevel()
 	{
@@ -134,6 +144,7 @@ public class MapInstance
 	}
 
 	/**
+	 * Setea el numero del nivel actual.
 	 * 
 	 * @param selectedlevels
 	 */
@@ -143,13 +154,14 @@ public class MapInstance
 	}
 
 	/**
+	 * Resetea el mapinstance y construye el nivel numero x.
 	 * 
 	 * @param selectedLevel
 	 */
 	public static void buildSelectedLevel(Integer selectedLevel)
 	{
 		MapInstance.getInstance();
-		entitiesAlive = ListOfEntities.getInstance();
+		listentity = ListOfEntities.getInstance();
 		MapCell.getInstance().start();
 		MapItem.getInstance().start();
 		MapActor.getInstance().start();
@@ -162,8 +174,9 @@ public class MapInstance
 	}
 
 	/**
+	 * Devuelve el cronometro del nivel.
 	 * 
-	 * @return
+	 * @return timer
 	 */
 	public static Double getTimer()
 	{
@@ -171,8 +184,9 @@ public class MapInstance
 	}
 
 	/**
+	 * Devuelve el valor de los diamantes del nivel actual.
 	 * 
-	 * @return
+	 * @return diamondvalue
 	 */
 	public static Integer getDiamondvalue()
 	{
@@ -180,17 +194,19 @@ public class MapInstance
 	}
 
 	/**
+	 * Devuelve el valor bonus de los diamantes del nivel actual.
 	 * 
-	 * @return
+	 * @return diamondbonus
 	 */
 	public static Integer getDiamondbonus()
 	{
 		return diamondbonus;
 	}
-	
+
 	/**
+	 * Devuelve el score total del jugador.
 	 * 
-	 * @return
+	 * @return playerscore
 	 */
 	public static Integer getPlayerscore()
 	{
@@ -198,6 +214,7 @@ public class MapInstance
 	}
 
 	/**
+	 * Setea el score total del jugador.
 	 * 
 	 * @param playerscore
 	 */
@@ -207,6 +224,7 @@ public class MapInstance
 	}
 
 	/**
+	 * Decrementa el cronometro del mapa.
 	 * 
 	 * @param timer
 	 */
@@ -219,6 +237,7 @@ public class MapInstance
 	}
 
 	/**
+	 * Mata a un elemento, lo remueve de su matriz correspondiente.
 	 * 
 	 * @param pos
 	 */
@@ -230,6 +249,8 @@ public class MapInstance
 	}
 
 	/**
+	 * Mata a un elemento, lo remueve de su matriz correspondiente, utiliza
+	 * coordenadas X,Y.
 	 * 
 	 * @param x
 	 * @param y
@@ -245,10 +266,11 @@ public class MapInstance
 	}
 
 	/**
+	 * Retorna si las coordenadas son validas.
 	 * 
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return boolean
 	 */
 	public static boolean isInMapLimits(Integer x, Integer y)
 	{
@@ -261,14 +283,15 @@ public class MapInstance
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Determina si el nivel es vacio. (Si no hay Rockford).
-	 * @return
+	 * 
+	 * @return boolean
 	 */
 	public static boolean levelHasRockford()
 	{
-		if(ListOfEntities.getList().contains(Rockford.getInstance()))
+		if (ListOfEntities.getList().contains(Rockford.getInstance()))
 		{
 			return true;
 		}
@@ -279,7 +302,8 @@ public class MapInstance
 	}
 
 	/**
-	 * 
+	 * Refresca el mapa, decrementa el timer, dibuja el mapa y cambia la
+	 * posicion de los elementos.
 	 */
 	public static void refresh()
 	{
@@ -294,20 +318,16 @@ public class MapInstance
 	}
 
 	/**
-	 * 
+	 * Genera el mapa utilizando los tiles del levelreader, creando los
+	 * elementos y poniendolos en las matrices.
 	 */
 	public static void buildMap()
 	{
 		ListOfEntities.getList().clear();
-		// Para armar el mapa, voy por todo el nivel
 		for (int y = 0; y < levelReader.getHEIGHT(); y++)
 		{
 			for (int x = 0; x < levelReader.getWIDTH(); x++)
 			{
-				// Hago un nuevo status para el item/actor nuevo, y uso la
-				// posicion actual
-				// y dependiendo de lo que se encuentre, se guarda en cada uno
-				// de los mapas
 				Position pos = new Position(x, y);
 				switch (levelReader.getTile(x, y))
 				{
@@ -365,7 +385,7 @@ public class MapInstance
 						break;
 					case EXIT:
 						Exit door = Exit.getInstance();
-						//door.reset();
+						door.close();
 						door.setPosition(pos);
 						MapCell.setCell(door);
 						break;

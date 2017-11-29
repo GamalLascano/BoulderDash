@@ -14,8 +14,9 @@ import game.model.map.MapItem;
 import game.model.map.MapVisual;
 
 /**
- * Esta clase es la que contiene al personaje principal: Rockford Contiene su puntuacion, sus diamantes y si esta
- * empujando o no, ademas de las otras propiedades de otros actores
+ * Esta clase es la que contiene al personaje principal: Rockford Contiene su
+ * puntuacion, sus diamantes y si esta empujando o no, ademas de las otras
+ * propiedades de otros actores
  */
 public class Rockford extends Actor
 {
@@ -44,6 +45,7 @@ public class Rockford extends Actor
 
 	/**
 	 * Singleton de Rockford.
+	 * 
 	 * @return Singleton
 	 */
 	public static Rockford getInstance()
@@ -54,9 +56,10 @@ public class Rockford extends Actor
 		}
 		return player;
 	}
-	
+
 	/**
 	 * Retorna a Rockford, se utiliza despues de invocar al singleton.
+	 * 
 	 * @return Rockford
 	 */
 	public static Rockford getRockford()
@@ -66,6 +69,7 @@ public class Rockford extends Actor
 
 	/**
 	 * Retorna el score obtenido en el mapa actual.
+	 * 
 	 * @return score
 	 */
 	public Integer getScore()
@@ -75,15 +79,17 @@ public class Rockford extends Actor
 
 	/**
 	 * Retorna los diamantes obtenidos en el mapa actual.
+	 * 
 	 * @return diamantes
 	 */
 	public Integer getDiamonds()
 	{
 		return diamonds;
 	}
-	
+
 	/**
 	 * Retorna las vidas del jugador.
+	 * 
 	 * @return vidas
 	 */
 	public Integer getLives()
@@ -93,6 +99,7 @@ public class Rockford extends Actor
 
 	/**
 	 * Retorna si Rockford esta empujando algo.
+	 * 
 	 * @return pushing
 	 */
 	public boolean isPushing()
@@ -122,7 +129,9 @@ public class Rockford extends Actor
 
 	/**
 	 * Remueve la tierra del juego.
-	 * @param dirt: Bloque de tierra
+	 * 
+	 * @param dirt:
+	 *            Bloque de tierra
 	 */
 	public void dig(Dirt dirt)
 	{
@@ -134,7 +143,9 @@ public class Rockford extends Actor
 
 	/**
 	 * Si es un diamante, lo recolecta.
-	 * @param diamond: Bloque de diamante
+	 * 
+	 * @param diamond:
+	 *            Bloque de diamante
 	 */
 	public void collect(Diamond diamond)
 	{
@@ -142,17 +153,17 @@ public class Rockford extends Actor
 		{
 			diamonds++;
 			diamond.collected();
-			if(!Exit.getInstance().isOpen())
+			if (!Exit.getInstance().isOpen())
 			{
-				score+= MapInstance.getDiamondvalue();
+				score += MapInstance.getDiamondvalue();
 			}
 			else
 			{
-				score+= MapInstance.getDiamondbonus();
+				score += MapInstance.getDiamondbonus();
 			}
 		}
 	}
-	
+
 	/**
 	 * Se occupa de mover a Rockford en la matriz, tambien verifica si la celda
 	 * destino es solida para moverse. Rockford cava automaticamente la tierra.
@@ -163,8 +174,9 @@ public class Rockford extends Actor
 		Exit door = Exit.getInstance();
 		if (player.getPosition().equals(door.getPosition()))
 		{
-			score+= 1 + MapInstance.getSelectedLevel();
+			score += 1 + MapInstance.getSelectedLevel();
 			MapInstance.setPlayerscore(score + MapInstance.getPlayerscore());
+			diamonds = 0;
 			return true;
 		}
 		else
@@ -172,7 +184,7 @@ public class Rockford extends Actor
 			return false;
 		}
 	}
-	
+
 	@Override
 	public void changePosition()
 	{
@@ -180,7 +192,6 @@ public class Rockford extends Actor
 		this.makeMove();
 		MapActor.setActor(this);
 	}
-
 
 	@Override
 	public void makeMove()
@@ -262,9 +273,7 @@ public class Rockford extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveLeft()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
@@ -282,19 +291,21 @@ public class Rockford extends Actor
 			this.collect(MapItem.getDiamond(getPosition()));
 		}
 	}
-	
+
 	/**
 	 * Este metodo hace que si esta empujando a una roca, se le ponga el estado
 	 * correspondiente
 	 * 
-	 * @param rock:Bloque de roca
+	 * @param rock:Bloque
+	 *            de roca
 	 */
 	public void push(Rock rock)
 	{
 		switch (state)
 		{
 			case MOVINGRIGHT:
-				if (rock != null && rock.isMoveable() && rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkRight(), rock.getPosition().getY()).hashCode()))
+				if (rock != null && rock.isMoveable()
+						&& rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkRight(), rock.getPosition().getY()).hashCode()))
 				{
 					isPushing = true;
 					rock.pushed(this);
@@ -305,7 +316,8 @@ public class Rockford extends Actor
 				}
 				break;
 			case MOVINGLEFT:
-				if (rock != null && rock.isMoveable() && rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkLeft(), rock.getPosition().getY()).hashCode()))
+				if (rock != null && rock.isMoveable()
+						&& rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkLeft(), rock.getPosition().getY()).hashCode()))
 				{
 					isPushing = true;
 					rock.pushed(this);
@@ -320,5 +332,12 @@ public class Rockford extends Actor
 		}
 	}
 
+	@Override
+	public void rotate()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }

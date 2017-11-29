@@ -7,7 +7,7 @@ import game.model.actor.Rockford;
 import game.model.item.Item;
 
 /**
- *	Elementos dinamicos que se pueden mover. Como Actor y Item.
+ * Elementos dinamicos que se pueden mover. Como Actor y Item.
  */
 public abstract class Entity extends Element
 {
@@ -15,6 +15,7 @@ public abstract class Entity extends Element
 
 	/**
 	 * Genera una entidad en una posicion.
+	 * 
 	 * @param pos
 	 */
 	public Entity(Position pos)
@@ -24,6 +25,7 @@ public abstract class Entity extends Element
 
 	/**
 	 * Determina si esta entidad es un actor.
+	 * 
 	 * @return true o false
 	 */
 	public boolean isActor()
@@ -40,6 +42,7 @@ public abstract class Entity extends Element
 
 	/**
 	 * Determina si esta entidad es Rockford.
+	 * 
 	 * @return true o false
 	 */
 	public boolean isRockford()
@@ -56,6 +59,7 @@ public abstract class Entity extends Element
 
 	/**
 	 * Determina si esta entidad es un Item.
+	 * 
 	 * @return true o false
 	 */
 	public boolean isItem()
@@ -69,9 +73,10 @@ public abstract class Entity extends Element
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Devuelve los elementos que la entidad puede traspasar.
+	 * 
 	 * @return El hashmap de los elementos passables
 	 */
 	public HashMap<Integer, SpriteChar> getPassable()
@@ -81,6 +86,7 @@ public abstract class Entity extends Element
 
 	/**
 	 * Setea los elementos que la entidad puede traspasar.
+	 * 
 	 * @param passable
 	 */
 	public void setPassable(HashMap<Integer, SpriteChar> passable)

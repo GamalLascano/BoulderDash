@@ -5,32 +5,30 @@ import game.model.Position;
 import game.model.map.MapItem;
 
 /**
- * 
- *
+ * Clase para los diamantes y rocas que se pueden caer.
  */
-public class Fallable extends Item
+public abstract class Fallable extends Item
 {
 	protected StatusFallableEnum state;
 
 	/**
+	 * Constructor fallable.
 	 * 
 	 * @param pos
 	 * @param collectable
 	 * @param moveable
-	 * @param fallable
-	 * @param explodable
 	 * @param rounded
 	 * @param solid
 	 * @param state
 	 */
-	public Fallable(Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
-			boolean rounded, StatusFallableEnum state)
+	public Fallable(Position pos, boolean collectable, boolean moveable, boolean rounded, StatusFallableEnum state)
 	{
-		super(pos, collectable, moveable, fallable, explodable, rounded);
+		super(pos, collectable, moveable, rounded);
 		this.state = state;
 	}
 
 	/**
+	 * Retorna el estado del fallable.
 	 * 
 	 * @return
 	 */
@@ -40,6 +38,7 @@ public class Fallable extends Item
 	}
 
 	/**
+	 * Setea el estado del fallable.
 	 * 
 	 * @param state
 	 */
@@ -48,9 +47,7 @@ public class Fallable extends Item
 		this.state = state;
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void die()
 	{
 		this.state = StatusFallableEnum.DEAD;
@@ -58,9 +55,7 @@ public class Fallable extends Item
 		MapItem.removeItem(this.getPosition());
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void changePosition()
 	{
 		MapItem.removeItem(this.getPosition());
@@ -69,20 +64,6 @@ public class Fallable extends Item
 		MapItem.setItem(this);
 	}
 
-	/**
-	 * 
-	 */
-	public void fall()
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	public void makeMove()
-	{
-
-	}
+	public abstract void fall();
 
 }

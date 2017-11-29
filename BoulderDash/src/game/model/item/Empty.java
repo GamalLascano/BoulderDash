@@ -4,28 +4,20 @@ import game.model.Position;
 import game.model.SpriteChar;
 
 /**
- * 
- *
+ * Clase que representa una item vacio.
  */
 public class Empty extends Item
 {
-	private SpriteChar spritechar = SpriteChar._;
 
 	/**
+	 * Constructor de vacia.
 	 * 
 	 * @param pos
 	 */
 	public Empty(Position pos)
 	{
-		super(pos, false, false, false, false, false);
-	}
-
-	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
+		super(pos, false, false, false);
+		this.setSpritechar(SpriteChar._);
 	}
 
 	/**

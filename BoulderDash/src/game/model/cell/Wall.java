@@ -16,6 +16,7 @@ public class Wall extends Cell
 
 	/**
 	 * Constructor de muro.
+	 * 
 	 * @param pos
 	 */
 	public Wall(Position pos)
@@ -27,6 +28,7 @@ public class Wall extends Cell
 
 	/**
 	 * Constructor del muro para muros magicos.
+	 * 
 	 * @param pos
 	 * @param magicTime
 	 */
@@ -39,6 +41,7 @@ public class Wall extends Cell
 
 	/**
 	 * Retorna el tiempo del muro magico.
+	 * 
 	 * @return magicTimer
 	 */
 	public int getMagicTimer()
@@ -48,12 +51,12 @@ public class Wall extends Cell
 
 	/**
 	 * Convierte de rocas a diamantes.
+	 * 
 	 * @param stone
 	 */
 	public void conversion(Rock stone)
 	{
-		if ((stone.getPosition().getY() == this.getPosition().checkUp())
-				&& (stone.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
+		if ((stone.getPosition().getY() == this.getPosition().checkUp()) && (stone.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
 		{
 
 			this.setSpritechar(SpriteChar.w);
@@ -72,12 +75,12 @@ public class Wall extends Cell
 
 	/**
 	 * Convierte de diamantes a rocas.
+	 * 
 	 * @param diamond
 	 */
 	public void conversion(Diamond diamond)
 	{
-		if ((diamond.getPosition().getY() == this.getPosition().checkUp())
-				&& (diamond.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
+		if ((diamond.getPosition().getY() == this.getPosition().checkUp()) && (diamond.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
 		{
 			this.setSpritechar(SpriteChar.w);
 			diamond.die();

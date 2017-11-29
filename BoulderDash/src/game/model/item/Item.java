@@ -3,7 +3,6 @@ package game.model.item;
 import game.model.Entity;
 import game.model.ListOfEntities;
 import game.model.Position;
-import game.model.SpriteChar;
 import game.model.map.MapItem;
 
 /**
@@ -15,36 +14,30 @@ import game.model.map.MapItem;
 public abstract class Item extends Entity
 {
 
-	private SpriteChar spritechar;
 	private boolean collectable;
 	private boolean moveable;
-	private boolean fallable;
-	private boolean explodable;
 	private boolean rounded;
 
 	/**
+	 * Constructor de un item.
 	 * 
 	 * @param pos
 	 * @param collectable
 	 * @param moveable
-	 * @param fallable
-	 * @param explodable
 	 * @param rounded
 	 */
-	public Item(Position pos, boolean collectable, boolean moveable, boolean fallable, boolean explodable,
-			boolean rounded)
+	public Item(Position pos, boolean collectable, boolean moveable, boolean rounded)
 	{
 		super(pos);
 		this.collectable = collectable;
 		this.moveable = moveable;
-		this.fallable = fallable;
-		this.explodable = explodable;
 		this.rounded = rounded;
 	}
 
 	/**
+	 * Devuelve si el item es un diamante.
 	 * 
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isDiamond()
 	{
@@ -59,8 +52,9 @@ public abstract class Item extends Entity
 	}
 
 	/**
+	 * Devuelve si es una roca.
 	 * 
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isRock()
 	{
@@ -75,17 +69,9 @@ public abstract class Item extends Entity
 	}
 
 	/**
+	 * Devuelve si es collectable el objeto.
 	 * 
-	 * @return
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 * @return
+	 * @return collectable
 	 */
 	public boolean isCollectable()
 	{
@@ -93,8 +79,9 @@ public abstract class Item extends Entity
 	}
 
 	/**
+	 * Devuelve si se puede desplazar el objeto.
 	 * 
-	 * @return
+	 * @return moveable
 	 */
 	public boolean isMoveable()
 	{
@@ -102,80 +89,16 @@ public abstract class Item extends Entity
 	}
 
 	/**
+	 * Retorna si el objeto es redondo. Si un objeto puede deslizar.
 	 * 
-	 * @return
-	 */
-	public boolean isFallable()
-	{
-		return fallable;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean isExplodable()
-	{
-		return explodable;
-	}
-
-	/**
-	 * 
-	 * @return
+	 * @return rounded
 	 */
 	public boolean isRounded()
 	{
 		return rounded;
 	}
 
-	/**
-	 * 
-	 * @param collectable
-	 */
-	public void setCollectable(boolean collectable)
-	{
-		this.collectable = collectable;
-	}
-
-	/**
-	 * 
-	 * @param moveable
-	 */
-	public void setMoveable(boolean moveable)
-	{
-		this.moveable = moveable;
-	}
-
-	/**
-	 * 
-	 * @param fallable
-	 */
-	public void setFallable(boolean fallable)
-	{
-		this.fallable = fallable;
-	}
-
-	/**
-	 * 
-	 * @param explodable
-	 */
-	public void setExplodable(boolean explodable)
-	{
-		this.explodable = explodable;
-	}
-
-	/**
-	 * 
-	 * @param rounded
-	 */
-	public void setRounded(boolean rounded)
-	{
-		this.rounded = rounded;
-	}
-
-	/**
-	 * 
-	 */
+	@Override
 	public void die()
 	{
 		ListOfEntities.getList().remove(this);

@@ -23,6 +23,7 @@ public class ListOfEntities
 
 	/**
 	 * Singleton de la lista de entidades.
+	 * 
 	 * @return singleton
 	 */
 	public static ListOfEntities getInstance()
@@ -44,6 +45,7 @@ public class ListOfEntities
 
 	/**
 	 * Devuelve la lista.
+	 * 
 	 * @return Retorna la lista de entidades
 	 */
 	public static List<Entity> getList()

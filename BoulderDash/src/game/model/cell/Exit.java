@@ -43,9 +43,8 @@ public class Exit extends Cell
 	/**
 	 * Resetea la salida con sus valores por defecto.
 	 */
-	public void reset()
+	public void close()
 	{
-		this.setPosition(new Position(0, 0));
 		this.setSpritechar(SpriteChar.E);
 		this.isOpen = false;
 	}

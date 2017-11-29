@@ -22,7 +22,6 @@ public class Position
 		this.Y = y;
 	}
 
-
 	/**
 	 * Devuelve coorenada X.
 	 * 

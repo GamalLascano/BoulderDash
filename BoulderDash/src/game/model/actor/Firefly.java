@@ -11,6 +11,7 @@ public class Firefly extends Enemy
 
 	/**
 	 * Constructor de la Luciernega.
+	 * 
 	 * @param pos
 	 */
 	public Firefly(Position pos)

@@ -7,64 +7,54 @@ import game.model.map.MapItem;
 import game.model.map.MapVisual;
 
 /**
- * 
- *
+ * Clase del diamante.
  */
 public class Diamond extends Fallable
 {
-	private SpriteChar spritechar = SpriteChar.X;
 
 	/**
+	 * Constructor diamante.
 	 * 
 	 * @param pos
 	 */
 	public Diamond(Position pos)
 	{
-		super(pos, true, false, true, false, true, StatusFallableEnum.IDLE);
+		super(pos, true, false, true, StatusFallableEnum.IDLE);
+		this.setSpritechar(SpriteChar.X);
 		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
+	 * Constructor del diamante con estado inicial.
 	 * 
 	 * @param pos
 	 * @param state
 	 */
 	public Diamond(Position pos, StatusFallableEnum state)
 	{
-		super(pos, true, false, true, false, true, state);
+		super(pos, true, false, true, state);
+		this.setSpritechar(SpriteChar.X);
 		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
 	}
 
 	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * Collected setea el diamante como recolectado
-	 * 
+	 * El diamante es recolectado
 	 */
 	public void collected()
 	{
 		this.die();
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void fall()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
-						&& this.state == StatusFallableEnum.IDLE)
+				&& this.state == StatusFallableEnum.IDLE)
 		{
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
 		else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode())
-						&& this.state == StatusFallableEnum.FALLINGOFF
-				|| this.state == StatusFallableEnum.FALLING)
+				&& this.state == StatusFallableEnum.FALLINGOFF || this.state == StatusFallableEnum.FALLING)
 		{
 			this.state = StatusFallableEnum.FALLING;
 		}
@@ -83,7 +73,7 @@ public class Diamond extends Fallable
 		}
 		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()) != null)
 		{
-			if(MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() > 0)
+			if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() > 0)
 			{
 				this.state = StatusFallableEnum.CONVERT;
 			}
@@ -98,9 +88,7 @@ public class Diamond extends Fallable
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMove()
 	{
 		switch (this.state)

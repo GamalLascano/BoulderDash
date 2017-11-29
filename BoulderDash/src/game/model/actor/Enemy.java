@@ -16,6 +16,7 @@ public abstract class Enemy extends Actor
 
 	/**
 	 * Constructor de los enemigos.
+	 * 
 	 * @param pos
 	 */
 	public Enemy(Position pos)
@@ -26,7 +27,7 @@ public abstract class Enemy extends Actor
 
 	/**
 	 * Explosion, pone celda vacias alrededor del enemigo. Explosion cuadrada
-	 * 3x3 que genera diamantes. 
+	 * 3x3 que genera diamantes.
 	 */
 	@Override
 	public void explode()
@@ -53,12 +54,9 @@ public abstract class Enemy extends Actor
 	}
 
 	/**
-	 * Hace la rotacion del enemigo. Utilizando estados.
-	 */
-	protected abstract void rotate();
-	
-	/**
-	 * Verifica si Rockford esta en el alcanze del enemigo. Verifica en su cuardrado 3x3.
+	 * Verifica si Rockford esta en el alcanze del enemigo. Verifica en su
+	 * cuardrado 3x3.
+	 * 
 	 * @return
 	 */
 	public boolean isRockfordInRange()
@@ -118,7 +116,7 @@ public abstract class Enemy extends Actor
 	@Override
 	public void makeMoveUp()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()) )
+		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
 		{
 			this.getPosition().goUp();
 			if (this.isRockfordInRange())

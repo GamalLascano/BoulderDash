@@ -7,16 +7,16 @@ import game.model.cell.Cell;
 import game.model.item.Empty;
 
 /**
- * Esta clase es la encargada de agarrar los objetos y imprimirlos en pantalla
- *
+ * Esta clase es la encargada de agarrar los elementos y hacer una matriz de
+ * carateres con estos.
  */
-public class MapVisual
+public class MapVisual extends Map
 {
 	private static MapVisual mapvisual;
 	private static SpriteChar[][] map;
 
 	/**
-	 * 
+	 * Constructor de MapVisual.
 	 */
 	private MapVisual()
 	{
@@ -24,6 +24,7 @@ public class MapVisual
 	}
 
 	/**
+	 * Singleton MapVisual.
 	 * 
 	 * @return
 	 */
@@ -37,16 +38,8 @@ public class MapVisual
 	}
 
 	/**
-	 * 
-	 */
-	public static void start()
-	{
-		MapVisual.getInstance();
-		map = new SpriteChar[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
-	}
-
-	/**
-	 * 
+	 * Construye el mapa de elementos con sus caracteres, los actores tienen mas
+	 * prioridad que los objetos que tienen mas prioridad que las celdas.
 	 */
 	public static void drawMap()
 	{
@@ -75,7 +68,8 @@ public class MapVisual
 	}
 
 	/**
-	 * 
+	 * Imprime el mapa y algunas informacion. Se utiliza para la consola y
+	 * debugging.
 	 */
 	public static void imprimirMapa()
 	{
@@ -107,6 +101,7 @@ public class MapVisual
 	}
 
 	/**
+	 * Devuelve un caracter de la matriz, utilizando coordenadas X,Y.
 	 * 
 	 * @param x
 	 * @param y
@@ -115,6 +110,24 @@ public class MapVisual
 	public static SpriteChar getChar(int x, int y)
 	{
 		return map[x][y];
+	}
+
+	@Override
+	public void start()
+	{
+		MapVisual.getInstance();
+		map = new SpriteChar[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		fill();
+	}
+
+	@Override
+	public void fill()
+	{
+		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+			{
+				map[x][y] = SpriteChar.D;
+			}
 	}
 
 }

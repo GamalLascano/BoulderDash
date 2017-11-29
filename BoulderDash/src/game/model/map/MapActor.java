@@ -5,8 +5,7 @@ import game.model.actor.Actor;
 import game.model.actor.Rockford;
 
 /**
- * 
- *
+ * Matriz que contiene a los elementos actores.
  */
 public class MapActor extends Map
 {
@@ -14,7 +13,7 @@ public class MapActor extends Map
 	private static Actor[][] matrix;
 
 	/**
-	 * 
+	 * Constructor del mapa de actores.
 	 */
 	private MapActor()
 	{
@@ -22,6 +21,7 @@ public class MapActor extends Map
 	}
 
 	/**
+	 * Singleton de MapActor.
 	 * 
 	 * @return
 	 */
@@ -33,24 +33,17 @@ public class MapActor extends Map
 		}
 		return mapactor;
 	}
-
+	
 	/**
-	 * 
-	 */
-	public void start()
-	{
-		matrix = new Actor[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
-		fill();
-	}
-
-	/**
+	 * Recupera un actor de la matriz, usando un objeto posicion.
 	 * 
 	 * @param pos
 	 * @return
 	 */
 	public static Actor getActor(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+				&& 0 <= pos.getY())
 		{
 			return matrix[pos.getX()][pos.getY()];
 		}
@@ -61,6 +54,7 @@ public class MapActor extends Map
 	}
 
 	/**
+	 * Recupera un actor de la matriz, usando coordenadas X,Y
 	 * 
 	 * @param x
 	 * @param y
@@ -79,6 +73,7 @@ public class MapActor extends Map
 	}
 
 	/**
+	 * Retorna Rocford si puede, sino retorna null.
 	 * 
 	 * @param x
 	 * @param y
@@ -111,6 +106,8 @@ public class MapActor extends Map
 	}
 
 	/**
+	 * Setea un actor en la matriz, util para el cambio de posicion y
+	 * movimiento.
 	 * 
 	 * @param act
 	 * @return
@@ -130,13 +127,15 @@ public class MapActor extends Map
 	}
 
 	/**
+	 * Remueve un actor de la matriz.
 	 * 
 	 * @param pos
 	 * @return
 	 */
 	public static boolean removeActor(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+				&& 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
 			return true;
@@ -147,9 +146,14 @@ public class MapActor extends Map
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
+	public void start()
+	{
+		matrix = new Actor[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		fill();
+	}
+	
+	@Override
 	public void fill()
 	{
 		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)

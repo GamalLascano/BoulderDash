@@ -7,16 +7,15 @@ import game.model.item.Item;
 import game.model.item.Rock;
 
 /**
- * 
- *
+ * Matriz de los objetos.
  */
-public class MapItem
+public class MapItem extends Map
 {
 	private static MapItem mapitem;
 	private static Item[][] matrix;
 
 	/**
-	 * 
+	 * Constructor de mapItem.
 	 */
 	private MapItem()
 	{
@@ -24,8 +23,8 @@ public class MapItem
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Singleton de MapItem.
+	 * @return mapitem
 	 */
 	public static MapItem getInstance()
 	{
@@ -37,28 +36,9 @@ public class MapItem
 	}
 
 	/**
-	 * 
-	 * @param levels
-	 */
-	public void start()
-	{
-		matrix = new Item[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
-		fill();
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public static Item[][] getMatrix()
-	{
-		return matrix;
-	}
-
-	/**
-	 * 
+	 * Devuelve un item de la matriz.
 	 * @param pos
-	 * @return
+	 * @return item
 	 */
 	public static Item getItem(Position pos)
 	{
@@ -66,10 +46,10 @@ public class MapItem
 	}
 
 	/**
-	 * 
+	 * Devuelve un item de la matriz, utiliza coordenadas X,Y.
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return item
 	 */
 	public static Item getItem(Integer x, Integer y)
 	{
@@ -77,9 +57,9 @@ public class MapItem
 	}
 
 	/**
-	 * 
+	 * Devuelve un diamante si no puede devuelve null.
 	 * @param pos
-	 * @return
+	 * @return diamante
 	 */
 	public static Diamond getDiamond(Position pos)
 	{
@@ -101,7 +81,7 @@ public class MapItem
 	}
 
 	/**
-	 * 
+	 * Devuelve un diamante si no puede devuelve null, utiliza coordenadas X,Y.
 	 * @param x
 	 * @param y
 	 * @return
@@ -126,7 +106,7 @@ public class MapItem
 	}
 
 	/**
-	 * 
+	 * Devuelve un rock si no puede devuelve null, utiliza coordenadas X,Y.
 	 * @param x
 	 * @param y
 	 * @return
@@ -151,7 +131,7 @@ public class MapItem
 	}
 
 	/**
-	 * 
+	 * Setea un item en la matriz.
 	 * @param ite
 	 * @return
 	 */
@@ -170,7 +150,7 @@ public class MapItem
 	}
 
 	/**
-	 * 
+	 * Remueve un item de la matriz.
 	 * @param pos
 	 * @return
 	 */
@@ -187,9 +167,14 @@ public class MapItem
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
+	public void start()
+	{
+		matrix = new Item[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		fill();
+	}
+
+	@Override
 	public void fill()
 	{
 		Position pos = new Position(0, 0);

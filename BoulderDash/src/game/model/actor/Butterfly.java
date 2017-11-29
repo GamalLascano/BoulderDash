@@ -11,6 +11,7 @@ public class Butterfly extends Enemy
 
 	/**
 	 * Constructor de la mariposa.
+	 * 
 	 * @param pos
 	 */
 	public Butterfly(Position pos)

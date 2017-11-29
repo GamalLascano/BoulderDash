@@ -12,6 +12,7 @@ public abstract class Cell extends Element
 
 	/**
 	 * Constructor de Celda.
+	 * 
 	 * @param pos
 	 */
 	Cell(Position pos)
@@ -21,6 +22,7 @@ public abstract class Cell extends Element
 
 	/**
 	 * Retorna si la celda es tierra.
+	 * 
 	 * @return
 	 */
 	public boolean isDirt()
@@ -34,9 +36,10 @@ public abstract class Cell extends Element
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Retorna si la celda es un muro.
+	 * 
 	 * @return
 	 */
 	public boolean isWall()
@@ -53,6 +56,7 @@ public abstract class Cell extends Element
 
 	/**
 	 * Retorna si la celda es la salida.
+	 * 
 	 * @return
 	 */
 	public boolean isExit()

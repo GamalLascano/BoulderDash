@@ -26,6 +26,7 @@ public class GameThread extends TimerTask
 
 	/**
 	 * Constructor, timer del thread.
+	 * 
 	 * @param timer
 	 */
 	public GameThread(Timer timer)
@@ -34,8 +35,8 @@ public class GameThread extends TimerTask
 	}
 
 	/**
-	 * Ejecucion en loop. Cuando rockford no tiene mas vidas o no hay mas niveles, la variable stop
-	 * determina el final del loop.
+	 * Ejecucion en loop. Cuando rockford no tiene mas vidas o no hay mas
+	 * niveles, la variable stop determina el final del loop.
 	 */
 	public void run()
 	{
