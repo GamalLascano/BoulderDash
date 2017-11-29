@@ -153,8 +153,7 @@ public class FrameMap extends JFrame implements KeyListener
 		
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 		{
-			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel());
-			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			Rockford.getRockford().die();
 		}
 		
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_UP)

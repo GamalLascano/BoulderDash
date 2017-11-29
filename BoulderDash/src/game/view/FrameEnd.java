@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -16,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
-import game.model.actor.*;
+import game.model.map.MapInstance;
 
 public class FrameEnd extends JFrame
 {
@@ -62,7 +61,7 @@ public class FrameEnd extends JFrame
 		c.weighty = 1;
 		c.gridx = 0;
 
-		scoreinfo = new JLabel("Tu puntuacion es: " + Rockford.getInstance().getScore().toString(),
+		scoreinfo = new JLabel("Tu puntuacion es: " + MapInstance.getPlayerscore().toString(),
 				SwingConstants.CENTER);
 		scoreinfo.setSize(100, 50);
 		scoreinfo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,27 +87,12 @@ public class FrameEnd extends JFrame
 					if (name.length() > 20)
 						name = name.substring(0, 20);
 					setVisible(false);
-					FrameMenu.getInstance().addNameTable(name, Rockford.getRockford().getScore(), frameend.time);
+					FrameMenu.getInstance().addNameTable(name, MapInstance.getPlayerscore(), frameend.time);
 					try
 					{
 						FrameMenu.main(null);
 					}
-					catch (ClassNotFoundException e1)
-					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					catch (FileNotFoundException e1)
-					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					catch (IOException e1)
-					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					catch (URISyntaxException e1)
+					catch (IOException |URISyntaxException | ClassNotFoundException e1)
 					{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

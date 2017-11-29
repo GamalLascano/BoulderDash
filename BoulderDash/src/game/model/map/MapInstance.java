@@ -22,6 +22,7 @@ public class MapInstance
 	private static Double timer;
 	private static Integer diamondvalue;
 	private static Integer diamondbonus;
+	private static Integer playerscore;
 
 	/**
 	 * 
@@ -34,6 +35,7 @@ public class MapInstance
 		timer = null;
 		diamondvalue = null;
 		diamondbonus = null;
+		playerscore = 0;
 
 	}
 
@@ -184,6 +186,24 @@ public class MapInstance
 	public static Integer getDiamondbonus()
 	{
 		return diamondbonus;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static Integer getPlayerscore()
+	{
+		return playerscore;
+	}
+
+	/**
+	 * 
+	 * @param playerscore
+	 */
+	public static void setPlayerscore(Integer playerscore)
+	{
+		MapInstance.playerscore = playerscore;
 	}
 
 	/**

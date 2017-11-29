@@ -154,8 +154,12 @@ public class Rockford extends Actor
 		{
 			state = StatusActorEnum.DEAD;
 			if (this.lives > 0)
+			{
 				this.lives--;
+			}
 			this.diamonds = 0;
+			MapInstance.setPlayerscore(score);
+			this.score = MapInstance.getPlayerscore();
 			this.explode();
 		}
 		ListOfEntities.getList().remove(this);
@@ -228,6 +232,7 @@ public class Rockford extends Actor
 		if (player.getPosition().equals(door.getPosition()))
 		{
 			score+= 1 + MapInstance.getSelectedLevel();
+			MapInstance.setPlayerscore(score + MapInstance.getPlayerscore());
 			return true;
 		}
 		else
