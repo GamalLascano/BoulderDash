@@ -261,6 +261,22 @@ public class MapInstance
 			return false;
 		}
 	}
+	
+	/**
+	 * Determina si el nivel es vacio. (Si no hay Rockford).
+	 * @return
+	 */
+	public static boolean levelHasRockford()
+	{
+		if(ListOfEntities.getList().contains(Rockford.getInstance()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	/**
 	 * 
@@ -349,13 +365,12 @@ public class MapInstance
 						break;
 					case EXIT:
 						Exit door = Exit.getInstance();
-						door.reset();
+						//door.reset();
 						door.setPosition(pos);
 						MapCell.setCell(door);
 						break;
 					case PLAYER:
 						Rockford player = Rockford.getInstance();
-						player.setDiamonds(0);
 						player.setPosition(pos);
 						MapActor.setActor(player);
 						ListOfEntities.getList().add(player);

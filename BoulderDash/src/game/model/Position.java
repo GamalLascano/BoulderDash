@@ -3,7 +3,6 @@ package game.model;
 /**
  * Esta clase tiene las coordenadas x e y de un objeto determinado Ademas puede
  * devolver las posiciones de sus alrededores
- *
  */
 public class Position
 {
@@ -11,6 +10,7 @@ public class Position
 	private Integer Y;
 
 	/**
+	 * Constructor posicion.
 	 * 
 	 * @param x
 	 * @param y
@@ -22,9 +22,11 @@ public class Position
 		this.Y = y;
 	}
 
+
 	/**
+	 * Devuelve coorenada X.
 	 * 
-	 * @return
+	 * @return posx
 	 */
 	public Integer getX()
 	{
@@ -32,8 +34,9 @@ public class Position
 	}
 
 	/**
+	 * Devuelve coorenada Y.
 	 * 
-	 * @return
+	 * @return posy
 	 */
 	public Integer getY()
 	{
@@ -41,6 +44,7 @@ public class Position
 	}
 
 	/**
+	 * Setea las posiciones X y Y.
 	 * 
 	 * @param posX
 	 * @param posY
@@ -52,7 +56,7 @@ public class Position
 	}
 
 	/**
-	 * 
+	 * Incrementa Y, utilizado para bajar en el mapa.
 	 */
 	public void goDown()
 	{
@@ -60,8 +64,7 @@ public class Position
 	}
 
 	/**
-	 * Mueve arriba al objeto
-	 * 
+	 * Decrementa Y, utilizado para subir en el mapa.
 	 */
 	public void goUp()
 	{
@@ -69,8 +72,7 @@ public class Position
 	}
 
 	/**
-	 * Mueve a la izquierda al objeto
-	 * 
+	 * Decrementa X, utilizado para mover a la izquierda en el mapa.
 	 */
 	public void goLeft()
 	{
@@ -78,15 +80,13 @@ public class Position
 	}
 
 	/**
-	 * Mueve a la derecha al objeto
-	 * 
+	 * Incrementa X, utilizado para mover a la derecha en el mapa.
 	 */
 	public void goRight()
 	{
 		this.X++;
 	}
 
-	// POS CHECK
 	/**
 	 * Devuelve que posicion esta a abajo de la posicion actual
 	 * 
@@ -94,7 +94,7 @@ public class Position
 	 */
 	public Integer checkDown()
 	{
-		//array bound
+		// array bound
 		return this.Y + 1;
 	}
 
@@ -128,9 +128,6 @@ public class Position
 		return this.X + 1;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public boolean equals(Object obj)
 	{

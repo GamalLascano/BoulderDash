@@ -4,28 +4,19 @@ import game.model.Position;
 import game.model.SpriteChar;
 
 /**
- * 
- *
+ * Clase que representa el titanio.
  */
 public class Titanium extends Cell
 {
-	private SpriteChar spritechar = SpriteChar.T;
 
 	/**
-	 * 
+	 * Constructor del titanio.
 	 * @param pos
 	 */
 	public Titanium(Position pos)
 	{
 		super(pos);
-	}
-
-	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
+		this.setSpritechar(SpriteChar.T);
 	}
 
 }

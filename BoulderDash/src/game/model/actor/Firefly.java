@@ -4,35 +4,23 @@ import game.model.Position;
 import game.model.SpriteChar;
 
 /**
- * 
- *
+ * Clase de la Luciernega. Hace una rotacion horaria.
  */
 public class Firefly extends Enemy
 {
-	private SpriteChar spritechar = SpriteChar.F;
 
 	/**
-	 * 
+	 * Constructor de la Luciernega.
 	 * @param pos
 	 */
 	public Firefly(Position pos)
 	{
 		super(pos);
+		this.setSpritechar(SpriteChar.F);
 		this.state = StatusActorEnum.MOVINGUP;
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 */
+	@Override
 	public void rotate()
 	{
 		switch (this.state)

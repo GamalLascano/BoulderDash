@@ -10,21 +10,33 @@ import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;
 
+/**
+ * Thread del juego.
+ */
 public class GameThread extends TimerTask
 {
 	private int turn = 0;
 	private Timer timer;
 	private boolean stop = false;
-	
+
 	int currentlevel = MapInstance.getSelectedLevel();
 	boolean lost = false;
 	boolean won = false;
 	Rockford player = Rockford.getRockford();
 
-	public GameThread(Timer timer) {
+	/**
+	 * Constructor, timer del thread.
+	 * @param timer
+	 */
+	public GameThread(Timer timer)
+	{
 		this.timer = timer;
-    }
+	}
 
+	/**
+	 * Ejecucion en loop. Cuando rockford no tiene mas vidas o no hay mas niveles, la variable stop
+	 * determina el final del loop.
+	 */
 	public void run()
 	{
 		turn++;
@@ -49,7 +61,7 @@ public class GameThread extends TimerTask
 				{
 					Rockford.getRockford().die();
 				}
-				Exit.open();
+				Exit.getInstance().open();
 				System.out.println(turn);
 			}
 			else if (lost)
@@ -68,6 +80,10 @@ public class GameThread extends TimerTask
 				MapInstance.refresh();
 				FrameMap.refresh();
 				won = false;
+				if (!MapInstance.levelHasRockford())
+				{
+					stop = true;
+				}
 				MapInstance.buildSelectedLevel(++currentlevel);
 			}
 		}
@@ -80,7 +96,7 @@ public class GameThread extends TimerTask
 			FrameEnd.main(null);
 			FrameMap.disposeFrame();
 			timer.cancel();
-		}	
+		}
 	}
 
 }

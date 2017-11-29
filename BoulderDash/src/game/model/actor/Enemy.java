@@ -9,32 +9,26 @@ import game.model.map.MapItem;
 import game.model.map.MapVisual;
 
 /**
- * 
- *
+ * Clase que representa a los enemigos.
  */
 public abstract class Enemy extends Actor
 {
 
 	/**
-	 * 
+	 * Constructor de los enemigos.
 	 * @param pos
 	 */
 	public Enemy(Position pos)
 	{
 		super(pos);
 		this.state = StatusActorEnum.IDLE;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * 
+	 * Explosion, pone celda vacias alrededor del enemigo. Explosion cuadrada
+	 * 3x3 que genera diamantes. 
 	 */
-	protected abstract void rotate();
-
-	/**
-	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
-	 * 3x3.
-	 */
+	@Override
 	public void explode()
 	{
 		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
@@ -59,9 +53,12 @@ public abstract class Enemy extends Actor
 	}
 
 	/**
-	 * Explosion, pone celda vacias alrededor del personaje. Explosion cuadrada
-	 * 3x3.
-	 * 
+	 * Hace la rotacion del enemigo. Utilizando estados.
+	 */
+	protected abstract void rotate();
+	
+	/**
+	 * Verifica si Rockford esta en el alcanze del enemigo. Verifica en su cuardrado 3x3.
 	 * @return
 	 */
 	public boolean isRockfordInRange()
@@ -84,9 +81,7 @@ public abstract class Enemy extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void die()
 	{
 		if (this.state != StatusActorEnum.DEAD)
@@ -98,10 +93,7 @@ public abstract class Enemy extends Actor
 		MapActor.removeActor(this.getPosition());
 	}
 
-	/**
-	 * Se occupa de hacer mover a los enemigos.
-	 * 
-	 */
+	@Override
 	public void makeMove()
 	{
 		switch (this.state)
@@ -123,9 +115,7 @@ public abstract class Enemy extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveUp()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()) )
@@ -142,9 +132,7 @@ public abstract class Enemy extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveDown()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
@@ -161,9 +149,7 @@ public abstract class Enemy extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveRight()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
@@ -180,9 +166,7 @@ public abstract class Enemy extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void makeMoveLeft()
 	{
 		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))

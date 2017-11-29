@@ -4,34 +4,22 @@ import game.model.Position;
 import game.model.SpriteChar;
 
 /**
- * 
- *
+ * Enemigo Mariposa. Hace la rotacion de manera Horaria.
  */
 public class Butterfly extends Enemy
 {
-	private SpriteChar spritechar = SpriteChar.B;
 
 	/**
-	 * 
+	 * Constructor de la mariposa.
 	 * @param pos
 	 */
 	public Butterfly(Position pos)
 	{
 		super(pos);
+		this.setSpritechar(SpriteChar.B);
 		this.state = StatusActorEnum.MOVINGUP;
 	}
 
-	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 */
 	@Override
 	public void rotate()
 	{

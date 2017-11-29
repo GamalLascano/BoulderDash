@@ -7,26 +7,24 @@ import game.model.actor.Rockford;
 import game.model.item.Item;
 
 /**
- * Esta clase representa todas las unidades que se pueden mover Tiene lo
- * intrinseco de una unidad, su posicion
+ *	Elementos dinamicos que se pueden mover. Como Actor y Item.
  */
-public abstract class Entity
+public abstract class Entity extends Element
 {
-	private Position pos;
 	private HashMap<Integer, SpriteChar> passable = new HashMap<>();
 
 	/**
-	 * 
+	 * Genera una entidad en una posicion.
 	 * @param pos
 	 */
 	public Entity(Position pos)
 	{
-		this.pos = pos;
+		super(pos);
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Determina si esta entidad es un actor.
+	 * @return true o false
 	 */
 	public boolean isActor()
 	{
@@ -41,8 +39,8 @@ public abstract class Entity
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Determina si esta entidad es Rockford.
+	 * @return true o false
 	 */
 	public boolean isRockford()
 	{
@@ -57,8 +55,8 @@ public abstract class Entity
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Determina si esta entidad es un Item.
+	 * @return true o false
 	 */
 	public boolean isItem()
 	{
@@ -71,29 +69,10 @@ public abstract class Entity
 			return false;
 		}
 	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Position getPosition()
-	{
-		return pos;
-	}
-
-	/**
-	 * 
-	 * @param pos
-	 */
-	public void setPosition(Position pos)
-	{
-		this.pos = pos;
-	}
 	
-
 	/**
-	 * 
-	 * @return
+	 * Devuelve los elementos que la entidad puede traspasar.
+	 * @return El hashmap de los elementos passables
 	 */
 	public HashMap<Integer, SpriteChar> getPassable()
 	{
@@ -101,7 +80,7 @@ public abstract class Entity
 	}
 
 	/**
-	 * 
+	 * Setea los elementos que la entidad puede traspasar.
 	 * @param passable
 	 */
 	public void setPassable(HashMap<Integer, SpriteChar> passable)
@@ -110,17 +89,17 @@ public abstract class Entity
 	}
 
 	/**
-	 * 
+	 * Cambia la posicion de la entidad antes de hacer makemove.
 	 */
 	abstract public void changePosition();
 
 	/**
-	 * 
+	 * Hace la movida de una entidad.
 	 */
 	abstract public void makeMove();
 
 	/**
-	 * 
+	 * Hace un comportamiento y borra la entidad.
 	 */
 	abstract public void die();
 

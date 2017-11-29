@@ -1,32 +1,33 @@
 package game.model.cell;
 
+import game.model.Position;
 import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 
 /**
- * 
- *
+ * Clase de la celda salida
  */
 public class Exit extends Cell
 {
 
-	private static SpriteChar spritechar;
-	private static boolean isOpen;
+	private boolean isOpen;
 	private static Exit exit;
 
 	/**
+	 * Constructor de la salida.
 	 * 
 	 * @param pos
 	 */
 	private Exit()
 	{
-		super(null);
-		spritechar = SpriteChar.E;
-		isOpen = false;
+		super(new Position(0, 0));
+		this.setSpritechar(SpriteChar.E);
+		this.isOpen = false;
 	}
 
 	/**
+	 * Singleton salida.
 	 * 
 	 * @return
 	 */
@@ -40,39 +41,32 @@ public class Exit extends Cell
 	}
 
 	/**
-	 * 
+	 * Resetea la salida con sus valores por defecto.
 	 */
 	public void reset()
 	{
-		exit.pos = null;
-		spritechar = SpriteChar.E;
-		isOpen = false;
+		this.setPosition(new Position(0, 0));
+		this.setSpritechar(SpriteChar.E);
+		this.isOpen = false;
 	}
-	
+
 	/**
-	 * 
+	 * Abre la salida.
 	 */
-	public static void open()
+	public void open()
 	{
 		Rockford player = Rockford.getRockford();
 		if (player.getDiamonds() >= MapInstance.getLevelReader().getDiamondsNeeded())
 		{
-			spritechar = SpriteChar.e;
-			isOpen = true;
+			this.setSpritechar(SpriteChar.e);
+			this.isOpen = true;
 		}
 	}
 
 	/**
+	 * Devuelve si la salida esta abierta para el jugador.
 	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 * @return
+	 * @return isOpen
 	 */
 	public boolean isOpen()
 	{

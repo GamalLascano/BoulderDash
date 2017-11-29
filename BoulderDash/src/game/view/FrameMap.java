@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import game.model.CurrentDirection;
+import game.model.Direction;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 
@@ -112,19 +112,19 @@ public class FrameMap extends JFrame implements KeyListener
 		Rockford player = Rockford.getRockford();
 		if (up)
 		{
-			player.move(CurrentDirection.UP);
+			player.move(Direction.UP);
 		}
 		if (down)
 		{
-			player.move(CurrentDirection.DOWN);
+			player.move(Direction.DOWN);
 		}
 		if (left)
 		{
-			player.move(CurrentDirection.LEFT);
+			player.move(Direction.LEFT);
 		}
 		if (right)
 		{
-			player.move(CurrentDirection.RIGHT);
+			player.move(Direction.RIGHT);
 		}
 	}
 	

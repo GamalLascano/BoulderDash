@@ -4,27 +4,26 @@ import game.model.Position;
 import game.model.SpriteChar;
 
 /**
- * 
- *
+ * Clase de la celda tierra y vacia.
  */
 public class Dirt extends Cell
 {
-	private SpriteChar spritechar;
 	private boolean dirty; // True = is dirt, false = is normal
 
 	/**
-	 * 
+	 * Constructor tierra.
 	 * @param pos
 	 */
 	public Dirt(Position pos)
 	{
 		super(pos);
 		this.dirty = true;
-		this.spritechar = SpriteChar.D;
+		this.setSpritechar(SpriteChar.D);
 	}
 
 	/**
-	 * 
+	 * Constructor tierra para generar una celda vacia
+	 * con un argumento dirty para sacar la tierra de la celda.
 	 * @param pos
 	 * @param dirty
 	 */
@@ -34,25 +33,17 @@ public class Dirt extends Cell
 		this.dirty = dirty;
 		if (!dirty)
 		{
-			this.spritechar = SpriteChar._;
+			this.setSpritechar(SpriteChar._);
 		}
 		else
 		{
-			this.spritechar = SpriteChar.D;
+			this.setSpritechar(SpriteChar.D);
 		}
 	}
 
 	/**
-	 * 
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 * @return
+	 * Devuelve si hay tierra en la celda.
+	 * @return dirty
 	 */
 	public boolean isDirty()
 	{
@@ -60,17 +51,15 @@ public class Dirt extends Cell
 	}
 
 	/**
-	 * 
+	 * Remueve la tierra de la celda.
 	 */
 	public void removeDirt()
 	{
 		this.dirty = false;
-		spritechar = SpriteChar._;
+		this.setSpritechar(SpriteChar._);
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void clear()
 	{
 		this.removeDirt();

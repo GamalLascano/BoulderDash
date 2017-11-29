@@ -6,8 +6,7 @@ import game.model.map.MapVisual;
 import java.util.Scanner;
 
 /**
- * Esta es la clase principal del juego De aqui se maneja la logica del juego,
- * explicacion acerca de funcionamiento adentro del metodo
+ * Hace el lanzamiento del juego sin interface grafica. Util para debugear.
  */
 public class GameConsole
 {
@@ -36,16 +35,16 @@ public class GameConsole
 				switch (dir)
 				{
 					case "w":
-						player.move(CurrentDirection.UP);
+						player.move(Direction.UP);
 						break;
 					case "s":
-						player.move(CurrentDirection.DOWN);
+						player.move(Direction.DOWN);
 						break;
 					case "d":
-						player.move(CurrentDirection.RIGHT);
+						player.move(Direction.RIGHT);
 						break;
 					case "a":
-						player.move(CurrentDirection.LEFT);
+						player.move(Direction.LEFT);
 						break;
 					case "e":
 						break;

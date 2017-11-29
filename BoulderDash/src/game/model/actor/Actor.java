@@ -1,6 +1,6 @@
 package game.model.actor;
 
-import game.model.CurrentDirection;
+import game.model.Direction;
 import game.model.Entity;
 import game.model.Position;
 import game.model.SpriteChar;
@@ -9,15 +9,13 @@ import game.model.map.MapInstance;
 
 /**
  * Esta clase representa a todos los actores, que pueden moverse
- *
  */
 public abstract class Actor extends Entity
 {
 	protected StatusActorEnum state;
-	private SpriteChar spritechar;
 
 	/**
-	 * 
+	 * Constructor de actor.
 	 * @param pos
 	 */
 	public Actor(Position pos)
@@ -28,17 +26,8 @@ public abstract class Actor extends Entity
 	}
 
 	/**
-	 * 
-	 * @return
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 * @return
+	 * Retorna el estado del actor.
+	 * @return StatusActorEnum
 	 */
 	public StatusActorEnum getState()
 	{
@@ -46,7 +35,7 @@ public abstract class Actor extends Entity
 	}
 
 	/**
-	 * 
+	 * Setea el estado del actor.
 	 * @param stat
 	 */
 	public void setState(StatusActorEnum stat)
@@ -72,10 +61,10 @@ public abstract class Actor extends Entity
 	}
 
 	/**
-	 * 
+	 * Utiliza la direccion y cambia el estado para el movimiento.
 	 * @param direction
 	 */
-	public void move(CurrentDirection direction)
+	public void move(Direction direction)
 	{
 		switch (direction)
 		{
@@ -96,15 +85,34 @@ public abstract class Actor extends Entity
 		}
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public void changePosition()
 	{
 		MapActor.removeActor(this.getPosition());
 		this.makeMove();
 		MapActor.setActor(this);
 	}
+	
+	/**
+	 * Comportamiento para mover el actor hacia arriba.
+	 */
+	protected abstract void makeMoveUp();
+	
+	/**
+	 * Comportamiento para mover el actor hacia abajo.
+	 */
+	protected abstract void makeMoveDown();
+	
+	/**
+	 * Comportamiento para mover el actor hacia la izquierda.
+	 */
+	protected abstract void makeMoveLeft();
+	
+	/**
+	 * Comportamiento para mover el actor hacia la derecha.
+	 */
+	protected abstract void makeMoveRight();
+
 
 	// public void die()
 	// {

@@ -1,29 +1,26 @@
 package game.model.cell;
 
+import game.model.Element;
 import game.model.Position;
-import game.model.SpriteChar;
 import game.model.map.MapCell;
 
 /**
- * Esta clase contiene todos los objetos del mapa que no se mueven
- *
+ * Esta clase contiene todos los objetos del mapa que no se mueven.
  */
-public abstract class Cell
+public abstract class Cell extends Element
 {
-	private SpriteChar spritechar;
-	protected Position pos;
 
 	/**
-	 * 
+	 * Constructor de Celda.
 	 * @param pos
 	 */
 	Cell(Position pos)
 	{
-		this.pos = pos;
+		super(pos);
 	}
 
 	/**
-	 * 
+	 * Retorna si la celda es tierra.
 	 * @return
 	 */
 	public boolean isDirt()
@@ -39,7 +36,7 @@ public abstract class Cell
 	}
 	
 	/**
-	 * 
+	 * Retorna si la celda es un muro.
 	 * @return
 	 */
 	public boolean isWall()
@@ -55,7 +52,7 @@ public abstract class Cell
 	}
 
 	/**
-	 * 
+	 * Retorna si la celda es la salida.
 	 * @return
 	 */
 	public boolean isExit()
@@ -71,38 +68,11 @@ public abstract class Cell
 	}
 
 	/**
-	 * 
-	 * @return
-	 */
-	public SpriteChar getSpritechar()
-	{
-		return spritechar;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Position getPosition()
-	{
-		return pos;
-	}
-
-	/**
-	 * 
-	 * @param po
-	 */
-	public void setPosition(Position po)
-	{
-		pos = po;
-	}
-	
-	/**
-	 * 
+	 * Hacer un comportamiento y borra una celda.
 	 */
 	public void clear()
 	{
-		MapCell.removeCell(this.pos);
+		MapCell.removeCell(this.getPosition());
 	}
 
 }
