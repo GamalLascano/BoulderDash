@@ -27,7 +27,6 @@ public class FrameMenu extends JFrame
 
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
-	private static Sound playsound;
 	// menu
 	private static String dirwallpaper = "game/view/wallpaper.png";
 	private static Image wallpaperimg;
@@ -59,11 +58,11 @@ public class FrameMenu extends JFrame
 
 	private FrameMenu() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
-		playsound = new Sound();
+		SoundPlay.getInstance();
 		setupFrameMenu();
 		setupPanelMenu();
 		tabledata = new Object[4][20];
-		// ScoreBoard.getInstance().loadMatrix(tabledata);
+		ScoreBoard.getInstance().readScorenames(tabledata);
 
 		add(panel);
 		setPreferredSize(new Dimension(wallpaperimg.getWidth(null), wallpaperimg.getHeight(null)));
@@ -79,22 +78,7 @@ public class FrameMenu extends JFrame
 			{
 				framemenu = new FrameMenu();
 			}
-			catch (ClassNotFoundException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (FileNotFoundException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			catch (URISyntaxException e)
+			catch (URISyntaxException | IOException | ClassNotFoundException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -258,7 +242,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				framemenu.setVisible(false);
 				Game.main(new String[0]);
 			}
@@ -274,7 +258,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				try
 				{
 					topX();
@@ -297,7 +281,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				rules();
 			}
 		});
@@ -312,7 +296,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				config();
 			}
 		});
@@ -327,7 +311,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				framemenu.dispose();
 				System.exit(0);
 			}
@@ -360,7 +344,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				menu();
 			}
 		});
@@ -402,7 +386,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				menu();
 			}
 		});
@@ -433,7 +417,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
@@ -503,7 +487,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
@@ -518,7 +502,7 @@ public class FrameMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				playsound.button();
+				SoundPlay.button();
 				menu();
 			}
 		});
@@ -549,7 +533,7 @@ public class FrameMenu extends JFrame
 	 */
 	public void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
-		ScoreBoard.getInstance().loadMatrix(tabledata);
+		ScoreBoard.getInstance().readScorenames(tabledata);
 		tablemodel = new DefaultTableModel(tabledata, tablecolumn);
 		for (int i = 0; i < x; i++)
 		{
@@ -574,7 +558,7 @@ public class FrameMenu extends JFrame
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();
 		runFrameMenu.setVisible(true);
-		// ScoreBoard.getInstance().saveMatrix(tabledata);
+		ScoreBoard.getInstance().writeScorenames(tabledata);
 	}
 
 }

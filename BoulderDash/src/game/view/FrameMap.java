@@ -57,8 +57,10 @@ public class FrameMap extends JFrame implements KeyListener
 		c.gridy = 1;
 		panelmap.setBackground(Color.BLACK);
 		add(panelmap, c);
-
+		
 		setVisible(true);
+		SoundPlay.getInstance();
+		SoundPlay.newgame();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 

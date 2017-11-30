@@ -257,7 +257,10 @@ public class MapInstance
 	 */
 	public static void kill(Integer x, Integer y)
 	{
-		MapCell.getCell(x, y).clear();
+		if(!MapCell.getCell(x, y).isTitanium())
+		{
+			MapCell.getCell(x, y).clear();
+		}
 		MapItem.getItem(x, y).die();
 		if (MapActor.getActor(x, y) != null)
 		{

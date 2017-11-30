@@ -22,6 +22,7 @@ public class Diamond extends Fallable
 		super(pos, true, false, true, StatusFallableEnum.IDLE);
 		this.setSpritechar(SpriteChar.X);
 		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
 	}
 
 	/**

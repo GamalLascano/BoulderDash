@@ -4,11 +4,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import game.model.actor.Rockford;
-import game.model.actor.StatusActorEnum;
 import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;
+import game.view.SoundPlay;
 
 /**
  * Thread del juego.
@@ -53,11 +53,14 @@ public class GameThread extends TimerTask
 				{
 					won = player.isInExit();
 				}
-				if (Rockford.getRockford().getState() == StatusActorEnum.DEAD)
+				if (!ListOfEntities.getList().contains(player))
+				{
+					MapInstance.buildSelectedLevel(currentlevel);
+				}
+				if (player.getLives() == 0)
 				{
 					lost = true;
 				}
-
 				if (MapInstance.getTimer() == 0)
 				{
 					Rockford.getRockford().die();
@@ -67,6 +70,7 @@ public class GameThread extends TimerTask
 			}
 			else if (lost)
 			{
+				SoundPlay.lost();
 				MapInstance.refresh();
 				FrameMap.refresh();
 				if (Rockford.getRockford().getLives() == 0)
@@ -78,6 +82,7 @@ public class GameThread extends TimerTask
 			}
 			else if (won)
 			{
+				SoundPlay.won();
 				MapInstance.refresh();
 				FrameMap.refresh();
 				won = false;

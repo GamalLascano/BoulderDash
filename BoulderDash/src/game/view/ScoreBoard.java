@@ -43,21 +43,24 @@ public class ScoreBoard
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void loadMatrix(Object[][] matrix) throws IOException, ClassNotFoundException
+	public void readScorenames(Object[][] matrix) throws IOException, ClassNotFoundException
 	{
-		ObjectInputStream input = null;
-		Scorename participant;
-		input = new ObjectInputStream(streamin);
-
-		int y = 0;
-		while (input.available() > 0)
+		if(streamin.available() != 0)
 		{
-			participant = (Scorename) input.readObject();
-			matrix[0][y] = participant.getRank();
-			matrix[1][y] = participant.getName();
-			matrix[2][y] = participant.getPoints();
-			matrix[3][y] = participant.getTime();
-			y++;
+			ObjectInputStream input = null;
+			Scorename participant;
+			input = new ObjectInputStream(streamin);
+	
+			int y = 0;
+			while (input.available() > 0)
+			{
+				participant = (Scorename) input.readObject();
+				matrix[0][y] = participant.getRank();
+				matrix[1][y] = participant.getName();
+				matrix[2][y] = participant.getPoints();
+				matrix[3][y] = participant.getTime();
+				y++;
+			}
 		}
 	}
 
@@ -68,20 +71,23 @@ public class ScoreBoard
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void saveMatrix(Object[][] matrix) throws IOException, ClassNotFoundException
+	public void writeScorenames(Object[][] matrix) throws IOException, ClassNotFoundException
 	{
-		ObjectOutputStream output = null;
-
-		output = new ObjectOutputStream(streamout);
-		int y;
-		for (y = 0; y < matrix.length; y++)
+		if(streamout)
 		{
-			Scorename participant = new Scorename();
-			participant.setRank((Integer) matrix[0][y]);
-			participant.setName((String) matrix[1][y]);
-			participant.setPoints((Integer) matrix[2][y]);
-			participant.setTime((Integer) matrix[3][y]);
-			output.writeObject(participant);
+			ObjectOutputStream output = null;
+	
+			output = new ObjectOutputStream(streamout);
+			int y;
+			for (y = 0; y < matrix.length; y++)
+			{
+				Scorename participant = new Scorename();
+				participant.setRank((Integer) matrix[0][y]);
+				participant.setName((String) matrix[1][y]);
+				participant.setPoints((Integer) matrix[2][y]);
+				participant.setTime((Integer) matrix[3][y]);
+				output.writeObject(participant);
+			}
 		}
 
 	}

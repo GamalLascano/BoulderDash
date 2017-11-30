@@ -31,7 +31,7 @@ public class PanelMap extends JPanel
 	private BufferedImage wall;
 	private Image firefly;
 	private Image butterfly;
-	//private Image magic;
+	// private Image magic;
 	private Image amoeba;
 	private Image rockford;
 	private Image rockfordleft;
@@ -52,7 +52,8 @@ public class PanelMap extends JPanel
 			wall = ImageIO.read(this.getClass().getResource("wall.gif"));
 			firefly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("firefly.gif"));
 			butterfly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("butterfly.gif"));
-			//magic = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("magic.gif"));
+			// magic =
+			// Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("magic.gif"));
 			amoeba = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("amoeba.gif"));
 			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockford.gif"));
 			rockfordleft = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("rockfordleft.gif"));
@@ -67,6 +68,7 @@ public class PanelMap extends JPanel
 		}
 	}
 
+	@Override
 	public void paintComponent(Graphics graphic)
 	{
 		super.paintComponent(graphic);
@@ -76,64 +78,76 @@ public class PanelMap extends JPanel
 			{
 
 				String cellChar = MapVisual.getChar(x / FrameMap.getCellsize(), y / FrameMap.getCellsize()).toString();
+				drawCell(cellChar, x, y, graphic);
 
-				switch (cellChar.charAt(0))
-				{
-					case 'D':
-						graphic.drawImage(dirt, x, y, null);
-						break;
-					case '_':
-						graphic.drawImage(empty, x, y, null);
-						break;
-					case 'W':
-						graphic.drawImage(wall, x, y, null);
-						break;
-					case 'w':
-						graphic.drawImage(wall, x, y, null);
-						break;
-					case 'F':
-						graphic.drawImage(firefly, x, y, null);
-						break;
-					case 'B':
-						graphic.drawImage(butterfly, x, y, null);
-						break;
-					case 'A':
-						graphic.drawImage(amoeba, x, y, null);
-						break;
-					case 'O':
-						graphic.drawImage(boulder, x, y, null);
-						break;
-					case 'X':
-						graphic.drawImage(diamond, x, y, null);
-						break;
-					case 'T':
-						graphic.drawImage(steel, x, y, null);
-						break;
-					case 'R':
-						graphic.drawImage(rockford, x, y, null);
-						break;
-					case 'd':
-						graphic.drawImage(rockfordleft, x, y, null);
-						break;
-					case 'b':
-						graphic.drawImage(rockfordright, x, y, null);
-						break;
-					case 'n':
-						graphic.drawImage(rockfordup, x, y, null);
-						break;
-					case 'u':
-						graphic.drawImage(rockforddown, x, y, null);
-						break;
-					case 'E':
-						graphic.drawImage(steel, x, y, null);
-						break;
-					case 'e':
-						graphic.drawImage(exit, x, y, null);
-						break;
-					default:
-						break;
-				}
 			}
+		}
+	}
+
+	/**
+	 * Dibuja una celda
+	 * @param s
+	 * @param x
+	 * @param y
+	 * @param graphic
+	 */
+	public void drawCell(String s, int x, int y, Graphics graphic)
+	{
+		switch (s.charAt(0))
+		{
+			case 'D':
+				graphic.drawImage(dirt, x, y, null);
+				break;
+			case '_':
+				graphic.drawImage(empty, x, y, null);
+				break;
+			case 'W':
+				graphic.drawImage(wall, x, y, null);
+				break;
+			case 'w':
+				graphic.drawImage(wall, x, y, null);
+				break;
+			case 'F':
+				graphic.drawImage(firefly, x, y, null);
+				break;
+			case 'B':
+				graphic.drawImage(butterfly, x, y, null);
+				break;
+			case 'A':
+				graphic.drawImage(amoeba, x, y, null);
+				break;
+			case 'O':
+				graphic.drawImage(boulder, x, y, null);
+				break;
+			case 'X':
+				graphic.drawImage(diamond, x, y, null);
+				break;
+			case 'T':
+				graphic.drawImage(steel, x, y, null);
+				break;
+			case 'R':
+				graphic.drawImage(rockford, x, y, null);
+				break;
+			case 'd':
+				graphic.drawImage(rockfordleft, x, y, null);
+				break;
+			case 'b':
+				graphic.drawImage(rockfordright, x, y, null);
+				break;
+			case 'n':
+				graphic.drawImage(rockfordup, x, y, null);
+				break;
+			case 'u':
+				graphic.drawImage(rockforddown, x, y, null);
+				break;
+			case 'E':
+				graphic.drawImage(steel, x, y, null);
+				break;
+			case 'e':
+				graphic.drawImage(exit, x, y, null);
+				break;
+			default:
+				break;
 		}
 	}
 

@@ -53,6 +53,23 @@ public abstract class Cell extends Element
 			return false;
 		}
 	}
+	
+	/**
+	 * Retorna si la celda es titanio.
+	 * 
+	 * @return
+	 */
+	public boolean isTitanium()
+	{
+		if (this instanceof Titanium)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	/**
 	 * Retorna si la celda es la salida.
