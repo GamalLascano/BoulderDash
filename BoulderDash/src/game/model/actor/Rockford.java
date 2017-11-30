@@ -153,7 +153,7 @@ public class Rockford extends Actor
 	 */
 	public void dig(Dirt dirt)
 	{
-		if (dirt.isDirty())
+		if (dirt != null && dirt.isDirty())
 		{
 			SoundPlay.dig();
 			dirt.removeDirt();
