@@ -69,6 +69,22 @@ public class Rockford extends Actor
 	}
 
 	/**
+	 * Resetea a Rockford.
+	 */
+	public void reset()
+	{
+		this.setSpritechar(SpriteChar.R);
+		this.lives = 3;
+		this.score = 0;
+		this.diamonds = 0;
+		this.isPushing = false;
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
+		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
+		this.getPassable().put(SpriteChar.e.hashCode(), SpriteChar.e);
+	}
+	
+	/**
 	 * Retorna el score obtenido en el mapa actual.
 	 * 
 	 * @return score
@@ -113,6 +129,7 @@ public class Rockford extends Actor
 	{
 		if (state != StatusActorEnum.DEAD)
 		{
+			SoundPlay.explosion();
 			state = StatusActorEnum.DEAD;
 			if (this.lives > 0)
 			{
@@ -136,9 +153,14 @@ public class Rockford extends Actor
 	 */
 	public void dig(Dirt dirt)
 	{
-		if (dirt != null)
+		if (dirt.isDirty())
 		{
+			SoundPlay.dig();
 			dirt.removeDirt();
+		}
+		else
+		{
+			SoundPlay.step();
 		}
 	}
 
@@ -309,6 +331,7 @@ public class Rockford extends Actor
 				if (rock != null && rock.isMoveable()
 						&& rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkRight(), rock.getPosition().getY()).hashCode()))
 				{
+					SoundPlay.push();
 					isPushing = true;
 					rock.pushed(this);
 					isPushing = false;
@@ -321,6 +344,7 @@ public class Rockford extends Actor
 				if (rock != null && rock.isMoveable()
 						&& rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkLeft(), rock.getPosition().getY()).hashCode()))
 				{
+					SoundPlay.push();
 					isPushing = true;
 					rock.pushed(this);
 					isPushing = false;

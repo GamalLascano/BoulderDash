@@ -55,10 +55,10 @@ public class ScoreBoard
 			while (input.available() > 0)
 			{
 				participant = (Scorename) input.readObject();
-				matrix[0][y] = participant.getRank();
-				matrix[1][y] = participant.getName();
-				matrix[2][y] = participant.getPoints();
-				matrix[3][y] = participant.getTime();
+				matrix[0][y] = (Object) participant.getRank();
+				matrix[1][y] = (Object) participant.getName();
+				matrix[2][y] = (Object) participant.getPoints();
+				matrix[3][y] = (Object) participant.getTime();
 				y++;
 			}
 		}

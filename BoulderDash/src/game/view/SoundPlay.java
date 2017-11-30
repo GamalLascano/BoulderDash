@@ -131,7 +131,83 @@ public class SoundPlay extends JFrame
 		}
 		clip.start();
 	}
+	
+	public static void dig()
+	{
+		Clip clip = null;
+		try
+		{
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("dig.wav"));
+			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
+			clip = (Clip) AudioSystem.getLine(info);
+			clip.open(inputStream);
 
+		}
+		catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		clip.start();
+	}
+
+	public static void explosion()
+	{
+		Clip clip = null;
+		try
+		{
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("explosion.wav"));
+			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
+			clip = (Clip) AudioSystem.getLine(info);
+			clip.open(inputStream);
+
+		}
+		catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		clip.start();
+	}
+	
+	public static void push()
+	{
+		Clip clip = null;
+		try
+		{
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("push.wav"));
+			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
+			clip = (Clip) AudioSystem.getLine(info);
+			clip.open(inputStream);
+
+		}
+		catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		clip.start();
+	}
+	
+	public static void step()
+	{
+		Clip clip = null;
+		try
+		{
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("step.wav"));
+			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
+			clip = (Clip) AudioSystem.getLine(info);
+			clip.open(inputStream);
+
+		}
+		catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		clip.start();
+	}
+	
 	// public static void main(String[] args)
 	// {
 	// Sound playsound = new Sound();
