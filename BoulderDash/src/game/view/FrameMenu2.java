@@ -19,7 +19,7 @@ import game.model.map.MapInstance;
  * Panel del menu. 
  *
  */
-public class FrameMenu extends JFrame
+public class FrameMenu2 extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private static FrameMenu framemenu;

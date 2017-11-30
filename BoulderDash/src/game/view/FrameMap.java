@@ -1,10 +1,12 @@
 package game.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -25,23 +27,22 @@ import game.model.map.MapInstance;
 public class FrameMap extends JFrame implements KeyListener
 {
 	private static final long serialVersionUID = 1L;
-	private static final int CELLSIZE = 16;
-	private static JPanel panelmap = new PanelMap();
+	private static int CELLSIZEX = 16;
+	private static int CELLSIZEY = 16;
+	private static PanelMap panelmap = new PanelMap();
 	private static JPanel paneltop = new JPanel();
 	private static FrameMap framemap;
-	private static boolean up,down,right,left;
-
+	private static boolean up,down,right,left,fullscr;
+	private static Dimension pastScreenSize=new Dimension(800,600);
 	// panel
 	private static JLabel labeltop[][] = new JLabel[1][9];
 
 	private FrameMap()
 	{
 		GridBagConstraints c = new GridBagConstraints();
-
-		setLocationRelativeTo(null);
 		setTitle("Boulder Dash");
 		setResizable(false);
-		setSize(643, 433);
+		setSize(800, 600);
 		getContentPane().setBackground(Color.BLACK);
 		addKeyListener(this);
 		setLayout(new GridBagLayout());
@@ -57,7 +58,7 @@ public class FrameMap extends JFrame implements KeyListener
 		c.gridy = 1;
 		panelmap.setBackground(Color.BLACK);
 		add(panelmap, c);
-		
+		setLocationRelativeTo(null);
 		setVisible(true);
 		SoundPlay.getInstance();
 		SoundPlay.newgame();
@@ -114,11 +115,49 @@ public class FrameMap extends JFrame implements KeyListener
 		FrameMap.getInstance();
 	}
 	
-	public static int getCellsize()
+	public static int getCellsizex()
 	{
-		return CELLSIZE;
+		return CELLSIZEX;
 	}
+	public static int getCellsizey()
+	{
+		return CELLSIZEY;
+	}
+	public static void setCellsize(int x, int y) {
+		CELLSIZEX=x;
+		CELLSIZEY=y;
+	}
+	public static void setFullscr(boolean enabled) {
+		fullscr=enabled;
+	}
+	public static void fullScr() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		pastScreenSize=FrameMenu.getInstance().getSize();
+		if (fullscr) {
+			pastScreenSize = getInstance().getSize();
+			getInstance().setSize(screenSize);
+			panelmap.cambiarsize();
+			getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
+			getInstance().dispose();
+			getInstance().setUndecorated(true);
+			getInstance().pack();
+			getInstance().setVisible(true);
+			getInstance().setAlwaysOnTop(true);
+			getInstance().setLocationRelativeTo(null);
 
+		}else {
+			getInstance().setExtendedState(JFrame.NORMAL);
+			getInstance().dispose();
+			getInstance().setUndecorated(false);
+			getInstance().pack();
+			getInstance().setSize(pastScreenSize);
+			panelmap.cambiarsize();
+			getInstance().setVisible(true);
+			getInstance().setAlwaysOnTop(false);
+			getInstance().setLocationRelativeTo(null);
+
+		}
+	}
 	/**
 	 * Hace que el jugador se mueva de manera fluida.
 	 */
@@ -213,7 +252,9 @@ public class FrameMap extends JFrame implements KeyListener
 	{
 		
 	}
-	
+	public static void setPanelTopSize(int size) {
+		paneltop.setPreferredSize(new Dimension(643,size));
+	}
 	/**
 	 * Construye el panel superior.
 	 */
@@ -228,7 +269,7 @@ public class FrameMap extends JFrame implements KeyListener
 		paneltop.setBackground(Color.BLACK);
 		
 		paneltop.setLayout(new FlowLayout());
-		paneltop.setSize(643, 100);
+		paneltop.setPreferredSize(new Dimension(643,22));
 		
 		labeltop[0][0] = new JLabel("<");
 		labeltop[0][0].setForeground(Color.WHITE);

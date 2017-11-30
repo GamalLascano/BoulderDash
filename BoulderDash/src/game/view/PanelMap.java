@@ -3,8 +3,6 @@ package game.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -23,12 +21,12 @@ public class PanelMap extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private BufferedImage empty;
-	private BufferedImage dirt;
-	private BufferedImage boulder;
+	private Image empty;
+	private Image dirt;
+	private Image boulder;
 	private Image diamond;
-	private BufferedImage steel;
-	private BufferedImage wall;
+	private Image steel;
+	private Image wall;
 	private Image firefly;
 	private Image butterfly;
 	// private Image magic;
@@ -67,17 +65,52 @@ public class PanelMap extends JPanel
 			e.printStackTrace();
 		}
 	}
-
+	public void cambiarsize() {
+		int CELLSIZEX=20;
+		int CELLSIZEY=25;
+		FrameMap.setPanelTopSize(22);
+		switch (FrameMap.getInstance().getSize().height) {
+			case 768: if (FrameMap.getInstance().getSize().width==1024) {
+						  CELLSIZEX=25;
+			          }else {  
+			        	  CELLSIZEX=34;
+			          }
+					  CELLSIZEY=32;
+					  FrameMap.setPanelTopSize(29);
+					  break;
+			case 1080: CELLSIZEX=48;
+					   CELLSIZEY=46;
+					   FrameMap.setPanelTopSize(19);
+					   break;
+		}
+		FrameMap.setCellsize(CELLSIZEX, CELLSIZEY);
+			empty = empty.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);	
+			dirt = dirt.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			boulder = boulder.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			diamond = diamond.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			steel = steel.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			wall = wall.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			firefly = firefly.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			butterfly = butterfly.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			//magic = magic.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			amoeba = amoeba.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			rockford = rockford.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			rockfordleft = rockfordleft.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			rockfordright = rockfordright.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			rockfordup = rockfordup.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			rockforddown = rockforddown.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+			exit = exit.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+	}
 	@Override
 	public void paintComponent(Graphics graphic)
 	{
 		super.paintComponent(graphic);
-		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT() * FrameMap.getCellsize(); y += FrameMap.getCellsize())
+		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT() * FrameMap.getCellsizey(); y += FrameMap.getCellsizey())
 		{
-			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH() * FrameMap.getCellsize(); x += FrameMap.getCellsize())
+			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH() * FrameMap.getCellsizex(); x += FrameMap.getCellsizex())
 			{
 
-				String cellChar = MapVisual.getChar(x / FrameMap.getCellsize(), y / FrameMap.getCellsize()).toString();
+				String cellChar = MapVisual.getChar(x / FrameMap.getCellsizex(), y / FrameMap.getCellsizey()).toString();
 				drawCell(cellChar, x, y, graphic);
 
 			}
