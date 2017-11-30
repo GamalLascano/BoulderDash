@@ -73,13 +73,13 @@ public class ScoreBoard
 	 */
 	public void writeScorenames(Object[][] matrix) throws IOException, ClassNotFoundException
 	{
-		if(streamout)
+		if(true)
 		{
 			ObjectOutputStream output = null;
 	
 			output = new ObjectOutputStream(streamout);
 			int y;
-			for (y = 0; y < matrix.length; y++)
+			for (y = 0; y < matrix[0].length; y++)
 			{
 				Scorename participant = new Scorename();
 				participant.setRank((Integer) matrix[0][y]);
