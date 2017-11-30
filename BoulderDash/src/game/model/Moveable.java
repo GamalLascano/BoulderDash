@@ -1,5 +1,9 @@
 package game.model;
 
+/**
+ * Interface moveable para los elementos que se mueven
+ * en todas las direciones.
+ */
 public interface Moveable
 {
 

@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 
+/**
+ * Se occupa de levantar las imagenes para el mapa.
+ *
+ */
 public class PanelMap extends JPanel
 {
 	/**

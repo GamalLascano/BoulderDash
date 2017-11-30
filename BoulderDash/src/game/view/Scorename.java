@@ -2,6 +2,10 @@ package game.view;
 
 import java.io.Serializable;
 
+/**
+ * Objeto para poner en la tabla de score.
+ *
+ */
 public class Scorename implements Serializable
 {
 	/**

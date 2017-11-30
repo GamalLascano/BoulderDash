@@ -18,9 +18,12 @@ import game.model.Direction;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
 
+/**
+ * Panel del juego, donde aparece el mapa.
+ *
+ */
 public class FrameMap extends JFrame implements KeyListener
 {
-	//
 	private static final long serialVersionUID = 1L;
 	private static final int CELLSIZE = 16;
 	private static JPanel panelmap = new PanelMap();
@@ -68,6 +71,9 @@ public class FrameMap extends JFrame implements KeyListener
 		return framemap;
 	}
 	
+	/**
+	 * Refresca el mapa.
+	 */
 	public static void refresh()
 	{	
 		FrameMap.updateMove();
@@ -75,6 +81,10 @@ public class FrameMap extends JFrame implements KeyListener
 		FrameMap.panelmap.repaint();
 	}
 	
+	/**
+	 * Refresca el panel superior, el score, diamantes obtenidos y otras informacion
+	 * del jugador.
+	 */
 	public static void refreshPaneltop()
 	{	
 		labeltop[0][1].setText(MapInstance.getSelectedLevel().toString());
@@ -107,6 +117,9 @@ public class FrameMap extends JFrame implements KeyListener
 		return CELLSIZE;
 	}
 
+	/**
+	 * Hace que el jugador se mueva de manera fluida.
+	 */
 	public static void updateMove()
 	{
 		Rockford player = Rockford.getRockford();
@@ -199,6 +212,9 @@ public class FrameMap extends JFrame implements KeyListener
 		
 	}
 	
+	/**
+	 * Construye el panel superior.
+	 */
 	public static void buildPaneltop()
 	{
 		GridBagConstraints c = new GridBagConstraints();

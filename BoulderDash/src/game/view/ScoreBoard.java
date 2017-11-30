@@ -10,6 +10,10 @@ import java.io.ObjectOutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+/**
+ * Sirve para cargar el top en una matriz.
+ *
+ */
 public class ScoreBoard
 {
 	private FileInputStream streamin;
@@ -33,6 +37,12 @@ public class ScoreBoard
 		return scoreboard;
 	}
 
+	/**
+	 * 
+	 * @param matrix
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void loadMatrix(Object[][] matrix) throws IOException, ClassNotFoundException
 	{
 		ObjectInputStream input = null;
@@ -51,6 +61,13 @@ public class ScoreBoard
 		}
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param matrix
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void saveMatrix(Object[][] matrix) throws IOException, ClassNotFoundException
 	{
 		ObjectOutputStream output = null;

@@ -15,6 +15,10 @@ import javax.swing.table.DefaultTableModel;
 import game.model.Game;
 import game.model.map.MapInstance;
 
+/**
+ * Panel del menu. 
+ *
+ */
 public class FrameMenu extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -99,7 +103,9 @@ public class FrameMenu extends JFrame
 		return framemenu;
 	}
 
-	// framee
+	/**
+	 * 
+	 */
 	public void setupFrameMenu()
 	{
 		setLocationRelativeTo(null);
@@ -110,6 +116,9 @@ public class FrameMenu extends JFrame
 		setVisible(true);
 	}
 
+	/**
+	 * 
+	 */
 	public void setupPanelMenu()
 	{
 		panel = new Background(new GridBagLayout());
@@ -118,6 +127,9 @@ public class FrameMenu extends JFrame
 		menu();
 	}
 
+	/**
+	 * 
+	 */
 	public void putButtons()
 	{
 		Image buttonimg0;
@@ -155,7 +167,9 @@ public class FrameMenu extends JFrame
 		}
 	}
 
-	// panel
+	/**
+	 * 
+	 */
 	public void putBackground()
 	{
 		URL imgUrl = getClass().getClassLoader().getResource(dirwallpaper);
@@ -178,6 +192,10 @@ public class FrameMenu extends JFrame
 		panel.setImage(wallpaperimg);
 	}
 
+	/**
+	 * 
+	 * @param jbutton
+	 */
 	public static void removeListeners(JButton[] jbutton)
 	{
 		for (JButton xButton : jbutton)
@@ -189,6 +207,10 @@ public class FrameMenu extends JFrame
 		}
 	}
 
+	/**
+	 * 
+	 * @param jpanel
+	 */
 	public static void refreshPanel(JPanel jpanel)
 	{
 		jpanel.removeAll();
@@ -197,6 +219,18 @@ public class FrameMenu extends JFrame
 		jpanel.repaint();
 	}
 
+	/**
+	 * 
+	 * @param constraint
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param weightx
+	 * @param weighty
+	 * @param anchor
+	 * @param fill
+	 */
 	public static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height, double weightx, double weighty, int anchor, int fill)
 	{
 		constraint.gridx = x;
@@ -209,6 +243,9 @@ public class FrameMenu extends JFrame
 		constraint.fill = fill;
 	}
 
+	/**
+	 * 
+	 */
 	public static void menu()
 	{
 		refreshPanel(panel);
@@ -300,6 +337,13 @@ public class FrameMenu extends JFrame
 		panel.add(button[4], cons);
 	}
 
+	/**
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
 	public static void topX() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		refreshPanel(panel);
@@ -334,6 +378,9 @@ public class FrameMenu extends JFrame
 
 	}
 
+	/**
+	 * 
+	 */
 	public static void rules()
 	{
 		refreshPanel(panel);
@@ -367,6 +414,9 @@ public class FrameMenu extends JFrame
 		panel.add(button[0], cons);
 	}
 
+	/**
+	 * 
+	 */
 	public static void config()
 	{
 		refreshPanel(panel);
@@ -489,6 +539,14 @@ public class FrameMenu extends JFrame
 		panel.add(button[0], cons);
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
 	public void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		ScoreBoard.getInstance().loadMatrix(tabledata);
@@ -499,7 +557,13 @@ public class FrameMenu extends JFrame
 		}
 		table.setModel(tablemodel);
 	}
-
+	
+	/**
+	 * 
+	 * @param name
+	 * @param score
+	 * @param time
+	 */
 	public void addNameTable(String name, Integer score, Integer time)
 	{
 		tablemodel.addRow(new Object[]

@@ -17,6 +17,10 @@ import javax.swing.JLabel;
 
 import game.model.map.MapInstance;
 
+/**
+ * Panel que aparece cuando termina el juego.
+ * Se encarga de guardar el score del jugador en la tabla.
+ */
 public class FrameEnd extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -51,6 +55,9 @@ public class FrameEnd extends JFrame
 		return frameend;
 	}
 
+	/**
+	 * Construye el panel.
+	 */
 	public void buildPanelEnd()
 	{
 		GridBagConstraints c = new GridBagConstraints();
@@ -108,6 +115,11 @@ public class FrameEnd extends JFrame
 		panelend.add(button, c);
 	}
 
+	/**
+	 * Verifica si el nombre del jugador es valido.
+	 * @param name
+	 * @return
+	 */
 	public boolean nameIsValid(String name)
 	{
 		if (name.length() > 2 && !name.contains(" ") && !name.equals("INVALIDO!"))
@@ -120,6 +132,10 @@ public class FrameEnd extends JFrame
 		}
 	}
 
+	/**
+	 * Setea el tiempo del jugador.
+	 * @param time
+	 */
 	public static void setTime(Integer time)
 	{
 		frameend.time = time;
