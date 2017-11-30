@@ -107,6 +107,16 @@ public class FrameMenu extends JFrame
 		panel = new Background(new GridBagLayout());
 		putBackground();
 		putButtons();
+		
+		top = new JComboBox<>(tops);
+		resoluciones = new JComboBox<>(resolutions);
+		fullScr = new JCheckBox("Pantalla Completa");
+		levelsel = new JComboBox<>(levels);
+		top.setSelectedIndex(0);
+		resoluciones.setSelectedIndex(0);
+		fullScr.setSelected(false);
+		levelsel.setSelectedItem(0);
+		
 		menu();
 	}
 
@@ -337,7 +347,7 @@ public class FrameMenu extends JFrame
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		Integer rowx = Integer.parseInt((String) top.getSelectedItem());
-		framemenu.showXrow(rowx);
+		framemenu.showXrow(rowx - 1);
 
 		button[0].setText("Back");
 		button[0].addActionListener(new ActionListener()
@@ -407,11 +417,8 @@ public class FrameMenu extends JFrame
 	{
 		refreshPanel(panel);
 
-		top = new JComboBox<>(tops);
-		top.setSelectedIndex(0);
 		top.setPreferredSize(new Dimension(250, 40));
-		resoluciones = new JComboBox<>(resolutions);
-		resoluciones.setSelectedIndex(0);
+
 		resoluciones.setPreferredSize(new Dimension(250, 40));
 		resoluciones.addActionListener(new ActionListener()
 		{
@@ -454,7 +461,6 @@ public class FrameMenu extends JFrame
 				}
 			}
 		});
-		fullScr = new JCheckBox("Pantalla Completa");
 		fullScr.addItemListener(new ItemListener()
 		{
 			@Override
@@ -490,10 +496,7 @@ public class FrameMenu extends JFrame
 				}
 			}
 		});
-		fullScr.setSelected(false);
 		fullScr.setPreferredSize(new Dimension(250, 40));
-		levelsel = new JComboBox<>(levels);
-		levelsel.setSelectedItem(0);
 		levelsel.setPreferredSize(new Dimension(250, 40));
 		levelsel.addActionListener(new ActionListener()
 		{
@@ -564,8 +567,10 @@ public class FrameMenu extends JFrame
 	 */
 	public void addNameTable(String name, Integer score, Integer time)
 	{
-		tablemodel.addRow(new Object[]
-		{ "999", name, score.toString(), time.toString() });
+		tabledata[0][tabledata.length] = "999";
+		tabledata[1][tabledata.length] = name;
+		tabledata[2][tabledata.length] = score.toString();
+		tabledata[3][tabledata.length] = time.toString();
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
@@ -573,6 +578,7 @@ public class FrameMenu extends JFrame
 		FrameMenu runFrameMenu = FrameMenu.getInstance();
 		runFrameMenu.setVisible(true);
 		ScoreBoard.getInstance().writeScorenames(tabledata);
+
 	}
 
 }
