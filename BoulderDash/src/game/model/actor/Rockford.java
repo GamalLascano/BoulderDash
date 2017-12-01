@@ -12,7 +12,7 @@ import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
 import game.model.map.MapVisual;
-import game.view.SoundPlay;
+import game.view.sound.SoundPlay;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene su

@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import game.model.Game;
 import game.model.map.MapInstance;
+import game.view.sound.SoundPlay;
 
 /**
  * Panel del menu. 

@@ -156,14 +156,15 @@ public class MapInstance
 	 */
 	public static void setSelectedLevel(Integer selectedlevels)
 	{
-		try
-		{
-			selectedLevel = selectedlevels;
-		}
-		catch (LevelNotValidException e)
-		{
-			selectedLevel = 1;
-		}
+		selectedLevel = selectedlevels;
+//		try
+//		{
+//			selectedLevel = selectedlevels;
+//		}
+//		catch (LevelNotValidException e)
+//		{
+//			selectedLevel = 1;
+//		}
 	}
 
 	/**
@@ -180,23 +181,26 @@ public class MapInstance
 		MapActor.getInstance().start();
 		ListOfEntities.start();
 
-		try
-		{
-			MapInstance.selectedLevel = selectedLevel;
-		}
-		catch (LevelNotValidException e)
-		{
-			MapInstance.selectedLevel = 1;
-		}
+//		try
+//		{
+//			MapInstance.selectedLevel = selectedLevel;
+//		}
+//		catch (LevelNotValidException e)
+//		{
+//			MapInstance.selectedLevel = 1;
+//		}
+//		MapInstance.readLevel();
+//		try
+//		{
+//		MapInstance.buildMap();
+//		}
+//		catch (LevelNotFoundException e) 
+//		{
+//			// TODO: handle exception
+//		}
+		MapInstance.selectedLevel = selectedLevel;
 		MapInstance.readLevel();
-		try
-		{
 		MapInstance.buildMap();
-		}
-		catch (LevelNotFoundException e) 
-		{
-			// TODO: handle exception
-		}
 		MapVisual.drawMap();
 	}
 

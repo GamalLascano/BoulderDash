@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import game.model.Direction;
 import game.model.actor.Rockford;
 import game.model.map.MapInstance;
+import game.view.sound.SoundPlay;
 
 /**
  * Panel del juego, donde aparece el mapa.
@@ -386,7 +387,7 @@ public class FrameMap extends JFrame implements KeyListener
 		labeltop[0][4].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][4]);
 
-		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
+		Integer diamondsneeded = MapInstance.getDiamondsneeded();
 		labeltop[0][5] = new JLabel(diamondsneeded.toString());
 		labeltop[0][5].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][5]);

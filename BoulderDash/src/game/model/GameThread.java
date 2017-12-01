@@ -8,7 +8,7 @@ import game.model.cell.Exit;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;
-import game.view.SoundPlay;
+import game.view.sound.SoundPlay;
 
 /**
  * Thread del juego.
