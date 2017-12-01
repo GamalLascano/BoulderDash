@@ -116,6 +116,7 @@ public class FrameMenu extends JFrame
 		resoluciones.setSelectedIndex(0);
 		fullScr.setSelected(false);
 		levelsel.setSelectedItem(0);
+		MapInstance.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
 		
 		menu();
 	}

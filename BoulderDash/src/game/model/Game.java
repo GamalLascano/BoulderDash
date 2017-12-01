@@ -16,12 +16,12 @@ public class Game
 		final int TASKSPEED = 110;
 		final int TASKDELAY = 1000;
 		// final int LIVES = 3; Rockford.getInstance().setLives(3);
-		final int STARTLEVEL = 1;
+		//final int STARTLEVEL = 1;
 
 		Timer timer = new Timer("test");
+		int selectedlevel = MapInstance.getSelectedLevel();
 		MapInstance.start();
-
-		MapInstance.buildSelectedLevel(STARTLEVEL);
+		MapInstance.buildSelectedLevel(selectedlevel);
 
 		FrameMap.start();
 		FrameMap.refresh();

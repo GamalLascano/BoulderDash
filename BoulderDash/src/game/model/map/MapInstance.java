@@ -19,11 +19,24 @@ public class MapInstance
 	private static MapInstance mapinstance;
 	private static ListOfEntities listentity;
 	private static BDLevelReader levelReader;
+	private static Integer playerscore;
 	private static Integer selectedLevel;
-	private static Double timer;
+	private static Integer diamondsneeded;
 	private static Integer diamondvalue;
 	private static Integer diamondbonus;
-	private static Integer playerscore;
+	private static Double timer;
+
+	private static int[][] levelvalues = new int[][]
+	{
+			{ 1, 12, 10, 15, 110 },
+			{ 2, 12, 20, 50, 110 },
+			{ 3, 23, 15, 0, 100 },
+			{ 4, 36, 5, 20, 100 },
+			{ 5, 6, 30, 0, 100 },
+			{ 6, 5, 50, 90, 120 },
+			{ 7, 5, 50, 100, 100 },
+			{ 8, 5, 50, 90, 120 },
+			{ 9, 5, 50, 90, 120 },};
 
 	/**
 	 * Constructor de MapInstance.
@@ -98,9 +111,10 @@ public class MapInstance
 			e.printStackTrace();
 		}
 
-		timer = 150.0 - selectedLevel;
-		diamondvalue = 10 * selectedLevel;
-		diamondbonus = 15 * selectedLevel;
+		diamondsneeded = levelvalues[selectedLevel][1];
+		diamondvalue = levelvalues[selectedLevel][2];
+		diamondbonus = levelvalues[selectedLevel][3];
+		timer = (double) levelvalues[selectedLevel][4];
 	}
 
 	/**
@@ -224,6 +238,16 @@ public class MapInstance
 	}
 
 	/**
+	 * Devuelve la cantidad necesaria de diamantes para abrir la puerta.
+	 * 
+	 * @return diamondsneeded
+	 */
+	public static Integer getDiamondsneeded()
+	{
+		return diamondsneeded;
+	}
+
+	/**
 	 * Decrementa el cronometro del mapa.
 	 * 
 	 * @param timer
@@ -257,7 +281,7 @@ public class MapInstance
 	 */
 	public static void kill(Integer x, Integer y)
 	{
-		if(!MapCell.getCell(x, y).isTitanium())
+		if (!MapCell.getCell(x, y).isTitanium())
 		{
 			MapCell.getCell(x, y).clear();
 		}
