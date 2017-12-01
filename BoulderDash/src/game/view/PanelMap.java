@@ -12,8 +12,7 @@ import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 
 /**
- * Se occupa de levantar las imagenes para el mapa.
- * y dibujar el mapa.
+ * Se occupa de levantar las imagenes para el mapa. y dibujar el mapa.
  */
 public class PanelMap extends JPanel
 {
@@ -66,42 +65,7 @@ public class PanelMap extends JPanel
 			e.printStackTrace();
 		}
 	}
-	public void cambiarsize() {
-		int CELLSIZEX=20;
-		int CELLSIZEY=25;
-		FrameMap.setPanelTopSize(22);
-		switch (FrameMap.getInstance().getSize().height) {
-			case 768: if (FrameMap.getInstance().getSize().width==1024) {
-						  CELLSIZEX=25;
-			          }else {  
-			        	  CELLSIZEX=34;
-			          }
-					  CELLSIZEY=32;
-					  FrameMap.setPanelTopSize(29);
-					  break;
-			case 1080: CELLSIZEX=48;
-					   CELLSIZEY=46;
-					   FrameMap.setPanelTopSize(19);
-					   break;
-		}
-		FrameMap.setCellsize(CELLSIZEX, CELLSIZEY);
-			empty = empty.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);	
-			dirt = dirt.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			boulder = boulder.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			diamond = diamond.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			steel = steel.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			wall = wall.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			firefly = firefly.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			butterfly = butterfly.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			//magic = magic.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			amoeba = amoeba.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			rockford = rockford.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			rockfordleft = rockfordleft.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			rockfordright = rockfordright.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			rockfordup = rockfordup.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			rockforddown = rockforddown.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-			exit = exit.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
-	}
+
 	@Override
 	public void paintComponent(Graphics graphic)
 	{
@@ -120,6 +84,7 @@ public class PanelMap extends JPanel
 
 	/**
 	 * Dibuja una celda
+	 * 
 	 * @param s
 	 * @param x
 	 * @param y
@@ -183,6 +148,56 @@ public class PanelMap extends JPanel
 			default:
 				break;
 		}
+	}
+	
+	
+	/**
+	 * Cambia el tamanio de las celdas para multiples
+	 * resoluciones.
+	 */
+	public void cambiarsize()
+	{
+		int CELLSIZEX = 20;
+		int CELLSIZEY = 25;
+		FrameMap.setPanelTopSize(22);
+		switch (FrameMap.getInstance().getSize().height)
+		{
+			case 768:
+				if (FrameMap.getInstance().getSize().width == 1024)
+				{
+					CELLSIZEX = 25;
+				}
+				else
+				{
+					CELLSIZEX = 34;
+				}
+				CELLSIZEY = 32;
+				FrameMap.setPanelTopSize(29);
+				break;
+			case 1080:
+				CELLSIZEX = 48;
+				CELLSIZEY = 46;
+				FrameMap.setPanelTopSize(19);
+				break;
+		}
+		FrameMap.setCellsize(CELLSIZEX, CELLSIZEY);
+		empty = empty.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		dirt = dirt.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		boulder = boulder.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		diamond = diamond.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		steel = steel.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		wall = wall.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		firefly = firefly.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		butterfly = butterfly.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		// magic = magic.getScaledInstance(CELLSIZEX, CELLSIZEY,
+		// Image.SCALE_DEFAULT);
+		amoeba = amoeba.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		rockford = rockford.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		rockfordleft = rockfordleft.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		rockfordright = rockfordright.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		rockfordup = rockfordup.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		rockforddown = rockforddown.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
+		exit = exit.getScaledInstance(CELLSIZEX, CELLSIZEY, Image.SCALE_DEFAULT);
 	}
 
 }

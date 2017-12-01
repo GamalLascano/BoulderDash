@@ -60,7 +60,7 @@ public class GameThread extends TimerTask
 				{
 					lost = true;
 				}
-				if (MapInstance.getTimer() == 0)
+				if (MapInstance.getTimer().intValue() == 0)
 				{
 					Rockford.getRockford().die();
 				}
