@@ -21,7 +21,11 @@ import game.model.map.MapInstance;
  */
 public class FrameEnd extends JFrame
 {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1861437422306275617L;
 	private static FrameEnd frameend;
 	private static JPanel panelend;
 

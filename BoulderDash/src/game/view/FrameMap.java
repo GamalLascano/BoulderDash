@@ -27,7 +27,11 @@ import game.view.sound.SoundPlay;
  */
 public class FrameMap extends JFrame implements KeyListener
 {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -678005524164695823L;
 	private static int CELLSIZEX = 16;
 	private static int CELLSIZEY = 16;
 	private static PanelMap panelmap = new PanelMap();

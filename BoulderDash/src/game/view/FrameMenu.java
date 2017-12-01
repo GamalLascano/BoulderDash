@@ -23,7 +23,11 @@ import game.view.sound.SoundPlay;
  */
 public class FrameMenu extends JFrame
 {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6110335355903294127L;
 	private static FrameMenu framemenu;
 	private static Background panel;
 	private static boolean fullScreenState=false;

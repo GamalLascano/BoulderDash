@@ -13,14 +13,15 @@ import game.model.map.MapVisual;
 
 /**
  * Se occupa de levantar las imagenes para el mapa.
- *
+ * y dibujar el mapa.
  */
 public class PanelMap extends JPanel
 {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1848316932643919682L;
 	private Image empty;
 	private Image dirt;
 	private Image boulder;
