@@ -8,14 +8,31 @@ import java.io.Serializable;
  */
 public class Scorename implements Serializable
 {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5463699393880505320L;
 	private Integer Rank;
 	private String Name;
 	private Integer Points;
 	private Integer Time;
+
+	public Scorename()
+	{
+		Rank = null;
+		Name = null;
+		Points = null;
+		Time = null;
+	}
+	
+	public Scorename(Integer rank, String name, Integer points, Integer time)
+	{
+		Rank = rank;
+		Name = name;
+		Points = points;
+		Time = time;
+	}
 
 	public Integer getRank()
 	{

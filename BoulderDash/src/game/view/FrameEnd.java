@@ -5,8 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -94,16 +92,9 @@ public class FrameEnd extends JFrame
 					if (name.length() > 20)
 						name = name.substring(0, 20);
 					setVisible(false);
-					FrameMenu.getInstance().addNameTable(name, MapInstance.getPlayerscore(), frameend.time);
-					try
-					{
-						FrameMenu.main(null);
-					}
-					catch (IOException |URISyntaxException | ClassNotFoundException e1)
-					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					Scorename scorename = new Scorename(0,name, MapInstance.getPlayerscore(), frameend.time);
+					FrameMenu.getInstance().addNameTable(scorename);
+					FrameMenu.main(null);
 				}
 				else
 				{

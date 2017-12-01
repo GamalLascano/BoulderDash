@@ -93,7 +93,7 @@ public class MapInstance
 	 * Se occupa de leer el levelreader utilizando el nivel eligido y saca
 	 * informacion de este.
 	 */
-	public static void readLevel()
+	private static void readLevel()
 	{
 		try
 		{
@@ -113,10 +113,10 @@ public class MapInstance
 			e.printStackTrace();
 		}
 
-		diamondsneeded = levelvalues[selectedLevel][1];
-		diamondvalue = levelvalues[selectedLevel][2];
-		diamondbonus = levelvalues[selectedLevel][3];
-		timer = (double) levelvalues[selectedLevel][4];
+		diamondsneeded = levelvalues[selectedLevel - 1][1];
+		diamondvalue = levelvalues[selectedLevel - 1][2];
+		diamondbonus = levelvalues[selectedLevel - 1][3];
+		timer = (double) levelvalues[selectedLevel - 1][4];
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class MapInstance
 	 * 
 	 * @param timer
 	 */
-	public static void decrementTimer()
+	private static void decrementTimer()
 	{
 		if (MapInstance.timer > 0)
 		{
@@ -365,7 +365,7 @@ public class MapInstance
 	 * Genera el mapa utilizando los tiles del levelreader, creando los
 	 * elementos y poniendolos en las matrices.
 	 */
-	public static void buildMap()
+	private static void buildMap()
 	{
 		ListOfEntities.getList().clear();
 		for (int y = 0; y < levelReader.getHEIGHT(); y++)

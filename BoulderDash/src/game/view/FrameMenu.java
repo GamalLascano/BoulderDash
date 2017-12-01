@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +39,8 @@ public class FrameMenu extends JFrame
 	// top X
 	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
-	private static Object[][] tabledata;
+	private static ArrayList<Scorename> tabledata;
+	private static Object[][] tableshow;
 	private static JTable table = new JTable();
 	private static DefaultTableModel tablemodel;
 	private static JScrollPane scrollPane = new JScrollPane(table);
@@ -57,13 +59,12 @@ public class FrameMenu extends JFrame
 	{ "5", "10", "15", "20" };
 	private static Dimension pastScreenSize = new Dimension(800, 600);
 
-	private FrameMenu() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
+	private FrameMenu()
 	{
 		SoundPlay.getInstance();
 		setupFrameMenu();
 		setupPanelMenu();
-		tabledata = new Object[4][20];
-		ScoreBoard.getInstance().readScorenames(tabledata);
+		tabledata = new ArrayList<Scorename>();
 
 		add(panel);
 		setPreferredSize(new Dimension(wallpaperimg.getWidth(null), wallpaperimg.getHeight(null)));
@@ -76,15 +77,7 @@ public class FrameMenu extends JFrame
 	{
 		if (framemenu == null)
 		{
-			try
-			{
-				framemenu = new FrameMenu();
-			}
-			catch (URISyntaxException | IOException | ClassNotFoundException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			framemenu = new FrameMenu();
 		}
 		return framemenu;
 	}
@@ -92,7 +85,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public void setupFrameMenu()
+	private void setupFrameMenu()
 	{
 		setTitle("Boulder Dash Menu");
 		setResizable(false);
@@ -103,11 +96,21 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public void setupPanelMenu()
+	private void setupPanelMenu()
 	{
 		panel = new Background(new GridBagLayout());
 		putBackground();
 		putButtons();
+
+		try
+		{
+			ScoreBoard.getInstance().readScorenames(tabledata);
+		}
+		catch (ClassNotFoundException | IOException | URISyntaxException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		top = new JComboBox<>(tops);
 		resoluciones = new JComboBox<>(resolutions);
@@ -125,7 +128,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public void putButtons()
+	private void putButtons()
 	{
 		Image buttonimg0;
 		Image buttonimg1;
@@ -165,7 +168,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public void putBackground()
+	private void putBackground()
 	{
 		URL imgUrl = getClass().getClassLoader().getResource(dirwallpaper);
 		if (imgUrl == null)
@@ -191,7 +194,7 @@ public class FrameMenu extends JFrame
 	 * 
 	 * @param jbutton
 	 */
-	public static void removeListeners(JButton[] jbutton)
+	private static void removeListeners(JButton[] jbutton)
 	{
 		for (JButton xButton : jbutton)
 		{
@@ -206,7 +209,7 @@ public class FrameMenu extends JFrame
 	 * 
 	 * @param jpanel
 	 */
-	public static void refreshPanel(JPanel jpanel)
+	private static void refreshPanel(JPanel jpanel)
 	{
 		jpanel.removeAll();
 		removeListeners(button);
@@ -226,7 +229,7 @@ public class FrameMenu extends JFrame
 	 * @param anchor
 	 * @param fill
 	 */
-	public static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height, double weightx, double weighty, int anchor, int fill)
+	private static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height, double weightx, double weighty, int anchor, int fill)
 	{
 		constraint.gridx = x;
 		constraint.gridy = y;
@@ -241,7 +244,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public static void menu()
+	private static void menu()
 	{
 		refreshPanel(panel);
 		final double SPACEX = 0.3;
@@ -342,14 +345,14 @@ public class FrameMenu extends JFrame
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	public static void topX() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
+	private static void topX() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		refreshPanel(panel);
-
+		
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		Integer rowx = Integer.parseInt((String) top.getSelectedItem());
-		framemenu.showXrow(rowx - 1);
+		framemenu.showXrow(rowx);
 
 		button[0].setText("Back");
 		button[0].addActionListener(new ActionListener()
@@ -379,7 +382,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public static void rules()
+	private static void rules()
 	{
 		refreshPanel(panel);
 
@@ -415,7 +418,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * 
 	 */
-	public static void config()
+	private static void config()
 	{
 		refreshPanel(panel);
 
@@ -550,15 +553,44 @@ public class FrameMenu extends JFrame
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	public void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
+	private void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
+		makeTableshow(x);
 		ScoreBoard.getInstance().readScorenames(tabledata);
-		tablemodel = new DefaultTableModel(tabledata, tablecolumn);
-		for (int i = 0; i < x; i++)
-		{
-			tablemodel.addRow(tabledata[i]);
-		}
+		tablemodel = null;
+		tablemodel = new DefaultTableModel(tableshow, tablecolumn);
 		table.setModel(tablemodel);
+	}
+	
+	/**
+	 * Tabla que se monstrara en el menu top.
+	 */
+	private void makeTableshow(Integer x)
+	{
+		Scorename participant;
+		tableshow = new Object[x][4];
+		if(x > tabledata.size())
+		{
+			for (int i = 0; i < tabledata.size(); i++)
+			{
+				participant = tabledata.get(i);
+				tableshow[i][0] = participant.getRank();
+				tableshow[i][1] = participant.getName();
+				tableshow[i][2] = participant.getPoints();
+				tableshow[i][3] = participant.getTime();
+			}
+		}
+		else
+		{
+			for (int i = 0; i < x; i++)
+			{
+				participant = tabledata.get(i);
+				tableshow[i][0] = participant.getRank();
+				tableshow[i][1] = participant.getName();
+				tableshow[i][2] = participant.getPoints();
+				tableshow[i][3] = participant.getTime();
+			}
+		}
 	}
 	
 	/**
@@ -567,19 +599,25 @@ public class FrameMenu extends JFrame
 	 * @param score
 	 * @param time
 	 */
-	public void addNameTable(String name, Integer score, Integer time)
+	public void addNameTable(Scorename scorename)
 	{
-		tabledata[0][tabledata.length] = "999";
-		tabledata[1][tabledata.length] = name;
-		tabledata[2][tabledata.length] = score.toString();
-		tabledata[3][tabledata.length] = time.toString();
+		tabledata.add(scorename);
+		try
+		{
+			ScoreBoard.getInstance().writeScorenames(tabledata);
+		}
+		catch (ClassNotFoundException | IOException | URISyntaxException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
 
-	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
+	public static void main(String[] args)
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();
 		runFrameMenu.setVisible(true);
-		ScoreBoard.getInstance().writeScorenames(tabledata);
 
 	}
 
