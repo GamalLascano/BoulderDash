@@ -24,60 +24,6 @@ public abstract class Enemy extends Actor
 		this.state = StatusActorEnum.IDLE;
 	}
 
-	/**
-	 * Explosion, pone celda vacias alrededor del enemigo. Explosion cuadrada
-	 * 3x3 que genera diamantes.
-	 */
-	@Override
-	public void explode()
-	{
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
-
-		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().getY())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkUp())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkUp())));
-	}
-
-	/**
-	 * Verifica si Rockford esta en el alcanze del enemigo. Verifica en su
-	 * cuardrado 3x3.
-	 * 
-	 * @return
-	 */
-	public boolean isRockfordInRange()
-	{
-		if (MapActor.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
-				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
-				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
-				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
-				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
-				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
-				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
-				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
-				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	@Override
 	public void die()
 	{
@@ -179,5 +125,60 @@ public abstract class Enemy extends Actor
 			this.rotate();
 		}
 	}
+	
+	/**
+	 * Explosion, pone celda vacias alrededor del enemigo. Explosion cuadrada
+	 * 3x3 que genera diamantes.
+	 */
+	@Override
+	public void explode()
+	{
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
+		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
+
+		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().getY())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkUp())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkDown())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkDown())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
+		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkUp())));
+	}
+
+	/**
+	 * Verifica si Rockford esta en el alcanze del enemigo. Verifica en su
+	 * cuardrado 3x3.
+	 * 
+	 * @return
+	 */
+	public boolean isRockfordInRange()
+	{
+		if (MapActor.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
+				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
+				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
+				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
+				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
+				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
+				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
+				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
+				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 
 }
