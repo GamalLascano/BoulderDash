@@ -5,6 +5,8 @@ import java.util.HashMap;
 import game.model.actor.Actor;
 import game.model.actor.Rockford;
 import game.model.item.Item;
+import game.model.map.MapItem;
+import game.model.map.MapVisual;
 
 /**
  * Elementos dinamicos que se pueden mover. Como Actor y Item.
@@ -94,6 +96,27 @@ public abstract class Entity extends Element
 		this.passable = passable;
 	}
 
+	/**
+	 * Verifica en el hashmap si la celda de abajo es passable
+	 * para esta entidad.
+	 * @return
+	 */
+	public boolean canGoDown()
+	{
+		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode());
+	}
+	
+	/**
+	 * Verifica en el MapItem si el item abajo de esta entidad
+	 * es redondo.
+	 * @return
+	 */
+	public boolean itemBelowIsRounded()
+	{
+		return 	MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded();
+	}
+
+	
 	/**
 	 * Cambia la posicion de la entidad antes de hacer makemove.
 	 */
