@@ -550,7 +550,8 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * Carga los datos del archivo scoreboard y los pone en una tablemodel
+	 * para monstrar solo x filas.
 	 * @param x
 	 * @throws ClassNotFoundException
 	 * @throws FileNotFoundException
@@ -598,7 +599,8 @@ public class FrameMenu extends JFrame
 	}
 	
 	/**
-	 * 
+	 * Agrega un scorename en la lista y pone los datos
+	 * de la lista en un archivo scoreboard.
 	 * @param name
 	 * @param score
 	 * @param time
