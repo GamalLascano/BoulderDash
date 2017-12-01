@@ -65,5 +65,27 @@ public abstract class Fallable extends Item
 	}
 
 	public abstract void fall();
+	
+	// METODOS SIMPLES
+	
+	/**
+	 * Devuelve si el fallable esta quieto.
+	 * @return boolean
+	 */
+	public boolean isIdle()
+	{
+		return this.state == StatusFallableEnum.IDLE;
+	}
+	
+	/**
+	 * Devuelve si el fallable esta quieto.
+	 * @return boolean
+	 */
+	public boolean isFalling()
+	{
+		return this.state == StatusFallableEnum.FALLINGOFF || this.state == StatusFallableEnum.FALLING;
+	}
+	
+	
 
 }

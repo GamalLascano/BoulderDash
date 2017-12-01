@@ -5,7 +5,6 @@ import game.model.SpriteChar;
 import game.model.actor.Rockford;
 import game.model.map.MapActor;
 import game.model.map.MapCell;
-import game.model.map.MapVisual;
 
 /**
  * Esta clase representa una roca, junto con su caracter de representacion y un
@@ -68,29 +67,26 @@ public class Rock extends Fallable
 	@Override
 	public void fall()
 	{
-		if (this.canGoDown() && this.state == StatusFallableEnum.IDLE)
+		if (this.canGoDown() && this.isIdle())
 		{
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
-		else if (this.canGoDown() && this.state == StatusFallableEnum.FALLINGOFF || this.state == StatusFallableEnum.FALLING)
+		else if (this.canGoDown() && this.isFalling())
 		{
 			this.state = StatusFallableEnum.FALLING;
 		}
 		else if (this.itemBelowIsRounded())
 		{
-			if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode())
-					&& this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().checkDown()).hashCode()))
+			if (this.canGoLeft() && this.canGoDownLeft())
 			{
 				this.state = StatusFallableEnum.SLIDINGLEFT;
 			}
-			else if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode())
-					&& this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().checkDown()).hashCode()))
+			else if (this.canGoRight() && this.canGoDownRight())
 			{
 				this.state = StatusFallableEnum.SLIDINGRIGHT;
 			}
 		}
-		else if (MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()) != null
-				&& MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).getMagicTimer() > 0)
+		else if (this.itemBelowIsWall() && this.itemBelowIsMagic())
 		{
 			this.state = StatusFallableEnum.CONVERT;
 		}
@@ -115,13 +111,7 @@ public class Rock extends Fallable
 		{
 			case FALLINGOFF:
 				this.getPosition().goDown();
-				this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
-				this.getPassable().put(SpriteChar.n.hashCode(), SpriteChar.n);
-				this.getPassable().put(SpriteChar.u.hashCode(), SpriteChar.u);
-				this.getPassable().put(SpriteChar.d.hashCode(), SpriteChar.d);
-				this.getPassable().put(SpriteChar.b.hashCode(), SpriteChar.b);
-				this.getPassable().put(SpriteChar.B.hashCode(), SpriteChar.B);
-				this.getPassable().put(SpriteChar.F.hashCode(), SpriteChar.F);
+				this.putPassables();
 				break;
 			case FALLING:
 				if (this.canGoDown())
@@ -130,13 +120,7 @@ public class Rock extends Fallable
 				}
 				else
 				{
-					this.getPassable().remove(SpriteChar.R.hashCode(), SpriteChar.R);
-					this.getPassable().remove(SpriteChar.n.hashCode(), SpriteChar.n);
-					this.getPassable().remove(SpriteChar.u.hashCode(), SpriteChar.u);
-					this.getPassable().remove(SpriteChar.d.hashCode(), SpriteChar.d);
-					this.getPassable().remove(SpriteChar.b.hashCode(), SpriteChar.b);
-					this.getPassable().remove(SpriteChar.B.hashCode(), SpriteChar.B);
-					this.getPassable().remove(SpriteChar.F.hashCode(), SpriteChar.F);
+					this.removePassables();
 					this.state = StatusFallableEnum.IDLE;
 				}
 				if (MapActor.getActor(this.getPosition()) != null)
@@ -160,6 +144,36 @@ public class Rock extends Fallable
 				this.state = StatusFallableEnum.IDLE;
 				break;
 		}
+	}
+
+	// METODOS SIMPLES
+
+	/**
+	 * Pone los passables de Rock.
+	 */
+	private void putPassables()
+	{
+		this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
+		this.getPassable().put(SpriteChar.n.hashCode(), SpriteChar.n);
+		this.getPassable().put(SpriteChar.u.hashCode(), SpriteChar.u);
+		this.getPassable().put(SpriteChar.d.hashCode(), SpriteChar.d);
+		this.getPassable().put(SpriteChar.b.hashCode(), SpriteChar.b);
+		this.getPassable().put(SpriteChar.B.hashCode(), SpriteChar.B);
+		this.getPassable().put(SpriteChar.F.hashCode(), SpriteChar.F);
+	}
+
+	/**
+	 * Remueve los passables de Rock.
+	 */
+	private void removePassables()
+	{
+		this.getPassable().remove(SpriteChar.R.hashCode(), SpriteChar.R);
+		this.getPassable().remove(SpriteChar.n.hashCode(), SpriteChar.n);
+		this.getPassable().remove(SpriteChar.u.hashCode(), SpriteChar.u);
+		this.getPassable().remove(SpriteChar.d.hashCode(), SpriteChar.d);
+		this.getPassable().remove(SpriteChar.b.hashCode(), SpriteChar.b);
+		this.getPassable().remove(SpriteChar.B.hashCode(), SpriteChar.B);
+		this.getPassable().remove(SpriteChar.F.hashCode(), SpriteChar.F);
 	}
 
 }

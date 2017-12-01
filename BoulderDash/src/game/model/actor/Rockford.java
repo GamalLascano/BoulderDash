@@ -11,7 +11,6 @@ import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
-import game.model.map.MapVisual;
 import game.view.sound.SoundPlay;
 
 /**
@@ -38,10 +37,7 @@ public class Rockford extends Actor
 		this.score = 0;
 		this.diamonds = 0;
 		this.isPushing = false;
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
-		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
-		this.getPassable().put(SpriteChar.e.hashCode(), SpriteChar.e);
+		this.putPassables();
 	}
 
 	/**
@@ -78,10 +74,7 @@ public class Rockford extends Actor
 		this.score = 0;
 		this.diamonds = 0;
 		this.isPushing = false;
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
-		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
-		this.getPassable().put(SpriteChar.e.hashCode(), SpriteChar.e);
+		this.putPassables();
 	}
 	
 	/**
@@ -250,7 +243,7 @@ public class Rockford extends Actor
 	@Override
 	public void makeMoveUp()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
+		if (this.canGoUp())
 		{
 			getPosition().goUp();
 			this.dig(MapCell.getDirt(getPosition()));
@@ -265,7 +258,7 @@ public class Rockford extends Actor
 	@Override
 	public void makeMoveDown()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
+		if (this.canGoDown())
 		{
 			getPosition().goDown();
 			this.dig(MapCell.getDirt(getPosition()));
@@ -280,7 +273,7 @@ public class Rockford extends Actor
 	@Override
 	public void makeMoveRight()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
+		if (this.canGoRight())
 		{
 			getPosition().goRight();
 			this.dig(MapCell.getDirt(getPosition()));
@@ -299,7 +292,7 @@ public class Rockford extends Actor
 	@Override
 	public void makeMoveLeft()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
+		if (this.canGoLeft())
 		{
 			getPosition().goLeft();
 			this.dig(MapCell.getDirt(getPosition()));
@@ -327,8 +320,7 @@ public class Rockford extends Actor
 		switch (state)
 		{
 			case MOVINGRIGHT:
-				if (rock != null && rock.isMoveable()
-						&& rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkRight(), rock.getPosition().getY()).hashCode()))
+				if (rock != null && rock.isMoveable() && rock.canGoRight())
 				{
 					SoundPlay.push();
 					isPushing = true;
@@ -340,8 +332,7 @@ public class Rockford extends Actor
 				}
 				break;
 			case MOVINGLEFT:
-				if (rock != null && rock.isMoveable()
-						&& rock.getPassable().containsKey(MapVisual.getChar(rock.getPosition().checkLeft(), rock.getPosition().getY()).hashCode()))
+				if (rock != null && rock.isMoveable() && rock.canGoLeft())
 				{
 					SoundPlay.push();
 					isPushing = true;
@@ -362,6 +353,19 @@ public class Rockford extends Actor
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	// METODOS SIMPLES
+	
+	/**
+	 * Pone los passables de Rockford.
+	 */
+	private void putPassables()
+	{
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
+		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
+		this.getPassable().put(SpriteChar.e.hashCode(), SpriteChar.e);
 	}
 	
 

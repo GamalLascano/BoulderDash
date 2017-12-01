@@ -6,7 +6,6 @@ import game.model.item.Diamond;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
-import game.model.map.MapVisual;
 
 /**
  * Clase que representa a los enemigos.
@@ -116,7 +115,7 @@ public abstract class Enemy extends Actor
 	@Override
 	public void makeMoveUp()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
+		if (this.canGoUp())
 		{
 			this.getPosition().goUp();
 			if (this.isRockfordInRange())
@@ -133,7 +132,7 @@ public abstract class Enemy extends Actor
 	@Override
 	public void makeMoveDown()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
+		if (this.canGoDown())
 		{
 			this.getPosition().goDown();
 			if (this.isRockfordInRange())
@@ -150,7 +149,7 @@ public abstract class Enemy extends Actor
 	@Override
 	public void makeMoveRight()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
+		if (this.canGoRight())
 		{
 			this.getPosition().goRight();
 			if (this.isRockfordInRange())
@@ -167,7 +166,7 @@ public abstract class Enemy extends Actor
 	@Override
 	public void makeMoveLeft()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
+		if (this.canGoLeft())
 		{
 			this.getPosition().goLeft();
 			if (this.isRockfordInRange())

@@ -6,7 +6,6 @@ import game.model.SpriteChar;
 import game.model.item.StatusAmoebaEnum;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
-import game.model.map.MapVisual;
 
 /**
  * Clase que representa el Amoeba. Se mueve y se copia a si mismo.
@@ -116,7 +115,7 @@ public class Amoeba extends Item implements Moveable
 	@Override
 	public void makeMoveUp()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode()))
+		if (this.canGoUp())
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
 		}
@@ -129,7 +128,7 @@ public class Amoeba extends Item implements Moveable
 	@Override
 	public void makeMoveDown()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode()))
+		if (this.canGoDown())
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
 		}
@@ -142,7 +141,7 @@ public class Amoeba extends Item implements Moveable
 	@Override
 	public void makeMoveRight()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode()))
+		if (this.canGoRight())
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
 		}
@@ -155,7 +154,7 @@ public class Amoeba extends Item implements Moveable
 	@Override
 	public void makeMoveLeft()
 	{
-		if (this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode()))
+		if (this.canGoDownLeft())
 		{
 			MapItem.setItem(new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
 		}
