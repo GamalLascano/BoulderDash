@@ -125,7 +125,7 @@ public class PanelMap extends JPanel
 	 * @param y
 	 * @param graphic
 	 */
-	public void drawCell(String s, int x, int y, Graphics graphic)
+	private void drawCell(String s, int x, int y, Graphics graphic)
 	{
 		switch (s.charAt(0))
 		{
