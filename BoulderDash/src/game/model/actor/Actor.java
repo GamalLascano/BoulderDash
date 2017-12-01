@@ -2,6 +2,7 @@ package game.model.actor;
 
 import game.model.Direction;
 import game.model.Entity;
+import game.model.ListOfEntities;
 import game.model.Moveable;
 import game.model.Position;
 import game.model.SpriteChar;
@@ -98,15 +99,16 @@ public abstract class Actor extends Entity implements Moveable
 		MapActor.setActor(this);
 	}
 
-	// public void die()
-	// {
-	// if (state != StatusActorEnum.DEAD)
-	// {
-	// state = StatusActorEnum.DEAD;
-	// this.explode();
-	// }
-	// ListOfEntities.getList().remove(this);
-	// MapActor.removeActor(this.getPosition());
-	// }
+	@Override
+	public void die()
+	{
+		if (state != StatusActorEnum.DEAD)
+		{
+			state = StatusActorEnum.DEAD;
+			this.explode();
+		}
+		ListOfEntities.getList().remove(this);
+		MapActor.removeActor(this.getPosition());
+	}
 
 }
