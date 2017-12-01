@@ -1,6 +1,8 @@
 package game.model.map;
 
 import game.model.Entity;
+import game.model.LevelNotFoundException;
+import game.model.LevelNotValidException;
 import game.model.ListOfEntities;
 import game.model.Position;
 import game.model.actor.*;
@@ -36,7 +38,7 @@ public class MapInstance
 			{ 6, 5, 50, 90, 120 },
 			{ 7, 5, 50, 100, 100 },
 			{ 8, 5, 50, 90, 120 },
-			{ 9, 5, 50, 90, 120 },};
+			{ 9, 5, 50, 90, 120 }, };
 
 	/**
 	 * Constructor de MapInstance.
@@ -138,16 +140,6 @@ public class MapInstance
 	}
 
 	/**
-	 * Setea el levelreader.
-	 * 
-	 * @param level
-	 */
-	public static void setLevelReader(BDLevelReader level)
-	{
-		MapInstance.levelReader = level;
-	}
-
-	/**
 	 * Devuelve el numero del nivel actual.
 	 * 
 	 * @return selectedlevel
@@ -164,7 +156,14 @@ public class MapInstance
 	 */
 	public static void setSelectedLevel(Integer selectedlevels)
 	{
-		selectedLevel = selectedlevels;
+		try
+		{
+			selectedLevel = selectedlevels;
+		}
+		catch (LevelNotValidException e)
+		{
+			selectedLevel = 1;
+		}
 	}
 
 	/**
@@ -181,9 +180,23 @@ public class MapInstance
 		MapActor.getInstance().start();
 		ListOfEntities.start();
 
-		MapInstance.selectedLevel = selectedLevel;
+		try
+		{
+			MapInstance.selectedLevel = selectedLevel;
+		}
+		catch (LevelNotValidException e)
+		{
+			MapInstance.selectedLevel = 1;
+		}
 		MapInstance.readLevel();
+		try
+		{
 		MapInstance.buildMap();
+		}
+		catch (LevelNotFoundException e) 
+		{
+			// TODO: handle exception
+		}
 		MapVisual.drawMap();
 	}
 
