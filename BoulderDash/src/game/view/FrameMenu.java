@@ -31,15 +31,19 @@ public class FrameMenu extends JFrame
 	private static FrameMenu framemenu;
 	private static Background panel;
 	private static boolean fullScreenState = false;
+
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
+
 	// menu
 	private static String dirwallpaper = "game/view/wallpaper.png";
 	private static Image wallpaperimg;
 	private static JButton button[] = new JButton[5];
+
 	// rules
 	private static BufferedImage instructionsImg;
 	private static JLabel instructions;
+	
 	// top X
 	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
@@ -48,7 +52,7 @@ public class FrameMenu extends JFrame
 	private static DefaultTableModel tablemodel;
 	private static JScrollPane scrollPane = new JScrollPane(table);
 	private static JLabel toptitle;
-	RowFilter<Object, Object> filter;
+	
 	// config
 	private static JComboBox<String> resoluciones;
 	private static JCheckBox fullScr;
