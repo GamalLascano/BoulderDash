@@ -115,6 +115,14 @@ public abstract class Entity extends Element
 	// METODOS SIMPLES
 	
 	/**
+	 * Pone la celda empty en passable.
+	 */
+	public void putEmptyPassable()
+	{
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+	}
+	
+	/**
 	 * Verifica en el hashmap si la celda de abajo es passable
 	 * para esta entidad.
 	 * @return boolean

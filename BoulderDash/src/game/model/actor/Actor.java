@@ -5,7 +5,6 @@ import game.model.Entity;
 import game.model.ListOfEntities;
 import game.model.Moveable;
 import game.model.Position;
-import game.model.SpriteChar;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
 
@@ -25,7 +24,7 @@ public abstract class Actor extends Entity implements Moveable
 	{
 		super(pos);
 		this.state = StatusActorEnum.IDLE;
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.putEmptyPassable();
 	}
 
 	/**

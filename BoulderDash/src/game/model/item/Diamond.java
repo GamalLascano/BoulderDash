@@ -19,8 +19,7 @@ public class Diamond extends Fallable
 	{
 		super(pos, true, false, true, StatusFallableEnum.IDLE);
 		this.setSpritechar(SpriteChar.X);
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-		this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
+		this.putPassables();
 	}
 
 	/**
@@ -33,7 +32,7 @@ public class Diamond extends Fallable
 	{
 		super(pos, true, false, true, state);
 		this.setSpritechar(SpriteChar.X);
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.putPassables();
 	}
 
 	/**
@@ -110,6 +109,17 @@ public class Diamond extends Fallable
 				this.state = StatusFallableEnum.IDLE;
 				break;
 		}
+	}
+	
+	// METODOS SIMPLES
+
+	/**
+	 * Pone los passables de Diamante.
+	 */
+	private void putPassables()
+	{
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
 	}
 
 }
