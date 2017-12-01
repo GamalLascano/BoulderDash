@@ -19,7 +19,8 @@ public class Game
 		//final int STARTLEVEL = 1;
 
 		Timer timer = new Timer("test");
-		int selectedlevel = MapInstance.getSelectedLevel();
+		int selectedlevel; 
+		selectedlevel = MapInstance.getSelectedLevel();
 		MapInstance.start();
 		MapInstance.buildSelectedLevel(selectedlevel);
 

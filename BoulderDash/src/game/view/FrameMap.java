@@ -102,16 +102,25 @@ public class FrameMap extends JFrame implements KeyListener
 		labeltop[0][8].setText(Rockford.getRockford().getScore().toString());
 	}
 
+	/**
+	 * Se usa en el gamethread. Remueve todo los elementos del panel.
+	 */
 	public static void remove()
 	{
 		panelmap.removeAll();
 	}
 
+	/**
+	 * Se usa en el gamethread. Hace dispose del frame.
+	 */
 	public static void disposeFrame()
 	{
 		framemap.dispose();
 	}
 
+	/**
+	 * Inicializa el framemap.
+	 */
 	public static void start()
 	{
 		FrameMap.getInstance();

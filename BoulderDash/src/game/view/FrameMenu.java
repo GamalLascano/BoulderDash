@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,7 +20,8 @@ import game.model.map.MapInstance;
 import game.view.sound.SoundPlay;
 
 /**
- * Panel del menu. 
+ * Panel del menu.
+ * 
  *
  */
 public class FrameMenu extends JFrame
@@ -30,7 +33,7 @@ public class FrameMenu extends JFrame
 	private static final long serialVersionUID = 6110335355903294127L;
 	private static FrameMenu framemenu;
 	private static Background panel;
-	private static boolean fullScreenState=false;
+	private static boolean fullScreenState = false;
 	// panel variables
 	private static GridBagConstraints cons = new GridBagConstraints();
 	// menu
@@ -43,7 +46,7 @@ public class FrameMenu extends JFrame
 	// top X
 	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
-	private static ArrayList<Scorename> tabledata;
+	private static ArrayList<Scorename> scorenamelist;
 	private static Object[][] tableshow;
 	private static JTable table = new JTable();
 	private static DefaultTableModel tablemodel;
@@ -68,7 +71,7 @@ public class FrameMenu extends JFrame
 		SoundPlay.getInstance();
 		setupFrameMenu();
 		setupPanelMenu();
-		tabledata = new ArrayList<Scorename>();
+		scorenamelist = new ArrayList<Scorename>();
 
 		add(panel);
 		setPreferredSize(new Dimension(wallpaperimg.getWidth(null), wallpaperimg.getHeight(null)));
@@ -87,7 +90,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * Setea la configuracion del frame.
 	 */
 	private void setupFrameMenu()
 	{
@@ -98,7 +101,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * Setea la configuracion del panel.
 	 */
 	private void setupPanelMenu()
 	{
@@ -108,14 +111,14 @@ public class FrameMenu extends JFrame
 
 		try
 		{
-			ScoreBoard.getInstance().readScorenames(tabledata);
+			ScoreBoard.getInstance().readScorenames(scorenamelist);
 		}
 		catch (ClassNotFoundException | IOException | URISyntaxException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		top = new JComboBox<>(tops);
 		resoluciones = new JComboBox<>(resolutions);
 		fullScr = new JCheckBox("Pantalla Completa");
@@ -125,12 +128,12 @@ public class FrameMenu extends JFrame
 		fullScr.setSelected(false);
 		levelsel.setSelectedItem(0);
 		MapInstance.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
-		
+
 		menu();
 	}
 
 	/**
-	 * 
+	 * Inicializa los bottones.
 	 */
 	private void putButtons()
 	{
@@ -150,7 +153,7 @@ public class FrameMenu extends JFrame
 			buttonimg1 = null;
 			buttonimg2 = null;
 		}
-		
+
 		for (int y = 0; y < 5; y++)
 		{
 			button[y] = new JButton();
@@ -170,7 +173,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * Setea la imagen de fondo del menu.
 	 */
 	private void putBackground()
 	{
@@ -195,6 +198,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
+	 * Remueve todos los listeners para refrescar el panel.
 	 * 
 	 * @param jbutton
 	 */
@@ -210,6 +214,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
+	 * Refresca el panel.
 	 * 
 	 * @param jpanel
 	 */
@@ -222,6 +227,8 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
+	 * Setea la configuracion posicion/visual de un elemento antes de agregarlo
+	 * en el panel.
 	 * 
 	 * @param constraint
 	 * @param x
@@ -233,7 +240,8 @@ public class FrameMenu extends JFrame
 	 * @param anchor
 	 * @param fill
 	 */
-	private static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height, double weightx, double weighty, int anchor, int fill)
+	private static void setupConstraint(GridBagConstraints constraint, int x, int y, int width, int height, double weightx, double weighty, int anchor,
+			int fill)
 	{
 		constraint.gridx = x;
 		constraint.gridy = y;
@@ -246,7 +254,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * panel menu.
 	 */
 	private static void menu()
 	{
@@ -261,6 +269,7 @@ public class FrameMenu extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				SoundPlay.button();
+				MapInstance.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
 				framemenu.setVisible(false);
 				Game.main(new String[0]);
 				FrameMap.getInstance().setSize(getInstance().getSize());
@@ -343,6 +352,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
+	 * Panel top x.
 	 * 
 	 * @throws ClassNotFoundException
 	 * @throws FileNotFoundException
@@ -352,7 +362,7 @@ public class FrameMenu extends JFrame
 	private static void topX() throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		refreshPanel(panel);
-		
+
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		Integer rowx = Integer.parseInt((String) top.getSelectedItem());
@@ -384,7 +394,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * Panel de reglas del juego.
 	 */
 	private static void rules()
 	{
@@ -420,7 +430,7 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * 
+	 * Panel de configuracion.
 	 */
 	private static void config()
 	{
@@ -479,7 +489,7 @@ public class FrameMenu extends JFrame
 				if (e.getStateChange() == ItemEvent.SELECTED)
 				{
 					pastScreenSize = FrameMenu.getInstance().getSize();
-					FrameMenu.fullScreenState=true;
+					FrameMenu.fullScreenState = true;
 					FrameMenu.getInstance().setSize(screenSize);
 					FrameMenu.getInstance().putBackground();
 					FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -492,7 +502,7 @@ public class FrameMenu extends JFrame
 				}
 				else
 				{
-					FrameMenu.fullScreenState=false;
+					FrameMenu.fullScreenState = false;
 					FrameMenu.getInstance().setSize(pastScreenSize);
 					FrameMenu.getInstance().putBackground();
 					FrameMenu.getInstance().setExtendedState(JFrame.NORMAL);
@@ -514,10 +524,6 @@ public class FrameMenu extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				SoundPlay.button();
-				@SuppressWarnings("rawtypes")
-				JComboBox cb = (JComboBox) e.getSource();
-				String res = (String) cb.getSelectedItem();
-				MapInstance.setSelectedLevel(Integer.parseInt(res));
 			}
 		});
 
@@ -541,7 +547,7 @@ public class FrameMenu extends JFrame
 
 		setupConstraint(cons, 0, 3, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(levelsel, cons);
-		
+
 		setupConstraint(cons, 0, 4, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(fullScr, cons);
 
@@ -550,8 +556,9 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * Carga los datos del archivo scoreboard y los pone en una tablemodel
-	 * para monstrar solo x filas.
+	 * Carga los datos del archivo scoreboard y los pone en una tablemodel para
+	 * monstrar solo x filas.
+	 * 
 	 * @param x
 	 * @throws ClassNotFoundException
 	 * @throws FileNotFoundException
@@ -561,12 +568,12 @@ public class FrameMenu extends JFrame
 	private void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		makeTableshow(x);
-		ScoreBoard.getInstance().readScorenames(tabledata);
+		ScoreBoard.getInstance().readScorenames(scorenamelist);
 		tablemodel = null;
 		tablemodel = new DefaultTableModel(tableshow, tablecolumn);
 		table.setModel(tablemodel);
 	}
-	
+
 	/**
 	 * Tabla que se monstrara en el menu top.
 	 */
@@ -574,11 +581,11 @@ public class FrameMenu extends JFrame
 	{
 		Scorename participant;
 		tableshow = new Object[x][4];
-		if(x > tabledata.size())
+		if (x > scorenamelist.size())
 		{
-			for (int i = 0; i < tabledata.size(); i++)
+			for (int i = 0; i < scorenamelist.size(); i++)
 			{
-				participant = tabledata.get(i);
+				participant = scorenamelist.get(i);
 				tableshow[i][0] = participant.getRank();
 				tableshow[i][1] = participant.getName();
 				tableshow[i][2] = participant.getPoints();
@@ -589,7 +596,7 @@ public class FrameMenu extends JFrame
 		{
 			for (int i = 0; i < x; i++)
 			{
-				participant = tabledata.get(i);
+				participant = scorenamelist.get(i);
 				tableshow[i][0] = participant.getRank();
 				tableshow[i][1] = participant.getName();
 				tableshow[i][2] = participant.getPoints();
@@ -597,28 +604,64 @@ public class FrameMenu extends JFrame
 			}
 		}
 	}
-	
+
 	/**
-	 * Agrega un scorename en la lista y pone los datos
-	 * de la lista en un archivo scoreboard.
+	 * Agrega un scorename en la lista y pone los datos de la lista en un
+	 * archivo scoreboard.
+	 * 
 	 * @param name
 	 * @param score
 	 * @param time
 	 */
 	public void addNameTable(Scorename scorename)
 	{
-		tabledata.add(scorename);
+		scorenamelist.add(scorename);
 		try
 		{
-			ScoreBoard.getInstance().writeScorenames(tabledata);
+			ScoreBoard.getInstance().writeScorenames(scorenamelist);
 		}
 		catch (ClassNotFoundException | IOException | URISyntaxException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		sortScorename(scorenamelist);
+
 	}
-	
+
+	/**
+	 * Ordena la lista de participantes, el mayor puntaje y menor tiempo estan
+	 * primeros en la lista.
+	 */
+	private void sortScorename(ArrayList<Scorename> scorenamelist)
+	{
+		if (scorenamelist != null)
+		{
+			Collections.sort(scorenamelist, new Comparator<Scorename>()
+			{
+
+				@Override
+				public int compare(Scorename o1, Scorename o2)
+				{
+					if (o1.getPoints() < o2.getPoints() || o1.getPoints() == o2.getPoints() && o1.getTime() > o2.getTime())
+					{
+						return 1;
+					}
+					if (o1.getPoints() > o2.getPoints() || o1.getPoints() == o2.getPoints() && o1.getTime() < o2.getTime())
+					{
+						return -1;
+					}
+					return 0;
+				}
+
+			});
+			int i;
+			for (i = 0; i < scorenamelist.size(); i++)
+			{
+				scorenamelist.get(i).setRank(i + 1);
+			}
+		}
+	}
 
 	public static void main(String[] args)
 	{

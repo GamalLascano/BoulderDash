@@ -138,7 +138,6 @@ public class Rockford extends Actor
 			MapInstance.setPlayerscore(score);
 			this.score = MapInstance.getPlayerscore();
 			this.diamonds = 0;
-			this.score = 0;
 			this.explode();
 		}
 		ListOfEntities.getList().remove(this);

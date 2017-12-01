@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import game.model.map.MapInstance;
 
 /**
- * Panel que aparece cuando termina el juego.
- * Se encarga de guardar el score del jugador en la tabla.
+ * Panel que aparece cuando termina el juego. Se encarga de guardar el score del
+ * jugador en la tabla.
  */
 public class FrameEnd extends JFrame
 {
@@ -70,8 +70,7 @@ public class FrameEnd extends JFrame
 		c.weighty = 1;
 		c.gridx = 0;
 
-		scoreinfo = new JLabel("Tu puntuacion es: " + MapInstance.getPlayerscore().toString(),
-				SwingConstants.CENTER);
+		scoreinfo = new JLabel("text", SwingConstants.CENTER);
 		scoreinfo.setSize(100, 50);
 		scoreinfo.setHorizontalAlignment(SwingConstants.CENTER);
 		c.gridy = 0;
@@ -95,9 +94,9 @@ public class FrameEnd extends JFrame
 				{
 					if (name.length() > 20)
 						name = name.substring(0, 20);
-					setVisible(false);
-					Scorename scorename = new Scorename(0,name, MapInstance.getPlayerscore(), frameend.time);
+					Scorename scorename = new Scorename(0, name, MapInstance.getPlayerscore(), frameend.time);
 					FrameMenu.getInstance().addNameTable(scorename);
+					setVisible(false);
 					FrameMenu.main(null);
 				}
 				else
@@ -112,10 +111,11 @@ public class FrameEnd extends JFrame
 
 	/**
 	 * Verifica si el nombre del jugador es valido.
+	 * 
 	 * @param name
 	 * @return
 	 */
-	public boolean nameIsValid(String name)
+	private boolean nameIsValid(String name)
 	{
 		if (name.length() > 2 && !name.contains(" ") && !name.equals("INVALIDO!"))
 		{
@@ -129,6 +129,7 @@ public class FrameEnd extends JFrame
 
 	/**
 	 * Setea el tiempo del jugador.
+	 * 
 	 * @param time
 	 */
 	public static void setTime(Integer time)
@@ -136,9 +137,21 @@ public class FrameEnd extends JFrame
 		frameend.time = time;
 	}
 
-	public static void main(String[] args)
+	/**
+	 * Refresca el panelEnd.
+	 */
+	private void refreshPanelEnd()
+	{
+		if(MapInstance.getPlayerscore() != null && frameend.time != null)
+		{
+			scoreinfo.setText("Puntuacion: " + MapInstance.getPlayerscore().toString() + "\n " + "Tiempo: " + frameend.time.toString());
+		}
+	}
+	
+	public static void runFrameEnd(String[] args)
 	{
 		FrameEnd runFrameEnd = FrameEnd.getInstance();
+		runFrameEnd.refreshPanelEnd();
 		runFrameEnd.setVisible(true);
 	}
 

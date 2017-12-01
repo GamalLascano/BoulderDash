@@ -69,7 +69,6 @@ public class ScoreBoard
 				scorenamelist.add(participant);
 			}
 			input.close();
-			sortScorename(scorenamelist);
 
 		}
 	}
@@ -106,32 +105,4 @@ public class ScoreBoard
 
 	}
 
-	/**
-	 * Ordena la lista de participantes, el mayor puntaje y menor
-	 * tiempo estan primeros en la lista.
-	 */
-	private void sortScorename(ArrayList<Scorename> scorenamelist)
-	{
-		Collections.sort(scorenamelist, new Comparator<Scorename>()
-		{
-
-			@Override
-			public int compare(Scorename o1, Scorename o2)
-			{
-				if (o1.getPoints() > o2.getPoints())
-					return 1;
-				else if (o1.getPoints() == o2.getPoints() && o1.getTime() < o2.getTime())
-					return 1;
-				if (o1.getPoints() < o2.getPoints())
-					return -1;
-				return 0;
-			}
-
-		});
-		int i;
-		for(i = 0; i < scorenamelist.size(); i++)
-		{
-			scorenamelist.get(i).setRank(i+1);
-		}
-	}
 }

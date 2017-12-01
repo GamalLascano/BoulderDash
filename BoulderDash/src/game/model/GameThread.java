@@ -99,7 +99,7 @@ public class GameThread extends TimerTask
 			FrameMap.getInstance().setVisible(false);
 			FrameEnd.getInstance();
 			FrameEnd.setTime(time);
-			FrameEnd.main(null);
+			FrameEnd.runFrameEnd(null);
 			FrameMap.disposeFrame();
 			timer.cancel();
 		}
