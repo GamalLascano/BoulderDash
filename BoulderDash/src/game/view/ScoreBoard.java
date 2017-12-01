@@ -9,9 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Sirve para cargar y guardar la lista de scorenames en un archivo.
@@ -44,7 +41,7 @@ public class ScoreBoard
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void readScorenames(ArrayList<Scorename> scorenamelist) throws IOException, ClassNotFoundException
+	public void readScorenames() throws IOException, ClassNotFoundException
 	{
 		File file = null;
 		try
@@ -66,7 +63,7 @@ public class ScoreBoard
 			while (input.available() > 0)
 			{
 				participant = (Scorename) input.readObject();
-				scorenamelist.add(participant);
+				ListOfScorename.getList().add(participant);
 			}
 			input.close();
 
@@ -80,7 +77,7 @@ public class ScoreBoard
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public void writeScorenames(ArrayList<Scorename> scorenamelist) throws IOException, ClassNotFoundException
+	public void writeScorenames() throws IOException, ClassNotFoundException
 	{
 		File file = null;
 		try
@@ -97,9 +94,9 @@ public class ScoreBoard
 
 		output = new ObjectOutputStream(streamout);
 		int i;
-		for (i = 0; i < scorenamelist.size(); i++)
+		for (i = 0; i < ListOfScorename.getList().size(); i++)
 		{
-			output.writeObject(scorenamelist.get(i));
+			output.writeObject(ListOfScorename.getList().get(i));
 		}
 		output.close();
 

@@ -7,9 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -46,7 +43,6 @@ public class FrameMenu extends JFrame
 	// top X
 	private static String[] tablecolumn =
 	{ "Puesto", "Nombre", "Puntos", "Tiempo", };
-	private static ArrayList<Scorename> scorenamelist;
 	private static Object[][] tableshow;
 	private static JTable table = new JTable();
 	private static DefaultTableModel tablemodel;
@@ -71,7 +67,7 @@ public class FrameMenu extends JFrame
 		SoundPlay.getInstance();
 		setupFrameMenu();
 		setupPanelMenu();
-		scorenamelist = new ArrayList<Scorename>();
+		ListOfScorename.getInstance().start();
 
 		add(panel);
 		setPreferredSize(new Dimension(wallpaperimg.getWidth(null), wallpaperimg.getHeight(null)));
@@ -111,7 +107,7 @@ public class FrameMenu extends JFrame
 
 		try
 		{
-			ScoreBoard.getInstance().readScorenames(scorenamelist);
+			ScoreBoard.getInstance().readScorenames();
 		}
 		catch (ClassNotFoundException | IOException | URISyntaxException e)
 		{
@@ -568,7 +564,7 @@ public class FrameMenu extends JFrame
 	private void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
 		makeTableshow(x);
-		ScoreBoard.getInstance().readScorenames(scorenamelist);
+		ScoreBoard.getInstance().readScorenames();
 		tablemodel = null;
 		tablemodel = new DefaultTableModel(tableshow, tablecolumn);
 		table.setModel(tablemodel);
@@ -581,11 +577,11 @@ public class FrameMenu extends JFrame
 	{
 		Scorename participant;
 		tableshow = new Object[x][4];
-		if (x > scorenamelist.size())
+		if (x > ListOfScorename.getList().size())
 		{
-			for (int i = 0; i < scorenamelist.size(); i++)
+			for (int i = 0; i < ListOfScorename.getList().size(); i++)
 			{
-				participant = scorenamelist.get(i);
+				participant = ListOfScorename.getList().get(i);
 				tableshow[i][0] = participant.getRank();
 				tableshow[i][1] = participant.getName();
 				tableshow[i][2] = participant.getPoints();
@@ -596,7 +592,7 @@ public class FrameMenu extends JFrame
 		{
 			for (int i = 0; i < x; i++)
 			{
-				participant = scorenamelist.get(i);
+				participant = ListOfScorename.getList().get(i);
 				tableshow[i][0] = participant.getRank();
 				tableshow[i][1] = participant.getName();
 				tableshow[i][2] = participant.getPoints();
@@ -615,52 +611,18 @@ public class FrameMenu extends JFrame
 	 */
 	public void addNameTable(Scorename scorename)
 	{
-		scorenamelist.add(scorename);
+		ListOfScorename.getList().add(scorename);
 		try
 		{
-			ScoreBoard.getInstance().writeScorenames(scorenamelist);
+			ScoreBoard.getInstance().writeScorenames();
 		}
 		catch (ClassNotFoundException | IOException | URISyntaxException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sortScorename(scorenamelist);
+		ListOfScorename.sortScorename();
 
-	}
-
-	/**
-	 * Ordena la lista de participantes, el mayor puntaje y menor tiempo estan
-	 * primeros en la lista.
-	 */
-	private void sortScorename(ArrayList<Scorename> scorenamelist)
-	{
-		if (scorenamelist != null)
-		{
-			Collections.sort(scorenamelist, new Comparator<Scorename>()
-			{
-
-				@Override
-				public int compare(Scorename o1, Scorename o2)
-				{
-					if (o1.getPoints() < o2.getPoints() || o1.getPoints() == o2.getPoints() && o1.getTime() > o2.getTime())
-					{
-						return 1;
-					}
-					if (o1.getPoints() > o2.getPoints() || o1.getPoints() == o2.getPoints() && o1.getTime() < o2.getTime())
-					{
-						return -1;
-					}
-					return 0;
-				}
-
-			});
-			int i;
-			for (i = 0; i < scorenamelist.size(); i++)
-			{
-				scorenamelist.get(i).setRank(i + 1);
-			}
-		}
 	}
 
 	public static void main(String[] args)

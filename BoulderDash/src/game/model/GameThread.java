@@ -19,7 +19,6 @@ public class GameThread extends TimerTask
 	private Timer timer;
 	private boolean stop = false;
 
-	int currentlevel = MapInstance.getSelectedLevel();
 	boolean lost = false;
 	boolean won = false;
 	Rockford player = Rockford.getRockford();
@@ -55,7 +54,7 @@ public class GameThread extends TimerTask
 				}
 				if (!ListOfEntities.getList().contains(player))
 				{
-					MapInstance.buildSelectedLevel(currentlevel);
+					MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
 				}
 				if (player.getLives() == 0)
 				{
@@ -77,7 +76,7 @@ public class GameThread extends TimerTask
 				{
 					stop = true;
 				}
-				MapInstance.buildSelectedLevel(currentlevel);
+				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
 				lost = false;
 			}
 			else if (won)
@@ -90,7 +89,8 @@ public class GameThread extends TimerTask
 				{
 					stop = true;
 				}
-				MapInstance.buildSelectedLevel(++currentlevel);
+				MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
+				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
 			}
 		}
 		else

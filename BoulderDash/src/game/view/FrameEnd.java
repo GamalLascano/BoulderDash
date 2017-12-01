@@ -95,6 +95,7 @@ public class FrameEnd extends JFrame
 					if (name.length() > 20)
 						name = name.substring(0, 20);
 					Scorename scorename = new Scorename(0, name, MapInstance.getPlayerscore(), frameend.time);
+					
 					FrameMenu.getInstance().addNameTable(scorename);
 					setVisible(false);
 					FrameMenu.main(null);
