@@ -1,4 +1,4 @@
-package game.view;
+package game.view.graphics;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
+import game.view.FrameMap;
 
 /**
  * Se occupa de levantar las imagenes para el mapa. y dibujar el mapa.

@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
 
 import game.model.Game;
 import game.model.map.MapInstance;
+import game.view.scoreboard.ListOfScorename;
+import game.view.scoreboard.ScoreBoard;
+import game.view.scoreboard.Scorename;
 import game.view.sound.SoundPlay;
 
 /**

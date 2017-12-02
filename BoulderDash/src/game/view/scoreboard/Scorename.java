@@ -1,4 +1,4 @@
-package game.view;
+package game.view.scoreboard;
 
 import java.io.Serializable;
 

@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
 import game.model.map.MapInstance;
+import game.view.scoreboard.Scorename;
 
 /**
  * Panel que aparece cuando termina el juego. Se encarga de guardar el score del
