@@ -99,7 +99,7 @@ public class FrameEnd extends JFrame
 					
 					FrameMenu.getInstance().addNameTable(scorename);
 					setVisible(false);
-					FrameMenu.main(null);
+					FrameMenu.runFrameMenu();
 				}
 				else
 				{

@@ -631,8 +631,8 @@ public class FrameMenu extends JFrame
 		ListOfScorename.sortScorename();
 
 	}
-
-	public static void main(String[] args)
+	
+	public static void runFrameMenu()
 	{
 		FrameMenu runFrameMenu = FrameMenu.getInstance();
 		runFrameMenu.setVisible(true);

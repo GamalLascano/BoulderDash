@@ -1,0 +1,10 @@
+package game.view;
+
+
+public class Launcher
+{
+	public static void main(String[] args)
+	{
+		FrameMenu.runFrameMenu();
+	}
+}
