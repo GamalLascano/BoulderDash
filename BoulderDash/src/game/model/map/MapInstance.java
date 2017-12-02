@@ -1,8 +1,8 @@
 package game.model.map;
 
+import game.exception.LevelNotFoundException;
+import game.exception.LevelNotValidException;
 import game.model.Entity;
-import game.model.LevelNotFoundException;
-import game.model.LevelNotValidException;
 import game.model.ListOfEntities;
 import game.model.Position;
 import game.model.actor.*;

@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="5" language="java" name="game.model.LevelNotValidException" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/LevelNotValidException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="game.exception.LevelNotValidException" project="BoulderDash" 
+    file="/BoulderDash/src/game/exception/LevelNotValidException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="229" x="477" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="game.model.LevelNotFoundException" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/LevelNotFoundException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="game.exception.LevelNotFoundException" project="BoulderDash" 
+    file="/BoulderDash/src/game/exception/LevelNotFoundException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="236" x="42" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,8 +73,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="game.model.RockfordNotInLevelException" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/RockfordNotInLevelException.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="game.exception.RockfordNotInLevelException" project="BoulderDash" 
+    file="/BoulderDash/src/game/exception/RockfordNotInLevelException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="191" x="1052" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

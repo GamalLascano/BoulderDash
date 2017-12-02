@@ -1,4 +1,4 @@
-package game.model;
+package game.exception;
 
 public class LevelNotValidException extends Exception
 {
