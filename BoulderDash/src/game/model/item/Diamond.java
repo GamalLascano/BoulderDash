@@ -81,7 +81,10 @@ public class Diamond extends Fallable
 		switch (this.state)
 		{
 			case FALLINGOFF:
-				this.getPosition().goDown();
+				if (this.canGoDown())
+				{
+					this.getPosition().goDown();
+				}
 				break;
 			case FALLING:
 				if (this.canGoDown())

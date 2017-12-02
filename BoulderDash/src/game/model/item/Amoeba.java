@@ -1,18 +1,26 @@
 package game.model.item;
 
+import game.model.ListOfEntities;
 import game.model.Moveable;
 import game.model.Position;
 import game.model.SpriteChar;
 import game.model.item.StatusAmoebaEnum;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
+import game.model.item.Diamond;
+import game.model.item.Rock;
 
 /**
  * Clase que representa el Amoeba. Se mueve y se copia a si mismo.
  */
 public class Amoeba extends Item implements Moveable
 {
+	private final int MAXAMOEBA = 40;
+	private final int EXPANDSPEED = 20;
+	private int energy = 4;
+	private int energytime = 0;
 	private boolean expanding;
+	private int expandtime;
 	private StatusAmoebaEnum state;
 
 	/**
@@ -25,9 +33,24 @@ public class Amoeba extends Item implements Moveable
 		super(pos, false, false, false);
 		this.setSpritechar(SpriteChar.A);
 		this.expanding = true;
+		this.expandtime = 0;
 		this.state = StatusAmoebaEnum.EXPANDUP;
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
+		this.putPassables();
+	}
+	
+	/**
+	 * Constructor del Amoeba.
+	 * 
+	 * @param pos
+	 */
+	private Amoeba(Position pos, int expandtime)
+	{
+		super(pos, false, false, false);
+		this.setSpritechar(SpriteChar.A);
+		this.expanding = true;
+		this.expandtime = expandtime;
+		this.state = StatusAmoebaEnum.EXPANDUP;
+		this.putPassables();
 	}
 
 	/**
@@ -53,8 +76,20 @@ public class Amoeba extends Item implements Moveable
 	public void die()
 	{
 		this.state = StatusAmoebaEnum.DEAD;
-		MapInstance.kill(this.getPosition());
-		MapItem.setItem(new Diamond(this.getPosition()));
+		ListOfEntities.getList().remove(this);
+		MapItem.removeItem(this.getPosition());
+		if (this.expanding == false)
+		{
+			Diamond diamondcreated = new Diamond(this.getPosition());
+			MapItem.setItem(diamondcreated);
+			ListOfEntities.getList().add(diamondcreated);
+		}
+		else
+		{
+			Rock rockcreated = new Rock(this.getPosition());
+			MapItem.setItem(rockcreated);
+			ListOfEntities.getList().add(rockcreated);
+		}
 	}
 
 	@Override
@@ -82,9 +117,20 @@ public class Amoeba extends Item implements Moveable
 	@Override
 	public void changePosition()
 	{
-		MapItem.removeItem(this.getPosition());
-		this.makeMove();
-		MapItem.setItem(this);
+		this.expandtime++;
+		this.energytime++;
+		if(canExpand())
+		{
+			MapItem.removeItem(this.getPosition());
+			this.makeMove();
+			MapItem.setItem(this);
+			this.energytime = 0;
+			this.energy--;
+		}
+		else if(this.expandtime >= MAXAMOEBA * EXPANDSPEED)
+		{
+			this.die();
+		}
 	}
 
 	@Override
@@ -117,7 +163,10 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoUp())
 		{
-			MapItem.setItem(new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
+			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
+			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp()), this.expandtime);
+			MapItem.setItem(amoebacreated);
+			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
 		{
@@ -130,7 +179,10 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoDown())
 		{
-			MapItem.setItem(new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
+			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
+			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown()), this.expandtime);
+			MapItem.setItem(amoebacreated);
+			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
 		{
@@ -143,7 +195,10 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoRight())
 		{
-			MapItem.setItem(new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
+			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
+			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY()), this.expandtime);
+			MapItem.setItem(amoebacreated);
+			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
 		{
@@ -154,14 +209,41 @@ public class Amoeba extends Item implements Moveable
 	@Override
 	public void makeMoveLeft()
 	{
-		if (this.canGoDownLeft())
+		if (this.canGoLeft())
 		{
-			MapItem.setItem(new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
+			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
+			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY()), this.expandtime);
+			MapItem.setItem(amoebacreated);
+			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
 		{
 			this.rotate();
 		}
 	}
+	
+	// METODOS SIMPLE
+	
+	/**
+	 * Pone los passables de Amoeba.
+	 */
+	private void putPassables()
+	{
+		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
+		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
+		this.getPassable().put(SpriteChar.F.hashCode(), SpriteChar.F);
+		this.getPassable().put(SpriteChar.B.hashCode(), SpriteChar.B);
+	}
+	
+	/**
+	 * Verifica si el amoeba se puede expander.
+	 */
+	private boolean canExpand()
+	{
+		return (this.energy > 0 && 
+				this.energytime == EXPANDSPEED);
+	}
+
 
 }

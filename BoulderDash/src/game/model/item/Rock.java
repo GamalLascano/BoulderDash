@@ -110,8 +110,11 @@ public class Rock extends Fallable
 		switch (this.state)
 		{
 			case FALLINGOFF:
-				this.getPosition().goDown();
-				this.putPassables();
+				if (this.canGoDown())
+				{
+					this.getPosition().goDown();
+					this.putFallingPassables();
+				}
 				break;
 			case FALLING:
 				if (this.canGoDown())
@@ -120,7 +123,7 @@ public class Rock extends Fallable
 				}
 				else
 				{
-					this.removePassables();
+					this.removeFallingPassables();
 					this.state = StatusFallableEnum.IDLE;
 				}
 				if (MapActor.getActor(this.getPosition()) != null)
@@ -151,7 +154,7 @@ public class Rock extends Fallable
 	/**
 	 * Pone los passables de Rock.
 	 */
-	private void putPassables()
+	private void putFallingPassables()
 	{
 		this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
 		this.getPassable().put(SpriteChar.n.hashCode(), SpriteChar.n);
@@ -165,7 +168,7 @@ public class Rock extends Fallable
 	/**
 	 * Remueve los passables de Rock.
 	 */
-	private void removePassables()
+	private void removeFallingPassables()
 	{
 		this.getPassable().remove(SpriteChar.R.hashCode(), SpriteChar.R);
 		this.getPassable().remove(SpriteChar.n.hashCode(), SpriteChar.n);
