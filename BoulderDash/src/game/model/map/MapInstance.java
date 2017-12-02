@@ -2,12 +2,12 @@ package game.model.map;
 
 import game.exception.LevelNotFoundException;
 import game.exception.LevelNotValidException;
-import game.model.Entity;
-import game.model.ListOfEntities;
-import game.model.Position;
-import game.model.actor.*;
-import game.model.cell.*;
-import game.model.item.*;
+import game.model.element.Position;
+import game.model.element.cell.*;
+import game.model.element.entity.Entity;
+import game.model.element.entity.ListOfEntities;
+import game.model.element.entity.actor.*;
+import game.model.element.entity.item.*;
 import game.model.map.bdlevel.BDLevelReader;
 
 /**

@@ -1,6 +1,6 @@
 package game.model;
 
-import game.model.actor.Rockford;
+import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
 import java.util.Scanner;

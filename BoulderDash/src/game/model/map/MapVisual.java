@@ -1,10 +1,10 @@
 package game.model.map;
 
-import game.model.Position;
-import game.model.SpriteChar;
-import game.model.actor.Rockford;
-import game.model.cell.Cell;
-import game.model.item.Empty;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
+import game.model.element.cell.Cell;
+import game.model.element.entity.actor.Rockford;
+import game.model.element.entity.item.Empty;
 
 /**
  * Esta clase es la encargada de agarrar los elementos y hacer una matriz de

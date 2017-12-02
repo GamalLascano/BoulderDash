@@ -1,4 +1,4 @@
-package game.model.item;
+package game.model.element.entity.item;
 
 /**
  * Estatus del amoeba.

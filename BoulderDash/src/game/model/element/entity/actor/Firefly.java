@@ -1,7 +1,7 @@
-package game.model.actor;
+package game.model.element.entity.actor;
 
-import game.model.Position;
-import game.model.SpriteChar;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
 
 /**
  * Clase de la Luciernega. Hace una rotacion horaria.

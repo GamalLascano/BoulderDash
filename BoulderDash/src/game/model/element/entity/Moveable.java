@@ -1,4 +1,4 @@
-package game.model;
+package game.model.element.entity;
 
 /**
  * Interface moveable para los elementos que se mueven

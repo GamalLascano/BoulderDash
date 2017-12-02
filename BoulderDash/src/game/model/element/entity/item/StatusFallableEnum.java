@@ -1,4 +1,4 @@
-package game.model.item;
+package game.model.element.entity.item;
 
 /**
  * Esto indica todos los estados de movimiento de un item <p>

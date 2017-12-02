@@ -1,6 +1,4 @@
-package game.model;
-
-import game.model.Entity;
+package game.model.element.entity;
 
 import java.util.ArrayList;
 import java.util.List;

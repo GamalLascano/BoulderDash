@@ -1,10 +1,10 @@
-package game.model.actor;
+package game.model.element.entity.actor;
 
 import game.model.Direction;
-import game.model.Entity;
-import game.model.ListOfEntities;
-import game.model.Moveable;
-import game.model.Position;
+import game.model.element.Position;
+import game.model.element.entity.Entity;
+import game.model.element.entity.ListOfEntities;
+import game.model.element.entity.Moveable;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
 

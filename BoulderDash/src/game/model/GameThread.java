@@ -3,8 +3,9 @@ package game.model;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import game.model.actor.Rockford;
-import game.model.cell.Exit;
+import game.model.element.cell.Exit;
+import game.model.element.entity.ListOfEntities;
+import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;

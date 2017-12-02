@@ -1,4 +1,4 @@
-package game.util;
+package util;
 
 /**
  * Clase singleton

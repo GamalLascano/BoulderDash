@@ -1,4 +1,4 @@
-package game.model;
+package game.model.element;
 
 /**
  * Este enum contiene la representacion en la consola de todas los elementos del juego.<p>

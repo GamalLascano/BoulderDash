@@ -1,8 +1,8 @@
 package game.model.map;
 
-import game.model.Position;
-import game.model.actor.Actor;
-import game.model.actor.Rockford;
+import game.model.element.Position;
+import game.model.element.entity.actor.Actor;
+import game.model.element.entity.actor.Rockford;
 
 /**
  * Matriz que contiene a los elementos actores.

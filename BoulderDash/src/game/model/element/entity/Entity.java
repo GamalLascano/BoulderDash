@@ -1,10 +1,13 @@
-package game.model;
+package game.model.element.entity;
 
 import java.util.HashMap;
 
-import game.model.actor.Actor;
-import game.model.actor.Rockford;
-import game.model.item.Item;
+import game.model.element.Element;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
+import game.model.element.entity.actor.Actor;
+import game.model.element.entity.actor.Rockford;
+import game.model.element.entity.item.Item;
 import game.model.map.MapCell;
 import game.model.map.MapItem;
 import game.model.map.MapVisual;

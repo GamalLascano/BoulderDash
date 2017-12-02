@@ -1,4 +1,4 @@
-package game.model.actor;
+package game.model.element.entity.actor;
 
 /**
  * Esto contiene todos los estados que puede tener un actor.<p>

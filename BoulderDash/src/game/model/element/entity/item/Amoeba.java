@@ -1,14 +1,14 @@
-package game.model.item;
+package game.model.element.entity.item;
 
-import game.model.ListOfEntities;
-import game.model.Moveable;
-import game.model.Position;
-import game.model.SpriteChar;
-import game.model.item.StatusAmoebaEnum;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
+import game.model.element.entity.ListOfEntities;
+import game.model.element.entity.Moveable;
+import game.model.element.entity.item.Diamond;
+import game.model.element.entity.item.Rock;
+import game.model.element.entity.item.StatusAmoebaEnum;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
-import game.model.item.Diamond;
-import game.model.item.Rock;
 
 /**
  * Clase que representa el Amoeba. Se mueve y se copia a si mismo.

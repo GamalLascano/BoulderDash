@@ -1,8 +1,8 @@
-package game.model.actor;
+package game.model.element.entity.actor;
 
-import game.model.ListOfEntities;
-import game.model.Position;
-import game.model.item.Diamond;
+import game.model.element.Position;
+import game.model.element.entity.ListOfEntities;
+import game.model.element.entity.item.Diamond;
 import game.model.map.MapActor;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;

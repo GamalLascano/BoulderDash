@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="4" language="java" name="game.model.SpriteChar" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/SpriteChar.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="4" language="java" name="game.model.element.SpriteChar" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/SpriteChar.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="387" width="119" x="607" y="1472"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="game.model.ListOfEntities" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/ListOfEntities.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="game.model.element.entity.ListOfEntities" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/ListOfEntities.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="156" x="850" y="672"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="game.model.Entity" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="game.model.element.entity.Entity" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="405" width="259" x="660" y="1027"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="game.model.Position" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/Position.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="game.model.element.Position" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/Position.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="333" width="138" x="225" y="1027"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,8 +91,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="game.model.Element" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/Element.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="game.model.element.Element" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/Element.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="173" x="405" y="672"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -109,8 +109,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="13" language="java" name="game.model.Moveable" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/Moveable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="13" language="java" name="game.model.element.entity.Moveable" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/Moveable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="137" x="899" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -118,8 +118,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="14" language="java" name="game.model.actor.Firefly" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/actor/Firefly.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="game.model.element.entity.actor.Firefly" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/actor/Firefly.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="101" x="758" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -127,8 +127,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="game.model.actor.Rockford" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/actor/Rockford.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="game.model.element.entity.actor.Rockford" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/actor/Rockford.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="513" width="140" x="1168" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -136,8 +136,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="game.model.actor.Enemy" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/actor/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="game.model.element.entity.actor.Enemy" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/actor/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="225" width="166" x="712" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -145,8 +145,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="17" language="java" name="game.model.actor.StatusActorEnum" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/actor/StatusActorEnum.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="17" language="java" name="game.model.element.entity.actor.StatusActorEnum" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/actor/StatusActorEnum.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="207" width="189" x="939" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -154,8 +154,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="18" language="java" name="game.model.actor.Butterfly" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/actor/Butterfly.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="18" language="java" name="game.model.element.entity.actor.Butterfly" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/actor/Butterfly.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="112" x="606" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -163,8 +163,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="game.model.actor.Actor" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/actor/Actor.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="19" language="java" name="game.model.element.entity.actor.Actor" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/actor/Actor.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="189" width="181" x="899" y="1472"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -172,8 +172,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="game.model.cell.Dirt" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/cell/Dirt.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="20" language="java" name="game.model.element.cell.Dirt" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/cell/Dirt.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="171" width="128" x="384" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -181,8 +181,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="game.model.cell.Titanium" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/cell/Titanium.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="21" language="java" name="game.model.element.cell.Titanium" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/cell/Titanium.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="110" x="42" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -190,8 +190,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="game.model.cell.Wall" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/cell/Wall.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="22" language="java" name="game.model.element.cell.Wall" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/cell/Wall.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="171" width="152" x="192" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -199,8 +199,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="game.model.cell.Cell" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/cell/Cell.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="23" language="java" name="game.model.element.cell.Cell" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/cell/Cell.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="171" width="122" x="384" y="1472"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -208,8 +208,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="game.model.cell.Exit" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/cell/Exit.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="24" language="java" name="game.model.element.cell.Exit" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/cell/Exit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="171" width="110" x="552" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -217,8 +217,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="game.model.item.Amoeba" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/Amoeba.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="25" language="java" name="game.model.element.entity.item.Amoeba" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/Amoeba.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="405" width="137" x="1358" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -226,8 +226,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="game.model.item.Rock" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/Rock.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="26" language="java" name="game.model.element.entity.item.Rock" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/Rock.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="189" width="191" x="1840" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -235,8 +235,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="game.model.item.Item" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/Item.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="27" language="java" name="game.model.element.entity.item.Item" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/Item.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="243" width="213" x="1418" y="1472"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -244,8 +244,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="game.model.item.Diamond" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/Diamond.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="28" language="java" name="game.model.element.entity.item.Diamond" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/Diamond.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="171" width="208" x="1592" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -253,8 +253,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="29" language="java" name="game.model.item.StatusAmoebaEnum" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/StatusAmoebaEnum.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="29" language="java" name="game.model.element.entity.item.StatusAmoebaEnum" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/StatusAmoebaEnum.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="189" width="201" x="1117" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -262,8 +262,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="30" language="java" name="game.model.item.Empty" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/Empty.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="30" language="java" name="game.model.element.entity.item.Empty" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/Empty.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="117" width="130" x="1901" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -271,8 +271,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="31" language="java" name="game.model.item.StatusFallableEnum" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/StatusFallableEnum.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="31" language="java" name="game.model.element.entity.item.StatusFallableEnum" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/StatusFallableEnum.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="243" width="194" x="1358" y="2462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -280,8 +280,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="32" language="java" name="game.model.item.Fallable" project="BoulderDash" 
-    file="/BoulderDash/src/game/model/item/Fallable.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="32" language="java" name="game.model.element.entity.item.Fallable" project="BoulderDash" 
+    file="/BoulderDash/src/game/model/element/entity/item/Fallable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="207" width="326" x="1535" y="1899"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

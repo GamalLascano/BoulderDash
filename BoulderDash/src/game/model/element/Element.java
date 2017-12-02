@@ -1,4 +1,4 @@
-package game.model;
+package game.model.element;
 
 /**
  * Elemento del juego. Celda, item o actor.

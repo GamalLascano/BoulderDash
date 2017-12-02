@@ -1,12 +1,12 @@
-package game.model.actor;
+package game.model.element.entity.actor;
 
-import game.model.ListOfEntities;
-import game.model.Position;
-import game.model.SpriteChar;
-import game.model.cell.Dirt;
-import game.model.cell.Exit;
-import game.model.item.Diamond;
-import game.model.item.Rock;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
+import game.model.element.cell.Dirt;
+import game.model.element.cell.Exit;
+import game.model.element.entity.ListOfEntities;
+import game.model.element.entity.item.Diamond;
+import game.model.element.entity.item.Rock;
 import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;

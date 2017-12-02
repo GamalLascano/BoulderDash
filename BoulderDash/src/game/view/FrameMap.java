@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.model.Direction;
-import game.model.actor.Rockford;
+import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 import game.view.sound.SoundPlay;
 

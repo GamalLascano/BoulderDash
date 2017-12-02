@@ -1,4 +1,4 @@
-package game.model;
+package game.model.element;
 
 /**
  * Esta clase tiene las coordenadas x e y de un objeto determinado Ademas puede

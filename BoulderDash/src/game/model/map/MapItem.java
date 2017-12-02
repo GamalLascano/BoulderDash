@@ -1,10 +1,10 @@
 package game.model.map;
 
-import game.model.Position;
-import game.model.item.Diamond;
-import game.model.item.Empty;
-import game.model.item.Item;
-import game.model.item.Rock;
+import game.model.element.Position;
+import game.model.element.entity.item.Diamond;
+import game.model.element.entity.item.Empty;
+import game.model.element.entity.item.Item;
+import game.model.element.entity.item.Rock;
 
 /**
  * Matriz de los objetos.

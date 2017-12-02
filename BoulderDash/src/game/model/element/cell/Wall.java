@@ -1,10 +1,10 @@
-package game.model.cell;
+package game.model.element.cell;
 
-import game.model.Position;
-import game.model.SpriteChar;
-import game.model.item.Diamond;
-import game.model.item.Rock;
-import game.model.item.StatusFallableEnum;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
+import game.model.element.entity.item.Diamond;
+import game.model.element.entity.item.Rock;
+import game.model.element.entity.item.StatusFallableEnum;
 import game.model.map.MapItem;
 
 /**

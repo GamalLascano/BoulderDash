@@ -1,8 +1,8 @@
-package game.model.item;
+package game.model.element.entity.item;
 
-import game.model.Position;
-import game.model.SpriteChar;
-import game.model.actor.Rockford;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
+import game.model.element.entity.actor.Rockford;
 import game.model.map.MapActor;
 import game.model.map.MapCell;
 

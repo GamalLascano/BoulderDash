@@ -1,7 +1,7 @@
-package game.model.item;
+package game.model.element.entity.item;
 
-import game.model.ListOfEntities;
-import game.model.Position;
+import game.model.element.Position;
+import game.model.element.entity.ListOfEntities;
 import game.model.map.MapItem;
 
 /**

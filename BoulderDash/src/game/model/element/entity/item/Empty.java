@@ -1,7 +1,7 @@
-package game.model.item;
+package game.model.element.entity.item;
 
-import game.model.Position;
-import game.model.SpriteChar;
+import game.model.element.Position;
+import game.model.element.SpriteChar;
 
 /**
  * Clase que representa una item vacio.

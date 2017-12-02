@@ -1,10 +1,10 @@
 package game.model.map;
 
-import game.model.Position;
-import game.model.cell.Cell;
-import game.model.cell.Dirt;
-import game.model.cell.Exit;
-import game.model.cell.Wall;
+import game.model.element.Position;
+import game.model.element.cell.Cell;
+import game.model.element.cell.Dirt;
+import game.model.element.cell.Exit;
+import game.model.element.cell.Wall;
 
 /**
  * Matriz que contiene a los elementos celda.
