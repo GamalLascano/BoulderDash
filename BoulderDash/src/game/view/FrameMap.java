@@ -7,15 +7,20 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+//import java.awt.event.ActionEvent;
+//
+//import javax.swing.AbstractAction;
+//import javax.swing.Action;
+//import javax.swing.InputMap;
+//import javax.swing.JComponent;
+//import javax.swing.KeyStroke;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.controller.Keyboard;
 import game.model.Direction;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
@@ -26,7 +31,7 @@ import game.view.sound.SoundPlay;
  * Panel del juego, donde aparece el mapa.
  *
  */
-public class FrameMap extends JFrame implements KeyListener
+public class FrameMap extends JFrame
 {
 
 	/**
@@ -38,7 +43,7 @@ public class FrameMap extends JFrame implements KeyListener
 	private static PanelMap panelmap = new PanelMap();
 	private static JPanel paneltop = new JPanel();
 	private static FrameMap framemap;
-	private static boolean up, down, right, left, fullscr;
+	private static boolean fullscr;
 	private static Dimension pastScreenSize = new Dimension(800, 600);
 	// panel
 	private static JLabel labeltop[][] = new JLabel[1][9];
@@ -50,7 +55,6 @@ public class FrameMap extends JFrame implements KeyListener
 		setResizable(false);
 		setSize(800, 600);
 		getContentPane().setBackground(Color.BLACK);
-		addKeyListener(this);
 		setLayout(new GridBagLayout());
 		panelmap.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(), MapInstance.getLevelReader().getWIDTH()));
 		buildPaneltop();
@@ -66,6 +70,23 @@ public class FrameMap extends JFrame implements KeyListener
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		addKeyListener(new Keyboard());
+		
+//        Action numberAction = new AbstractAction()
+//        {
+//            @Override
+//            public void actionPerformed(ActionEvent e)
+//            {
+//                
+//            }
+//        };
+//        
+//        KeyStroke pressed = KeyStroke.getKeyStroke("W");
+//        InputMap inputMap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+//        inputMap.put(pressed, text);
+//        button.getActionMap().put(text, numberAction);
+
 	}
 
 	public static FrameMap getInstance()
@@ -193,93 +214,22 @@ public class FrameMap extends JFrame implements KeyListener
 	public static void updateMove()
 	{
 		Rockford player = Rockford.getRockford();
-		if (up)
+		if (Keyboard.isUp())
 		{
 			player.move(Direction.UP);
 		}
-		if (down)
+		if (Keyboard.isDown())
 		{
 			player.move(Direction.DOWN);
 		}
-		if (left)
+		if (Keyboard.isLeft())
 		{
 			player.move(Direction.LEFT);
 		}
-		if (right)
+		if (Keyboard.isRight())
 		{
 			player.move(Direction.RIGHT);
 		}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			up = true;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
-		{
-			right = true;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			down = true;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			left = true;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-		{
-			Rockford.getRockford().die();
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_PAGE_UP)
-		{
-			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
-			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
-		{
-			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() - 1);
-			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			up = false;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
-		{
-			right = false;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			down = false;
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			left = false;
-		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-
 	}
 
 	public static void setPanelTopSize(int size)

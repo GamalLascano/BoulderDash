@@ -1,5 +1,6 @@
-package game.view;
+package game;
 
+import game.view.FrameMenu;
 
 public class Launcher
 {
