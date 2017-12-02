@@ -143,6 +143,12 @@ public class Rock extends Fallable
 				this.getPosition().goLeft();
 				this.state = StatusFallableEnum.IDLE;
 				break;
+			// case PUSHEDLEFT:
+			// this.getPosition().goRight();
+			// break;
+			// case PUSHEDRIGHT:
+			// this.getPosition().goLeft();
+			// break;
 			case CONVERT:
 				MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
 				this.state = StatusFallableEnum.IDLE;

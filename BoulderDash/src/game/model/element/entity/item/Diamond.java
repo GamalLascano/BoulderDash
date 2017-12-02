@@ -117,7 +117,7 @@ public class Diamond extends Fallable
 				break;
 		}
 	}
-	
+
 	// METODOS SIMPLES
 
 	/**
