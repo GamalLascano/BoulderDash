@@ -196,6 +196,18 @@ public abstract class Entity extends Element
 		return 	MapItem.getItem(this.getPosition().getX(), this.getPosition().checkDown()).isRounded();
 	}
 	
+	
+	/**
+	 * Verifica en el MapItem si el item puede caer
+	 * por los uno de los dos lados.
+	 * @return boolean
+	 */
+	public boolean itemCanSlide()
+	{
+		return 	this.canGoLeft() && this.canGoDownLeft() || this.canGoRight() && this.canGoDownRight();
+	}
+	
+	
 	/**
 	 * Verifica en el MapItem si el item abajo de esta entidad
 	 * es un muro magico activo.
