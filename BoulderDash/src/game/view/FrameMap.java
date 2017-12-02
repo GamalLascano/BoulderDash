@@ -72,7 +72,8 @@ public class FrameMap extends JFrame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		addKeyListener(new Keyboard());
-		
+
+//		KEYBIND		
 //        Action numberAction = new AbstractAction()
 //        {
 //            @Override
