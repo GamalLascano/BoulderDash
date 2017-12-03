@@ -42,12 +42,14 @@ public class Keyboard extends KeyAdapter
 		{
 			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
 			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			Rockford.getRockford().reset();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
 		{
 			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() - 1);
 			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			Rockford.getRockford().reset();
 		}
 	}
 
