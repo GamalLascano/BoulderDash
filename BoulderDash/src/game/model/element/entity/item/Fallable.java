@@ -86,6 +86,16 @@ public abstract class Fallable extends Item
 		return this.state == StatusFallableEnum.FALLINGOFF || this.state == StatusFallableEnum.FALLING;
 	}
 	
+//	/**
+//	 * Devuelve si el fallable esta deslizandose.
+//	 * @return boolean
+//	 */
+//	public boolean isSliding()
+//	{
+//		return this.state == StatusFallableEnum.SLIDINGLEFT || this.state == StatusFallableEnum.SLIDINGRIGHT;
+//	}
+//	
+	
 	
 
 }

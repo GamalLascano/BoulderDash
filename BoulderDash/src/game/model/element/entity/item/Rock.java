@@ -75,7 +75,7 @@ public class Rock extends Fallable
 		{
 			this.state = StatusFallableEnum.FALLING;
 		}
-		else if (this.itemBelowIsRounded() && this.itemCanSlide())
+		else if (this.itemBelowIsRounded() && this.itemCanSlide() && this.canGoUp())
 		{
 			if (this.canGoLeft() && this.canGoDownLeft())
 			{

@@ -31,7 +31,7 @@ public class MapInstance
 	private static int[][] levelvalues = new int[][]
 	{
 			{ 1, 12, 10, 15, 110 },
-			{ 2, 12, 20, 50, 110 },
+			{ 2, 10, 20, 50, 110 },
 			{ 3, 23, 15, 0, 100 },
 			{ 4, 36, 5, 20, 100 },
 			{ 5, 6, 30, 0, 100 },
