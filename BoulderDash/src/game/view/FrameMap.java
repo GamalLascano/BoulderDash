@@ -292,6 +292,7 @@ public class FrameMap extends JFrame
 			{
 				Integer level = MapInstance.getSelectedLevel() - 1;
 				MapInstance.buildSelectedLevel(level);
+				Rockford.getRockford().reset();
 				labeltop[0][1].setText(level.toString());
 			}
 		});
@@ -339,6 +340,7 @@ public class FrameMap extends JFrame
 			{
 				Integer level = MapInstance.getSelectedLevel() + 1;
 				MapInstance.buildSelectedLevel(level);
+				Rockford.getRockford().reset();
 				labeltop[0][1].setText(level.toString());
 			}
 		});
