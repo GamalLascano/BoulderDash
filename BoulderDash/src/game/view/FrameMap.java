@@ -117,7 +117,7 @@ public class FrameMap extends JFrame
 	{
 		labeltop[0][1].setText(MapInstance.getSelectedLevel().toString());
 		labeltop[0][3].setText(Rockford.getRockford().getDiamonds().toString());
-		Integer diamondsneeded = MapInstance.getLevelReader().getDiamondsNeeded();
+		Integer diamondsneeded = MapInstance.getDiamondsneeded();
 		labeltop[0][5].setText(diamondsneeded.toString());
 		Integer timer = MapInstance.getTimer().intValue();
 		labeltop[0][6].setText(timer.toString());
