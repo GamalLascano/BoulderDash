@@ -64,25 +64,20 @@ public class FrameEnd extends JFrame
 	 */
 	public void buildPanelEnd()
 	{
-		GridBagConstraints c = new GridBagConstraints();
+
 		panelend = new JPanel();
 		panelend.setLayout(new GridBagLayout());
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.CENTER;
-		c.weighty = 1;
-		c.gridx = 0;
 
 		scoreinfo = new JLabel("text", SwingConstants.CENTER);
 		scoreinfo.setSize(100, 50);
 		scoreinfo.setHorizontalAlignment(SwingConstants.CENTER);
-		c.gridy = 0;
 		panelend.add(scoreinfo);
 
 		field = new JTextField();
 		field.setEditable(true);
 		field.setSize(100, 50);
-		c.gridy = 1;
-		panelend.add(field, c);
+		Constraint.setup(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+		panelend.add(field, Constraint.get());
 
 		button = new JButton("Save score");
 		button.addActionListener(new ActionListener()
@@ -100,14 +95,16 @@ public class FrameEnd extends JFrame
 					
 					if(ListOfScorename.getInstance().equals(scorename))
 					{
-						ListOfScorename.getInstance().replaceNameTable(scorename);
+						setVisible(false);
+						FrameNameExists.runFrameNameExists(scorename);
 					}
 					else
 					{
 						ListOfScorename.getInstance().addNameTable(scorename);
+						setVisible(false);
+						FrameMenu.runFrameMenu();
 					}
-					setVisible(false);
-					FrameMenu.runFrameMenu();
+
 				}
 				else
 				{
@@ -115,8 +112,8 @@ public class FrameEnd extends JFrame
 				}
 			}
 		});
-		c.gridy = 2;
-		panelend.add(button, c);
+		Constraint.setup(0, 2, 1, 1, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+		panelend.add(button, Constraint.get());
 	}
 
 	/**
