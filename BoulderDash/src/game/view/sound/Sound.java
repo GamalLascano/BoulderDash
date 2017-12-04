@@ -42,7 +42,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("button.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/button.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -61,7 +61,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("diamond.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/diamond.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -80,7 +80,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("lost.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/lost.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -99,7 +99,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("newgame.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/newgame.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -118,7 +118,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("won.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/won.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -137,7 +137,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("dig.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/dig.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -156,7 +156,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("explosion.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/explosion.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -175,7 +175,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("push.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/push.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);
@@ -194,7 +194,7 @@ public class Sound extends JFrame
 		Clip clip = null;
 		try
 		{
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("step.wav"));
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(playsound.getClass().getResource("/res/Sound/step.wav"));
 			DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(inputStream);

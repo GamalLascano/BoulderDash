@@ -57,7 +57,7 @@ public class PanelRules extends JPanel
 
 		try
 		{
-			instructionsImg = ImageIO.read(rulespanel.getClass().getResource("instructions.png"));
+			instructionsImg = ImageIO.read(rulespanel.getClass().getResource("/res/Menu/instructions.png"));
 		}
 		catch (IOException e1)
 		{
