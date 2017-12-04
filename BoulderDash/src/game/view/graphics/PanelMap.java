@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import game.controller.MapAccess;
+import game.controller.access.MapAccess;
 import game.view.FrameMap;
 
 /**

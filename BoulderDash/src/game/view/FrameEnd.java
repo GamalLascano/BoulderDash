@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
-import game.controller.MapAccess;
+import game.controller.access.MapAccess;
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.Scorename;
 

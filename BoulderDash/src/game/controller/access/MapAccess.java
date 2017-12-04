@@ -1,4 +1,4 @@
-package game.controller;
+package game.controller.access;
 
 import game.model.element.SpriteChar;
 import game.model.map.MapInstance;

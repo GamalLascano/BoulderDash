@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import game.controller.MapAccess;
+import game.controller.access.MapAccess;
 import game.view.sound.Sound;
 
 /**

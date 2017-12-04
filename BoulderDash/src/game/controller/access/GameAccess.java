@@ -1,4 +1,6 @@
-package game.controller;
+package game.controller.access;
+
+import game.controller.Game;
 
 public class GameAccess
 {

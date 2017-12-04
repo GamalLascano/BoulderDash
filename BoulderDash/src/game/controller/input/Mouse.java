@@ -1,4 +1,4 @@
-package game.controller;
+package game.controller.input;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -65,7 +65,15 @@ public class Mouse extends MouseAdapter
 				}
 				catch (LevelNotValidException e2)
 				{
-					// TODO Auto-generated catch block
+					try
+					{
+						MapInstance.buildSelectedLevel(1);
+					}
+					catch (LevelNotValidException e3)
+					{
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
 					e2.printStackTrace();
 				}
 				
@@ -84,7 +92,15 @@ public class Mouse extends MouseAdapter
 			}
 			catch (LevelNotValidException e1)
 			{
-				// TODO Auto-generated catch block
+				try
+				{
+					MapInstance.buildSelectedLevel(1);
+				}
+				catch (LevelNotValidException e2)
+				{
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				e1.printStackTrace();
 			}
 			Rockford.getRockford().reset();

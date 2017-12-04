@@ -9,8 +9,8 @@ import java.net.URISyntaxException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import game.controller.GameAccess;
-import game.controller.MapAccess;
+import game.controller.access.GameAccess;
+import game.controller.access.MapAccess;
 import game.view.sound.Sound;
 
 /**

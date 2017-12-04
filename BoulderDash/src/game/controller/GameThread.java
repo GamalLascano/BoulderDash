@@ -3,6 +3,9 @@ package game.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import game.controller.access.ElementAccess;
+import game.controller.access.MapAccess;
+import game.controller.access.PlayerAccess;
 import game.exception.LevelNotValidException;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
@@ -60,7 +63,14 @@ public class GameThread extends TimerTask
 					}
 					catch (LevelNotValidException e)
 					{
-						// TODO Auto-generated catch block
+						try
+						{
+							MapInstance.buildSelectedLevel(1);
+						}
+						catch (LevelNotValidException e1)
+						{
+							e1.printStackTrace();
+						}
 						e.printStackTrace();
 					}
 				}
@@ -90,7 +100,15 @@ public class GameThread extends TimerTask
 				}
 				catch (LevelNotValidException e)
 				{
-					// TODO Auto-generated catch block
+					try
+					{
+						MapInstance.buildSelectedLevel(1);
+					}
+					catch (LevelNotValidException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					e.printStackTrace();
 				}
 				lost = false;
@@ -112,7 +130,15 @@ public class GameThread extends TimerTask
 				}
 				catch (LevelNotValidException e)
 				{
-					// TODO Auto-generated catch block
+					try
+					{
+						MapInstance.buildSelectedLevel(1);
+					}
+					catch (LevelNotValidException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					e.printStackTrace();
 				}
 			}

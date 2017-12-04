@@ -18,10 +18,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import game.controller.Keyboard;
-import game.controller.MapAccess;
-import game.controller.Mouse;
-import game.controller.PlayerAccess;
+import game.controller.access.MapAccess;
+import game.controller.access.PlayerAccess;
+import game.controller.input.Keyboard;
+import game.controller.input.Mouse;
 import game.view.graphics.PanelMap;
 import game.view.sound.Sound;
 

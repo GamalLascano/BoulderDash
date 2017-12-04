@@ -1,4 +1,4 @@
-package game.controller;
+package game.controller.input;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -53,7 +53,15 @@ public class Keyboard extends KeyAdapter
 			}
 			catch (LevelNotValidException e1)
 			{
-				// TODO Auto-generated catch block
+				try
+				{
+					MapInstance.buildSelectedLevel(1);
+				}
+				catch (LevelNotValidException e2)
+				{
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				e1.printStackTrace();
 			}
 			Rockford.getRockford().reset();
@@ -68,7 +76,15 @@ public class Keyboard extends KeyAdapter
 			}
 			catch (LevelNotValidException e1)
 			{
-				// TODO Auto-generated catch block
+				try
+				{
+					MapInstance.buildSelectedLevel(1);
+				}
+				catch (LevelNotValidException e2)
+				{
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				e1.printStackTrace();
 			}
 			Rockford.getRockford().reset();

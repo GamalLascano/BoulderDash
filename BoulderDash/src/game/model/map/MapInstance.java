@@ -1,7 +1,7 @@
 package game.model.map;
 
-import game.exception.LevelNotFoundException;
 import game.exception.LevelNotValidException;
+import game.exception.RockfordNotInLevelException;
 import game.model.element.Position;
 import game.model.element.cell.*;
 import game.model.element.entity.Entity;
@@ -157,14 +157,6 @@ public class MapInstance
 	public static void setSelectedLevel(Integer selectedlevels)
 	{
 		selectedLevel = selectedlevels;
-//		try
-//		{
-//			selectedLevel = selectedlevels;
-//		}
-//		catch (LevelNotValidException e)
-//		{
-//			selectedLevel = 1;
-//		}
 	}
 
 	/**
@@ -187,26 +179,15 @@ public class MapInstance
 			MapActor.getInstance().start();
 			ListOfEntities.start();
 	
-	//		try
-	//		{
-	//			MapInstance.selectedLevel = selectedLevel;
-	//		}
-	//		catch (LevelNotValidException e)
-	//		{
-	//			MapInstance.selectedLevel = 1;
-	//		}
-	//		MapInstance.readLevel();
-	//		try
-	//		{
-	//		MapInstance.buildMap();
-	//		}
-	//		catch (LevelNotFoundException e) 
-	//		{
-	//			// TODO: handle exception
-	//		}
 			MapInstance.selectedLevel = selectedLevel;
 			MapInstance.readLevel();
+			try
+			{
 			MapInstance.buildMap();
+			}
+			catch (RockfordNotInLevelException e) {
+				e.printStackTrace();
+			}
 			MapVisual.drawMap();
 		}
 	}
@@ -372,7 +353,7 @@ public class MapInstance
 	 * Genera el mapa utilizando los tiles del levelreader, creando los
 	 * elementos y poniendolos en las matrices.
 	 */
-	private static void buildMap()
+	private static void buildMap() throws RockfordNotInLevelException
 	{
 		ListOfEntities.getList().clear();
 		for (int y = 0; y < levelReader.getHEIGHT(); y++)
@@ -451,6 +432,10 @@ public class MapInstance
 				}
 
 			}
+		}
+		if(!ListOfEntities.getList().contains(Rockford.getInstance()))
+		{
+			throw new RockfordNotInLevelException("Rockford no esta en el mapa");
 		}
 	}
 

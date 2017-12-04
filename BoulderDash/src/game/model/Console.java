@@ -25,7 +25,15 @@ public class Console
 		}
 		catch (LevelNotValidException e)
 		{
-			// TODO Auto-generated catch block
+			try
+			{
+				MapInstance.buildSelectedLevel(1);
+			}
+			catch (LevelNotValidException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 

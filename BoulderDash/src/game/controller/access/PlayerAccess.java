@@ -1,5 +1,6 @@
-package game.controller;
+package game.controller.access;
 
+import game.controller.input.Keyboard;
 import game.model.Direction;
 import game.model.element.entity.actor.Rockford;
 

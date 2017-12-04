@@ -1,4 +1,4 @@
-package game.controller;
+package game.controller.access;
 
 import game.model.element.cell.Exit;
 import game.model.element.entity.Entity;
