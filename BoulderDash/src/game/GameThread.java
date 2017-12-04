@@ -49,6 +49,7 @@ public class GameThread extends TimerTask
 			{
 				MapAccess.refresh();
 				FrameMap.refresh();
+				
 
 				if (PlayerAccess.getPlayer() != null)
 				{

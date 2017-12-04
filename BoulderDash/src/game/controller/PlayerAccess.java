@@ -15,7 +15,7 @@ public class PlayerAccess
 	 */
 	public static void updateMove()
 	{
-		Rockford player = Rockford.getRockford();
+		Rockford player = Rockford.getRockford();	// try catch sonido
 		if (Keyboard.isUp())
 		{
 			player.move(Direction.UP);

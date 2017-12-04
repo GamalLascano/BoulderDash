@@ -122,19 +122,27 @@ public class Rockford extends Actor
 	{
 		if (state != StatusActorEnum.DEAD)
 		{
-			PlaySound.explosion();
-			state = StatusActorEnum.DEAD;
-			if (this.lives > 0)
-			{
-				this.lives--;
-			}
-			MapInstance.setPlayerscore(score);
-			this.score = MapInstance.getPlayerscore();
-			this.diamonds = 0;
-			this.explode();
+			this.dying();
 		}
 		ListOfEntities.getList().remove(this);
 		MapActor.removeActor(getPosition());
+	}
+	
+	/**
+	 * Rockfrod muere.
+	 */
+	private void dying()
+	{
+		PlaySound.explosion();
+		state = StatusActorEnum.DEAD;
+		if (this.lives > 0)
+		{
+			this.lives--;
+		}
+		MapInstance.setPlayerscore(score);
+		this.score = MapInstance.getPlayerscore();
+		this.diamonds = 0;
+		this.explode();
 	}
 
 	/**
@@ -147,13 +155,29 @@ public class Rockford extends Actor
 	{
 		if (dirt != null && dirt.isDirty())
 		{
-			PlaySound.dig();
-			dirt.removeDirt();
+			this.digging(dirt);
 		}
 		else
 		{
-			PlaySound.step();
+			this.walking();
 		}
+	}
+	
+	/**
+	 * Rockfrod cava.
+	 */
+	private void digging(Dirt dirt)
+	{
+		PlaySound.dig();
+		dirt.removeDirt();
+	}
+	
+	/**
+	 * Rockford camina.
+	 */
+	private void walking()
+	{
+		PlaySound.step();
 	}
 
 	/**
@@ -166,17 +190,24 @@ public class Rockford extends Actor
 	{
 		if (diamond != null && diamond.isCollectable())
 		{
-			PlaySound.diamond();
-			diamonds++;
-			diamond.collected();
-			if (!Exit.getInstance().isOpen())
-			{
-				score += MapInstance.getDiamondvalue();
-			}
-			else
-			{
-				score += MapInstance.getDiamondbonus();
-			}
+			this.collecting(diamond);
+		}
+	}
+	
+	/**
+	 * Recolecta el diamante.
+	 */
+	private void collecting(Diamond diamond)
+	{
+		diamonds++;
+		diamond.collected();
+		if (!Exit.getInstance().isOpen())
+		{
+			score += MapInstance.getDiamondvalue();
+		}
+		else
+		{
+			score += MapInstance.getDiamondbonus();
 		}
 	}
 
@@ -322,11 +353,7 @@ public class Rockford extends Actor
 			case MOVINGRIGHT:
 				if (rock != null && rock.isMoveable() && rock.canGoRight())
 				{
-					PlaySound.push();
-					isPushing = true;
-					rock.pushed(this);
-					isPushing = false;
-					getPosition().goRight();
+					this.pushingright(rock);
 					this.dig(MapCell.getDirt(getPosition()));
 					this.collect(MapItem.getDiamond(getPosition()));
 				}
@@ -334,11 +361,7 @@ public class Rockford extends Actor
 			case MOVINGLEFT:
 				if (rock != null && rock.isMoveable() && rock.canGoLeft())
 				{
-					PlaySound.push();
-					isPushing = true;
-					rock.pushed(this);
-					isPushing = false;
-					getPosition().goLeft();
+					this.pushingleft(rock);
 					this.dig(MapCell.getDirt(getPosition()));
 					this.collect(MapItem.getDiamond(getPosition()));
 				}
@@ -346,6 +369,32 @@ public class Rockford extends Actor
 			default:
 				break;
 		}
+	}
+	
+	/**
+	 * Empuja la roca a la derecha.
+	 * @param rock
+	 */
+	private void pushingright(Rock rock)
+	{
+		PlaySound.push();
+		isPushing = true;
+		rock.pushed(this);
+		isPushing = false;
+		getPosition().goRight();
+	}
+	
+	/**
+	 * Empuja la roca a la izquierda.
+	 * @param rock
+	 */
+	private void pushingleft(Rock rock)
+	{
+		PlaySound.push();
+		isPushing = true;
+		rock.pushed(this);
+		isPushing = false;
+		getPosition().goLeft();
 	}
 
 	@Override
