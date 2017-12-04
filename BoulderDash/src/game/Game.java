@@ -1,4 +1,4 @@
-package game.model;
+package game;
 
 import game.model.map.MapInstance;
 import game.view.FrameMap;

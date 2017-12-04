@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import game.model.Game;
+import game.Game;
 import game.model.map.MapInstance;
 import game.view.sound.SoundPlay;
 
