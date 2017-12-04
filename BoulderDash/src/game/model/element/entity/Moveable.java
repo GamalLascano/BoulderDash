@@ -13,22 +13,22 @@ public interface Moveable
 	public abstract void rotate();
 
 	/**
-	 * Comportamiento para mover el actor hacia arriba.
+	 * Comportamiento para mover la entidad hacia arriba.
 	 */
 	public abstract void makeMoveUp();
 
 	/**
-	 * Comportamiento para mover el actor hacia abajo.
+	 * Comportamiento para mover la entidad hacia abajo.
 	 */
 	public abstract void makeMoveDown();
 
 	/**
-	 * Comportamiento para mover el actor hacia la izquierda.
+	 * Comportamiento para mover la entidad hacia la izquierda.
 	 */
 	public abstract void makeMoveLeft();
 
 	/**
-	 * Comportamiento para mover el actor hacia la derecha.
+	 * Comportamiento para mover la entidad hacia la derecha.
 	 */
 	public abstract void makeMoveRight();
 }

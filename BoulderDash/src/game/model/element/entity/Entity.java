@@ -14,6 +14,8 @@ import game.model.map.MapVisual;
 
 /**
  * Elementos dinamicos que se pueden mover. Como Actor y Item.
+ * Tiene un hashmap que contiene los elementos que la entidad
+ * puede pasar.
  */
 public abstract class Entity extends Element
 {
@@ -32,7 +34,7 @@ public abstract class Entity extends Element
 	/**
 	 * Determina si esta entidad es un actor.
 	 * 
-	 * @return true o false
+	 * @return si esta entidad es un actor
 	 */
 	public boolean isActor()
 	{
@@ -49,7 +51,7 @@ public abstract class Entity extends Element
 	/**
 	 * Determina si esta entidad es Rockford.
 	 * 
-	 * @return true o false
+	 * @return si esta entidad es Rockford
 	 */
 	public boolean isRockford()
 	{
@@ -66,7 +68,7 @@ public abstract class Entity extends Element
 	/**
 	 * Determina si esta entidad es un Item.
 	 * 
-	 * @return true o false
+	 * @return si esta entidad es un Item
 	 */
 	public boolean isItem()
 	{

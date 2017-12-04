@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Lista que contiene las entidades.
+ * Lista que contiene las entidades vivas.
  */
 public class ListOfEntities
 {

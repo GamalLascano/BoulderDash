@@ -155,6 +155,10 @@ public class FrameEnd extends JFrame
 		}
 	}
 	
+	/**
+	 * Muestra el frame.
+	 * @param args
+	 */
 	public static void runFrameEnd(String[] args)
 	{
 		FrameEnd runFrameEnd = FrameEnd.getInstance();

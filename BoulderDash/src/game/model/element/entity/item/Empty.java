@@ -20,18 +20,12 @@ public class Empty extends Item
 		this.setSpritechar(SpriteChar._);
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public void changePosition()
 	{
 
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public void makeMove()
 	{

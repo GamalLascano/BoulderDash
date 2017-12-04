@@ -9,7 +9,7 @@ import game.model.map.MapActor;
 import game.model.map.MapInstance;
 
 /**
- * Esta clase representa a todos los actores, que pueden moverse
+ * Esta clase representa a todos los actores.
  */
 public abstract class Actor extends Entity implements Moveable
 {

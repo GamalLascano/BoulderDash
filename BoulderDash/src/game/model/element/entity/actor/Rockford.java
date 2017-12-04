@@ -15,8 +15,8 @@ import game.model.map.MapItem;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene su
- * puntuacion, sus diamantes y si esta empujando o no, ademas de las otras
- * propiedades de otros actores
+ * puntuacion, sus diamantes y si esta empujando o no, ademas de las
+ * propiedades de actores
  */
 public class Rockford extends Actor
 {
@@ -43,7 +43,7 @@ public class Rockford extends Actor
 	/**
 	 * Singleton de Rockford.
 	 * 
-	 * @return Singleton
+	 * @return Rockford
 	 */
 	public static Rockford getInstance()
 	{
@@ -57,7 +57,7 @@ public class Rockford extends Actor
 	/**
 	 * Retorna a Rockford, se utiliza antes de invocar al singleton.
 	 * Puede retornar null.
-	 * @return Rockford
+	 * @return Rockford o null
 	 */
 	public static Rockford getRockford()
 	{
@@ -84,7 +84,7 @@ public class Rockford extends Actor
 	/**
 	 * Retorna el score obtenido en el mapa actual.
 	 * 
-	 * @return score
+	 * @return score obtenido en el mapa actual
 	 */
 	public Integer getScore()
 	{
@@ -94,7 +94,7 @@ public class Rockford extends Actor
 	/**
 	 * Retorna los diamantes obtenidos en el mapa actual.
 	 * 
-	 * @return diamantes
+	 * @return diamantes obtenidos en el mapa actual
 	 */
 	public Integer getDiamonds()
 	{
@@ -104,7 +104,7 @@ public class Rockford extends Actor
 	/**
 	 * Retorna las vidas del jugador.
 	 * 
-	 * @return vidas
+	 * @return las vidas del jugador
 	 */
 	public Integer getLives()
 	{
@@ -114,7 +114,7 @@ public class Rockford extends Actor
 	/**
 	 * Retorna si Rockford esta empujando algo.
 	 * 
-	 * @return pushing
+	 * @return si Rockford esta empujando algo
 	 */
 	public boolean isPushing()
 	{
@@ -133,7 +133,7 @@ public class Rockford extends Actor
 	}
 	
 	/**
-	 * Rockfrod muere.
+	 * Rockfrod muere y explota.
 	 */
 	private void dying()
 	{

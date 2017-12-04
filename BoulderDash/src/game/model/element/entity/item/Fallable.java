@@ -30,7 +30,7 @@ public abstract class Fallable extends Item
 	/**
 	 * Retorna el estado del fallable.
 	 * 
-	 * @return
+	 * @return el estado del fallable
 	 */
 	public StatusFallableEnum getState()
 	{
@@ -64,6 +64,10 @@ public abstract class Fallable extends Item
 		MapItem.setItem(this);
 	}
 
+	/**
+	 * Cambia el estado dependiendo de las condiciones
+	 * del fallable.
+	 */
 	public abstract void fall();
 	
 	// METODOS SIMPLES

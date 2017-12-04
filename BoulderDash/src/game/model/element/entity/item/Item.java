@@ -37,7 +37,7 @@ public abstract class Item extends Entity
 	/**
 	 * Devuelve si el item es un diamante.
 	 * 
-	 * @return boolean
+	 * @return si el item es un diamante
 	 */
 	public boolean isDiamond()
 	{
@@ -54,7 +54,7 @@ public abstract class Item extends Entity
 	/**
 	 * Devuelve si es una roca.
 	 * 
-	 * @return boolean
+	 * @return si es una roca
 	 */
 	public boolean isRock()
 	{
@@ -71,7 +71,7 @@ public abstract class Item extends Entity
 	/**
 	 * Devuelve si es collectable el objeto.
 	 * 
-	 * @return collectable
+	 * @return si es collectable el objeto
 	 */
 	public boolean isCollectable()
 	{
@@ -81,7 +81,7 @@ public abstract class Item extends Entity
 	/**
 	 * Devuelve si se puede desplazar el objeto.
 	 * 
-	 * @return moveable
+	 * @return si se puede desplazar el objeto
 	 */
 	public boolean isMoveable()
 	{
@@ -91,7 +91,7 @@ public abstract class Item extends Entity
 	/**
 	 * Retorna si el objeto es redondo. Si un objeto puede deslizar.
 	 * 
-	 * @return rounded
+	 * @return si el objeto es redondo
 	 */
 	public boolean isRounded()
 	{

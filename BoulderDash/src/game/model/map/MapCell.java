@@ -40,7 +40,7 @@ public class MapCell extends Map
 	 * Retorna una celda de la matriz.
 	 * 
 	 * @param pos
-	 * @return cell
+	 * @return celda de la matriz
 	 */
 	public static Cell getCell(Position pos)
 	{
@@ -52,13 +52,18 @@ public class MapCell extends Map
 	 * 
 	 * @param x
 	 * @param y
-	 * @return cell
+	 * @return una celda de la matriz
 	 */
 	public static Cell getCell(Integer x, Integer y)
 	{
 		return matrix[x][y];
 	}
 
+	/**
+	 * 
+	 * @param pos
+	 * @return tierra si puede sino devuelve null
+	 */
 	public static Dirt getDirt(Position pos)
 	{
 		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
@@ -84,7 +89,7 @@ public class MapCell extends Map
 	 * 
 	 * @param x
 	 * @param y
-	 * @return dirt
+	 * @return tierra si puede sino devuelve null
 	 */
 	public static Dirt getDirt(Integer x, Integer y)
 	{
@@ -110,7 +115,7 @@ public class MapCell extends Map
 	 * 
 	 * @param x
 	 * @param y
-	 * @return wall
+	 * @return un muro si puede, sino null
 	 */
 	public static Wall getWall(Integer x, Integer y)
 	{
@@ -135,7 +140,7 @@ public class MapCell extends Map
 	 * Setea una celda en el mapa.
 	 * 
 	 * @param cel
-	 * @return
+	 * @return si pudo poner una celda en el mapa.
 	 */
 	public static boolean setCell(Cell cel)
 	{
@@ -155,7 +160,7 @@ public class MapCell extends Map
 	 * Remueve una celda del mapa.
 	 * 
 	 * @param pos
-	 * @return
+	 * @return si pudo sacar una celda del mapa
 	 */
 	public static boolean removeCell(Position pos)
 	{
@@ -175,7 +180,7 @@ public class MapCell extends Map
 	/**
 	 * Devuelve la salida si esta, sino devuelve null.
 	 * 
-	 * @return exit
+	 * @return la salida si esta, sino null
 	 */
 	public static Exit findExit()
 	{

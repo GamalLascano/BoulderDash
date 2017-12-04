@@ -23,7 +23,7 @@ public class MapActor extends Map
 	/**
 	 * Singleton de MapActor.
 	 * 
-	 * @return
+	 * @return mapa de los actores
 	 */
 	public static MapActor getInstance()
 	{
@@ -38,7 +38,7 @@ public class MapActor extends Map
 	 * Recupera un actor de la matriz, usando un objeto posicion.
 	 * 
 	 * @param pos
-	 * @return
+	 * @return un actor de esta posicion
 	 */
 	public static Actor getActor(Position pos)
 	{
@@ -58,7 +58,7 @@ public class MapActor extends Map
 	 * 
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return un actor de esta posicion
 	 */
 	public static Actor getActor(Integer x, Integer y)
 	{
@@ -73,11 +73,11 @@ public class MapActor extends Map
 	}
 
 	/**
-	 * Retorna Rocford si puede, sino retorna null.
+	 * Retorna Rockford si puede, sino retorna null.
 	 * 
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return a Rockford
 	 */
 	public static Rockford getRockford(Integer x, Integer y)
 	{
@@ -110,7 +110,7 @@ public class MapActor extends Map
 	 * movimiento.
 	 * 
 	 * @param act
-	 * @return
+	 * @return si pudo poner el actor
 	 */
 	public static boolean setActor(Actor act)
 	{
@@ -130,7 +130,7 @@ public class MapActor extends Map
 	 * Remueve un actor de la matriz.
 	 * 
 	 * @param pos
-	 * @return
+	 * @return si pudo remover el actor
 	 */
 	public static boolean removeActor(Position pos)
 	{

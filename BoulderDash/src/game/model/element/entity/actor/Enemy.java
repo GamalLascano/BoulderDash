@@ -8,7 +8,8 @@ import game.model.map.MapInstance;
 import game.model.map.MapItem;
 
 /**
- * Clase que representa a los enemigos.
+ * Clase que representa a los enemigos, los que
+ * pueden matar al jugador con proximidad.
  */
 public abstract class Enemy extends Actor
 {
