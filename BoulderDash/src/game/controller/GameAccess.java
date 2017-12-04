@@ -1,7 +1,5 @@
 package game.controller;
 
-import game.Game;
-
 public class GameAccess
 {
 	public static void launch()

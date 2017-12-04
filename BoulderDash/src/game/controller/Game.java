@@ -1,4 +1,4 @@
-package game;
+package game.controller;
 
 import game.exception.LevelNotValidException;
 import game.model.map.MapInstance;

@@ -1,11 +1,8 @@
-package game;
+package game.controller;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import game.controller.ElementAccess;
-import game.controller.MapAccess;
-import game.controller.PlayerAccess;
 import game.exception.LevelNotValidException;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
