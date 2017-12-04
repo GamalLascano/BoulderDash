@@ -22,7 +22,7 @@ public class ScoreBoard
 
 	private ScoreBoard()
 	{
-		this.filename = this.getClass().getResource("Scoreboard.dat");
+		this.filename = this.getClass().getResource("/res/Menu/Scoreboard.dat");
 	}
 
 	public static ScoreBoard getInstance() throws FileNotFoundException, URISyntaxException
