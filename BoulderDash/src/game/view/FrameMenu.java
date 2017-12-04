@@ -36,7 +36,6 @@ public class FrameMenu extends JFrame
 		Sound.getInstance();
 		setupFrameMenu();
 		setupPanelMenu();
-		ListOfScorename.getInstance().start();
 
 		add(panel);
 		setPreferredSize(new Dimension(panel.getImage().getWidth(null), panel.getImage().getHeight(null)));
@@ -79,6 +78,7 @@ public class FrameMenu extends JFrame
 		panel = new Background(new GridBagLayout());
 		panel.putBackground(this);
 		putButtons();
+		ListOfScorename.getInstance().start();
 
 		try
 		{

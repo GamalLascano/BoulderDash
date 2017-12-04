@@ -1,5 +1,6 @@
 package game;
 
+import game.exception.LevelNotValidException;
 import game.model.map.MapInstance;
 import game.view.FrameMap;
 
@@ -22,7 +23,15 @@ public class Game
 		int selectedlevel; 
 		selectedlevel = MapInstance.getSelectedLevel();
 		MapInstance.start();
-		MapInstance.buildSelectedLevel(selectedlevel);
+		try
+		{
+			MapInstance.buildSelectedLevel(selectedlevel);
+		}
+		catch (LevelNotValidException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		FrameMap.start();
 		FrameMap.refresh();

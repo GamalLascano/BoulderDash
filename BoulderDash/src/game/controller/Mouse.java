@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 
+import game.exception.LevelNotValidException;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 import game.view.FrameMap;
@@ -52,7 +53,24 @@ public class Mouse extends MouseAdapter
 		if( label.getText().equals("<") )
 		{
 			Integer level = MapInstance.getSelectedLevel() - 1;
-			MapInstance.buildSelectedLevel(level);
+			try
+			{
+				MapInstance.buildSelectedLevel(level);
+			}
+			catch (LevelNotValidException e1)
+			{
+				try
+				{
+					MapInstance.buildSelectedLevel(1);
+				}
+				catch (LevelNotValidException e2)
+				{
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				e1.printStackTrace();
+			}
 			Rockford.getRockford().reset();
 			FrameMap.getInstance().refreshLevelLabel();
 		}
@@ -60,7 +78,15 @@ public class Mouse extends MouseAdapter
 		if( label.getText().equals(">") )
 		{
 			Integer level = MapInstance.getSelectedLevel() + 1;
-			MapInstance.buildSelectedLevel(level);
+			try
+			{
+				MapInstance.buildSelectedLevel(level);
+			}
+			catch (LevelNotValidException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			Rockford.getRockford().reset();
 			FrameMap.getInstance().refreshLevelLabel();
 		}

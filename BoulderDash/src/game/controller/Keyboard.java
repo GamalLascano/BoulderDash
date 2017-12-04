@@ -3,6 +3,7 @@ package game.controller;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import game.exception.LevelNotValidException;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 
@@ -46,14 +47,30 @@ public class Keyboard extends KeyAdapter
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_UP)
 		{
 			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
-			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			try
+			{
+				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			}
+			catch (LevelNotValidException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			Rockford.getRockford().reset();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
 		{
 			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() - 1);
-			MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			try
+			{
+				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+			}
+			catch (LevelNotValidException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			Rockford.getRockford().reset();
 		}
 	}

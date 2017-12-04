@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import game.controller.ElementAccess;
 import game.controller.MapAccess;
 import game.controller.PlayerAccess;
+import game.exception.LevelNotValidException;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;
@@ -55,7 +56,15 @@ public class GameThread extends TimerTask
 				}
 				if (!ElementAccess.entityIsAlive(PlayerAccess.getPlayer()))
 				{
-					MapInstance.buildSelectedLevel(MapAccess.getLevel());
+					try
+					{
+						MapInstance.buildSelectedLevel(MapAccess.getLevel());
+					}
+					catch (LevelNotValidException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				if (PlayerAccess.getPlayer().getLives() == 0)
 				{
@@ -77,7 +86,15 @@ public class GameThread extends TimerTask
 				{
 					stop = true;
 				}
-				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+				try
+				{
+					MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+				}
+				catch (LevelNotValidException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				lost = false;
 			}
 			else if (won)
@@ -91,7 +108,15 @@ public class GameThread extends TimerTask
 					stop = true;
 				}
 				MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
-				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+				try
+				{
+					MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+				}
+				catch (LevelNotValidException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		else

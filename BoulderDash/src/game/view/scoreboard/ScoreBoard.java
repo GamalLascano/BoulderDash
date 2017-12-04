@@ -1,5 +1,6 @@
 package game.view.scoreboard;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,6 +44,7 @@ public class ScoreBoard
 	 */
 	public void readScorenames() throws IOException, ClassNotFoundException
 	{
+		boolean endfile = false;
 		File file = null;
 		try
 		{
@@ -60,10 +62,18 @@ public class ScoreBoard
 			Scorename participant;
 			input = new ObjectInputStream(streamin);
 
-			while (input.available() > 0)
+			while (!endfile)
 			{
-				participant = (Scorename) input.readObject();
-				ListOfScorename.getList().add(participant);
+				try
+				{
+					participant = (Scorename) input.readObject();
+					ListOfScorename.getList().add(participant);
+				}
+				catch(EOFException e)
+				{
+					endfile = true;
+					//e.printStackTrace();
+				}
 			}
 			input.close();
 

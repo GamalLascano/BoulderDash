@@ -1,5 +1,6 @@
 package game.model;
 
+import game.exception.LevelNotValidException;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 import game.model.map.MapVisual;
@@ -18,7 +19,15 @@ public class Console
 
 		MapInstance.start();
 
-		MapInstance.buildSelectedLevel(STARTLEVEL);
+		try
+		{
+			MapInstance.buildSelectedLevel(STARTLEVEL);
+		}
+		catch (LevelNotValidException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		boolean quit = false;
 

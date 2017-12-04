@@ -109,8 +109,8 @@ public class PanelTop extends JPanel
 	 */
 	private void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
+		//ScoreBoard.getInstance().readScorenames();
 		makeTableshow(x);
-		ScoreBoard.getInstance().readScorenames();
 		tablemodel = null;
 		tablemodel = new DefaultTableModel(tableshow, tablecolumn);
 		table.setModel(tablemodel);

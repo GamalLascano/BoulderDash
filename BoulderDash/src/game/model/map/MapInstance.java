@@ -172,36 +172,43 @@ public class MapInstance
 	 * 
 	 * @param selectedLevel
 	 */
-	public static void buildSelectedLevel(Integer selectedLevel)
+	public static void buildSelectedLevel(Integer selectedLevel) throws LevelNotValidException
 	{
-		MapInstance.getInstance();
-		listentity = ListOfEntities.getInstance();
-		MapCell.getInstance().start();
-		MapItem.getInstance().start();
-		MapActor.getInstance().start();
-		ListOfEntities.start();
-
-//		try
-//		{
-//			MapInstance.selectedLevel = selectedLevel;
-//		}
-//		catch (LevelNotValidException e)
-//		{
-//			MapInstance.selectedLevel = 1;
-//		}
-//		MapInstance.readLevel();
-//		try
-//		{
-//		MapInstance.buildMap();
-//		}
-//		catch (LevelNotFoundException e) 
-//		{
-//			// TODO: handle exception
-//		}
-		MapInstance.selectedLevel = selectedLevel;
-		MapInstance.readLevel();
-		MapInstance.buildMap();
-		MapVisual.drawMap();
+		if(selectedLevel <= 0 || selectedLevel >= 10)
+		{
+			throw new LevelNotValidException("Nivel no valido");
+		}
+		else
+		{
+			MapInstance.getInstance();
+			listentity = ListOfEntities.getInstance();
+			MapCell.getInstance().start();
+			MapItem.getInstance().start();
+			MapActor.getInstance().start();
+			ListOfEntities.start();
+	
+	//		try
+	//		{
+	//			MapInstance.selectedLevel = selectedLevel;
+	//		}
+	//		catch (LevelNotValidException e)
+	//		{
+	//			MapInstance.selectedLevel = 1;
+	//		}
+	//		MapInstance.readLevel();
+	//		try
+	//		{
+	//		MapInstance.buildMap();
+	//		}
+	//		catch (LevelNotFoundException e) 
+	//		{
+	//			// TODO: handle exception
+	//		}
+			MapInstance.selectedLevel = selectedLevel;
+			MapInstance.readLevel();
+			MapInstance.buildMap();
+			MapVisual.drawMap();
+		}
 	}
 
 	/**
