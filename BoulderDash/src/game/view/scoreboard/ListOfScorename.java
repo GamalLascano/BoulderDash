@@ -109,7 +109,7 @@ public class ListOfScorename
 		}
 		ListOfScorename.sortScorename();
 	}
-	
+
 	/**
 	 * Remplaza un scorename en la lista y pone los datos de la lista en un
 	 * archivo scoreboard.
@@ -119,7 +119,7 @@ public class ListOfScorename
 	public void replaceNameTable(Scorename scorename)
 	{
 		int i = 0;
-		while(i < ListOfScorename.getList().size() && !ListOfScorename.getList().get(i).equals(scorename))
+		while (i < ListOfScorename.getList().size() && !ListOfScorename.getList().get(i).equals(scorename))
 		{
 			i++;
 		}
@@ -136,10 +136,14 @@ public class ListOfScorename
 		}
 		ListOfScorename.sortScorename();
 	}
+
 	@Override
-	public boolean equals(Object obj) {
-		for (int i=0;i<scorenamelist.size();i++) {
-			if (scorenamelist.get(i).equals(obj)) {
+	public boolean equals(Object obj)
+	{
+		for (int i = 0; i < scorenamelist.size(); i++)
+		{
+			if (scorenamelist.get(i).equals(obj))
+			{
 				return true;
 			}
 		}
