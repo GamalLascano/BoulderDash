@@ -43,6 +43,15 @@ public class PlayerAccess
 	}
 
 	/**
+	 * 
+	 * @return
+	 */
+	public static Rockford getPlayer()
+	{
+		return Rockford.getRockford();
+	}
+	
+	/**
 	 * Devuelve los diamantes.
 	 *
 	 * @return

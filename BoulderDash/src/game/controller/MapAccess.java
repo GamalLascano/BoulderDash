@@ -11,7 +11,14 @@ import game.model.map.MapVisual;
  */
 public class MapAccess
 {
-	
+	/**
+	 * 
+	 */
+	public static void refresh()
+	{
+		MapInstance.refresh();
+	}
+
 	/**
 	 * 
 	 * @return
@@ -20,7 +27,7 @@ public class MapAccess
 	{
 		return MapInstance.getLevelReader().getHEIGHT();
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -29,34 +36,37 @@ public class MapAccess
 	{
 		return MapInstance.getLevelReader().getWIDTH();
 	}
-	
+
 	/**
 	 * Devuelve el nivel actual.
+	 * 
 	 * @return
 	 */
 	public static Integer getLevel()
 	{
 		return MapInstance.getSelectedLevel();
 	}
-	
+
 	/**
 	 * Devuelve los diamantes necesarios.
+	 * 
 	 * @return
 	 */
 	public static Integer getDiamondsneeded()
 	{
 		return MapInstance.getDiamondsneeded();
 	}
-	
+
 	/**
 	 * Devuelve el tiempo.
+	 * 
 	 * @return
 	 */
 	public static Integer getTimer()
 	{
 		return MapInstance.getTimer().intValue();
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -65,16 +75,16 @@ public class MapAccess
 	{
 		return MapInstance.getPlayerscore();
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
 	public static SpriteChar getCell(int x, int y)
 	{
-		return MapVisual.getChar(x,y);
+		return MapVisual.getChar(x, y);
 	}
-	
+
 	/**
 	 * Setea el numero del nivel actual.
 	 * 
@@ -84,5 +94,5 @@ public class MapAccess
 	{
 		MapInstance.setSelectedLevel(selectedlevels);
 	}
-	
+
 }

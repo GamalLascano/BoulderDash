@@ -3,9 +3,9 @@ package game;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import game.model.element.cell.Exit;
-import game.model.element.entity.ListOfEntities;
-import game.model.element.entity.actor.Rockford;
+import game.controller.ElementAccess;
+import game.controller.MapAccess;
+import game.controller.PlayerAccess;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;
@@ -22,7 +22,7 @@ public class GameThread extends TimerTask
 
 	boolean lost = false;
 	boolean won = false;
-	Rockford player = Rockford.getRockford();
+	//Rockford player = PlayerAccess.getPlayer();
 
 	/**
 	 * Constructor, timer del thread.
@@ -46,34 +46,34 @@ public class GameThread extends TimerTask
 		{
 			if (!lost && !won)
 			{
-				MapInstance.refresh();
+				MapAccess.refresh();
 				FrameMap.refresh();
 
-				if (player != null)
+				if (PlayerAccess.getPlayer() != null)
 				{
-					won = player.isInExit();
+					won = PlayerAccess.getPlayer().isInExit();
 				}
-				if (!ListOfEntities.getList().contains(player))
+				if (!ElementAccess.entityIsAlive(PlayerAccess.getPlayer()))
 				{
-					MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
+					MapInstance.buildSelectedLevel(MapAccess.getLevel());
 				}
-				if (player.getLives() == 0)
+				if (PlayerAccess.getPlayer().getLives() == 0)
 				{
 					lost = true;
 				}
-				if (MapInstance.getTimer().intValue() == 0)
+				if (MapAccess.getTimer() == 0)
 				{
-					Rockford.getRockford().die();
+					PlayerAccess.getPlayer().die();
 				}
-				Exit.getInstance().open();
+				ElementAccess.openExit();
 				System.out.println(turn);
 			}
 			else if (lost)
 			{
 				Sound.lost();
-				MapInstance.refresh();
+				MapAccess.refresh();
 				FrameMap.refresh();
-				if (Rockford.getRockford().getLives() == 0)
+				if (PlayerAccess.getPlayer().getLives() == 0)
 				{
 					stop = true;
 				}
@@ -83,7 +83,7 @@ public class GameThread extends TimerTask
 			else if (won)
 			{
 				Sound.won();
-				MapInstance.refresh();
+				MapAccess.refresh();
 				FrameMap.refresh();
 				won = false;
 				if (!MapInstance.levelHasRockford())
