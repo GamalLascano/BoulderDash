@@ -55,12 +55,16 @@ public class Rockford extends Actor
 	}
 
 	/**
-	 * Retorna a Rockford, se utiliza despues de invocar al singleton.
-	 * 
+	 * Retorna a Rockford, se utiliza antes de invocar al singleton.
+	 * Puede retornar null.
 	 * @return Rockford
 	 */
 	public static Rockford getRockford()
 	{
+		if (player == null)
+		{
+			player = null;
+		}
 		return player;
 	}
 
@@ -199,6 +203,7 @@ public class Rockford extends Actor
 	 */
 	private void collecting(Diamond diamond)
 	{
+		PlaySound.diamond();
 		diamonds++;
 		diamond.collected();
 		if (!Exit.getInstance().isOpen())
