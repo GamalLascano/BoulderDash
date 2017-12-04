@@ -14,7 +14,7 @@ import game.controller.access.MapAccess;
 import game.view.sound.Sound;
 
 /**
- * Panel de reglas del juego.
+ * Panel de menu del juego.
  */
 public class PanelMenu extends JPanel
 {

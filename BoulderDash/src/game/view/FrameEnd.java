@@ -92,8 +92,8 @@ public class FrameEnd extends JFrame
 					if (name.length() > 20)
 						name = name.substring(0, 20);
 					Scorename scorename = new Scorename(0, name, MapAccess.getTotalScore(), frameend.time);
-					
-					if(ListOfScorename.getInstance().equals(scorename))
+
+					if (ListOfScorename.getInstance().equals(scorename))
 					{
 						setVisible(false);
 						FrameNameExists.runFrameNameExists(scorename);
@@ -149,14 +149,15 @@ public class FrameEnd extends JFrame
 	 */
 	private void refreshPanelEnd()
 	{
-		if(MapAccess.getTotalScore() != null && frameend.time != null)
+		if (MapAccess.getTotalScore() != null && frameend.time != null)
 		{
 			scoreinfo.setText("Puntuacion: " + MapAccess.getTotalScore().toString() + "\n " + "Tiempo: " + frameend.time.toString());
 		}
 	}
-	
+
 	/**
 	 * Muestra el frame.
+	 * 
 	 * @param args
 	 */
 	public static void runFrameEnd(String[] args)

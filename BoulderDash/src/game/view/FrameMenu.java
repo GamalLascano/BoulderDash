@@ -13,7 +13,7 @@ import game.view.scoreboard.ScoreBoard;
 import game.view.sound.Sound;
 
 /**
- * Panel del menu.
+ * Frame del menu.
  * 
  *
  */
@@ -44,7 +44,7 @@ public class FrameMenu extends JFrame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		PanelConfig.defaultConfig(this);
 	}
-	
+
 	private void start()
 	{
 		showMenu();
@@ -89,7 +89,7 @@ public class FrameMenu extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -161,7 +161,6 @@ public class FrameMenu extends JFrame
 		jpanel.repaint();
 	}
 
-
 	/**
 	 * Muestra el menu.
 	 */
@@ -169,43 +168,47 @@ public class FrameMenu extends JFrame
 	{
 		PanelMenu.makeMenu(panel, button);
 	}
-	
+
 	/**
 	 * Devuelve el panel;
+	 * 
 	 * @return
 	 */
 	public Background getPanel()
 	{
 		return panel;
 	}
-	
+
 	/**
 	 * Devuelve los bottones;
+	 * 
 	 * @return
 	 */
 	public JButton[] getButtons()
 	{
 		return button;
 	}
-	
+
 	/**
 	 * Devuelve si esta en fullscreen;
+	 * 
 	 * @return
 	 */
 	public boolean isFullscreen()
 	{
 		return fullScreenState;
 	}
-	
+
 	/**
 	 * Devuelve el panel;
+	 * 
 	 * @return
 	 */
 	public void setFullscreen(boolean isfullscr)
 	{
 		fullScreenState = isfullscr;
 	}
-	
+
 	/**
 	 * Inicializa el menu.
 	 */

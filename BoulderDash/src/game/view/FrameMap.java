@@ -26,7 +26,7 @@ import game.view.graphics.PanelMap;
 import game.view.sound.Sound;
 
 /**
- * Panel del juego, donde aparece el mapa.
+ * Frame del juego, donde aparece el mapa.
  *
  */
 public class FrameMap extends JFrame
@@ -68,23 +68,24 @@ public class FrameMap extends JFrame
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		addKeyListener(new Keyboard());
 
-//		KEYBIND		
-//        Action numberAction = new AbstractAction()
-//        {
-//            @Override
-//            public void actionPerformed(ActionEvent e)
-//            {
-//                
-//            }
-//        };
-//        
-//        KeyStroke pressed = KeyStroke.getKeyStroke("W");
-//        InputMap inputMap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-//        inputMap.put(pressed, text);
-//        button.getActionMap().put(text, numberAction);
+		// KEYBIND
+		// Action numberAction = new AbstractAction()
+		// {
+		// @Override
+		// public void actionPerformed(ActionEvent e)
+		// {
+		//
+		// }
+		// };
+		//
+		// KeyStroke pressed = KeyStroke.getKeyStroke("W");
+		// InputMap inputMap =
+		// button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		// inputMap.put(pressed, text);
+		// button.getActionMap().put(text, numberAction);
 
 	}
 
@@ -98,7 +99,7 @@ public class FrameMap extends JFrame
 	}
 
 	/**
-	 * Refresca el mapa.
+	 * Refresca el mapa grafico. El movimiento del jugador y el panel superior.
 	 */
 	public static void refresh()
 	{
@@ -148,29 +149,46 @@ public class FrameMap extends JFrame
 		PlayerAccess.resetPlayer();
 	}
 
+	/**
+	 * 
+	 * @return CELLSIZEX
+	 */
 	public static int getCellsizex()
 	{
 		return CELLSIZEX;
 	}
 
+	/**
+	 * 
+	 * @return CELLSIZEY
+	 */
 	public static int getCellsizey()
 	{
 		return CELLSIZEY;
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public static void setCellsize(int x, int y)
 	{
 		CELLSIZEX = x;
 		CELLSIZEY = y;
 	}
 
+	/**
+	 * 
+	 * @param enabled
+	 */
 	public static void setFullscr(boolean enabled)
 	{
 		fullscr = enabled;
 	}
 
 	/**
-	 * 
+	 * Se occupa de poner el framemap en modo fullscreen.
 	 */
 	public static void fullScr()
 	{
@@ -205,11 +223,19 @@ public class FrameMap extends JFrame
 		}
 	}
 
+	/**
+	 * Setea el tamanio del panel superior.
+	 * 
+	 * @param size
+	 */
 	public static void setPanelTopSize(int size)
 	{
 		paneltop.setPreferredSize(new Dimension(643, size));
 	}
-	
+
+	/**
+	 * Refresca el numero de nivel cuando hay cambio de nivel.
+	 */
 	public void refreshLevelLabel()
 	{
 		labeltop[0][1].setText(MapAccess.getLevel().toString());

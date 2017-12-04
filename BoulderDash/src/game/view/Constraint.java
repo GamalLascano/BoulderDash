@@ -9,7 +9,7 @@ import java.awt.GridBagConstraints;
 public class Constraint
 {
 	private static GridBagConstraints constraint = new GridBagConstraints();
-	
+
 	/**
 	 * Setea la configuracion posicion/visual de un elemento antes de agregarlo
 	 * en el panel.
@@ -35,9 +35,10 @@ public class Constraint
 		constraint.anchor = anchor;
 		constraint.fill = fill;
 	}
-	
+
 	/**
 	 * Devuelve el constraint.
+	 * 
 	 * @return constraint
 	 */
 	public static GridBagConstraints get()

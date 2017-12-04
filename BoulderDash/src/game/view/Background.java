@@ -26,6 +26,7 @@ public class Background extends JPanel
 
 	/**
 	 * Constructor background.
+	 * 
 	 * @param gridBagLayout
 	 */
 	public Background(GridBagLayout gridBagLayout)
@@ -43,22 +44,24 @@ public class Background extends JPanel
 
 	/**
 	 * Setea la imagen de fondo.
+	 * 
 	 * @param img
 	 */
 	public void setImage(Image img)
 	{
 		this.img = img;
 	}
-	
+
 	/**
 	 * Devuelve la imagen de fondo.
+	 * 
 	 * @param img
 	 */
 	public Image getImage()
 	{
 		return this.img;
 	}
-	
+
 	/**
 	 * Setea la imagen de fondo del menu.
 	 */

@@ -14,6 +14,11 @@ import javax.swing.SwingConstants;
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.Scorename;
 
+/**
+ * Si el nombre ya existe en la lista
+ * de scorenames, este frame aparece
+ *
+ */
 public class FrameNameExists extends JFrame
 {
 	/**
@@ -23,7 +28,6 @@ public class FrameNameExists extends JFrame
 	private static FrameNameExists framenameexists;
 	private static JPanel panelend;
 
-	// panelend
 	private JButton button1;
 	private JButton button2;
 	private JLabel scoreinfo;
@@ -96,6 +100,10 @@ public class FrameNameExists extends JFrame
 		panelend.add(button2, Constraint.get());
 	}
 
+	/**
+	 * Se muestra si el nombre ya existe en el top.
+	 * @param score
+	 */
 	public static void runFrameNameExists(Scorename score)
 	{
 		FrameNameExists runFrameNameExists = FrameNameExists.getInstance();
