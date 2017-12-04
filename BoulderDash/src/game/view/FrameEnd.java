@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
 import game.model.map.MapInstance;
+import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.Scorename;
 
 /**
@@ -97,7 +98,7 @@ public class FrameEnd extends JFrame
 						name = name.substring(0, 20);
 					Scorename scorename = new Scorename(0, name, MapInstance.getPlayerscore(), frameend.time);
 					
-					FrameMenu.getInstance().addNameTable(scorename);
+					ListOfScorename.getInstance().addNameTable(scorename);
 					setVisible(false);
 					FrameMenu.runFrameMenu();
 				}

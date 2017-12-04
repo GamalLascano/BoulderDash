@@ -1,5 +1,7 @@
 package game.view.scoreboard;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -85,6 +87,29 @@ public class ListOfScorename
 				scorenamelist.get(i).setRank(i + 1);
 			}
 		}
+	}
+	
+	/**
+	 * Agrega un scorename en la lista y pone los datos de la lista en un
+	 * archivo scoreboard.
+	 * 
+	 * @param name
+	 * @param score
+	 * @param time
+	 */
+	public void addNameTable(Scorename scorename)
+	{
+		ListOfScorename.getList().add(scorename);
+		try
+		{
+			ScoreBoard.getInstance().writeScorenames();
+		}
+		catch (ClassNotFoundException | IOException | URISyntaxException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ListOfScorename.sortScorename();
 	}
 
 }
