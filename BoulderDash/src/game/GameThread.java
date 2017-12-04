@@ -9,7 +9,7 @@ import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 import game.view.FrameEnd;
 import game.view.FrameMap;
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Thread del juego.
@@ -70,7 +70,7 @@ public class GameThread extends TimerTask
 			}
 			else if (lost)
 			{
-				SoundPlay.lost();
+				Sound.lost();
 				MapInstance.refresh();
 				FrameMap.refresh();
 				if (Rockford.getRockford().getLives() == 0)
@@ -82,7 +82,7 @@ public class GameThread extends TimerTask
 			}
 			else if (won)
 			{
-				SoundPlay.won();
+				Sound.won();
 				MapInstance.refresh();
 				FrameMap.refresh();
 				won = false;

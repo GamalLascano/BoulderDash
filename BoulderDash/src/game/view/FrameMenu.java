@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.ScoreBoard;
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Panel del menu.
@@ -33,7 +33,7 @@ public class FrameMenu extends JFrame
 
 	private FrameMenu()
 	{
-		SoundPlay.getInstance();
+		Sound.getInstance();
 		setupFrameMenu();
 		setupPanelMenu();
 		ListOfScorename.getInstance().start();

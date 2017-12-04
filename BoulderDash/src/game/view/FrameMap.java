@@ -23,7 +23,7 @@ import game.controller.MapAccess;
 import game.controller.Mouse;
 import game.controller.PlayerAccess;
 import game.view.graphics.PanelMap;
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Panel del juego, donde aparece el mapa.
@@ -143,8 +143,8 @@ public class FrameMap extends JFrame
 	public static void start()
 	{
 		FrameMap.getInstance();
-		SoundPlay.getInstance();
-		SoundPlay.newgame();
+		Sound.getInstance();
+		Sound.newgame();
 		PlayerAccess.resetPlayer();
 	}
 

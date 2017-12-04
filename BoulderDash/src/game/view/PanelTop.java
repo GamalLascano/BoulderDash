@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.ScoreBoard;
 import game.view.scoreboard.Scorename;
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Panel de reglas del juego.
@@ -80,7 +80,7 @@ public class PanelTop extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				FrameMenu.showMenu();
 			}
 		});

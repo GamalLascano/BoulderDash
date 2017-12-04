@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import game.controller.MapAccess;
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Panel de reglas del juego.
@@ -112,7 +112,7 @@ public class PanelConfig extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
@@ -190,7 +190,7 @@ public class PanelConfig extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 			}
 		});
 
@@ -201,7 +201,7 @@ public class PanelConfig extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				FrameMenu.showMenu();
 			}
 		});

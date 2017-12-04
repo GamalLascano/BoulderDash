@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import game.controller.GameAccess;
 import game.controller.MapAccess;
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Panel de reglas del juego.
@@ -39,7 +39,7 @@ public class PanelMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				MapAccess.setSelectedLevel(Integer.parseInt((String) PanelConfig.getInstance().getConfigLevel()));
 				FrameMenu.getInstance().setVisible(false);
 				GameAccess.launch();
@@ -59,7 +59,7 @@ public class PanelMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				try
 				{
 					PanelTop.getInstance().showTopX(FrameMenu.getInstance());
@@ -82,7 +82,7 @@ public class PanelMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				PanelRules.getInstance().showRules(FrameMenu.getInstance());;
 			}
 		});
@@ -97,7 +97,7 @@ public class PanelMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				PanelConfig.getInstance().showConfig(FrameMenu.getInstance());
 			}
 		});
@@ -112,7 +112,7 @@ public class PanelMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				FrameMenu.getInstance().dispose();
 				System.exit(0);
 			}

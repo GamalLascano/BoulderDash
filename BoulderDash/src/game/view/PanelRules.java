@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import game.view.sound.SoundPlay;
+import game.view.sound.Sound;
 
 /**
  * Panel de reglas del juego.
@@ -72,7 +72,7 @@ public class PanelRules extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				SoundPlay.button();
+				Sound.button();
 				FrameMenu.showMenu();
 			}
 		});

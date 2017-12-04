@@ -14,25 +14,25 @@ import javax.swing.JFrame;
  * Generador de sonidos.
  *
  */
-public class SoundPlay extends JFrame
+public class Sound extends JFrame
 {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static SoundPlay playsound;
+	private static Sound playsound;
 	
-	private SoundPlay()
+	private Sound()
 	{
 
 	}
 	
-	public static SoundPlay getInstance()
+	public static Sound getInstance()
 	{
 		if (playsound == null)
 		{
-			playsound = new SoundPlay();
+			playsound = new Sound();
 		}
 		return playsound;
 	}

@@ -1,5 +1,6 @@
 package game.model.element.entity.actor;
 
+import game.controller.PlaySound;
 import game.model.element.Position;
 import game.model.element.SpriteChar;
 import game.model.element.cell.Dirt;
@@ -11,7 +12,6 @@ import game.model.map.MapActor;
 import game.model.map.MapCell;
 import game.model.map.MapInstance;
 import game.model.map.MapItem;
-import game.view.sound.SoundPlay;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene su
@@ -122,7 +122,7 @@ public class Rockford extends Actor
 	{
 		if (state != StatusActorEnum.DEAD)
 		{
-			SoundPlay.explosion();
+			PlaySound.explosion();
 			state = StatusActorEnum.DEAD;
 			if (this.lives > 0)
 			{
@@ -147,12 +147,12 @@ public class Rockford extends Actor
 	{
 		if (dirt != null && dirt.isDirty())
 		{
-			SoundPlay.dig();
+			PlaySound.dig();
 			dirt.removeDirt();
 		}
 		else
 		{
-			SoundPlay.step();
+			PlaySound.step();
 		}
 	}
 
@@ -166,7 +166,7 @@ public class Rockford extends Actor
 	{
 		if (diamond != null && diamond.isCollectable())
 		{
-			SoundPlay.diamond();
+			PlaySound.diamond();
 			diamonds++;
 			diamond.collected();
 			if (!Exit.getInstance().isOpen())
@@ -322,7 +322,7 @@ public class Rockford extends Actor
 			case MOVINGRIGHT:
 				if (rock != null && rock.isMoveable() && rock.canGoRight())
 				{
-					SoundPlay.push();
+					PlaySound.push();
 					isPushing = true;
 					rock.pushed(this);
 					isPushing = false;
@@ -334,7 +334,7 @@ public class Rockford extends Actor
 			case MOVINGLEFT:
 				if (rock != null && rock.isMoveable() && rock.canGoLeft())
 				{
-					SoundPlay.push();
+					PlaySound.push();
 					isPushing = true;
 					rock.pushed(this);
 					isPushing = false;
