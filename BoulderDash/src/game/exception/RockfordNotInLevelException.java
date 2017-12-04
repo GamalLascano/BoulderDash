@@ -1,5 +1,9 @@
 package game.exception;
 
+/**
+ * Se tira cuando Rockford no esta en el mapa.
+ *
+ */
 public class RockfordNotInLevelException extends Exception
 {
 	/**

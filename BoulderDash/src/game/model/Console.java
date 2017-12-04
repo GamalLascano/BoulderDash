@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * Hace el lanzamiento del juego sin interface grafica. Util para debugear.
+ * Funciona por turnos y con el teclado y la consola.
  */
 public class Console
 {

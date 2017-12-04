@@ -2,7 +2,8 @@ package game.model.element;
 
 /**
  * Esta clase tiene las coordenadas x e y de un objeto determinado Ademas puede
- * devolver las posiciones de sus alrededores
+ * devolver las posiciones de sus alrededores y hacer incrementos/decrementos
+ * para simular movimiento.
  */
 public class Position
 {

@@ -1,7 +1,8 @@
 package game.model.element;
 
 /**
- * Este enum contiene la representacion en la consola de todas los elementos del juego.<p>
+ * Este enum contiene los caracteres de identificacion de cada elemento
+ * para la representacion en la consola de todas los elementos del juego.<p>
  * 	Rockford (d,b,u,n animaciones)<br>
  *	R, d, b, u, n,<br>
  *	Enemies (F: firefly, B: butterfly)<br>

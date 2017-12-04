@@ -4,11 +4,11 @@ import game.model.element.Position;
 import game.model.element.SpriteChar;
 
 /**
- * Clase de la celda tierra y vacia.
+ * Clase de la celda tierra y vacia (si dirty es false).
  */
 public class Dirt extends Cell
 {
-	private boolean dirty; // True = is dirt, false = is normal
+	private boolean dirty;
 
 	/**
 	 * Constructor tierra.
@@ -44,9 +44,8 @@ public class Dirt extends Cell
 	}
 
 	/**
-	 * Devuelve si hay tierra en la celda.
 	 * 
-	 * @return dirty
+	 * @return si hay tierra en la celda
 	 */
 	public boolean isDirty()
 	{

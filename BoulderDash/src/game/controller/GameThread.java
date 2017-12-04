@@ -23,7 +23,7 @@ public class GameThread extends TimerTask
 
 	boolean lost = false;
 	boolean won = false;
-	//Rockford player = PlayerAccess.getPlayer();
+	// Rockford player = PlayerAccess.getPlayer();
 
 	/**
 	 * Constructor, timer del thread.
@@ -36,8 +36,17 @@ public class GameThread extends TimerTask
 	}
 
 	/**
-	 * Ejecucion en loop. Cuando rockford no tiene mas vidas o no hay mas
-	 * niveles, la variable stop determina el final del loop.
+	 * Ejecucion en loop.<p>
+	 * 1. Incrementa un turno y remueve los elementos del
+	 * panel.<p>
+	 * 2. Refresca el juego cada turno.<p>
+	 * 3. Pierde si no tiene mas vidas,
+	 * gana si llega a la salida.<p>
+	 * 4. Cada turno verifica si el jugador gano o
+	 * perdio, hace algo en cada caso.<p>
+	 * 5. Cuando pierde, se parra el juego,
+	 * ejecuta el frame de entrada de score y termina el timer.<p>
+	 * 
 	 */
 	public void run()
 	{
@@ -49,7 +58,6 @@ public class GameThread extends TimerTask
 			{
 				MapAccess.refresh();
 				FrameMap.refresh();
-				
 
 				if (PlayerAccess.getPlayer() != null)
 				{

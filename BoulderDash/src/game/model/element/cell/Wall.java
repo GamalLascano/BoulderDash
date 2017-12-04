@@ -9,6 +9,8 @@ import game.model.map.MapItem;
 
 /**
  * Clase que representa el muro y muro magico.
+ * El magic timer es el tiempo del muro magico antes
+ * de desactivarse.
  */
 public class Wall extends Cell
 {
@@ -42,7 +44,7 @@ public class Wall extends Cell
 	/**
 	 * Retorna el tiempo del muro magico.
 	 * 
-	 * @return magicTimer
+	 * @return tiempo del muro magico
 	 */
 	public int getMagicTimer()
 	{

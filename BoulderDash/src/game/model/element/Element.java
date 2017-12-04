@@ -2,6 +2,7 @@ package game.model.element;
 
 /**
  * Elemento del juego. Celda, item o actor.
+ * Tiene posicion y un caracter de identificacion.
  */
 public abstract class Element
 {
@@ -22,7 +23,7 @@ public abstract class Element
 	/**
 	 * Retorna la representacion del elemento (SpriteChar) de la entidad.
 	 * 
-	 * @return SpriteChar
+	 * @return caracter de identificacion
 	 */
 	public SpriteChar getSpritechar()
 	{
@@ -42,7 +43,7 @@ public abstract class Element
 	/**
 	 * Devuelve el objeto posicion.
 	 * 
-	 * @return objeto posicion, coord x,y
+	 * @return objeto posicion, (x,y)
 	 */
 	public Position getPosition()
 	{
@@ -50,7 +51,7 @@ public abstract class Element
 	}
 
 	/**
-	 * Setea el objeto posicion.
+	 * Setea el objeto posicion. (x,y)
 	 * 
 	 * @param pos
 	 */

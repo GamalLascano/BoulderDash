@@ -6,17 +6,18 @@ import game.model.element.entity.actor.Rockford;
 
 /**
  * 
- * Acceso del jugador.
+ * Acceso del jugador del modelo.
  *
  */
 public class PlayerAccess
 {
 	/**
-	 * Hace que el jugador se mueva de manera fluida.
+	 * Hace que el jugador se mueva de manera fluida con el teclado. Y actualiza
+	 * el movimiento.
 	 */
 	public static void updateMove()
 	{
-		Rockford player = Rockford.getRockford();	// try catch sonido
+		Rockford player = Rockford.getRockford(); // try catch sonido
 		if (Keyboard.isUp())
 		{
 			player.move(Direction.UP);
@@ -36,7 +37,7 @@ public class PlayerAccess
 	}
 
 	/**
-	 * Resetea a rockford.
+	 * Resetea a rockford a sus valores iniciales.
 	 */
 	public static void resetPlayer()
 	{
@@ -45,40 +46,38 @@ public class PlayerAccess
 
 	/**
 	 * 
-	 * @return
+	 * @return devuelve a rockford
 	 */
 	public static Rockford getPlayer()
 	{
 		return Rockford.getRockford();
 	}
-	
+
 	/**
-	 * Devuelve los diamantes.
 	 *
-	 * @return
+	 * @return diamantes de rockford
 	 */
 	public static Integer getDiamonds()
 	{
 		return Rockford.getRockford().getDiamonds();
 	}
-	
+
 	/**
 	 * 
-	 * @return
+	 * @return vidas de rockford
 	 */
 	public static Integer getLives()
 	{
 		return Rockford.getRockford().getLives();
 	}
-	
+
 	/**
 	 * 
-	 * @return
+	 * @return score de rockford ganado en el nivel
 	 */
 	public static Integer getScore()
 	{
 		return Rockford.getRockford().getScore();
 	}
-
 
 }

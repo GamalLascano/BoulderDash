@@ -63,9 +63,8 @@ public class Exit extends Cell
 	}
 
 	/**
-	 * Devuelve si la salida esta abierta para el jugador.
 	 * 
-	 * @return isOpen
+	 * @return si la salida esta abierta para el jugador
 	 */
 	public boolean isOpen()
 	{

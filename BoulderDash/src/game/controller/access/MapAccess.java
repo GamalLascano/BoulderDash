@@ -6,13 +6,13 @@ import game.model.map.MapVisual;
 
 /**
  * 
- * Acceso del mapa.
+ * Acceso del mapa en el modelo.
  *
  */
 public class MapAccess
 {
 	/**
-	 * 
+	 * Refresca el mapa, y la informacion del nivel y score total.
 	 */
 	public static void refresh()
 	{
@@ -21,7 +21,8 @@ public class MapAccess
 
 	/**
 	 * 
-	 * @return
+	 * 
+	 * @return altura del nivel
 	 */
 	public static Integer getHeight()
 	{
@@ -30,7 +31,8 @@ public class MapAccess
 
 	/**
 	 * 
-	 * @return
+	 * 
+	 * @return longitud del nivel
 	 */
 	public static Integer getWidth()
 	{
@@ -38,9 +40,9 @@ public class MapAccess
 	}
 
 	/**
-	 * Devuelve el nivel actual.
 	 * 
-	 * @return
+	 * 
+	 * @return nivel eligido.
 	 */
 	public static Integer getLevel()
 	{
@@ -48,9 +50,9 @@ public class MapAccess
 	}
 
 	/**
-	 * Devuelve los diamantes necesarios.
 	 * 
-	 * @return
+	 * 
+	 * @return diamantes necesarios del nivel
 	 */
 	public static Integer getDiamondsneeded()
 	{
@@ -58,9 +60,9 @@ public class MapAccess
 	}
 
 	/**
-	 * Devuelve el tiempo.
 	 * 
-	 * @return
+	 * 
+	 * @return tiempo limitado del mapa
 	 */
 	public static Integer getTimer()
 	{
@@ -68,8 +70,9 @@ public class MapAccess
 	}
 
 	/**
+	 *
 	 * 
-	 * @return
+	 * @return score total del jugador
 	 */
 	public static Integer getTotalScore()
 	{
@@ -78,7 +81,8 @@ public class MapAccess
 
 	/**
 	 * 
-	 * @return
+	 * 
+	 * @return caracter de un elemento
 	 */
 	public static SpriteChar getCell(int x, int y)
 	{

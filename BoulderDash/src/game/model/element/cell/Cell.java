@@ -5,7 +5,7 @@ import game.model.element.Position;
 import game.model.map.MapCell;
 
 /**
- * Esta clase contiene todos los objetos del mapa que no se mueven.
+ * Esta clase contiene todos los objetos del mapa que no se mueven o caen.
  */
 public abstract class Cell extends Element
 {
@@ -21,9 +21,8 @@ public abstract class Cell extends Element
 	}
 
 	/**
-	 * Retorna si la celda es tierra.
 	 * 
-	 * @return
+	 * @return si la celda es tierra
 	 */
 	public boolean isDirt()
 	{
@@ -38,9 +37,8 @@ public abstract class Cell extends Element
 	}
 
 	/**
-	 * Retorna si la celda es un muro.
 	 * 
-	 * @return
+	 * @return si la celda es un muro.
 	 */
 	public boolean isWall()
 	{
@@ -55,9 +53,8 @@ public abstract class Cell extends Element
 	}
 	
 	/**
-	 * Retorna si la celda es titanio.
 	 * 
-	 * @return
+	 * @return si la celda es titanio
 	 */
 	public boolean isTitanium()
 	{
@@ -72,9 +69,8 @@ public abstract class Cell extends Element
 	}
 
 	/**
-	 * Retorna si la celda es la salida.
 	 * 
-	 * @return
+	 * @return si la celda es la salida.
 	 */
 	public boolean isExit()
 	{
