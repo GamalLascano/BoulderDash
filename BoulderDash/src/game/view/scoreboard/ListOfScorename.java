@@ -54,7 +54,7 @@ public class ListOfScorename
 	{
 		return scorenamelist;
 	}
-	
+
 	/**
 	 * Ordena la lista de participantes, el mayor puntaje y menor tiempo estan
 	 * primeros en la lista.
@@ -88,17 +88,42 @@ public class ListOfScorename
 			}
 		}
 	}
-	
+
 	/**
 	 * Agrega un scorename en la lista y pone los datos de la lista en un
 	 * archivo scoreboard.
 	 * 
-	 * @param name
-	 * @param score
-	 * @param time
+	 * @param scorename
 	 */
 	public void addNameTable(Scorename scorename)
 	{
+		ListOfScorename.getList().add(scorename);
+		try
+		{
+			ScoreBoard.getInstance().writeScorenames();
+		}
+		catch (ClassNotFoundException | IOException | URISyntaxException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ListOfScorename.sortScorename();
+	}
+	
+	/**
+	 * Remplaza un scorename en la lista y pone los datos de la lista en un
+	 * archivo scoreboard.
+	 * 
+	 * @param scorename
+	 */
+	public void replaceNameTable(Scorename scorename)
+	{
+		int i = 0;
+		while(i < ListOfScorename.getList().size() && !ListOfScorename.getList().get(i).equals(scorename))
+		{
+			i++;
+		}
+		ListOfScorename.getList().remove(i);
 		ListOfScorename.getList().add(scorename);
 		try
 		{

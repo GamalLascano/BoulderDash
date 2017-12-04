@@ -9,8 +9,8 @@ import java.net.URISyntaxException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import game.Game;
-import game.model.map.MapInstance;
+import game.controller.GameAccess;
+import game.controller.MapAccess;
 import game.view.sound.SoundPlay;
 
 /**
@@ -40,9 +40,9 @@ public class PanelMenu extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				SoundPlay.button();
-				MapInstance.setSelectedLevel(Integer.parseInt((String) PanelConfig.getInstance().getConfigLevel()));
+				MapAccess.setSelectedLevel(Integer.parseInt((String) PanelConfig.getInstance().getConfigLevel()));
 				FrameMenu.getInstance().setVisible(false);
-				Game.main(new String[0]);
+				GameAccess.launch();
 				FrameMap.getInstance().setSize(FrameMenu.getInstance().getSize());
 				FrameMap.setFullscr(FrameMenu.getInstance().isFullscreen());
 				FrameMap.fullScr();

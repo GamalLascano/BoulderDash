@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import game.model.map.MapInstance;
+import game.controller.MapAccess;
 import game.view.sound.SoundPlay;
 
 /**
@@ -93,7 +93,7 @@ public class PanelConfig extends JPanel
 		fullScr.setSelected(false);
 		levelsel.setSelectedItem(0);
 		
-		MapInstance.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
+		MapAccess.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
 	}
 
 	/**

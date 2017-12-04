@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
-import game.model.map.MapInstance;
+import game.controller.MapAccess;
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.Scorename;
 
@@ -96,9 +96,16 @@ public class FrameEnd extends JFrame
 				{
 					if (name.length() > 20)
 						name = name.substring(0, 20);
-					Scorename scorename = new Scorename(0, name, MapInstance.getPlayerscore(), frameend.time);
+					Scorename scorename = new Scorename(0, name, MapAccess.getTotalScore(), frameend.time);
 					
-					ListOfScorename.getInstance().addNameTable(scorename);
+					if(ListOfScorename.getInstance().equals(scorename))
+					{
+						ListOfScorename.getInstance().replaceNameTable(scorename);
+					}
+					else
+					{
+						ListOfScorename.getInstance().addNameTable(scorename);
+					}
 					setVisible(false);
 					FrameMenu.runFrameMenu();
 				}
@@ -145,9 +152,9 @@ public class FrameEnd extends JFrame
 	 */
 	private void refreshPanelEnd()
 	{
-		if(MapInstance.getPlayerscore() != null && frameend.time != null)
+		if(MapAccess.getTotalScore() != null && frameend.time != null)
 		{
-			scoreinfo.setText("Puntuacion: " + MapInstance.getPlayerscore().toString() + "\n " + "Tiempo: " + frameend.time.toString());
+			scoreinfo.setText("Puntuacion: " + MapAccess.getTotalScore().toString() + "\n " + "Tiempo: " + frameend.time.toString());
 		}
 	}
 	

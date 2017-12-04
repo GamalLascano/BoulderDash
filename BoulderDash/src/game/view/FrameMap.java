@@ -7,8 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 //import java.awt.event.ActionEvent;
 //
 //import javax.swing.AbstractAction;
@@ -21,9 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.controller.Keyboard;
-import game.model.Direction;
-import game.model.element.entity.actor.Rockford;
-import game.model.map.MapInstance;
+import game.controller.MapAccess;
+import game.controller.Mouse;
+import game.controller.PlayerAccess;
 import game.view.graphics.PanelMap;
 import game.view.sound.SoundPlay;
 
@@ -56,7 +54,7 @@ public class FrameMap extends JFrame
 		setSize(800, 600);
 		getContentPane().setBackground(Color.BLACK);
 		setLayout(new GridBagLayout());
-		panelmap.setLayout(new GridLayout(MapInstance.getLevelReader().getHEIGHT(), MapInstance.getLevelReader().getWIDTH()));
+		panelmap.setLayout(new GridLayout(MapAccess.getHeight(), MapAccess.getWidth()));
 		buildPaneltop();
 		add(paneltop, c);
 
@@ -104,7 +102,7 @@ public class FrameMap extends JFrame
 	 */
 	public static void refresh()
 	{
-		FrameMap.updateMove();
+		PlayerAccess.updateMove();
 		FrameMap.refreshPaneltop();
 		FrameMap.panelmap.repaint();
 	}
@@ -115,14 +113,12 @@ public class FrameMap extends JFrame
 	 */
 	public static void refreshPaneltop()
 	{
-		labeltop[0][1].setText(MapInstance.getSelectedLevel().toString());
-		labeltop[0][3].setText(Rockford.getRockford().getDiamonds().toString());
-		Integer diamondsneeded = MapInstance.getDiamondsneeded();
-		labeltop[0][5].setText(diamondsneeded.toString());
-		Integer timer = MapInstance.getTimer().intValue();
-		labeltop[0][6].setText(timer.toString());
-		labeltop[0][7].setText(Rockford.getRockford().getLives().toString());
-		labeltop[0][8].setText(Rockford.getRockford().getScore().toString());
+		labeltop[0][1].setText(MapAccess.getLevel().toString());
+		labeltop[0][3].setText(PlayerAccess.getDiamonds().toString());
+		labeltop[0][5].setText(MapAccess.getDiamondsneeded().toString());
+		labeltop[0][6].setText(MapAccess.getTimer().toString());
+		labeltop[0][7].setText(PlayerAccess.getLives().toString());
+		labeltop[0][8].setText(PlayerAccess.getScore().toString());
 	}
 
 	/**
@@ -149,7 +145,7 @@ public class FrameMap extends JFrame
 		FrameMap.getInstance();
 		SoundPlay.getInstance();
 		SoundPlay.newgame();
-		Rockford.getRockford().reset();
+		PlayerAccess.resetPlayer();
 	}
 
 	public static int getCellsizex()
@@ -209,33 +205,14 @@ public class FrameMap extends JFrame
 		}
 	}
 
-	/**
-	 * Hace que el jugador se mueva de manera fluida.
-	 */
-	public static void updateMove()
-	{
-		Rockford player = Rockford.getRockford();
-		if (Keyboard.isUp())
-		{
-			player.move(Direction.UP);
-		}
-		if (Keyboard.isDown())
-		{
-			player.move(Direction.DOWN);
-		}
-		if (Keyboard.isLeft())
-		{
-			player.move(Direction.LEFT);
-		}
-		if (Keyboard.isRight())
-		{
-			player.move(Direction.RIGHT);
-		}
-	}
-
 	public static void setPanelTopSize(int size)
 	{
 		paneltop.setPreferredSize(new Dimension(643, size));
+	}
+	
+	public void refreshLevelLabel()
+	{
+		labeltop[0][1].setText(MapAccess.getLevel().toString());
 	}
 
 	/**
@@ -256,97 +233,19 @@ public class FrameMap extends JFrame
 
 		labeltop[0][0] = new JLabel("<");
 		labeltop[0][0].setForeground(Color.WHITE);
-		labeltop[0][0].addMouseListener(new MouseListener()
-		{
-
-			@Override
-			public void mouseReleased(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				Integer level = MapInstance.getSelectedLevel() - 1;
-				MapInstance.buildSelectedLevel(level);
-				Rockford.getRockford().reset();
-				labeltop[0][1].setText(level.toString());
-			}
-		});
+		labeltop[0][0].addMouseListener(new Mouse());
 		paneltop.add(labeltop[0][0]);
 
-		labeltop[0][1] = new JLabel(MapInstance.getSelectedLevel().toString());
+		labeltop[0][1] = new JLabel(MapAccess.getLevel().toString());
 		labeltop[0][1].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][1]);
 
 		labeltop[0][2] = new JLabel(">");
 		labeltop[0][2].setForeground(Color.WHITE);
-		labeltop[0][2].addMouseListener(new MouseListener()
-		{
-
-			@Override
-			public void mouseReleased(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				Integer level = MapInstance.getSelectedLevel() + 1;
-				MapInstance.buildSelectedLevel(level);
-				Rockford.getRockford().reset();
-				labeltop[0][1].setText(level.toString());
-			}
-		});
+		labeltop[0][2].addMouseListener(new Mouse());
 		paneltop.add(labeltop[0][2]);
 
-		labeltop[0][3] = new JLabel(Rockford.getRockford().getDiamonds().toString());
+		labeltop[0][3] = new JLabel(PlayerAccess.getDiamonds().toString());
 		labeltop[0][3].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][3]);
 
@@ -354,21 +253,20 @@ public class FrameMap extends JFrame
 		labeltop[0][4].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][4]);
 
-		Integer diamondsneeded = MapInstance.getDiamondsneeded();
+		Integer diamondsneeded = MapAccess.getDiamondsneeded();
 		labeltop[0][5] = new JLabel(diamondsneeded.toString());
 		labeltop[0][5].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][5]);
 
-		Integer timer = MapInstance.getTimer().intValue();
-		labeltop[0][6] = new JLabel(timer.toString());
+		labeltop[0][6] = new JLabel(MapAccess.getTimer().toString());
 		labeltop[0][6].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][6]);
 
-		labeltop[0][7] = new JLabel(Rockford.getRockford().getLives().toString());
+		labeltop[0][7] = new JLabel(PlayerAccess.getLives().toString());
 		labeltop[0][7].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][7]);
 
-		labeltop[0][8] = new JLabel(Rockford.getRockford().getScore().toString());
+		labeltop[0][8] = new JLabel(PlayerAccess.getScore().toString());
 		labeltop[0][8].setForeground(Color.WHITE);
 		paneltop.add(labeltop[0][8]);
 

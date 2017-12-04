@@ -8,8 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import game.model.map.MapInstance;
-import game.model.map.MapVisual;
+import game.controller.MapAccess;
 import game.view.FrameMap;
 
 /**
@@ -71,12 +70,12 @@ public class PanelMap extends JPanel
 	public void paintComponent(Graphics graphic)
 	{
 		super.paintComponent(graphic);
-		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT() * FrameMap.getCellsizey(); y += FrameMap.getCellsizey())
+		for (int y = 0; y < MapAccess.getHeight() * FrameMap.getCellsizey(); y += FrameMap.getCellsizey())
 		{
-			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH() * FrameMap.getCellsizex(); x += FrameMap.getCellsizex())
+			for (int x = 0; x < MapAccess.getWidth() * FrameMap.getCellsizex(); x += FrameMap.getCellsizex())
 			{
 
-				String cellChar = MapVisual.getChar(x / FrameMap.getCellsizex(), y / FrameMap.getCellsizey()).toString();
+				String cellChar = MapAccess.getCell(x / FrameMap.getCellsizex(), y / FrameMap.getCellsizey()).toString();
 				drawCell(cellChar, x, y, graphic);
 
 			}

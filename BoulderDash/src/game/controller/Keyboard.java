@@ -6,6 +6,11 @@ import java.awt.event.KeyEvent;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 
+/**
+ * 
+ * Acciones del teclado.
+ *
+ */
 public class Keyboard extends KeyAdapter
 {
 	private static boolean up, down, right, left;
