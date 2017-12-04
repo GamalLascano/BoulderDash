@@ -136,5 +136,13 @@ public class ListOfScorename
 		}
 		ListOfScorename.sortScorename();
 	}
-
+	@Override
+	public boolean equals(Object obj) {
+		for (int i=0;i<scorenamelist.size();i++) {
+			if (scorenamelist.get(i).equals(obj)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
