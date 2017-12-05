@@ -79,7 +79,7 @@ public class Mouse extends MouseAdapter
 
 				e1.printStackTrace();
 			}
-			Rockford.getRockford().reset();
+			Rockford.getInstance().reset();
 			FrameMap.getInstance().refreshLevelLabel();
 		}
 
@@ -103,7 +103,7 @@ public class Mouse extends MouseAdapter
 				}
 				e1.printStackTrace();
 			}
-			Rockford.getRockford().reset();
+			Rockford.getInstance().reset();
 			FrameMap.getInstance().refreshLevelLabel();
 		}
 

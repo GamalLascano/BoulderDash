@@ -54,7 +54,7 @@ public class Exit extends Cell
 	 */
 	public void open()
 	{
-		Rockford player = Rockford.getRockford();
+		Rockford player = Rockford.getInstance();
 		if (player.getDiamonds() >= MapInstance.getDiamondsneeded())
 		{
 			this.setSpritechar(SpriteChar.e);

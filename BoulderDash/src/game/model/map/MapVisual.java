@@ -86,7 +86,7 @@ public class MapVisual extends Map
 
 		}
 
-		Rockford player = Rockford.getRockford();
+		Rockford player = Rockford.getInstance();
 		if (player != null)
 		{
 			System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY());

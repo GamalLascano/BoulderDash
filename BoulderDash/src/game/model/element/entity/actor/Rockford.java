@@ -55,20 +55,6 @@ public class Rockford extends Actor
 	}
 
 	/**
-	 * Retorna a Rockford, se utiliza antes de invocar al singleton.
-	 * Puede retornar null.
-	 * @return Rockford o null
-	 */
-	public static Rockford getRockford()
-	{
-		if (player == null)
-		{
-			player = null;
-		}
-		return player;
-	}
-
-	/**
 	 * Resetea a Rockford.
 	 */
 	public void reset()

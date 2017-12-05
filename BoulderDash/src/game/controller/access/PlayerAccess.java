@@ -17,7 +17,7 @@ public class PlayerAccess
 	 */
 	public static void updateMove()
 	{
-		Rockford player = Rockford.getRockford(); // try catch sonido
+		Rockford player = Rockford.getInstance(); // try catch sonido
 		if (Keyboard.isUp())
 		{
 			player.move(Direction.UP);
@@ -41,7 +41,7 @@ public class PlayerAccess
 	 */
 	public static void resetPlayer()
 	{
-		Rockford.getRockford().reset();
+		Rockford.getInstance().reset();
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class PlayerAccess
 	 */
 	public static Rockford getPlayer()
 	{
-		return Rockford.getRockford();
+		return Rockford.getInstance();
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class PlayerAccess
 	 */
 	public static Integer getDiamonds()
 	{
-		return Rockford.getRockford().getDiamonds();
+		return Rockford.getInstance().getDiamonds();
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class PlayerAccess
 	 */
 	public static Integer getLives()
 	{
-		return Rockford.getRockford().getLives();
+		return Rockford.getInstance().getLives();
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class PlayerAccess
 	 */
 	public static Integer getScore()
 	{
-		return Rockford.getRockford().getScore();
+		return Rockford.getInstance().getScore();
 	}
 
 }

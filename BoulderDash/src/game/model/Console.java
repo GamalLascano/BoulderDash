@@ -44,7 +44,7 @@ public class Console
 		MapVisual.imprimirMapa();
 		System.out.println("Usar las teclas (w)(a)(s)(d) para mover a Rockford, (e) para esperar, apretar (q) para quitar el nivel");
 
-		Rockford player = Rockford.getRockford();
+		Rockford player = Rockford.getInstance();
 		while (!quit)
 		{
 			String dir = in.next();

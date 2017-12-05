@@ -41,7 +41,7 @@ public class Keyboard extends KeyAdapter
 
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 		{
-			Rockford.getRockford().die();
+			Rockford.getInstance().die();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_UP)
@@ -64,7 +64,7 @@ public class Keyboard extends KeyAdapter
 				}
 				e1.printStackTrace();
 			}
-			Rockford.getRockford().reset();
+			Rockford.getInstance().reset();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
@@ -87,7 +87,7 @@ public class Keyboard extends KeyAdapter
 				}
 				e1.printStackTrace();
 			}
-			Rockford.getRockford().reset();
+			Rockford.getInstance().reset();
 		}
 	}
 
