@@ -1,0 +1,70 @@
+﻿Correciones
+UML
+
+> el uml esta mas ordenado, 
+hay metodos de clases padres que no pusimos de vuelta en las clases hijos.
+
+*Está dos veces las clase MapCell.
+- borrado
+
+*Falta poner los nombres de los roles a las relaciones entre clase.
+- Relaciones entre clases al lado derecho de las flechas
+
+*No indica la cardinalidad entre las relaciones
+- Cardinalidad al lado derecho de las flechas
+
+*El UML no coincide con el código entregado. Por ejemplo, según el UML la clase Game dedería tener 3 variables de instancia y una coleccion de niveles. En UML StatusItem es subclase de item, pero en el código no. En UML dice Vacio, en código Empty.
+- Coincide con la nueva version, no pusimos las relaciones import por legibilidad
+
+*Las relaciones entre clases no deben estar en la secciones de variables de la clase. Por ejemplo, singleton de la clase ActiveEntities, debería ser una flecha a sí mismo.
+- Singleton con flechas y nombre de la variable al lado
+
+POO
+
+> Organizamos las clases en multiples paquetes
+> game.model tiene direction y console (ejecucion en consola)
+> game.model.element tiene todos los elementos.
+> game.model.map contiene los mapas y mapinstance.
+> Agragamos una interfaz moveable para los elementos que tienen metodos mover.
+
+*No hace un correcto uso del polimorfismo. Al tener tres mapas distintos de actor, item y cell pregunta la posición en cada una para determinar qué elmento está en la posición. Se debería pensar en una jeraquia en el cual se puede representar todos los elementos en una sola colección y trabajar el comportamiento usando polimorfismo.
+- El juego esta diseñado con 3 mapas de elementos y 1 mapa de caracteres.
+Ahora todos los elementos (celdas, actores y items) tienen un padre element
+se podria hacer una matriz de elements ahora.
+
+*No respeta el encapsulamiento, casi todas las variables de instancia tienen modificador de acceso package.
+- variables del modelo son privadas ahora, menos las de: Console (hay main), Actor (protected) y Fallable (protected)
+
+*No está bien el uso de las variables y métodos de clase. Por ejemplo, es posible llamar al método de clase findRockford de AtiveEntities sin haber creado una instancia de la misma, lo que conlleva a un error, ya que la lista de entidades solo se crea cuando se invoca a start.
+- Rockford, exit son singletons con metodos no estaticos ahora. No existe mas findRockford.
+
+*No debería haber código como list.get(i) instanceof Rockford. Deberia trabajar con la interacción entre los objetos, por ejemplo, preguntando a Rockford su posición.
+- Arreglado con metodos que estan en entity y cell. (isRockford, isExit etc...).
+- usamos mas polimorfismo para actualizar el movimiento
+
+*En el método push de Rockford, se busca el elemento en la lista para actualizar. Se debería acceder directamente si se dispone de la posición de la elemento.
+- habia un metodo push obsoleto, ahora esta borrado y los if son mas legibles. (Ver Push de rockford)
+no se busca mas la roca en la lista.
+
+Documentación
+
+*Hay clases sin documentar, por ejemplo ActiveEntities, Game, Diamond
+- Ahora esta todo documentado, algunos metodos no necesitan descripcion (singletons, constructores, algunos overrides tienen descripcion en el metodo padre)
+
+Java
+
+*Usar nombres mas representativos para las variables. Por ejemplo list de la clase ActiveEntities no es un nombre adecuado, deberia ser entities o listOfEntities.
+- Es mas ordenado cambiamos ActiveEntities por ListOfEnitites.
+
+* Evitar redundancia: this.state.isAlive()==false es equivalente a this.state.isAlive().
+- El codigo esta mas modularizado para mejor legibilidad y sacamos las redundancia.
+
+*No usar synchronized o Timer sin un sentido
+- Borramos Timer y syncronized.
+
+Funcionamiento
+
+*Hay funcionalidad sin programar, por ejemplo las explosiones de mariposas y luciérnagas, el crecimiento de las amebas.
+- Programamos las funcionalidades que faltaban. (Amoeba, enemigos, muros magicos)
+
+*el jar funciona correctamente, y permite mover al personaje con el teclado.
