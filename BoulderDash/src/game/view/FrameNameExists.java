@@ -15,8 +15,7 @@ import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.Scorename;
 
 /**
- * Si el nombre ya existe en la lista
- * de scorenames, este frame aparece
+ * Si el nombre ya existe en la lista de scorenames, este frame aparece
  *
  */
 public class FrameNameExists extends JFrame
@@ -32,6 +31,7 @@ public class FrameNameExists extends JFrame
 	private JButton button2;
 	private JLabel scoreinfo;
 	private Scorename score;
+
 	private FrameNameExists()
 	{
 		setLayout(new FlowLayout());
@@ -53,6 +53,7 @@ public class FrameNameExists extends JFrame
 		}
 		return framenameexists;
 	}
+
 	/**
 	 * Construye el panel.
 	 */
@@ -68,18 +69,20 @@ public class FrameNameExists extends JFrame
 		panelend.add(scoreinfo, Constraint.get());
 
 		button1 = new JButton("Sobreescribir");
-		button1.addActionListener(new ActionListener() {
+		button1.addActionListener(new ActionListener()
+		{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (score!=null) {
+				if (score != null)
+				{
 					ListOfScorename.getInstance().replaceNameTable(score);
 					setVisible(false);
 					FrameMenu.runFrameMenu();
 				}
 			}
-			
+
 		});
 		button1.setSize(100, 50);
 		Constraint.setup(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
@@ -102,12 +105,13 @@ public class FrameNameExists extends JFrame
 
 	/**
 	 * Se muestra si el nombre ya existe en el top.
+	 * 
 	 * @param score
 	 */
 	public static void runFrameNameExists(Scorename score)
 	{
 		FrameNameExists runFrameNameExists = FrameNameExists.getInstance();
 		runFrameNameExists.setVisible(true);
-		runFrameNameExists.score=score;
+		runFrameNameExists.score = score;
 	}
 }

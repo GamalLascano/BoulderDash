@@ -47,7 +47,7 @@ public class PanelConfig extends JPanel
 		panel = frame.getPanel();
 		button = frame.getButtons()[0];
 	}
-	
+
 	private PanelConfig()
 	{
 		panel = null;
@@ -62,9 +62,10 @@ public class PanelConfig extends JPanel
 		}
 		return configpanel;
 	}
-	
+
 	/**
 	 * Inicializacion.
+	 * 
 	 * @param frame
 	 * @return configpanel
 	 */
@@ -76,14 +77,14 @@ public class PanelConfig extends JPanel
 		}
 		return configpanel;
 	}
-	
+
 	/**
 	 * Valores iniciales de configuracion.
 	 */
 	public static void defaultConfig(FrameMenu frame)
 	{
 		initialize(frame);
-		
+
 		top = new JComboBox<>(tops);
 		resoluciones = new JComboBox<>(resolutions);
 		fullScr = new JCheckBox("Pantalla Completa");
@@ -92,7 +93,7 @@ public class PanelConfig extends JPanel
 		resoluciones.setSelectedIndex(0);
 		fullScr.setSelected(false);
 		levelsel.setSelectedItem(0);
-		
+
 		MapAccess.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
 	}
 
@@ -221,19 +222,17 @@ public class PanelConfig extends JPanel
 		Constraint.setup(0, 5, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(button, Constraint.get());
 	}
-	
+
 	/**
-	 * Devuelve el valor del nivel inicial
-	 * de la configuracion que fue eligido.
+	 * Devuelve el valor del nivel inicial de la configuracion que fue eligido.
 	 */
 	public Object getConfigLevel()
 	{
 		return levelsel.getSelectedItem();
 	}
-	
+
 	/**
-	 * Devuelve el valor de top X
-	 * de la configuracion que fue eligido.
+	 * Devuelve el valor de top X de la configuracion que fue eligido.
 	 */
 	public Object getConfigTop()
 	{

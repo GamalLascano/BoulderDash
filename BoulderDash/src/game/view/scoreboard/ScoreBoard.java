@@ -35,8 +35,8 @@ public class ScoreBoard
 	}
 
 	/**
-	 * Lee el archivo y pone los datos en una lista de scorenames.
-	 * tambien ordenada la lista.
+	 * Lee el archivo y pone los datos en una lista de scorenames. tambien
+	 * ordenada la lista.
 	 * 
 	 * @param scorenamelist
 	 * @throws IOException
@@ -69,10 +69,10 @@ public class ScoreBoard
 					participant = (Scorename) input.readObject();
 					ListOfScorename.getList().add(participant);
 				}
-				catch(EOFException e)
+				catch (EOFException e)
 				{
 					endfile = true;
-					//e.printStackTrace();
+					// e.printStackTrace();
 				}
 			}
 			input.close();

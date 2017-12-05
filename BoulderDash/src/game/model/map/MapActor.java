@@ -33,7 +33,7 @@ public class MapActor extends Map
 		}
 		return mapactor;
 	}
-	
+
 	/**
 	 * Recupera un actor de la matriz, usando un objeto posicion.
 	 * 
@@ -152,7 +152,7 @@ public class MapActor extends Map
 		matrix = new Actor[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
 		fill();
 	}
-	
+
 	@Override
 	public void fill()
 	{

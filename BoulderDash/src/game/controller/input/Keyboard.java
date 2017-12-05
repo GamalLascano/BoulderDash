@@ -141,7 +141,5 @@ public class Keyboard extends KeyAdapter
 	{
 		return left;
 	}
-	
-	
 
 }

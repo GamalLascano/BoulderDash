@@ -24,6 +24,7 @@ public class MapItem extends Map
 
 	/**
 	 * Singleton de MapItem.
+	 * 
 	 * @return mapitem
 	 */
 	public static MapItem getInstance()
@@ -37,6 +38,7 @@ public class MapItem extends Map
 
 	/**
 	 * Devuelve un item de la matriz.
+	 * 
 	 * @param pos
 	 * @return item
 	 */
@@ -47,6 +49,7 @@ public class MapItem extends Map
 
 	/**
 	 * Devuelve un item de la matriz, utiliza coordenadas X,Y.
+	 * 
 	 * @param x
 	 * @param y
 	 * @return item
@@ -58,12 +61,14 @@ public class MapItem extends Map
 
 	/**
 	 * Devuelve un diamante si no puede devuelve null.
+	 * 
 	 * @param pos
 	 * @return diamante
 	 */
 	public static Diamond getDiamond(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+				&& 0 <= pos.getY())
 		{
 			if (matrix[pos.getX()][pos.getY()].isDiamond())
 			{
@@ -82,6 +87,7 @@ public class MapItem extends Map
 
 	/**
 	 * Devuelve un diamante si no puede devuelve null, utiliza coordenadas X,Y.
+	 * 
 	 * @param x
 	 * @param y
 	 * @return
@@ -107,6 +113,7 @@ public class MapItem extends Map
 
 	/**
 	 * Devuelve un rock si no puede devuelve null, utiliza coordenadas X,Y.
+	 * 
 	 * @param x
 	 * @param y
 	 * @return
@@ -132,6 +139,7 @@ public class MapItem extends Map
 
 	/**
 	 * Setea un item en la matriz.
+	 * 
 	 * @param ite
 	 * @return
 	 */
@@ -151,12 +159,14 @@ public class MapItem extends Map
 
 	/**
 	 * Remueve un item de la matriz.
+	 * 
 	 * @param pos
 	 * @return
 	 */
 	public static boolean removeItem(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY() && 0 <= pos.getY())
+		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+				&& 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = new Empty(pos);
 			return true;

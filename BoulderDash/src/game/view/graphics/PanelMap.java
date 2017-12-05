@@ -152,11 +152,9 @@ public class PanelMap extends JPanel
 				break;
 		}
 	}
-	
-	
+
 	/**
-	 * Cambia el tamanio de las celdas para multiples
-	 * resoluciones.
+	 * Cambia el tamanio de las celdas para multiples resoluciones.
 	 */
 	public void cambiarsize()
 	{

@@ -83,7 +83,8 @@ public class PanelMenu extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				Sound.button();
-				PanelRules.getInstance().showRules(FrameMenu.getInstance());;
+				PanelRules.getInstance().showRules(FrameMenu.getInstance());
+				;
 			}
 		});
 

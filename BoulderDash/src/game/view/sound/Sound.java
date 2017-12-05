@@ -11,8 +11,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 /**
- * Generador de sonidos. Levanta los archivos wav
- * y contiene metodos para cada sonido.
+ * Generador de sonidos. Levanta los archivos wav y contiene metodos para cada
+ * sonido.
  */
 public class Sound extends JFrame
 {
@@ -22,12 +22,12 @@ public class Sound extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private static Sound playsound;
-	
+
 	private Sound()
 	{
 
 	}
-	
+
 	public static Sound getInstance()
 	{
 		if (playsound == null)
@@ -146,7 +146,7 @@ public class Sound extends JFrame
 		}
 		clip.start();
 	}
-	
+
 	/**
 	 * Sonido de cavar.
 	 */
@@ -190,7 +190,7 @@ public class Sound extends JFrame
 		}
 		clip.start();
 	}
-	
+
 	/**
 	 * Sonido de empuje de rocas.
 	 */
@@ -212,7 +212,7 @@ public class Sound extends JFrame
 		}
 		clip.start();
 	}
-	
+
 	/**
 	 * Sonido cuando camina rockford.
 	 */
@@ -234,7 +234,7 @@ public class Sound extends JFrame
 		}
 		clip.start();
 	}
-	
+
 	// SOUND TEST
 	// public static void main(String[] args)
 	// {

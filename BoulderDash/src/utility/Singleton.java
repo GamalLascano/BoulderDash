@@ -19,6 +19,7 @@ public class Singleton
 
 	/**
 	 * Singleton
+	 * 
 	 * @return single
 	 */
 	public static Singleton getInstance()

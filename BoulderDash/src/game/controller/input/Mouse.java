@@ -49,8 +49,8 @@ public class Mouse extends MouseAdapter
 	public void mouseClicked(MouseEvent e)
 	{
 		JLabel label = (JLabel) e.getSource();
-		
-		if( label.getText().equals("<") )
+
+		if (label.getText().equals("<"))
 		{
 			Integer level = MapInstance.getSelectedLevel() - 1;
 			try
@@ -76,14 +76,14 @@ public class Mouse extends MouseAdapter
 					}
 					e2.printStackTrace();
 				}
-				
+
 				e1.printStackTrace();
 			}
 			Rockford.getRockford().reset();
 			FrameMap.getInstance().refreshLevelLabel();
 		}
-		
-		if( label.getText().equals(">") )
+
+		if (label.getText().equals(">"))
 		{
 			Integer level = MapInstance.getSelectedLevel() + 1;
 			try
@@ -106,7 +106,7 @@ public class Mouse extends MouseAdapter
 			Rockford.getRockford().reset();
 			FrameMap.getInstance().refreshLevelLabel();
 		}
-		
+
 	}
-	
+
 }

@@ -36,16 +36,20 @@ public class GameThread extends TimerTask
 	}
 
 	/**
-	 * Ejecucion en loop.<p>
-	 * 1. Incrementa un turno y remueve los elementos del
-	 * panel.<p>
-	 * 2. Refresca el juego cada turno.<p>
-	 * 3. Pierde si no tiene mas vidas,
-	 * gana si llega a la salida.<p>
-	 * 4. Cada turno verifica si el jugador gano o
-	 * perdio, hace algo en cada caso.<p>
-	 * 5. Cuando pierde, se parra el juego,
-	 * ejecuta el frame de entrada de score y termina el timer.<p>
+	 * Ejecucion en loop.
+	 * <p>
+	 * 1. Incrementa un turno y remueve los elementos del panel.
+	 * <p>
+	 * 2. Refresca el juego cada turno.
+	 * <p>
+	 * 3. Pierde si no tiene mas vidas, gana si llega a la salida.
+	 * <p>
+	 * 4. Cada turno verifica si el jugador gano o perdio, hace algo en cada
+	 * caso.
+	 * <p>
+	 * 5. Cuando pierde, se parra el juego, ejecuta el frame de entrada de score
+	 * y termina el timer.
+	 * <p>
 	 * 
 	 */
 	public void run()

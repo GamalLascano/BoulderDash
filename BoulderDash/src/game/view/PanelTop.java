@@ -95,7 +95,7 @@ public class PanelTop extends JPanel
 		Constraint.setup(0, 2, 1, 1, 1, 0.8, GridBagConstraints.BELOW_BASELINE, GridBagConstraints.CENTER);
 		panel.add(button, Constraint.get());
 	}
-	
+
 	/**
 	 * Carga los datos del archivo scoreboard y los pone en una tablemodel para
 	 * monstrar solo x filas.
@@ -108,13 +108,13 @@ public class PanelTop extends JPanel
 	 */
 	private void showXrow(Integer x) throws ClassNotFoundException, FileNotFoundException, IOException, URISyntaxException
 	{
-		//ScoreBoard.getInstance().readScorenames();
+		// ScoreBoard.getInstance().readScorenames();
 		makeTableshow(x);
 		tablemodel = null;
 		tablemodel = new DefaultTableModel(tableshow, tablecolumn);
 		table.setModel(tablemodel);
 	}
-	
+
 	/**
 	 * Tabla que se monstrara en el menu top.
 	 */

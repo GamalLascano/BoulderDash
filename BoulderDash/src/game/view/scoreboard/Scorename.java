@@ -3,10 +3,8 @@ package game.view.scoreboard;
 import java.io.Serializable;
 
 /**
- * Objeto que contiene la informacion
- * de los participantes para la tabla de score.
- * Tiene getters y setters commun y un equal que
- * evalua el nombre solo.
+ * Objeto que contiene la informacion de los participantes para la tabla de
+ * score. Tiene getters y setters commun y un equal que evalua el nombre solo.
  */
 public class Scorename implements Serializable
 {
@@ -27,7 +25,7 @@ public class Scorename implements Serializable
 		Points = null;
 		Time = null;
 	}
-	
+
 	public Scorename(Integer rank, String name, Integer points, Integer time)
 	{
 		Rank = rank;
@@ -104,8 +102,5 @@ public class Scorename implements Serializable
 			return false;
 		return true;
 	}
-	
-	
 
-	
 }

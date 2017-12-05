@@ -5,7 +5,7 @@ package game.model.map;
  */
 public abstract class Map
 {
-	
+
 	/**
 	 * Inicializa el mapa.
 	 */

@@ -166,7 +166,7 @@ public class MapInstance
 	 */
 	public static void buildSelectedLevel(Integer selectedLevel) throws LevelNotValidException
 	{
-		if(selectedLevel <= 0 || selectedLevel >= 10)
+		if (selectedLevel <= 0 || selectedLevel >= 10)
 		{
 			throw new LevelNotValidException("Nivel no valido");
 		}
@@ -178,14 +178,15 @@ public class MapInstance
 			MapItem.getInstance().start();
 			MapActor.getInstance().start();
 			ListOfEntities.start();
-	
+
 			MapInstance.selectedLevel = selectedLevel;
 			MapInstance.readLevel();
 			try
 			{
-			MapInstance.buildMap();
+				MapInstance.buildMap();
 			}
-			catch (RockfordNotInLevelException e) {
+			catch (RockfordNotInLevelException e)
+			{
 				e.printStackTrace();
 			}
 			MapVisual.drawMap();
@@ -433,7 +434,7 @@ public class MapInstance
 
 			}
 		}
-		if(!ListOfEntities.getList().contains(Rockford.getInstance()))
+		if (!ListOfEntities.getList().contains(Rockford.getInstance()))
 		{
 			throw new RockfordNotInLevelException("Rockford no esta en el mapa");
 		}
