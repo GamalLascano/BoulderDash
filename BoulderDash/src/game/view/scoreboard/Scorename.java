@@ -3,8 +3,10 @@ package game.view.scoreboard;
 import java.io.Serializable;
 
 /**
- * Objeto para poner en la tabla de score.
- *
+ * Objeto que contiene la informacion
+ * de los participantes para la tabla de score.
+ * Tiene getters y setters commun y un equal que
+ * evalua el nombre solo.
  */
 public class Scorename implements Serializable
 {

@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Lista que contiene las entidades.
+ * Lista que contiene la informacion de cada jugador del top.
  */
 public class ListOfScorename
 {
@@ -24,7 +24,7 @@ public class ListOfScorename
 	}
 
 	/**
-	 * Singleton de la lista de entidades.
+	 * Singleton de la lista de scorenames.
 	 * 
 	 * @return singleton
 	 */
@@ -48,7 +48,7 @@ public class ListOfScorename
 	/**
 	 * Devuelve la lista.
 	 * 
-	 * @return Retorna la lista de entidades
+	 * @return Retorna la lista de scorenames
 	 */
 	public static List<Scorename> getList()
 	{

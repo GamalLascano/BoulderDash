@@ -38,6 +38,9 @@ public class PanelMap extends JPanel
 	private Image rockforddown;
 	private Image exit;
 
+	/**
+	 * Lee las imagenes, para los gif animado se usa toolkit.
+	 */
 	public PanelMap()
 	{
 		try

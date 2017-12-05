@@ -1,7 +1,7 @@
 package utility;
 
 /**
- * Clase singleton
+ * Clase singleton por defecto.
  *
  */
 public class Singleton
@@ -19,7 +19,7 @@ public class Singleton
 
 	/**
 	 * Singleton
-	 * @return
+	 * @return single
 	 */
 	public static Singleton getInstance()
 	{
