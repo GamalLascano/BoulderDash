@@ -1,13 +1,14 @@
 package game.view.scoreboard;
 
 import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
+//import java.io.File;
+//import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+//import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+//import java.io.ObjectOutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -44,18 +45,22 @@ public class ScoreBoard
 	 */
 	public void readScorenames() throws IOException, ClassNotFoundException
 	{
+
+//		File file = null;
+//		try
+//		{
+//			file = new File(this.filename.toURI());
+//		}
+//		catch (URISyntaxException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}		
+//		FileInputStream streamin = new FileInputStream(file);
+		
+		InputStream streamin = getClass().getResourceAsStream("/res/Menu/Scoreboard.dat");
 		boolean endfile = false;
-		File file = null;
-		try
-		{
-			file = new File(this.filename.toURI());
-		}
-		catch (URISyntaxException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		FileInputStream streamin = new FileInputStream(file);
+
 		if (streamin.available() != 0)
 		{
 			ObjectInputStream input = null;
@@ -89,27 +94,27 @@ public class ScoreBoard
 	 */
 	public void writeScorenames() throws IOException, ClassNotFoundException
 	{
-		File file = null;
-		try
-		{
-			file = new File(this.filename.toURI());
-		}
-		catch (URISyntaxException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		FileOutputStream streamout = new FileOutputStream(file);
-		ObjectOutputStream output = null;
-
-		output = new ObjectOutputStream(streamout);
-		int i;
-		for (i = 0; i < ListOfScorename.getList().size(); i++)
-		{
-			output.writeObject(ListOfScorename.getList().get(i));
-		}
-		output.close();
-
+//		File file = null;
+//		try
+//		{
+//			file = new File(this.filename.toURI());
+//		}
+//		catch (URISyntaxException e)
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		FileOutputStream streamout = new FileOutputStream(file);
+//		ObjectOutputStream output = null;
+//
+//		output = new ObjectOutputStream(streamout);
+//		int i;
+//		for (i = 0; i < ListOfScorename.getList().size(); i++)
+//		{
+//			output.writeObject(ListOfScorename.getList().get(i));
+//		}
+//		output.close();
+//
 	}
 
 }
