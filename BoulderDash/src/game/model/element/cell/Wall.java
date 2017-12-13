@@ -1,7 +1,7 @@
 package game.model.element.cell;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 import game.model.element.entity.item.Diamond;
 import game.model.element.entity.item.Rock;
 import game.model.element.entity.item.StatusFallableEnum;
@@ -25,7 +25,7 @@ public class Wall extends Cell
 	{
 		super(pos);
 		this.magicTimer = 0;
-		this.setSpritechar(SpriteChar.W);
+		this.setSpritechar(ElementChar.W);
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class Wall extends Cell
 	{
 		super(pos);
 		this.magicTimer = magicTime;
-		this.setSpritechar(SpriteChar.W);
+		this.setSpritechar(ElementChar.W);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Wall extends Cell
 		if ((stone.getPosition().getY() == this.getPosition().checkUp()) && (stone.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
 		{
 
-			this.setSpritechar(SpriteChar.w);
+			this.setSpritechar(ElementChar.w);
 			stone.die();
 			Position diamondPos = new Position(this.getPosition().getX(), this.getPosition().checkDown());
 			Diamond diamond = new Diamond(diamondPos, StatusFallableEnum.FALLINGOFF);
@@ -70,7 +70,7 @@ public class Wall extends Cell
 		}
 		else
 		{
-			this.setSpritechar(SpriteChar.W);
+			this.setSpritechar(ElementChar.W);
 		}
 
 	}
@@ -84,7 +84,7 @@ public class Wall extends Cell
 	{
 		if ((diamond.getPosition().getY() == this.getPosition().checkUp()) && (diamond.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
 		{
-			this.setSpritechar(SpriteChar.w);
+			this.setSpritechar(ElementChar.w);
 			diamond.die();
 			Position rockPos = new Position(this.getPosition().getX(), this.getPosition().checkDown());
 			Diamond rock = new Diamond(rockPos, StatusFallableEnum.FALLINGOFF);
@@ -93,7 +93,7 @@ public class Wall extends Cell
 		}
 		else
 		{
-			this.setSpritechar(SpriteChar.W);
+			this.setSpritechar(ElementChar.W);
 		}
 
 	}

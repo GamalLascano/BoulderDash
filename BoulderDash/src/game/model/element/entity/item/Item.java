@@ -67,6 +67,23 @@ public abstract class Item extends Entity
 			return false;
 		}
 	}
+	
+	/**
+	 * Devuelve si es vacio.
+	 * 
+	 * @return si es un bloque vacio
+	 */
+	public boolean isEmpty()
+	{
+		if (this instanceof Empty)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	/**
 	 * Devuelve si es collectable el objeto.

@@ -12,7 +12,7 @@ package game.model.element;
  *	Items (O: rocas, X: diamante, A: amoeba, _: vacia)<br>
  *	O, X, A, _, <br>
  */
-public enum SpriteChar
+public enum ElementChar
 {
 	//Rockford (d,b,u,n animaciones)
 	R, d, b, u, n,

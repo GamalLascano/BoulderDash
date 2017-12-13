@@ -6,7 +6,7 @@ package game.model.element;
  */
 public abstract class Element
 {
-	private SpriteChar spritechar;
+	private ElementChar spritechar;
 	private Position pos;
 
 	/**
@@ -25,7 +25,7 @@ public abstract class Element
 	 * 
 	 * @return caracter de identificacion
 	 */
-	public SpriteChar getSpritechar()
+	public ElementChar getSpritechar()
 	{
 		return spritechar;
 	}
@@ -35,7 +35,7 @@ public abstract class Element
 	 * 
 	 * @param spritechar
 	 */
-	public void setSpritechar(SpriteChar spritechar)
+	public void setSpritechar(ElementChar spritechar)
 	{
 		this.spritechar = spritechar;
 	}

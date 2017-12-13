@@ -134,15 +134,15 @@ public abstract class Enemy extends Actor
 	@Override
 	public void explode()
 	{
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
+		MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().getY());
+		MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkUp());
+		MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().checkUp());
+		MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().getY());
+		MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().checkDown());
+		MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkDown());
+		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
+		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().getY());
+		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
 
 		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().getY())));
 		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkUp())));

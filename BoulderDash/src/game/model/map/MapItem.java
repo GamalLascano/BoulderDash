@@ -67,7 +67,7 @@ public class MapItem extends Map
 	 */
 	public static Diamond getDiamond(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getInstance().getLevelReader().getHEIGHT() >= pos.getY()
 				&& 0 <= pos.getY())
 		{
 			if (matrix[pos.getX()][pos.getY()].isDiamond())
@@ -94,7 +94,7 @@ public class MapItem extends Map
 	 */
 	public static Diamond getDiamond(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getInstance().getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isDiamond())
 			{
@@ -120,7 +120,7 @@ public class MapItem extends Map
 	 */
 	public static Rock getRock(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getInstance().getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isRock())
 			{
@@ -145,8 +145,8 @@ public class MapItem extends Map
 	 */
 	public static boolean setItem(Item ite)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= ite.getPosition().getX() && 0 <= ite.getPosition().getX()
-				&& MapInstance.getLevelReader().getHEIGHT() >= ite.getPosition().getY() && 0 <= ite.getPosition().getY())
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= ite.getPosition().getX() && 0 <= ite.getPosition().getX()
+				&& MapInstance.getInstance().getLevelReader().getHEIGHT() >= ite.getPosition().getY() && 0 <= ite.getPosition().getY())
 		{
 			matrix[ite.getPosition().getX()][ite.getPosition().getY()] = ite;
 			return true;
@@ -165,7 +165,7 @@ public class MapItem extends Map
 	 */
 	public static boolean removeItem(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getInstance().getLevelReader().getHEIGHT() >= pos.getY()
 				&& 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = new Empty(pos);
@@ -180,7 +180,7 @@ public class MapItem extends Map
 	@Override
 	public void start()
 	{
-		matrix = new Item[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		matrix = new Item[MapInstance.getInstance().getLevelReader().getWIDTH()][MapInstance.getInstance().getLevelReader().getHEIGHT()];
 		fill();
 	}
 
@@ -188,8 +188,8 @@ public class MapItem extends Map
 	public void fill()
 	{
 		Position pos = new Position(0, 0);
-		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
-			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 			{
 				pos.setXY(x, y);
 				matrix[x][y] = new Empty(pos);

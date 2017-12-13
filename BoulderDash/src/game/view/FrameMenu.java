@@ -34,20 +34,8 @@ public class FrameMenu extends JFrame
 	private FrameMenu()
 	{
 		Sound.getInstance();
-		setupFrameMenu();
-		setupPanelMenu();
-
-		add(panel);
-		setPreferredSize(new Dimension(panel.getImage().getWidth(null), panel.getImage().getHeight(null)));
-		pack();
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		buildFrame();
 		PanelConfig.defaultConfig(this);
-	}
-
-	private void start()
-	{
-		showMenu();
 	}
 
 	public static FrameMenu getInstance()
@@ -59,6 +47,29 @@ public class FrameMenu extends JFrame
 		return framemenu;
 	}
 
+	/**
+	 * Initializa el frame.
+	 */
+	private void start()
+	{
+		FrameMenu.getInstance();
+		showMenu();
+	}
+	
+	/**
+	 * Construye el frame.
+	 */
+	private void buildFrame()
+	{
+		setupFrameMenu();
+		setupPanelMenu();
+		add(panel);
+		setPreferredSize(new Dimension(panel.getImage().getWidth(null), panel.getImage().getHeight(null)));
+		pack();
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
 	/**
 	 * Setea la configuracion del frame.
 	 */
@@ -82,7 +93,7 @@ public class FrameMenu extends JFrame
 
 		try
 		{
-			ScoreBoard.getInstance().readScorenames();
+			ScoreBoard.getInstance().findFileAndRead();
 		}
 		catch (ClassNotFoundException | IOException | URISyntaxException e)
 		{
@@ -102,9 +113,9 @@ public class FrameMenu extends JFrame
 		Image buttonimg2;
 		try
 		{
-			buttonimg0 = ImageIO.read(getClass().getResource("/res/Menu/button0.png"));
-			buttonimg1 = ImageIO.read(getClass().getResource("/res/Menu/button1.png"));
-			buttonimg2 = ImageIO.read(getClass().getResource("/res/Menu/button2.png"));
+			buttonimg0 = ImageIO.read(FrameMenu.class.getClassLoader().getResource("./res/Menu/button0.png"));
+			buttonimg1 = ImageIO.read(FrameMenu.class.getClassLoader().getResource("./res/Menu/button1.png"));
+			buttonimg2 = ImageIO.read(FrameMenu.class.getClassLoader().getResource("./res/Menu/button2.png"));
 		}
 		catch (Exception ex)
 		{

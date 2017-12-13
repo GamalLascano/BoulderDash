@@ -1,6 +1,6 @@
 package game.controller.access;
 
-import game.controller.Game;
+import game.controller.LaunchGame;
 
 /**
  * Accede al juego.
@@ -13,6 +13,6 @@ public class GameAccess
 	 */
 	public static void launch()
 	{
-		Game.main(new String[0]);
+		LaunchGame.runGameThread();
 	}
 }

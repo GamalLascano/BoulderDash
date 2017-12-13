@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 import game.model.element.Element;
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 import game.model.element.entity.actor.Actor;
 import game.model.element.entity.actor.Rockford;
 import game.model.element.entity.item.Item;
 import game.model.map.MapCell;
 import game.model.map.MapItem;
-import game.model.map.MapVisual;
+import game.model.map.MapChar;
 
 /**
  * Elementos dinamicos que se pueden mover. Como Actor y Item.
@@ -19,7 +19,7 @@ import game.model.map.MapVisual;
  */
 public abstract class Entity extends Element
 {
-	private HashMap<Integer, SpriteChar> passable = new HashMap<>();
+	private HashMap<Integer, ElementChar> passable = new HashMap<>();
 
 	/**
 	 * Genera una entidad en una posicion.
@@ -87,7 +87,7 @@ public abstract class Entity extends Element
 	 * 
 	 * @return El hashmap de los elementos passables
 	 */
-	public HashMap<Integer, SpriteChar> getPassable()
+	public HashMap<Integer, ElementChar> getPassable()
 	{
 		return passable;
 	}
@@ -97,7 +97,7 @@ public abstract class Entity extends Element
 	 * 
 	 * @param passable
 	 */
-	public void setPassable(HashMap<Integer, SpriteChar> passable)
+	public void setPassable(HashMap<Integer, ElementChar> passable)
 	{
 		this.passable = passable;
 	}
@@ -124,7 +124,7 @@ public abstract class Entity extends Element
 	 */
 	public void putEmptyPassable()
 	{
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean canGoDown()
 	{
-		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode());
+		return this.getPassable().containsKey(MapChar.getChar(this.getPosition().getX(), this.getPosition().checkDown()).hashCode());
 	}
 	
 	/**
@@ -144,7 +144,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean canGoUp()
 	{
-		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode());
+		return this.getPassable().containsKey(MapChar.getChar(this.getPosition().getX(), this.getPosition().checkUp()).hashCode());
 	}
 	
 	/**
@@ -154,7 +154,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean canGoRight()
 	{
-		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode());
+		return this.getPassable().containsKey(MapChar.getChar(this.getPosition().checkRight(), this.getPosition().getY()).hashCode());
 	}
 	
 	/**
@@ -164,7 +164,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean canGoLeft()
 	{
-		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode());
+		return this.getPassable().containsKey(MapChar.getChar(this.getPosition().checkLeft(), this.getPosition().getY()).hashCode());
 	}
 	
 	/**
@@ -174,7 +174,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean canGoDownLeft()
 	{
-		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkLeft(), this.getPosition().checkDown()).hashCode());
+		return this.getPassable().containsKey(MapChar.getChar(this.getPosition().checkLeft(), this.getPosition().checkDown()).hashCode());
 	}
 	
 	/**
@@ -184,7 +184,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean canGoDownRight()
 	{
-		return this.getPassable().containsKey(MapVisual.getChar(this.getPosition().checkRight(), this.getPosition().checkDown()).hashCode());
+		return this.getPassable().containsKey(MapChar.getChar(this.getPosition().checkRight(), this.getPosition().checkDown()).hashCode());
 	}
 	
 	

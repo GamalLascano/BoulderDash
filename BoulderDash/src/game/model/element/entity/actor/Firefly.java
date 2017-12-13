@@ -1,7 +1,7 @@
 package game.model.element.entity.actor;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 
 /**
  * Clase de la Luciernega. Hace una rotacion horaria.
@@ -17,7 +17,7 @@ public class Firefly extends Enemy
 	public Firefly(Position pos)
 	{
 		super(pos);
-		this.setSpritechar(SpriteChar.F);
+		this.setSpritechar(ElementChar.F);
 		this.state = StatusActorEnum.MOVINGUP;
 	}
 

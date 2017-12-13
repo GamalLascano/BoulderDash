@@ -66,7 +66,7 @@ public class MapCell extends Map
 	 */
 	public static Dirt getDirt(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getInstance().getLevelReader().getHEIGHT() >= pos.getY()
 				&& 0 <= pos.getY())
 		{
 			if (matrix[pos.getX()][pos.getY()].isDirt())
@@ -93,7 +93,7 @@ public class MapCell extends Map
 	 */
 	public static Dirt getDirt(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getInstance().getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isDirt())
 			{
@@ -119,7 +119,7 @@ public class MapCell extends Map
 	 */
 	public static Wall getWall(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getInstance().getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y].isWall())
 			{
@@ -144,8 +144,8 @@ public class MapCell extends Map
 	 */
 	public static boolean setCell(Cell cel)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX()
-				&& MapInstance.getLevelReader().getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY())
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= cel.getPosition().getX() && 0 <= cel.getPosition().getX()
+				&& MapInstance.getInstance().getLevelReader().getHEIGHT() >= cel.getPosition().getY() && 0 <= cel.getPosition().getY())
 		{
 			matrix[cel.getPosition().getX()][cel.getPosition().getY()] = cel;
 			return true;
@@ -164,7 +164,7 @@ public class MapCell extends Map
 	 */
 	public static boolean removeCell(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getInstance().getLevelReader().getHEIGHT() >= pos.getY()
 				&& 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
@@ -185,8 +185,8 @@ public class MapCell extends Map
 	public static Exit findExit()
 	{
 		Exit exit;
-		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
-			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 			{
 				if (matrix[x][y].isExit())
 				{
@@ -200,15 +200,15 @@ public class MapCell extends Map
 	@Override
 	public void start()
 	{
-		matrix = new Cell[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		matrix = new Cell[MapInstance.getInstance().getLevelReader().getWIDTH()][MapInstance.getInstance().getLevelReader().getHEIGHT()];
 		fill();
 	}
 
 	@Override
 	public void fill()
 	{
-		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
-			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 			{
 				Position pos = new Position(x, y);
 				Dirt dirt = new Dirt(pos, false);

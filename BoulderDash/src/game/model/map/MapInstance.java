@@ -19,14 +19,14 @@ import game.model.map.bdlevel.BDLevelReader;
 public class MapInstance
 {
 	private static MapInstance mapinstance;
-	private static ListOfEntities listentity;
-	private static BDLevelReader levelReader;
-	private static Integer playerscore;
-	private static Integer selectedLevel;
-	private static Integer diamondsneeded;
-	private static Integer diamondvalue;
-	private static Integer diamondbonus;
-	private static Double timer;
+	private ListOfEntities listentity;
+	private BDLevelReader levelReader;
+	private Integer playerscore;
+	private Integer selectedLevel;
+	private Integer diamondsneeded;
+	private Integer diamondvalue;
+	private Integer diamondbonus;
+	private Double timer;
 
 	private static int[][] levelvalues = new int[][]
 	{
@@ -80,12 +80,12 @@ public class MapInstance
 	{
 		BDLevelReader bdlevel = new BDLevelReader();
 		MapInstance.getInstance();
-		levelReader = bdlevel;
-		listentity = ListOfEntities.getInstance();
+		mapinstance.levelReader = bdlevel;
+		mapinstance.listentity = ListOfEntities.getInstance();
 		MapCell.getInstance().start();
 		MapItem.getInstance().start();
 		MapActor.getInstance().start();
-		MapVisual.getInstance().start();
+		MapChar.getInstance().start();
 		ListOfEntities.start();
 	}
 
@@ -93,7 +93,7 @@ public class MapInstance
 	 * Se occupa de leer el levelreader utilizando el nivel eligido y saca
 	 * informacion de este.
 	 */
-	private static void readLevel()
+	private void readLevel()
 	{
 		try
 		{
@@ -124,9 +124,9 @@ public class MapInstance
 	 * 
 	 * @return levelreader
 	 */
-	public static BDLevelReader getLevelReader()
+	public BDLevelReader getLevelReader()
 	{
-		return MapInstance.levelReader;
+		return levelReader;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class MapInstance
 	 * 
 	 * @return listentity
 	 */
-	public static ListOfEntities getEntitiesActive()
+	public ListOfEntities getEntitiesActive()
 	{
 		return listentity;
 	}
@@ -144,7 +144,7 @@ public class MapInstance
 	 * 
 	 * @return selectedlevel
 	 */
-	public static Integer getSelectedLevel()
+	public Integer getSelectedLevel()
 	{
 		return selectedLevel;
 	}
@@ -154,17 +154,90 @@ public class MapInstance
 	 * 
 	 * @param selectedlevels
 	 */
-	public static void setSelectedLevel(Integer selectedlevels)
+	public void setSelectedLevel(Integer selectedlevels)
 	{
 		selectedLevel = selectedlevels;
 	}
-
+	
+	/**
+	 * Construye y setea el proximo nivel.
+	 */
+	public void levelNext()
+	{
+		setSelectedLevel(selectedLevel + 1);
+		try
+		{
+			buildSelectedLevel(getSelectedLevel());
+		}
+		catch (LevelNotValidException e1)
+		{
+			try
+			{
+				buildSelectedLevel(1);
+			}
+			catch (LevelNotValidException e2)
+			{
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			e1.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Reinicia el nivel.
+	 */
+	public void levelRestart()
+	{
+		try
+		{
+			buildSelectedLevel(selectedLevel);
+		}
+		catch (LevelNotValidException e)
+		{
+			try
+			{
+				buildSelectedLevel(1);
+			}
+			catch (LevelNotValidException e1)
+			{
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Construye y setea el anterior nivel.
+	 */
+	public void levelPrevious()
+	{
+		setSelectedLevel(selectedLevel - 1);
+		try
+		{
+			buildSelectedLevel(getSelectedLevel());
+		}
+		catch (LevelNotValidException e1)
+		{
+			try
+			{
+				buildSelectedLevel(1);
+			}
+			catch (LevelNotValidException e2)
+			{
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			e1.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Resetea el mapinstance y construye el nivel numero x.
 	 * 
 	 * @param selectedLevel
 	 */
-	public static void buildSelectedLevel(Integer selectedLevel) throws LevelNotValidException
+	public void buildSelectedLevel(Integer selectedLevel) throws LevelNotValidException
 	{
 		if (selectedLevel <= 0 || selectedLevel >= 10)
 		{
@@ -179,17 +252,17 @@ public class MapInstance
 			MapActor.getInstance().start();
 			ListOfEntities.start();
 
-			MapInstance.selectedLevel = selectedLevel;
-			MapInstance.readLevel();
+			mapinstance.selectedLevel = selectedLevel;
+			readLevel();
 			try
 			{
-				MapInstance.buildMap();
+				buildMap();
 			}
 			catch (RockfordNotInLevelException e)
 			{
 				e.printStackTrace();
 			}
-			MapVisual.drawMap();
+			MapChar.drawMap();
 		}
 	}
 
@@ -198,7 +271,7 @@ public class MapInstance
 	 * 
 	 * @return timer
 	 */
-	public static Double getTimer()
+	public Double getTimer()
 	{
 		return timer;
 	}
@@ -208,7 +281,7 @@ public class MapInstance
 	 * 
 	 * @return diamondvalue
 	 */
-	public static Integer getDiamondvalue()
+	public Integer getDiamondvalue()
 	{
 		return diamondvalue;
 	}
@@ -218,7 +291,7 @@ public class MapInstance
 	 * 
 	 * @return diamondbonus
 	 */
-	public static Integer getDiamondbonus()
+	public Integer getDiamondbonus()
 	{
 		return diamondbonus;
 	}
@@ -228,7 +301,7 @@ public class MapInstance
 	 * 
 	 * @return playerscore
 	 */
-	public static Integer getPlayerscore()
+	public Integer getPlayerscore()
 	{
 		return playerscore;
 	}
@@ -238,9 +311,9 @@ public class MapInstance
 	 * 
 	 * @param playerscore
 	 */
-	public static void setPlayerscore(Integer playerscore)
+	public void setPlayerscore(Integer playerscore)
 	{
-		MapInstance.playerscore = playerscore;
+		mapinstance.playerscore = playerscore;
 	}
 
 	/**
@@ -248,7 +321,7 @@ public class MapInstance
 	 * 
 	 * @return diamondsneeded
 	 */
-	public static Integer getDiamondsneeded()
+	public Integer getDiamondsneeded()
 	{
 		return diamondsneeded;
 	}
@@ -258,11 +331,11 @@ public class MapInstance
 	 * 
 	 * @param timer
 	 */
-	private static void decrementTimer()
+	private void decrementTimer()
 	{
-		if (MapInstance.timer > 0)
+		if (timer > 0)
 		{
-			MapInstance.timer -= 0.1;
+			timer -= 0.1;
 		}
 	}
 
@@ -271,7 +344,7 @@ public class MapInstance
 	 * 
 	 * @param pos
 	 */
-	public static void kill(Position pos)
+	public void kill(Position pos)
 	{
 		MapCell.getCell(pos.getX(), pos.getY()).clear();
 		MapItem.getItem(pos.getX(), pos.getY()).die();
@@ -285,7 +358,7 @@ public class MapInstance
 	 * @param x
 	 * @param y
 	 */
-	public static void kill(Integer x, Integer y)
+	public void kill(Integer x, Integer y)
 	{
 		if (!MapCell.getCell(x, y).isTitanium())
 		{
@@ -305,9 +378,9 @@ public class MapInstance
 	 * @param y
 	 * @return boolean
 	 */
-	public static boolean isInMapLimits(Integer x, Integer y)
+	public boolean isInMapLimits(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() > x && MapInstance.getLevelReader().getHEIGHT() > y && 0 <= x && 0 <= y)
+		if (getLevelReader().getWIDTH() > x && getLevelReader().getHEIGHT() > y && 0 <= x && 0 <= y)
 		{
 			return true;
 		}
@@ -322,7 +395,7 @@ public class MapInstance
 	 * 
 	 * @return boolean
 	 */
-	public static boolean levelHasRockford()
+	public boolean levelHasRockford()
 	{
 		if (ListOfEntities.getList().contains(Rockford.getInstance()))
 		{
@@ -338,10 +411,10 @@ public class MapInstance
 	 * Refresca el mapa, decrementa el timer, dibuja el mapa y cambia la
 	 * posicion de los elementos.
 	 */
-	public static void refresh()
+	public void refresh()
 	{
-		MapInstance.decrementTimer();
-		MapVisual.drawMap();
+		decrementTimer();
+		MapChar.drawMap();
 		int i;
 		for (i = 0; i < ListOfEntities.getList().size(); ++i)
 		{
@@ -354,7 +427,7 @@ public class MapInstance
 	 * Genera el mapa utilizando los tiles del levelreader, creando los
 	 * elementos y poniendolos en las matrices.
 	 */
-	private static void buildMap() throws RockfordNotInLevelException
+	private void buildMap() throws RockfordNotInLevelException
 	{
 		ListOfEntities.getList().clear();
 		for (int y = 0; y < levelReader.getHEIGHT(); y++)

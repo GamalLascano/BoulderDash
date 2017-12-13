@@ -1,7 +1,7 @@
 package game.model.element.entity.item;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 import game.model.element.entity.ListOfEntities;
 import game.model.element.entity.Moveable;
 import game.model.element.entity.item.Diamond;
@@ -31,7 +31,7 @@ public class Amoeba extends Item implements Moveable
 	public Amoeba(Position pos)
 	{
 		super(pos, false, false, false);
-		this.setSpritechar(SpriteChar.A);
+		this.setSpritechar(ElementChar.A);
 		this.expanding = true;
 		this.expandtime = 0;
 		this.state = StatusAmoebaEnum.EXPANDUP;
@@ -46,7 +46,7 @@ public class Amoeba extends Item implements Moveable
 	private Amoeba(Position pos, int expandtime)
 	{
 		super(pos, false, false, false);
-		this.setSpritechar(SpriteChar.A);
+		this.setSpritechar(ElementChar.A);
 		this.expanding = true;
 		this.expandtime = expandtime;
 		this.state = StatusAmoebaEnum.EXPANDUP;
@@ -163,7 +163,7 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoUp())
 		{
-			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
+			MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkUp());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp()), this.expandtime);
 			MapItem.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
@@ -179,7 +179,7 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoDown())
 		{
-			MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
+			MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkDown());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown()), this.expandtime);
 			MapItem.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
@@ -195,7 +195,7 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoRight())
 		{
-			MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
+			MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().getY());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY()), this.expandtime);
 			MapItem.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
@@ -211,7 +211,7 @@ public class Amoeba extends Item implements Moveable
 	{
 		if (this.canGoLeft())
 		{
-			MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
+			MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().getY());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY()), this.expandtime);
 			MapItem.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
@@ -229,11 +229,11 @@ public class Amoeba extends Item implements Moveable
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
-		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
-		this.getPassable().put(SpriteChar.F.hashCode(), SpriteChar.F);
-		this.getPassable().put(SpriteChar.B.hashCode(), SpriteChar.B);
+		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.D.hashCode(), ElementChar.D);
+		this.getPassable().put(ElementChar.X.hashCode(), ElementChar.X);
+		this.getPassable().put(ElementChar.F.hashCode(), ElementChar.F);
+		this.getPassable().put(ElementChar.B.hashCode(), ElementChar.B);
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package game.model.element.entity.item;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapActor;
 import game.model.map.MapCell;
@@ -22,8 +22,8 @@ public class Rock extends Fallable
 	public Rock(Position pos)
 	{
 		super(pos, false, true, true, StatusFallableEnum.IDLE);
-		this.setSpritechar(SpriteChar.O);
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.setSpritechar(ElementChar.O);
+		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class Rock extends Fallable
 	public Rock(Position pos, StatusFallableEnum state)
 	{
 		super(pos, false, true, true, state);
-		this.setSpritechar(SpriteChar.O);
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
+		this.setSpritechar(ElementChar.O);
+		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
 	}
 
 	/**
@@ -166,13 +166,13 @@ public class Rock extends Fallable
 	 */
 	private void putFallingPassables()
 	{
-		this.getPassable().put(SpriteChar.R.hashCode(), SpriteChar.R);
-		this.getPassable().put(SpriteChar.n.hashCode(), SpriteChar.n);
-		this.getPassable().put(SpriteChar.u.hashCode(), SpriteChar.u);
-		this.getPassable().put(SpriteChar.d.hashCode(), SpriteChar.d);
-		this.getPassable().put(SpriteChar.b.hashCode(), SpriteChar.b);
-		this.getPassable().put(SpriteChar.B.hashCode(), SpriteChar.B);
-		this.getPassable().put(SpriteChar.F.hashCode(), SpriteChar.F);
+		this.getPassable().put(ElementChar.R.hashCode(), ElementChar.R);
+		this.getPassable().put(ElementChar.n.hashCode(), ElementChar.n);
+		this.getPassable().put(ElementChar.u.hashCode(), ElementChar.u);
+		this.getPassable().put(ElementChar.d.hashCode(), ElementChar.d);
+		this.getPassable().put(ElementChar.b.hashCode(), ElementChar.b);
+		this.getPassable().put(ElementChar.B.hashCode(), ElementChar.B);
+		this.getPassable().put(ElementChar.F.hashCode(), ElementChar.F);
 	}
 
 	/**
@@ -180,13 +180,13 @@ public class Rock extends Fallable
 	 */
 	private void removeFallingPassables()
 	{
-		this.getPassable().remove(SpriteChar.R.hashCode(), SpriteChar.R);
-		this.getPassable().remove(SpriteChar.n.hashCode(), SpriteChar.n);
-		this.getPassable().remove(SpriteChar.u.hashCode(), SpriteChar.u);
-		this.getPassable().remove(SpriteChar.d.hashCode(), SpriteChar.d);
-		this.getPassable().remove(SpriteChar.b.hashCode(), SpriteChar.b);
-		this.getPassable().remove(SpriteChar.B.hashCode(), SpriteChar.B);
-		this.getPassable().remove(SpriteChar.F.hashCode(), SpriteChar.F);
+		this.getPassable().remove(ElementChar.R.hashCode(), ElementChar.R);
+		this.getPassable().remove(ElementChar.n.hashCode(), ElementChar.n);
+		this.getPassable().remove(ElementChar.u.hashCode(), ElementChar.u);
+		this.getPassable().remove(ElementChar.d.hashCode(), ElementChar.d);
+		this.getPassable().remove(ElementChar.b.hashCode(), ElementChar.b);
+		this.getPassable().remove(ElementChar.B.hashCode(), ElementChar.B);
+		this.getPassable().remove(ElementChar.F.hashCode(), ElementChar.F);
 	}
 
 }

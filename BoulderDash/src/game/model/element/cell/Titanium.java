@@ -1,7 +1,7 @@
 package game.model.element.cell;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 
 /**
  * Clase que representa el titanio.
@@ -17,7 +17,7 @@ public class Titanium extends Cell
 	public Titanium(Position pos)
 	{
 		super(pos);
-		this.setSpritechar(SpriteChar.T);
+		this.setSpritechar(ElementChar.T);
 	}
 
 }

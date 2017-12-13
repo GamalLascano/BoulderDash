@@ -2,8 +2,6 @@ package game.controller.input;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
-import game.exception.LevelNotValidException;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 
@@ -46,47 +44,13 @@ public class Keyboard extends KeyAdapter
 
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_UP)
 		{
-			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() + 1);
-			try
-			{
-				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
-			}
-			catch (LevelNotValidException e1)
-			{
-				try
-				{
-					MapInstance.buildSelectedLevel(1);
-				}
-				catch (LevelNotValidException e2)
-				{
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				e1.printStackTrace();
-			}
+			MapInstance.getInstance().levelNext();
 			Rockford.getInstance().reset();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
 		{
-			MapInstance.setSelectedLevel(MapInstance.getSelectedLevel() - 1);
-			try
-			{
-				MapInstance.buildSelectedLevel(MapInstance.getSelectedLevel());
-			}
-			catch (LevelNotValidException e1)
-			{
-				try
-				{
-					MapInstance.buildSelectedLevel(1);
-				}
-				catch (LevelNotValidException e2)
-				{
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				e1.printStackTrace();
-			}
+			MapInstance.getInstance().levelPrevious();
 			Rockford.getInstance().reset();
 		}
 	}
@@ -113,13 +77,6 @@ public class Keyboard extends KeyAdapter
 		{
 			left = false;
 		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0)
-	{
-		// TODO Auto-generated method stub
-
 	}
 
 	public static boolean isUp()

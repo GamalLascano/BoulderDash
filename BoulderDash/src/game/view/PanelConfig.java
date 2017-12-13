@@ -1,5 +1,6 @@
 package game.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.controller.access.MapAccess;
@@ -34,6 +36,7 @@ public class PanelConfig extends JPanel
 	private static JCheckBox fullScr;
 	private static JComboBox<String> top;
 	private static JComboBox<String> levelsel;
+	private static JLabel label;
 	private static String[] levels =
 	{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 	private static String[] resolutions =
@@ -207,19 +210,35 @@ public class PanelConfig extends JPanel
 			}
 		});
 
-		Constraint.setup(0, 1, 1, 1, 1, 5, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
+		
+		label = new JLabel("Mostrar x Top");
+		label.setForeground(Color.WHITE);
+		Constraint.setup(0, 0, 1, 1, 1, 7, GridBagConstraints.SOUTH, GridBagConstraints.CENTER);
+		panel.add(label, Constraint.get());
+		
+		Constraint.setup(0, 1, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(top, Constraint.get());
 
+		label = new JLabel("Resolucion");
+		label.setForeground(Color.WHITE);
 		Constraint.setup(0, 2, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
+		panel.add(label, Constraint.get());
+		
+		Constraint.setup(0, 3, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(resoluciones, Constraint.get());
 
-		Constraint.setup(0, 3, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
-		panel.add(levelsel, Constraint.get());
-
+		label = new JLabel("Nivel Inicial");
+		label.setForeground(Color.WHITE);
 		Constraint.setup(0, 4, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
+		panel.add(label, Constraint.get());
+		
+		Constraint.setup(0, 5, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
+		panel.add(levelsel, Constraint.get());
+		
+		Constraint.setup(0, 6, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(fullScr, Constraint.get());
 
-		Constraint.setup(0, 5, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
+		Constraint.setup(0, 7, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(button, Constraint.get());
 	}
 

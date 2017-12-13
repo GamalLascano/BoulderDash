@@ -53,15 +53,15 @@ public abstract class Actor extends Entity implements Moveable
 	 */
 	public void explode()
 	{
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkUp());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkUp());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().checkRight(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().getX(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().getY());
-		MapInstance.kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
+		MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().getY());
+		MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkUp());
+		MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().checkUp());
+		MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().getY());
+		MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().checkDown());
+		MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkDown());
+		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().checkDown());
+		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().getY());
+		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
 	}
 
 	/**

@@ -42,7 +42,7 @@ public class MapActor extends Map
 	 */
 	public static Actor getActor(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getInstance().getLevelReader().getHEIGHT() >= pos.getY()
 				&& 0 <= pos.getY())
 		{
 			return matrix[pos.getX()][pos.getY()];
@@ -62,7 +62,7 @@ public class MapActor extends Map
 	 */
 	public static Actor getActor(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getInstance().getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			return matrix[x][y];
 		}
@@ -81,7 +81,7 @@ public class MapActor extends Map
 	 */
 	public static Rockford getRockford(Integer x, Integer y)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getLevelReader().getHEIGHT() >= y && 0 <= y)
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= x && 0 <= x && MapInstance.getInstance().getLevelReader().getHEIGHT() >= y && 0 <= y)
 		{
 			if (matrix[x][y] != null)
 			{
@@ -114,8 +114,8 @@ public class MapActor extends Map
 	 */
 	public static boolean setActor(Actor act)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX()
-				&& MapInstance.getLevelReader().getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY())
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= act.getPosition().getX() && 0 <= act.getPosition().getX()
+				&& MapInstance.getInstance().getLevelReader().getHEIGHT() >= act.getPosition().getY() && 0 <= act.getPosition().getY())
 		{
 			matrix[act.getPosition().getX()][act.getPosition().getY()] = act;
 			return true;
@@ -134,7 +134,7 @@ public class MapActor extends Map
 	 */
 	public static boolean removeActor(Position pos)
 	{
-		if (MapInstance.getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getLevelReader().getHEIGHT() >= pos.getY()
+		if (MapInstance.getInstance().getLevelReader().getWIDTH() >= pos.getX() && 0 <= pos.getX() && MapInstance.getInstance().getLevelReader().getHEIGHT() >= pos.getY()
 				&& 0 <= pos.getY())
 		{
 			matrix[pos.getX()][pos.getY()] = null;
@@ -149,15 +149,15 @@ public class MapActor extends Map
 	@Override
 	public void start()
 	{
-		matrix = new Actor[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		matrix = new Actor[MapInstance.getInstance().getLevelReader().getWIDTH()][MapInstance.getInstance().getLevelReader().getHEIGHT()];
 		fill();
 	}
 
 	@Override
 	public void fill()
 	{
-		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
-			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 			{
 				matrix[x][y] = null;
 			}

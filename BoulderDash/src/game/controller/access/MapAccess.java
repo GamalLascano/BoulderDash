@@ -1,8 +1,8 @@
 package game.controller.access;
 
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 import game.model.map.MapInstance;
-import game.model.map.MapVisual;
+import game.model.map.MapChar;
 
 /**
  * 
@@ -16,7 +16,7 @@ public class MapAccess
 	 */
 	public static void refresh()
 	{
-		MapInstance.refresh();
+		MapInstance.getInstance().refresh();
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class MapAccess
 	 */
 	public static Integer getHeight()
 	{
-		return MapInstance.getLevelReader().getHEIGHT();
+		return MapInstance.getInstance().getLevelReader().getHEIGHT();
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class MapAccess
 	 */
 	public static Integer getWidth()
 	{
-		return MapInstance.getLevelReader().getWIDTH();
+		return MapInstance.getInstance().getLevelReader().getWIDTH();
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class MapAccess
 	 */
 	public static Integer getLevel()
 	{
-		return MapInstance.getSelectedLevel();
+		return MapInstance.getInstance().getSelectedLevel();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class MapAccess
 	 */
 	public static Integer getDiamondsneeded()
 	{
-		return MapInstance.getDiamondsneeded();
+		return MapInstance.getInstance().getDiamondsneeded();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class MapAccess
 	 */
 	public static Integer getTimer()
 	{
-		return MapInstance.getTimer().intValue();
+		return MapInstance.getInstance().getTimer().intValue();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class MapAccess
 	 */
 	public static Integer getTotalScore()
 	{
-		return MapInstance.getPlayerscore();
+		return MapInstance.getInstance().getPlayerscore();
 	}
 
 	/**
@@ -84,9 +84,9 @@ public class MapAccess
 	 * 
 	 * @return caracter de un elemento
 	 */
-	public static SpriteChar getCell(int x, int y)
+	public static ElementChar getCell(int x, int y)
 	{
-		return MapVisual.getChar(x, y);
+		return MapChar.getChar(x, y);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class MapAccess
 	 */
 	public static void setSelectedLevel(Integer selectedlevels)
 	{
-		MapInstance.setSelectedLevel(selectedlevels);
+		MapInstance.getInstance().setSelectedLevel(selectedlevels);
 	}
 
 }

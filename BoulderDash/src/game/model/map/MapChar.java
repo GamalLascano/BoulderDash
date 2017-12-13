@@ -1,24 +1,22 @@
 package game.model.map;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
-import game.model.element.cell.Cell;
+import game.model.element.ElementChar;
 import game.model.element.entity.actor.Rockford;
-import game.model.element.entity.item.Empty;
 
 /**
  * Esta clase es la encargada de agarrar los elementos y hacer una matriz de
  * carateres con estos.
  */
-public class MapVisual extends Map
+public class MapChar extends Map
 {
-	private static MapVisual mapvisual;
-	private static SpriteChar[][] map;
+	private static MapChar mapvisual;
+	private static ElementChar[][] map;
 
 	/**
 	 * Constructor de MapVisual.
 	 */
-	private MapVisual()
+	private MapChar()
 	{
 		map = null;
 	}
@@ -28,11 +26,11 @@ public class MapVisual extends Map
 	 * 
 	 * @return
 	 */
-	public static MapVisual getInstance()
+	public static MapChar getInstance()
 	{
 		if (mapvisual == null)
 		{
-			mapvisual = new MapVisual();
+			mapvisual = new MapChar();
 		}
 		return mapvisual;
 	}
@@ -46,20 +44,20 @@ public class MapVisual extends Map
 		Position pos = new Position(0, 0);
 		int y;
 		int x;
-		for (y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 		{
-			for (x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
 			{
 				pos.setXY(x, y);
 				if (MapActor.getActor(pos) != null)
 				{
 					map[x][y] = MapActor.getActor(pos).getSpritechar();
 				}
-				else if (MapItem.getItem(pos) instanceof Empty == false)
+				else if (!MapItem.getItem(pos).isEmpty())
 				{
 					map[x][y] = MapItem.getItem(pos).getSpritechar();
 				}
-				else if (MapCell.getCell(pos) instanceof Cell)
+				else
 				{
 					map[x][y] = MapCell.getCell(pos).getSpritechar();
 				}
@@ -75,9 +73,9 @@ public class MapVisual extends Map
 	{
 		System.out.println("..............................................................");
 
-		for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 		{
-			for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
+			for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
 			{
 				System.out.print(map[x][y]);
 				System.out.print(" ");
@@ -107,7 +105,7 @@ public class MapVisual extends Map
 	 * @param y
 	 * @return
 	 */
-	public static SpriteChar getChar(int x, int y)
+	public static ElementChar getChar(int x, int y)
 	{
 		return map[x][y];
 	}
@@ -115,18 +113,18 @@ public class MapVisual extends Map
 	@Override
 	public void start()
 	{
-		MapVisual.getInstance();
-		map = new SpriteChar[MapInstance.getLevelReader().getWIDTH()][MapInstance.getLevelReader().getHEIGHT()];
+		MapChar.getInstance();
+		map = new ElementChar[MapInstance.getInstance().getLevelReader().getWIDTH()][MapInstance.getInstance().getLevelReader().getHEIGHT()];
 		fill();
 	}
 
 	@Override
 	public void fill()
 	{
-		for (int x = 0; x < MapInstance.getLevelReader().getWIDTH(); x++)
-			for (int y = 0; y < MapInstance.getLevelReader().getHEIGHT(); y++)
+		for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
+			for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
 			{
-				map[x][y] = SpriteChar.D;
+				map[x][y] = ElementChar.D;
 			}
 	}
 

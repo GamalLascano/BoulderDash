@@ -1,7 +1,7 @@
 package game.model.element.cell;
 
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 
 /**
  * Clase de la celda tierra y vacia (si dirty es false).
@@ -19,7 +19,7 @@ public class Dirt extends Cell
 	{
 		super(pos);
 		this.dirty = true;
-		this.setSpritechar(SpriteChar.D);
+		this.setSpritechar(ElementChar.D);
 	}
 
 	/**
@@ -35,11 +35,11 @@ public class Dirt extends Cell
 		this.dirty = dirty;
 		if (!dirty)
 		{
-			this.setSpritechar(SpriteChar._);
+			this.setSpritechar(ElementChar._);
 		}
 		else
 		{
-			this.setSpritechar(SpriteChar.D);
+			this.setSpritechar(ElementChar.D);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class Dirt extends Cell
 	public void removeDirt()
 	{
 		this.dirty = false;
-		this.setSpritechar(SpriteChar._);
+		this.setSpritechar(ElementChar._);
 	}
 
 	@Override

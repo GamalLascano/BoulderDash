@@ -2,7 +2,7 @@ package game.model.element.entity.actor;
 
 import game.controller.PlaySound;
 import game.model.element.Position;
-import game.model.element.SpriteChar;
+import game.model.element.ElementChar;
 import game.model.element.cell.Dirt;
 import game.model.element.cell.Exit;
 import game.model.element.entity.ListOfEntities;
@@ -32,7 +32,7 @@ public class Rockford extends Actor
 	private Rockford()
 	{
 		super(new Position(0, 0));
-		this.setSpritechar(SpriteChar.R);
+		this.setSpritechar(ElementChar.R);
 		this.lives = 3;
 		this.score = 0;
 		this.diamonds = 0;
@@ -59,7 +59,7 @@ public class Rockford extends Actor
 	 */
 	public void reset()
 	{
-		this.setSpritechar(SpriteChar.R);
+		this.setSpritechar(ElementChar.R);
 		this.lives = 3;
 		this.score = 0;
 		this.diamonds = 0;
@@ -125,12 +125,9 @@ public class Rockford extends Actor
 	{
 		PlaySound.explosion();
 		state = StatusActorEnum.DEAD;
-		if (this.lives > 0)
-		{
-			this.lives--;
-		}
-		MapInstance.setPlayerscore(score);
-		this.score = MapInstance.getPlayerscore();
+		decrementLives();
+		MapInstance.getInstance().setPlayerscore(score);
+		this.score = MapInstance.getInstance().getPlayerscore();
 		this.diamonds = 0;
 		this.explode();
 	}
@@ -183,24 +180,6 @@ public class Rockford extends Actor
 			this.collecting(diamond);
 		}
 	}
-	
-	/**
-	 * Recolecta el diamante.
-	 */
-	private void collecting(Diamond diamond)
-	{
-		PlaySound.diamond();
-		diamonds++;
-		diamond.collected();
-		if (!Exit.getInstance().isOpen())
-		{
-			score += MapInstance.getDiamondvalue();
-		}
-		else
-		{
-			score += MapInstance.getDiamondbonus();
-		}
-	}
 
 	/**
 	 * Se occupa de mover a Rockford en la matriz, tambien verifica si la celda
@@ -212,8 +191,8 @@ public class Rockford extends Actor
 		Exit door = Exit.getInstance();
 		if (player.getPosition().equals(door.getPosition()))
 		{
-			score += 1 + MapInstance.getSelectedLevel();
-			MapInstance.setPlayerscore(score + MapInstance.getPlayerscore());
+			score += 1 + MapInstance.getInstance().getSelectedLevel();
+			MapInstance.getInstance().setPlayerscore(score + MapInstance.getInstance().getPlayerscore());
 			diamonds = 0;
 			return true;
 		}
@@ -238,23 +217,23 @@ public class Rockford extends Actor
 		{
 			case MOVINGUP:
 				makeMoveUp();
-				this.setSpritechar(SpriteChar.n);
+				this.setSpritechar(ElementChar.n);
 				break;
 			case MOVINGDOWN:
 				makeMoveDown();
-				this.setSpritechar(SpriteChar.u);
+				this.setSpritechar(ElementChar.u);
 				break;
 			case MOVINGRIGHT:
 				makeMoveRight();
-				this.setSpritechar(SpriteChar.b);
+				this.setSpritechar(ElementChar.b);
 				break;
 			case MOVINGLEFT:
 				makeMoveLeft();
-				this.setSpritechar(SpriteChar.d);
+				this.setSpritechar(ElementChar.d);
 				break;
 			case IDLE:
 				this.collect(MapItem.getDiamond(getPosition()));
-				this.setSpritechar(SpriteChar.R);
+				this.setSpritechar(ElementChar.R);
 				break;
 			default:
 				break;
@@ -361,6 +340,55 @@ public class Rockford extends Actor
 				break;
 		}
 	}
+
+	@Override
+	public void rotate()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	// METODOS SIMPLES
+	
+	/**
+	 * Pone los passables de Rockford.
+	 */
+	private void putPassables()
+	{
+		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.D.hashCode(), ElementChar.D);
+		this.getPassable().put(ElementChar.X.hashCode(), ElementChar.X);
+		this.getPassable().put(ElementChar.e.hashCode(), ElementChar.e);
+	}
+	
+	/**
+	 * Recolecta el diamante.
+	 */
+	private void collecting(Diamond diamond)
+	{
+		PlaySound.diamond();
+		diamonds++;
+		diamond.collected();
+		if (!Exit.getInstance().isOpen())
+		{
+			score += MapInstance.getInstance().getDiamondvalue();
+		}
+		else
+		{
+			score += MapInstance.getInstance().getDiamondbonus();
+		}
+	}
+
+	/**
+	 * Decrementa una vida de rockford.
+	 */
+	private void decrementLives()
+	{
+		if (this.lives > 0)
+		{
+			this.lives--;
+		}
+	}
 	
 	/**
 	 * Empuja la roca a la derecha.
@@ -387,26 +415,5 @@ public class Rockford extends Actor
 		isPushing = false;
 		getPosition().goLeft();
 	}
-
-	@Override
-	public void rotate()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	// METODOS SIMPLES
-	
-	/**
-	 * Pone los passables de Rockford.
-	 */
-	private void putPassables()
-	{
-		this.getPassable().put(SpriteChar._.hashCode(), SpriteChar._);
-		this.getPassable().put(SpriteChar.D.hashCode(), SpriteChar.D);
-		this.getPassable().put(SpriteChar.X.hashCode(), SpriteChar.X);
-		this.getPassable().put(SpriteChar.e.hashCode(), SpriteChar.e);
-	}
-	
 
 }
