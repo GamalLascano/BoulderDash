@@ -7,9 +7,8 @@ import game.model.element.entity.Moveable;
 import game.model.element.entity.item.Diamond;
 import game.model.element.entity.item.Rock;
 import game.model.element.entity.item.StatusAmoebaEnum;
+import game.model.map.MapElement;
 import game.model.map.MapInstance;
-import game.model.map.MapItem;
-
 /**
  * Clase que representa el Amoeba. Se mueve y se copia a si mismo.
  */
@@ -77,17 +76,17 @@ public class Amoeba extends Item implements Moveable
 	{
 		this.state = StatusAmoebaEnum.DEAD;
 		ListOfEntities.getList().remove(this);
-		MapItem.removeItem(this.getPosition());
+		MapElement.removeElement(this.getPosition());
 		if (this.expanding == false)
 		{
 			Diamond diamondcreated = new Diamond(this.getPosition());
-			MapItem.setItem(diamondcreated);
+			MapElement.setItem(diamondcreated);
 			ListOfEntities.getList().add(diamondcreated);
 		}
 		else
 		{
 			Rock rockcreated = new Rock(this.getPosition());
-			MapItem.setItem(rockcreated);
+			MapElement.setItem(rockcreated);
 			ListOfEntities.getList().add(rockcreated);
 		}
 	}
@@ -121,9 +120,9 @@ public class Amoeba extends Item implements Moveable
 		this.energytime++;
 		if(canExpand())
 		{
-			MapItem.removeItem(this.getPosition());
+			MapElement.removeElement(this.getPosition());
 			this.makeMove();
-			MapItem.setItem(this);
+			MapElement.setItem(this);
 			this.energytime = 0;
 			this.energy--;
 		}
@@ -165,7 +164,7 @@ public class Amoeba extends Item implements Moveable
 		{
 			MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkUp());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkUp()), this.expandtime);
-			MapItem.setItem(amoebacreated);
+			MapElement.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
@@ -181,7 +180,7 @@ public class Amoeba extends Item implements Moveable
 		{
 			MapInstance.getInstance().kill(this.getPosition().getX(), this.getPosition().checkDown());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().getX(), this.getPosition().checkDown()), this.expandtime);
-			MapItem.setItem(amoebacreated);
+			MapElement.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
@@ -197,7 +196,7 @@ public class Amoeba extends Item implements Moveable
 		{
 			MapInstance.getInstance().kill(this.getPosition().checkRight(), this.getPosition().getY());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().checkRight(), this.getPosition().getY()), this.expandtime);
-			MapItem.setItem(amoebacreated);
+			MapElement.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
@@ -213,7 +212,7 @@ public class Amoeba extends Item implements Moveable
 		{
 			MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().getY());
 			Amoeba amoebacreated = new Amoeba(new Position(this.getPosition().checkLeft(), this.getPosition().getY()), this.expandtime);
-			MapItem.setItem(amoebacreated);
+			MapElement.setItem(amoebacreated);
 			ListOfEntities.getList().add(amoebacreated);
 		}
 		else
@@ -229,7 +228,7 @@ public class Amoeba extends Item implements Moveable
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
 		this.getPassable().put(ElementChar.D.hashCode(), ElementChar.D);
 		this.getPassable().put(ElementChar.X.hashCode(), ElementChar.X);
 		this.getPassable().put(ElementChar.F.hashCode(), ElementChar.F);

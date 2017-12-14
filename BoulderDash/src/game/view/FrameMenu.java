@@ -183,7 +183,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * Devuelve el panel;
 	 * 
-	 * @return
+	 * @return el panel
 	 */
 	public Background getPanel()
 	{
@@ -193,7 +193,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * Devuelve los bottones;
 	 * 
-	 * @return
+	 * @return los bottones
 	 */
 	public JButton[] getButtons()
 	{
@@ -203,7 +203,7 @@ public class FrameMenu extends JFrame
 	/**
 	 * Devuelve si esta en fullscreen;
 	 * 
-	 * @return
+	 * @return si esta en fullscreen
 	 */
 	public boolean isFullscreen()
 	{
@@ -211,9 +211,8 @@ public class FrameMenu extends JFrame
 	}
 
 	/**
-	 * Devuelve el panel;
+	 * Setea en fullscr;
 	 * 
-	 * @return
 	 */
 	public void setFullscreen(boolean isfullscr)
 	{

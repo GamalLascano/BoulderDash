@@ -35,7 +35,7 @@ public class Dirt extends Cell
 		this.dirty = dirty;
 		if (!dirty)
 		{
-			this.setSpritechar(ElementChar._);
+			this.setSpritechar(ElementChar.C);
 		}
 		else
 		{
@@ -58,11 +58,11 @@ public class Dirt extends Cell
 	public void removeDirt()
 	{
 		this.dirty = false;
-		this.setSpritechar(ElementChar._);
+		this.setSpritechar(ElementChar.C);
 	}
 
 	@Override
-	public void clear()
+	public void die()
 	{
 		this.removeDirt();
 	}

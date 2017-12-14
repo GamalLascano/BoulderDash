@@ -94,6 +94,7 @@ public class ListOfScorename
 	 * archivo scoreboard.
 	 * 
 	 * @param scorename
+	 *            : el objeto scorename
 	 */
 	public void addNameTable(Scorename scorename)
 	{
@@ -114,7 +115,7 @@ public class ListOfScorename
 	 * Remplaza un scorename en la lista y pone los datos de la lista en un
 	 * archivo scoreboard.
 	 * 
-	 * @param scorename
+	 * @param scorename : el objeto scorename
 	 */
 	public void replaceNameTable(Scorename scorename)
 	{

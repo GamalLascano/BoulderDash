@@ -25,18 +25,19 @@ public class ScoreBoard
 	private File file;
 	private String pathfolder;
 	private String pathfile;
-//	private URL fileurl;
+	// private URL fileurl;
 
 	private ScoreBoard()
 	{
-//		this.fileurl = this.getClass().getResource("./res/Menu/Scoreboard.dat");
+		// this.fileurl =
+		// this.getClass().getResource("./res/Menu/Scoreboard.dat");
 		this.filename = "scoreboard.dat";
 		this.foldername = "Boulder Dash";
 		this.pathfolder = System.getProperty("user.home") + File.separator + "Documents";
 		pathfolder += File.separator + foldername;
 		this.folder = new File(pathfolder);
 		this.pathfile = this.pathfolder;
-		this.file = new File(pathfile,filename);
+		this.file = new File(pathfile, filename);
 	}
 
 	public static ScoreBoard getInstance() throws FileNotFoundException, URISyntaxException
@@ -52,6 +53,7 @@ public class ScoreBoard
 	 * Trata de leer el archivo, si no existe lo crea, si existe lo lee.
 	 * 
 	 * @param scorenamelist
+	 *            : la lista scorename
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -83,7 +85,8 @@ public class ScoreBoard
 	private void readScorenames() throws IOException, ClassNotFoundException
 	{
 		FileInputStream streamin = new FileInputStream(file);
-		//InputStream streamin = getClass().getResourceAsStream("/res/Menu/Scoreboard.dat");
+		// InputStream streamin =
+		// getClass().getResourceAsStream("/res/Menu/Scoreboard.dat");
 		if (streamin.available() != 0)
 		{
 			ObjectInputStream input = null;
@@ -107,9 +110,9 @@ public class ScoreBoard
 		writingScorenames(output);
 		output.close();
 	}
-	
+
 	//////////////////
-	
+
 	/**
 	 * Saca los datos de la lista de scorenames.
 	 * 
@@ -123,7 +126,7 @@ public class ScoreBoard
 			output.writeObject(ListOfScorename.getList().get(i));
 		}
 	}
-	
+
 	/**
 	 * Lee el archivo y pone los datos en una lista de scorenames.
 	 * 
@@ -137,7 +140,7 @@ public class ScoreBoard
 	{
 		boolean endfile = false;
 		Scorename participant;
-		
+
 		while (!endfile)
 		{
 			try
@@ -152,7 +155,7 @@ public class ScoreBoard
 			}
 		}
 	}
-	
+
 	/**
 	 * Trata de encontrar el directorio, sino existe lo crea.
 	 * 

@@ -1,8 +1,8 @@
 package game.model.element.entity.item;
 
 import game.model.element.Position;
+import game.model.map.MapElement;
 import game.model.element.ElementChar;
-import game.model.map.MapCell;
 
 /**
  * Clase del diamante.
@@ -50,10 +50,12 @@ public class Diamond extends Fallable
 		{
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
+		
 		else if (this.canGoDown() && this.isFalling())
 		{
 			this.state = StatusFallableEnum.FALLING;
 		}
+		
 		else if (this.itemBelowIsRounded() && this.itemCanSlide() && this.canGoUp())
 		{
 			if (this.canGoLeft() && this.canGoDownLeft())
@@ -69,10 +71,12 @@ public class Diamond extends Fallable
 				this.state = StatusFallableEnum.IDLE;
 			}
 		}
+		
 		else if (this.itemBelowIsWall() && this.itemBelowIsMagic())
 		{
 			this.state = StatusFallableEnum.CONVERT;
 		}
+		
 		else
 		{
 			this.state = StatusFallableEnum.IDLE;
@@ -109,7 +113,7 @@ public class Diamond extends Fallable
 				this.state = StatusFallableEnum.IDLE;
 				break;
 			case CONVERT:
-				MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
+				MapElement.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
 				this.state = StatusFallableEnum.IDLE;
 				break;
 			default:
@@ -125,7 +129,7 @@ public class Diamond extends Fallable
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
 		this.getPassable().put(ElementChar.R.hashCode(), ElementChar.R);
 	}
 

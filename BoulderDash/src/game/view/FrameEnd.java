@@ -120,7 +120,7 @@ public class FrameEnd extends JFrame
 	 * Verifica si el nombre del jugador es valido.
 	 * 
 	 * @param name
-	 * @return
+	 * @return si el nombre del jugador es valido
 	 */
 	private boolean nameIsValid(String name)
 	{

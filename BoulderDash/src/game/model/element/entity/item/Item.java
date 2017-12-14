@@ -3,7 +3,7 @@ package game.model.element.entity.item;
 import game.model.element.Position;
 import game.model.element.entity.Entity;
 import game.model.element.entity.ListOfEntities;
-import game.model.map.MapItem;
+import game.model.map.MapElement;
 
 /**
  * Esta es la clase de todos los items, que son objetos no-enemigos que se
@@ -32,57 +32,6 @@ public abstract class Item extends Entity
 		this.collectable = collectable;
 		this.moveable = moveable;
 		this.rounded = rounded;
-	}
-
-	/**
-	 * Devuelve si el item es un diamante.
-	 * 
-	 * @return si el item es un diamante
-	 */
-	public boolean isDiamond()
-	{
-		if (this instanceof Diamond)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	/**
-	 * Devuelve si es una roca.
-	 * 
-	 * @return si es una roca
-	 */
-	public boolean isRock()
-	{
-		if (this instanceof Rock)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * Devuelve si es vacio.
-	 * 
-	 * @return si es un bloque vacio
-	 */
-	public boolean isEmpty()
-	{
-		if (this instanceof Empty)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
 	}
 
 	/**
@@ -119,6 +68,6 @@ public abstract class Item extends Entity
 	public void die()
 	{
 		ListOfEntities.getList().remove(this);
-		MapItem.removeItem(this.getPosition());
+		MapElement.removeElement(this.getPosition());
 	}
 }

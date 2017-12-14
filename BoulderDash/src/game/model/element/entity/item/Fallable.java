@@ -2,7 +2,7 @@ package game.model.element.entity.item;
 
 import game.model.element.Position;
 import game.model.element.entity.ListOfEntities;
-import game.model.map.MapItem;
+import game.model.map.MapElement;
 
 /**
  * Clase para los diamantes y rocas que se pueden caer.
@@ -52,16 +52,16 @@ public abstract class Fallable extends Item
 	{
 		this.state = StatusFallableEnum.DEAD;
 		ListOfEntities.getList().remove(this);
-		MapItem.removeItem(this.getPosition());
+		MapElement.removeElement(this.getPosition());
 	}
 
 	@Override
 	public void changePosition()
 	{
-		MapItem.removeItem(this.getPosition());
+		MapElement.removeElement(this.getPosition());
 		this.fall();
 		this.makeMove();
-		MapItem.setItem(this);
+		MapElement.setItem(this);
 	}
 
 	/**

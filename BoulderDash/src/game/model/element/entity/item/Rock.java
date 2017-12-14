@@ -3,8 +3,7 @@ package game.model.element.entity.item;
 import game.model.element.Position;
 import game.model.element.ElementChar;
 import game.model.element.entity.actor.Rockford;
-import game.model.map.MapActor;
-import game.model.map.MapCell;
+import game.model.map.MapElement;
 
 /**
  * Esta clase representa una roca, junto con su caracter de representacion y un
@@ -23,7 +22,7 @@ public class Rock extends Fallable
 	{
 		super(pos, false, true, true, StatusFallableEnum.IDLE);
 		this.setSpritechar(ElementChar.O);
-		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
 	}
 
 	/**
@@ -36,7 +35,7 @@ public class Rock extends Fallable
 	{
 		super(pos, false, true, true, state);
 		this.setSpritechar(ElementChar.O);
-		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
 	}
 
 	/**
@@ -71,10 +70,12 @@ public class Rock extends Fallable
 		{
 			this.state = StatusFallableEnum.FALLINGOFF;
 		}
+		
 		else if (this.canGoDown() && this.isFalling())
 		{
 			this.state = StatusFallableEnum.FALLING;
 		}
+		
 		else if (this.itemBelowIsRounded() && this.itemCanSlide() && this.canGoUp())
 		{
 			if (this.canGoLeft() && this.canGoDownLeft())
@@ -90,18 +91,22 @@ public class Rock extends Fallable
 				this.state = StatusFallableEnum.IDLE;
 			}
 		}
+		
 		else if (this.itemBelowIsWall() && this.itemBelowIsMagic())
 		{
 			this.state = StatusFallableEnum.CONVERT;
 		}
+		
 		else if (this.state == StatusFallableEnum.PUSHEDLEFT)
 		{
 			this.state = StatusFallableEnum.SLIDINGLEFT;
 		}
+		
 		else if (this.state == StatusFallableEnum.PUSHEDRIGHT)
 		{
 			this.state = StatusFallableEnum.SLIDINGRIGHT;
 		}
+		
 		else
 		{
 			this.state = StatusFallableEnum.IDLE;
@@ -130,9 +135,9 @@ public class Rock extends Fallable
 					this.removeFallingPassables();
 					this.state = StatusFallableEnum.IDLE;
 				}
-				if (MapActor.getActor(this.getPosition()) != null)
+				if (MapElement.getElement(this.getPosition()) != null)
 				{
-					MapActor.getActor(this.getPosition()).die();
+					MapElement.getElement(this.getPosition()).die();
 				}
 				break;
 			case SLIDINGRIGHT:
@@ -150,7 +155,7 @@ public class Rock extends Fallable
 			// this.getPosition().goLeft();
 			// break;
 			case CONVERT:
-				MapCell.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
+				MapElement.getWall(this.getPosition().getX(), this.getPosition().checkDown()).conversion(this);
 				this.state = StatusFallableEnum.IDLE;
 				break;
 			default:

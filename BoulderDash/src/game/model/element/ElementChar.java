@@ -10,7 +10,7 @@ package game.model.element;
  *	Cells (E,e salida cerrada y abierta)<br>
  *	D, T, W, w, E, e, <br>
  *	Items (O: rocas, X: diamante, A: amoeba, _: vacia)<br>
- *	O, X, A, _, <br>
+ *	O, X, A, C, <br>
  */
 public enum ElementChar
 {
@@ -20,6 +20,6 @@ public enum ElementChar
 	F, B, 
 	//Cells (E,e salida cerrada y abierta)
 	D, T, W, w, E, e, 
-	//Items (O: rocas, X: diamante, A: amoeba, _: vacia)
-	O, X, A, _,
+	//Items (O: rocas, X: diamante, A: amoeba, C: vacia)
+	O, X, A, C,
 }

@@ -17,7 +17,7 @@ public class Empty extends Item
 	public Empty(Position pos)
 	{
 		super(pos, false, false, false);
-		this.setSpritechar(ElementChar._);
+		this.setSpritechar(ElementChar.C);
 	}
 
 	@Override

@@ -5,13 +5,10 @@ import game.model.element.Position;
 import game.model.element.ElementChar;
 import game.model.element.cell.Dirt;
 import game.model.element.cell.Exit;
-import game.model.element.entity.ListOfEntities;
 import game.model.element.entity.item.Diamond;
 import game.model.element.entity.item.Rock;
-import game.model.map.MapActor;
-import game.model.map.MapCell;
+import game.model.map.MapElement;
 import game.model.map.MapInstance;
-import game.model.map.MapItem;
 
 /**
  * Esta clase es la que contiene al personaje principal: Rockford Contiene su
@@ -32,12 +29,7 @@ public class Rockford extends Actor
 	private Rockford()
 	{
 		super(new Position(0, 0));
-		this.setSpritechar(ElementChar.R);
-		this.lives = 3;
-		this.score = 0;
-		this.diamonds = 0;
-		this.isPushing = false;
-		this.putPassables();
+		this.reset();
 	}
 
 	/**
@@ -114,8 +106,7 @@ public class Rockford extends Actor
 		{
 			this.dying();
 		}
-		ListOfEntities.getList().remove(this);
-		MapActor.removeActor(getPosition());
+		removeEntity(this);
 	}
 	
 	/**
@@ -123,12 +114,9 @@ public class Rockford extends Actor
 	 */
 	private void dying()
 	{
-		PlaySound.explosion();
-		state = StatusActorEnum.DEAD;
 		decrementLives();
-		MapInstance.getInstance().setPlayerscore(score);
-		this.score = MapInstance.getInstance().getPlayerscore();
-		this.diamonds = 0;
+		saveScore();
+		PlaySound.explosion();
 		this.explode();
 	}
 
@@ -189,11 +177,9 @@ public class Rockford extends Actor
 	public boolean isInExit()
 	{
 		Exit door = Exit.getInstance();
-		if (player.getPosition().equals(door.getPosition()))
+		if (playerInExit(door))
 		{
-			score += 1 + MapInstance.getInstance().getSelectedLevel();
-			MapInstance.getInstance().setPlayerscore(score + MapInstance.getInstance().getPlayerscore());
-			diamonds = 0;
+			addScore();
 			return true;
 		}
 		else
@@ -202,12 +188,14 @@ public class Rockford extends Actor
 		}
 	}
 
+
+
 	@Override
 	public void changePosition()
 	{
-		MapActor.removeActor(getPosition());
+		MapElement.removeElement(getPosition());
 		this.makeMove();
-		MapActor.setActor(this);
+		MapElement.setActor(this);
 	}
 
 	@Override
@@ -232,7 +220,7 @@ public class Rockford extends Actor
 				this.setSpritechar(ElementChar.d);
 				break;
 			case IDLE:
-				this.collect(MapItem.getDiamond(getPosition()));
+				this.collect(MapElement.getDiamond(getPosition()));
 				this.setSpritechar(ElementChar.R);
 				break;
 			default:
@@ -247,12 +235,12 @@ public class Rockford extends Actor
 		if (this.canGoUp())
 		{
 			getPosition().goUp();
-			this.dig(MapCell.getDirt(getPosition()));
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.dig(MapElement.getDirt(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
 	}
 
@@ -262,12 +250,12 @@ public class Rockford extends Actor
 		if (this.canGoDown())
 		{
 			getPosition().goDown();
-			this.dig(MapCell.getDirt(getPosition()));
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.dig(MapElement.getDirt(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
 	}
 
@@ -277,17 +265,50 @@ public class Rockford extends Actor
 		if (this.canGoRight())
 		{
 			getPosition().goRight();
-			this.dig(MapCell.getDirt(getPosition()));
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.dig(MapElement.getDirt(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
-		else if (MapItem.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable() == true)
+		else if (itemRightMoveable())
 		{
-			this.push(MapItem.getRock(getPosition().checkRight(), getPosition().getY()));
+			this.push(MapElement.getRock(getPosition().checkRight(), getPosition().getY()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
+	}
+
+	/**
+	 * 
+	 * @return si el item derecho es un moveable
+	 */
+	private boolean itemRightMoveable()
+	{
+		if(MapElement.getItem(getPosition().checkRight(), getPosition().getY()) != null)
+		{
+			return MapElement.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/**
+	 * 
+	 * @return si el item izquierdo es un moveable
+	 */
+	public boolean itemLeftMoveable()
+	{
+		if(MapElement.getItem(getPosition().checkLeft(), getPosition().getY()) != null)
+		{
+			return MapElement.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable();
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 
 	@Override
@@ -296,16 +317,16 @@ public class Rockford extends Actor
 		if (this.canGoLeft())
 		{
 			getPosition().goLeft();
-			this.dig(MapCell.getDirt(getPosition()));
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.dig(MapElement.getDirt(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
-		else if (MapItem.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable() == true)
+		else if (itemLeftMoveable())
 		{
-			this.push(MapItem.getRock(getPosition().checkLeft(), getPosition().getY()));
+			this.push(MapElement.getRock(getPosition().checkLeft(), getPosition().getY()));
 		}
 		else
 		{
-			this.collect(MapItem.getDiamond(getPosition()));
+			this.collect(MapElement.getDiamond(getPosition()));
 		}
 	}
 
@@ -324,16 +345,16 @@ public class Rockford extends Actor
 				if (rock != null && rock.isMoveable() && rock.canGoRight())
 				{
 					this.pushingright(rock);
-					this.dig(MapCell.getDirt(getPosition()));
-					this.collect(MapItem.getDiamond(getPosition()));
+					this.dig(MapElement.getDirt(getPosition()));
+					this.collect(MapElement.getDiamond(getPosition()));
 				}
 				break;
 			case MOVINGLEFT:
 				if (rock != null && rock.isMoveable() && rock.canGoLeft())
 				{
 					this.pushingleft(rock);
-					this.dig(MapCell.getDirt(getPosition()));
-					this.collect(MapItem.getDiamond(getPosition()));
+					this.dig(MapElement.getDirt(getPosition()));
+					this.collect(MapElement.getDiamond(getPosition()));
 				}
 				break;
 			default:
@@ -355,7 +376,7 @@ public class Rockford extends Actor
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(ElementChar._.hashCode(), ElementChar._);
+		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
 		this.getPassable().put(ElementChar.D.hashCode(), ElementChar.D);
 		this.getPassable().put(ElementChar.X.hashCode(), ElementChar.X);
 		this.getPassable().put(ElementChar.e.hashCode(), ElementChar.e);
@@ -384,10 +405,41 @@ public class Rockford extends Actor
 	 */
 	private void decrementLives()
 	{
+		state = StatusActorEnum.DEAD;
 		if (this.lives > 0)
 		{
 			this.lives--;
 		}
+	}
+	
+	/**
+	 * Guarda el score, resetea el score y diamantes de rockford.
+	 */
+	private void saveScore()
+	{
+		MapInstance.getInstance().setPlayerscore(score);
+		this.score = MapInstance.getInstance().getPlayerscore();
+		this.diamonds = 0;
+	}
+	
+	/**
+	 * Guarda el score y lo suma, resetea el score y diamantes de rockford.
+	 */
+	private void addScore()
+	{
+		score += 1 + MapInstance.getInstance().getSelectedLevel();
+		MapInstance.getInstance().setPlayerscore(score + MapInstance.getInstance().getPlayerscore());
+		diamonds = 0;
+	}
+	
+	/**
+	 * 
+	 * @param door
+	 * @return si rockford esta en la salida
+	 */
+	private boolean playerInExit(Exit door)
+	{
+		return player.getPosition().equals(door.getPosition());
 	}
 	
 	/**

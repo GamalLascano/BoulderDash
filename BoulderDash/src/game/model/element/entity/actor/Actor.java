@@ -5,7 +5,7 @@ import game.model.element.Position;
 import game.model.element.entity.Entity;
 import game.model.element.entity.ListOfEntities;
 import game.model.element.entity.Moveable;
-import game.model.map.MapActor;
+import game.model.map.MapElement;
 import game.model.map.MapInstance;
 
 /**
@@ -93,9 +93,9 @@ public abstract class Actor extends Entity implements Moveable
 	@Override
 	public void changePosition()
 	{
-		MapActor.removeActor(this.getPosition());
+		MapElement.removeElement(this.getPosition());
 		this.makeMove();
-		MapActor.setActor(this);
+		MapElement.setActor(this);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public abstract class Actor extends Entity implements Moveable
 			this.explode();
 		}
 		ListOfEntities.getList().remove(this);
-		MapActor.removeActor(this.getPosition());
+		MapElement.removeElement(this.getPosition());
 	}
 
 }

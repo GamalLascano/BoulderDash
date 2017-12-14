@@ -41,26 +41,11 @@ public class MapChar extends Map
 	 */
 	public static void drawMap()
 	{
-		Position pos = new Position(0, 0);
-		int y;
-		int x;
-		for (y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
+		for (int y = 0; y < mapHeight(); y++)
 		{
-			for (x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
+			for (int x = 0; x < mapWidth(); x++)
 			{
-				pos.setXY(x, y);
-				if (MapActor.getActor(pos) != null)
-				{
-					map[x][y] = MapActor.getActor(pos).getSpritechar();
-				}
-				else if (!MapItem.getItem(pos).isEmpty())
-				{
-					map[x][y] = MapItem.getItem(pos).getSpritechar();
-				}
-				else
-				{
-					map[x][y] = MapCell.getCell(pos).getSpritechar();
-				}
+				putElementChar(y, x);
 			}
 		}
 	}
@@ -72,28 +57,8 @@ public class MapChar extends Map
 	public static void imprimirMapa()
 	{
 		System.out.println("..............................................................");
-
-		for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
-		{
-			for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
-			{
-				System.out.print(map[x][y]);
-				System.out.print(" ");
-			}
-			System.out.println();
-
-		}
-
-		Rockford player = Rockford.getInstance();
-		if (player != null)
-		{
-			System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY());
-			System.out.println("Rockford Diamantes: " + player.getDiamonds());
-		}
-		else
-		{
-			System.out.println("Rockford muerto");
-		}
+		imprimiendoMapa();
+		showInfo();
 		System.out.println("..............................................................");
 
 	}
@@ -114,18 +79,99 @@ public class MapChar extends Map
 	public void start()
 	{
 		MapChar.getInstance();
-		map = new ElementChar[MapInstance.getInstance().getLevelReader().getWIDTH()][MapInstance.getInstance().getLevelReader().getHEIGHT()];
+		map = new ElementChar[mapWidth()][mapHeight()];
 		fill();
 	}
 
 	@Override
 	public void fill()
 	{
-		for (int x = 0; x < MapInstance.getInstance().getLevelReader().getWIDTH(); x++)
-			for (int y = 0; y < MapInstance.getInstance().getLevelReader().getHEIGHT(); y++)
+		for (int x = 0; x < mapWidth(); x++)
+			for (int y = 0; y < mapHeight(); y++)
 			{
 				map[x][y] = ElementChar.D;
 			}
 	}
+	
+	
+	
+	
+	//////////////////
+	
+	
+	
+	
+	/**
+	 * Pone el caracter en el mapa.
+	 * @param y
+	 * @param x
+	 */
+	private static void putElementChar(int y, int x)
+	{
+		Position pos = new Position(x, y);
+		if (MapElement.getElement(pos).isActor())
+		{
+			map[x][y] = MapElement.getElement(pos).getSpritechar();
+		}
+		else if (!MapElement.getElement(pos).isEmpty())
+		{
+			map[x][y] = MapElement.getElement(pos).getSpritechar();
+		}
+		else
+		{
+			map[x][y] = MapElement.getElement(pos).getSpritechar();
+		}
+	}
+	
+	/**
+	 * Muestra la informacion del turno.
+	 */
+	private static void showInfo()
+	{
+		Rockford player = Rockford.getInstance();
+		if (player != null)
+		{
+			showTurnInfo(player);
+		}
+		else
+		{
+			showEndInfo();
+		}
+	}
+
+	/**
+	 * Mostra la informacion del ultimo turno.
+	 */
+	private static void showEndInfo()
+	{
+		System.out.println("Rockford muerto");
+	}
+
+	/**
+	 * Muestra la informacion del turno.
+	 * @param player
+	 */
+	private static void showTurnInfo(Rockford player)
+	{
+		System.out.println("Rockford Pos: " + player.getPosition().getX() + "," + player.getPosition().getY());
+		System.out.println("Rockford Diamantes: " + player.getDiamonds());
+	}
+
+	/**
+	 * Imprime el mapa.
+	 */
+	private static void imprimiendoMapa()
+	{
+		for (int y = 0; y < mapHeight(); y++)
+		{
+			for (int x = 0; x < mapWidth(); x++)
+			{
+				System.out.print(map[x][y]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+	}
+
 
 }

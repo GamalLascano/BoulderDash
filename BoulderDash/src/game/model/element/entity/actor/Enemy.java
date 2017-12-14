@@ -1,11 +1,9 @@
 package game.model.element.entity.actor;
 
 import game.model.element.Position;
-import game.model.element.entity.ListOfEntities;
 import game.model.element.entity.item.Diamond;
-import game.model.map.MapActor;
+import game.model.map.MapElement;
 import game.model.map.MapInstance;
-import game.model.map.MapItem;
 
 /**
  * Clase que representa a los enemigos, los que
@@ -33,8 +31,7 @@ public abstract class Enemy extends Actor
 			this.state = StatusActorEnum.DEAD;
 			this.explode();
 		}
-		ListOfEntities.getList().remove(this);
-		MapActor.removeActor(this.getPosition());
+		removeEntity(this);
 	}
 
 	@Override
@@ -65,7 +62,7 @@ public abstract class Enemy extends Actor
 		if (this.canGoUp())
 		{
 			this.getPosition().goUp();
-			if (this.isRockfordInRange())
+			if (isRockfordInRange())
 			{
 				this.die();
 			}
@@ -82,7 +79,7 @@ public abstract class Enemy extends Actor
 		if (this.canGoDown())
 		{
 			this.getPosition().goDown();
-			if (this.isRockfordInRange())
+			if (isRockfordInRange())
 			{
 				this.die();
 			}
@@ -99,7 +96,7 @@ public abstract class Enemy extends Actor
 		if (this.canGoRight())
 		{
 			this.getPosition().goRight();
-			if (this.isRockfordInRange())
+			if (isRockfordInRange())
 			{
 				this.die();
 			}
@@ -116,7 +113,7 @@ public abstract class Enemy extends Actor
 		if (this.canGoLeft())
 		{
 			this.getPosition().goLeft();
-			if (this.isRockfordInRange())
+			if (isRockfordInRange())
 			{
 				this.die();
 			}
@@ -144,15 +141,15 @@ public abstract class Enemy extends Actor
 		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().getY());
 		MapInstance.getInstance().kill(this.getPosition().checkLeft(), this.getPosition().checkUp());
 
-		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().getY())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkUp())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkDown())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
-		MapItem.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkUp())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().getY())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkUp())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkUp())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().getY())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().checkRight(), this.getPosition().checkDown())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().getX(), this.getPosition().checkDown())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkDown())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().getY())));
+		MapElement.setItem(new Diamond(new Position(this.getPosition().checkLeft(), this.getPosition().checkUp())));
 	}
 
 	/**
@@ -163,15 +160,15 @@ public abstract class Enemy extends Actor
 	 */
 	public boolean isRockfordInRange()
 	{
-		if (MapActor.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
-				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
-				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
-				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
-				|| MapActor.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
-				|| MapActor.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
-				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
-				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
-				|| MapActor.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null)
+		if (MapElement.getRockford(this.getPosition().getX(), this.getPosition().getY()) != null
+				|| MapElement.getRockford(this.getPosition().getX(), this.getPosition().checkUp()) != null
+				|| MapElement.getRockford(this.getPosition().checkRight(), this.getPosition().checkUp()) != null
+				|| MapElement.getRockford(this.getPosition().checkRight(), this.getPosition().getY()) != null
+				|| MapElement.getRockford(this.getPosition().checkRight(), this.getPosition().checkDown()) != null
+				|| MapElement.getRockford(this.getPosition().getX(), this.getPosition().checkDown()) != null
+				|| MapElement.getRockford(this.getPosition().checkLeft(), this.getPosition().checkDown()) != null
+				|| MapElement.getRockford(this.getPosition().checkLeft(), this.getPosition().getY()) != null
+				|| MapElement.getRockford(this.getPosition().checkLeft(), this.getPosition().checkUp()) != null)
 		{
 			return true;
 		}

@@ -3,9 +3,10 @@ package game.model.element.cell;
 import game.model.element.Position;
 import game.model.element.ElementChar;
 import game.model.element.entity.item.Diamond;
+import game.model.element.entity.item.Fallable;
 import game.model.element.entity.item.Rock;
 import game.model.element.entity.item.StatusFallableEnum;
-import game.model.map.MapItem;
+import game.model.map.MapElement;
 
 /**
  * Clase que representa el muro y muro magico.
@@ -58,14 +59,11 @@ public class Wall extends Cell
 	 */
 	public void conversion(Rock stone)
 	{
-		if ((stone.getPosition().getY() == this.getPosition().checkUp()) && (stone.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
+		if (canConvert(stone))
 		{
 
 			this.setSpritechar(ElementChar.w);
-			stone.die();
-			Position diamondPos = new Position(this.getPosition().getX(), this.getPosition().checkDown());
-			Diamond diamond = new Diamond(diamondPos, StatusFallableEnum.FALLINGOFF);
-			MapItem.setItem(diamond);
+			rockToDiamond(stone);
 			this.magicTimer--;
 		}
 		else
@@ -82,13 +80,10 @@ public class Wall extends Cell
 	 */
 	public void conversion(Diamond diamond)
 	{
-		if ((diamond.getPosition().getY() == this.getPosition().checkUp()) && (diamond.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0)
+		if (canConvert(diamond))
 		{
 			this.setSpritechar(ElementChar.w);
-			diamond.die();
-			Position rockPos = new Position(this.getPosition().getX(), this.getPosition().checkDown());
-			Diamond rock = new Diamond(rockPos, StatusFallableEnum.FALLINGOFF);
-			MapItem.setItem(rock);
+			diamondToRock(diamond);
 			this.magicTimer--;
 		}
 		else
@@ -98,4 +93,41 @@ public class Wall extends Cell
 
 	}
 
+
+
+	//////////////
+	
+	/**
+	 * 
+	 * @param fallableitem
+	 * @return si se puede convertir el fallableitem
+	 */
+	private boolean canConvert(Fallable fallableitem)
+	{
+		return (fallableitem.getPosition().getY() == this.getPosition().checkUp()) && (fallableitem.getState() == StatusFallableEnum.FALLING) && this.magicTimer > 0;
+	}
+	
+	/**
+	 * Transforma roca a diamante
+	 * @param stone
+	 */
+	private void rockToDiamond(Rock stone)
+	{
+		stone.die();
+		Position diamondPos = new Position(this.getPosition().getX(), this.getPosition().checkDown());
+		Diamond diamond = new Diamond(diamondPos, StatusFallableEnum.FALLINGOFF);
+		MapElement.setItem(diamond);
+	}
+	
+	/**
+	 * Transforma diamante a roca
+	 * @param diamond
+	 */
+	private void diamondToRock(Diamond diamond)
+	{
+		diamond.die();
+		Position rockPos = new Position(this.getPosition().getX(), this.getPosition().checkDown());
+		Rock rock = new Rock(rockPos, StatusFallableEnum.FALLINGOFF);
+		MapElement.setItem(rock);
+	}
 }

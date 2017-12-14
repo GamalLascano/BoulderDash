@@ -11,7 +11,7 @@ import game.model.element.entity.item.*;
 import game.model.map.bdlevel.BDLevelReader;
 
 /**
- * Esta clase administra los 3 mapas de elementos y se ocupa de refresar la
+ * Esta clase administra el mapa de elementos y se ocupa de refresar la
  * lista de entidades, de construir y almacenar informacion del nivel. Contiene
  * a un mapa de celdas, items y actores, junto con una lista con todas las
  * entidades vivas.
@@ -28,7 +28,7 @@ public class MapInstance
 	private Integer diamondbonus;
 	private Double timer;
 
-	private static int[][] levelvalues = new int[][]
+	private static int[][] levelinfo = new int[][]
 	{
 			{ 1, 12, 10, 15, 110 },
 			{ 2, 10, 20, 50, 110 },
@@ -70,6 +70,14 @@ public class MapInstance
 		return mapinstance;
 	}
 
+	
+	
+	//////////
+	
+	
+	
+	
+	
 	/**
 	 * Inicializa mapinstance, inicializa los tres mapas de elementos, carga el
 	 * levelreader y inicializa la lista de entidades.
@@ -78,15 +86,8 @@ public class MapInstance
 	 */
 	public static void start()
 	{
-		BDLevelReader bdlevel = new BDLevelReader();
-		MapInstance.getInstance();
-		mapinstance.levelReader = bdlevel;
-		mapinstance.listentity = ListOfEntities.getInstance();
-		MapCell.getInstance().start();
-		MapItem.getInstance().start();
-		MapActor.getInstance().start();
-		MapChar.getInstance().start();
-		ListOfEntities.start();
+		putLevelReader();
+		initializeMapInstance();
 	}
 
 	/**
@@ -95,30 +96,146 @@ public class MapInstance
 	 */
 	private void readLevel()
 	{
-		try
+		readingLevel();
+		readLevelInfo();
+	}
+	
+	/**
+	 * Construye y setea el proximo nivel.
+	 */
+	public void levelNext()
+	{
+		setSelectedLevel(selectedLevel + 1);
+		rebuildingSelectedLevel();
+	}
+	
+	/**
+	 * Reinicia el nivel.
+	 */
+	public void levelRestart()
+	{
+		rebuildingSelectedLevel();
+	}
+	
+	/**
+	 * Construye y setea el anterior nivel.
+	 */
+	public void levelPrevious()
+	{
+		setSelectedLevel(selectedLevel - 1);
+		rebuildingSelectedLevel();
+	}
+	
+	/**
+	 * Resetea el mapinstance y construye el nivel numero x.
+	 * 
+	 * @param selectedLevel
+	 */
+	public void buildSelectedLevel(Integer selectedLevel) throws LevelNotValidException
+	{
+		if (levelNotValid(selectedLevel))
 		{
-			levelReader.readLevels("levels.xml");
+			throw new LevelNotValidException("Nivel no valido");
 		}
-		catch (Exception e1)
+		else
 		{
-			e1.printStackTrace();
+			initializeMapInstance();
+			mapinstance.selectedLevel = selectedLevel;
+			readLevel();
+			buildingMap();
+			MapChar.drawMap();
 		}
-		try
-		{
-			levelReader.setCurrentLevel(selectedLevel);
-		}
-		catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		diamondsneeded = levelvalues[selectedLevel - 1][1];
-		diamondvalue = levelvalues[selectedLevel - 1][2];
-		diamondbonus = levelvalues[selectedLevel - 1][3];
-		timer = (double) levelvalues[selectedLevel - 1][4];
 	}
 
+	/**
+	 * Decrementa el cronometro del mapa.
+	 * 
+	 * @param timer
+	 */
+	private void decrementTimer()
+	{
+		if (timer > 0)
+		{
+			timer -= 0.1;
+		}
+	}
+
+	/**
+	 * Mata a un elemento, lo remueve de su matriz correspondiente.
+	 * 
+	 * @param pos
+	 */
+	public void kill(Position pos)
+	{
+		MapElement.getElement(pos.getX(), pos.getY()).die();
+	}
+
+	/**
+	 * Mata a un elemento, lo remueve de su matriz correspondiente, utiliza
+	 * coordenadas X,Y.
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void kill(Integer x, Integer y)
+	{
+		if (elementCanDie(x, y))
+		{
+			MapElement.getElement(x, y).die();
+		}
+	}
+
+	/**
+	 * Determina si el nivel es vacio. (Si no hay Rockford).
+	 * 
+	 * @return boolean
+	 */
+	public boolean levelHasRockford()
+	{
+		if (ListOfEntities.getList().contains(Rockford.getInstance()))
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * Refresca el mapa, decrementa el timer, dibuja el mapa y cambia la
+	 * posicion de las entidades.
+	 */
+	public void refresh()
+	{
+		decrementTimer();
+		MapChar.drawMap();
+		entitiesMove();
+	}
+	
+	/**
+	 * Genera el mapa utilizando los tiles del levelreader, creando los
+	 * elementos y poniendolos en las matrices.
+	 */
+	private void buildMap() throws RockfordNotInLevelException
+	{
+		ListOfEntities.getList().clear();
+		for (int y = 0; y < levelReader.getHEIGHT(); y++)
+		{
+			for (int x = 0; x < levelReader.getWIDTH(); x++)
+			{
+				putLevelTile(y, x);
+			}
+		}
+		checkRockfordNotInLevel();
+	}
+
+
+	
+	
+	////////// GETTERS/SETTERS
+	
+	
+	
+	
+	
+	
 	/**
 	 * Devuelve el levelreader. Util para acceder a su tamanio.
 	 * 
@@ -128,7 +245,7 @@ public class MapInstance
 	{
 		return levelReader;
 	}
-
+	
 	/**
 	 * Devuelve la lista de entidades.
 	 * 
@@ -159,113 +276,6 @@ public class MapInstance
 		selectedLevel = selectedlevels;
 	}
 	
-	/**
-	 * Construye y setea el proximo nivel.
-	 */
-	public void levelNext()
-	{
-		setSelectedLevel(selectedLevel + 1);
-		try
-		{
-			buildSelectedLevel(getSelectedLevel());
-		}
-		catch (LevelNotValidException e1)
-		{
-			try
-			{
-				buildSelectedLevel(1);
-			}
-			catch (LevelNotValidException e2)
-			{
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			e1.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Reinicia el nivel.
-	 */
-	public void levelRestart()
-	{
-		try
-		{
-			buildSelectedLevel(selectedLevel);
-		}
-		catch (LevelNotValidException e)
-		{
-			try
-			{
-				buildSelectedLevel(1);
-			}
-			catch (LevelNotValidException e1)
-			{
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Construye y setea el anterior nivel.
-	 */
-	public void levelPrevious()
-	{
-		setSelectedLevel(selectedLevel - 1);
-		try
-		{
-			buildSelectedLevel(getSelectedLevel());
-		}
-		catch (LevelNotValidException e1)
-		{
-			try
-			{
-				buildSelectedLevel(1);
-			}
-			catch (LevelNotValidException e2)
-			{
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			e1.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Resetea el mapinstance y construye el nivel numero x.
-	 * 
-	 * @param selectedLevel
-	 */
-	public void buildSelectedLevel(Integer selectedLevel) throws LevelNotValidException
-	{
-		if (selectedLevel <= 0 || selectedLevel >= 10)
-		{
-			throw new LevelNotValidException("Nivel no valido");
-		}
-		else
-		{
-			MapInstance.getInstance();
-			listentity = ListOfEntities.getInstance();
-			MapCell.getInstance().start();
-			MapItem.getInstance().start();
-			MapActor.getInstance().start();
-			ListOfEntities.start();
-
-			mapinstance.selectedLevel = selectedLevel;
-			readLevel();
-			try
-			{
-				buildMap();
-			}
-			catch (RockfordNotInLevelException e)
-			{
-				e.printStackTrace();
-			}
-			MapChar.drawMap();
-		}
-	}
-
 	/**
 	 * Devuelve el cronometro del nivel.
 	 * 
@@ -325,192 +335,252 @@ public class MapInstance
 	{
 		return diamondsneeded;
 	}
-
+	
+	
+	
+	
+	
+	//////////////////////////////////// PRIVATE METHODS
+	
+	
+	
+	
+	
 	/**
-	 * Decrementa el cronometro del mapa.
-	 * 
-	 * @param timer
+	 * Lee el level reader.
 	 */
-	private void decrementTimer()
+	private void readingLevel()
 	{
-		if (timer > 0)
+		try
 		{
-			timer -= 0.1;
+			levelReader.readLevels("levels.xml");
+		}
+		catch (Exception e1)
+		{
+			e1.printStackTrace();
+		}
+		try
+		{
+			levelReader.setCurrentLevel(selectedLevel);
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
-
+	
 	/**
-	 * Mata a un elemento, lo remueve de su matriz correspondiente.
-	 * 
-	 * @param pos
+	 * Lee la informacion del nivel.
 	 */
-	public void kill(Position pos)
+	private void readLevelInfo()
 	{
-		MapCell.getCell(pos.getX(), pos.getY()).clear();
-		MapItem.getItem(pos.getX(), pos.getY()).die();
-		MapActor.getActor(pos.getX(), pos.getY()).die();
+		diamondsneeded = levelinfo[selectedLevel - 1][1];
+		diamondvalue = levelinfo[selectedLevel - 1][2];
+		diamondbonus = levelinfo[selectedLevel - 1][3];
+		timer = (double) levelinfo[selectedLevel - 1][4];
 	}
-
+	
 	/**
-	 * Mata a un elemento, lo remueve de su matriz correspondiente, utiliza
-	 * coordenadas X,Y.
+	 * Rehace el nivel.
+	 */
+	private void rebuildingSelectedLevel()
+	{
+		try
+		{
+			buildSelectedLevel(selectedLevel);
+		}
+		catch (LevelNotValidException e1)
+		{
+			try
+			{
+				buildSelectedLevel(1);
+			}
+			catch (LevelNotValidException e2)
+			{
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			e1.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Construyendo el mapa.
+	 */
+	private void buildingMap()
+	{
+		try
+		{
+			buildMap();
+		}
+		catch (RockfordNotInLevelException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Reinitializa MapInstance.
+	 */
+	private static void initializeMapInstance()
+	{
+		MapInstance.getInstance();
+		mapinstance.listentity = ListOfEntities.getInstance();
+		MapElement.getInstance().start();
+		MapChar.getInstance().start();
+		ListOfEntities.start();
+	}
+	
+	/**
+	 * Pone el lector de niveles
+	 */
+	private static void putLevelReader()
+	{
+		BDLevelReader bdlevel = new BDLevelReader();
+		mapinstance.levelReader = bdlevel;
+	}
+	
+	/**
+	 * 
+	 * @param selectedLevel
+	 * @return si el nivel es valido
+	 */
+	private boolean levelNotValid(Integer selectedLevel)
+	{
+		return selectedLevel <= 0 || selectedLevel >= 10;
+	}
+	
+	/**
 	 * 
 	 * @param x
 	 * @param y
+	 * @return si puede morir el elemento
 	 */
-	public void kill(Integer x, Integer y)
+	private boolean elementCanDie(Integer x, Integer y)
 	{
-		if (!MapCell.getCell(x, y).isTitanium())
-		{
-			MapCell.getCell(x, y).clear();
-		}
-		MapItem.getItem(x, y).die();
-		if (MapActor.getActor(x, y) != null)
-		{
-			MapActor.getActor(x, y).die();
-		}
+		return MapElement.getElement(x, y) != null && !MapElement.getElement(x, y).isTitanium();
 	}
-
+	
 	/**
-	 * Retorna si las coordenadas son validas.
-	 * 
-	 * @param x
-	 * @param y
-	 * @return boolean
+	 * Cambia la posicion de las entidades.
 	 */
-	public boolean isInMapLimits(Integer x, Integer y)
+	private void entitiesMove()
 	{
-		if (getLevelReader().getWIDTH() > x && getLevelReader().getHEIGHT() > y && 0 <= x && 0 <= y)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	/**
-	 * Determina si el nivel es vacio. (Si no hay Rockford).
-	 * 
-	 * @return boolean
-	 */
-	public boolean levelHasRockford()
-	{
-		if (ListOfEntities.getList().contains(Rockford.getInstance()))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	/**
-	 * Refresca el mapa, decrementa el timer, dibuja el mapa y cambia la
-	 * posicion de los elementos.
-	 */
-	public void refresh()
-	{
-		decrementTimer();
-		MapChar.drawMap();
-		int i;
-		for (i = 0; i < ListOfEntities.getList().size(); ++i)
+		for (int i = 0; i < ListOfEntities.getList().size(); ++i)
 		{
 			Entity ent = ListOfEntities.getList().get(i);
 			ent.changePosition();
 		}
 	}
-
+	
 	/**
-	 * Genera el mapa utilizando los tiles del levelreader, creando los
-	 * elementos y poniendolos en las matrices.
+	 * Checkea si rockford esta en el nivel.
+	 * @throws RockfordNotInLevelException
 	 */
-	private void buildMap() throws RockfordNotInLevelException
+	private void checkRockfordNotInLevel() throws RockfordNotInLevelException
 	{
-		ListOfEntities.getList().clear();
-		for (int y = 0; y < levelReader.getHEIGHT(); y++)
-		{
-			for (int x = 0; x < levelReader.getWIDTH(); x++)
-			{
-				Position pos = new Position(x, y);
-				switch (levelReader.getTile(x, y))
-				{
-					case EMPTY:
-						MapCell.setCell(new Dirt(pos, false));
-						MapItem.setItem(new Empty(pos));
-						MapActor.removeActor(pos);
-						break;
-					case DIRT:
-						MapCell.setCell(new Dirt(pos));
-						break;
-					case TITANIUM:
-						MapCell.setCell(new Titanium(pos));
-						break;
-					case WALL:
-						MapCell.setCell(new Wall(pos));
-						break;
-					// case MAGIC:
-					// MapCell.setCell(new Wall(pos,5));
-					// break;
-					case ROCK:
-						Rock rock = new Rock(pos);
-						MapItem.setItem(rock);
-						ListOfEntities.getList().add(rock);
-						break;
-					case FALLINGROCK:
-						Rock fallingRock = new Rock(pos, StatusFallableEnum.FALLING);
-						MapItem.setItem(fallingRock);
-						ListOfEntities.getList().add(fallingRock);
-						break;
-					case DIAMOND:
-						Diamond diamond = new Diamond(pos);
-						MapItem.setItem(diamond);
-						ListOfEntities.getList().add(diamond);
-						break;
-					case FALLINGDIAMOND:
-						Diamond fallingDiamond = new Diamond(pos, StatusFallableEnum.FALLING);
-						MapItem.setItem(fallingDiamond);
-						ListOfEntities.getList().add(fallingDiamond);
-						break;
-					case AMOEBA:
-						Amoeba amoeba = new Amoeba(pos);
-						MapItem.setItem(amoeba);
-						ListOfEntities.getList().add(amoeba);
-						break;
-					case FIREFLY:
-						Firefly firefly = new Firefly(pos);
-						MapActor.setActor(firefly);
-						ListOfEntities.getList().add(firefly);
-						break;
-					case BUTTERFLY:
-						Butterfly butterfly = new Butterfly(pos);
-						MapActor.setActor(butterfly);
-						ListOfEntities.getList().add(butterfly);
-						break;
-					case EXIT:
-						Exit door = Exit.getInstance();
-						door.close();
-						door.setPosition(pos);
-						MapCell.setCell(door);
-						break;
-					case PLAYER:
-						Rockford player = Rockford.getInstance();
-						player.setPosition(pos);
-						MapActor.setActor(player);
-						ListOfEntities.getList().add(player);
-						break;
-					default:
-						break;
-				}
-
-			}
-		}
 		if (!ListOfEntities.getList().contains(Rockford.getInstance()))
 		{
 			throw new RockfordNotInLevelException("Rockford no esta en el mapa");
 		}
 	}
 
+	/**
+	 * Convierte las tiles del levelreader a elementos y los pone en el
+	 * mapa de elementos.
+	 * @param y
+	 * @param x
+	 */
+	private void putLevelTile(int y, int x)
+	{
+		Position pos = new Position(x, y);
+		switch (levelReader.getTile(x, y))
+		{
+			case EMPTY:
+				MapElement.setCell(new Dirt(pos, false));
+				break;
+			case DIRT:
+				MapElement.setCell(new Dirt(pos));
+				break;
+			case TITANIUM:
+				MapElement.setCell( new Titanium(pos));
+				break;
+			case WALL:
+				MapElement.setCell(new Wall(pos));
+				break;
+			// case MAGIC:
+			// MapElement.setElement(new Wall(pos,5));
+			// break;
+			case ROCK:
+				Rock rock = new Rock(pos);
+				MapElement.setItem(rock);
+				ListOfEntities.getList().add(rock);
+				break;
+			case FALLINGROCK:
+				Rock fallingRock = new Rock(pos, StatusFallableEnum.FALLING);
+				MapElement.setItem(fallingRock);
+				ListOfEntities.getList().add(fallingRock);
+				break;
+			case DIAMOND:
+				Diamond diamond = new Diamond(pos);
+				MapElement.setItem(diamond);
+				ListOfEntities.getList().add(diamond);
+				break;
+			case FALLINGDIAMOND:
+				Diamond fallingDiamond = new Diamond(pos, StatusFallableEnum.FALLING);
+				MapElement.setItem(fallingDiamond);
+				ListOfEntities.getList().add(fallingDiamond);
+				break;
+			case AMOEBA:
+				Amoeba amoeba = new Amoeba(pos);
+				MapElement.setItem(amoeba);
+				ListOfEntities.getList().add(amoeba);
+				break;
+			case FIREFLY:
+				Firefly firefly = new Firefly(pos);
+				MapElement.setActor(firefly);
+				ListOfEntities.getList().add(firefly);
+				break;
+			case BUTTERFLY:
+				Butterfly butterfly = new Butterfly(pos);
+				MapElement.setActor(butterfly);
+				ListOfEntities.getList().add(butterfly);
+				break;
+			case EXIT:
+				Exit door = Exit.getInstance();
+				door.close();
+				door.setPosition(pos);
+				MapElement.setCell(door);
+				break;
+			case PLAYER:
+				Rockford player = Rockford.getInstance();
+				player.setPosition(pos);
+				MapElement.setActor(player);
+				ListOfEntities.getList().add(player);
+				break;
+			default:
+				break;
+		}
+	}
+	
+	
+	
+	
+	////////
+	
+	
+	
+	
+//	/**
+//	 * Retorna si las coordenadas son validas.
+//	 * 
+//	 * @param x
+//	 * @param y
+//	 * @return boolean
+//	 */
+//	public boolean isInMapLimits(Integer x, Integer y)
+//	{
+//		return getLevelReader().getWIDTH() > x && getLevelReader().getHEIGHT() > y && 0 <= x && 0 <= y;
+//	}
 }
