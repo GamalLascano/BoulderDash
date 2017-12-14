@@ -7,7 +7,8 @@ import game.view.sound.Sound;
  */
 public class PlaySound
 {
-
+	//private static Sound sound;
+	
 	/**
 	 * Sound.explosion();.
 	 */

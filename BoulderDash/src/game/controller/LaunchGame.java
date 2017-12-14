@@ -11,7 +11,8 @@ import java.util.Timer;
  */
 public class LaunchGame
 {
-
+	private static GameThread task;
+	
 	/**
 	 * Crea un timer y utiliza el nivel almacenado en MapInstance, inicializa a
 	 * Mapinstance, luego si el nivel es valido lo construye. Inicializa el
@@ -39,7 +40,7 @@ public class LaunchGame
 	private static void initializeGameThread(int TASKSPEED, int TASKDELAY)
 	{
 		Timer timer = new Timer("test");
-		GameThread task = new GameThread(timer);
+		task = new GameThread(timer);
 		timer.schedule(task, TASKDELAY, TASKSPEED);
 	}
 

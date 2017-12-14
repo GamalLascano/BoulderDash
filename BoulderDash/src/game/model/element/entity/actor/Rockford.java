@@ -278,39 +278,6 @@ public class Rockford extends Actor
 		}
 	}
 
-	/**
-	 * 
-	 * @return si el item derecho es un moveable
-	 */
-	private boolean itemRightMoveable()
-	{
-		if(MapElement.getItem(getPosition().checkRight(), getPosition().getY()) != null)
-		{
-			return MapElement.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable();
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * 
-	 * @return si el item izquierdo es un moveable
-	 */
-	public boolean itemLeftMoveable()
-	{
-		if(MapElement.getItem(getPosition().checkLeft(), getPosition().getY()) != null)
-		{
-			return MapElement.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable();
-		}
-		else
-		{
-			return false;
-		}
-		
-	}
-
 	@Override
 	public void makeMoveLeft()
 	{
@@ -466,6 +433,39 @@ public class Rockford extends Actor
 		rock.pushed(this);
 		isPushing = false;
 		getPosition().goLeft();
+	}
+	
+	/**
+	 * 
+	 * @return si el item derecho es un moveable
+	 */
+	private boolean itemRightMoveable()
+	{
+		if(MapElement.getItem(getPosition().checkRight(), getPosition().getY()) != null)
+		{
+			return MapElement.getItem(getPosition().checkRight(), getPosition().getY()).isMoveable();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/**
+	 * 
+	 * @return si el item izquierdo es un moveable
+	 */
+	private boolean itemLeftMoveable()
+	{
+		if(MapElement.getItem(getPosition().checkLeft(), getPosition().getY()) != null)
+		{
+			return MapElement.getItem(getPosition().checkLeft(), getPosition().getY()).isMoveable();
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 
 }
