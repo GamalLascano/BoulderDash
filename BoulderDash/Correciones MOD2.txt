@@ -1,0 +1,39 @@
+﻿SWING y Eventos
+
+*la clase Mouse al extender de MouseAdapter, no es necesario sobreescribir totos los métodos, solamente el que se necesita.
+- arreglado
+
+*La ventana de reglas, por lo menos traducir al español, poner cosas más sintéticas.
+- arreglado
+
+MVC
+
+* la clase MapIntance pertenece al modelo, pero en el método buildSelectedLevel modifica la vista (MapVisual.drawMap();), no se esta respentando el patrón MVC.
+- arreglado
+
+Excepciones
+
+Bien
+
+Threads.
+
+Bien
+
+Gráfica y funcionamiento
+
+*El jar no persiste el nivel y el ranking.
+- el ranking ahora persiste, se guarda el ranking en un archivo en una carpeta en usuarios.
+
+*en la ventana de configuración indicar a qué corresponde cada selector.
+- arreglado
+
+JAVA
+
+*El método main de la clase Game, debería ser un método estático común, y no tener el mismo encabezado de el punto de entada de un programa java. Además es un controlador, ya que tiene el timer.
+- arreglado, la clase se llama LaunchGame en el packete controller
+
+Puntaje adicional
+
+*Agrega sonidos y animación a los movimientos del personaje.
+
+*Implementa full screen
