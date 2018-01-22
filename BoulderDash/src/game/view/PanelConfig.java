@@ -47,7 +47,6 @@ public class PanelConfig extends JPanel
 	{ "800x600", "1024x768", "1366x768", "1920x1080" };
 	private static String[] topArray =
 	{ "5", "10", "15", "20" };
-	private Dimension pastScreenSize = new Dimension(800, 600);
 
 	private PanelConfig(FrameMenu frame)
 	{
@@ -211,38 +210,41 @@ public class PanelConfig extends JPanel
 	 */
 	public void setFrameResolution(String res)
 	{
-		switch (res)
+		if(!fullscreenBox.isSelected())
 		{
-			case "800x600":
+			switch (res)
 			{
-				FrameMenu.getInstance().setSize(800, 600);
-				FrameMenu.getInstance().centerFrame();
-				panel.putBackground(FrameMenu.getInstance());
-				break;
-			}
-			case "1024x768":
-			{
-				FrameMenu.getInstance().setSize(1024, 768);
-				FrameMenu.getInstance().centerFrame();
-				panel.putBackground(FrameMenu.getInstance());
-				break;
-			}
-			case "1366x768":
-			{
-				FrameMenu.getInstance().setSize(1366, 768);
-				FrameMenu.getInstance().centerFrame();
-				panel.putBackground(FrameMenu.getInstance());
-				break;
-			}
-			case "1920x1080":
-			{
-				FrameMenu.getInstance().setSize(1920, 1080);
-				FrameMenu.getInstance().centerFrame();
-				panel.putBackground(FrameMenu.getInstance());
-				break;
-			}
-			default:
-				break;
+				case "800x600":
+				{
+					FrameMenu.getInstance().setSize(800, 600);
+					FrameMenu.getInstance().centerFrame();
+					panel.putBackground(FrameMenu.getInstance());
+					break;
+				}
+				case "1024x768":
+				{
+					FrameMenu.getInstance().setSize(1024, 768);
+					FrameMenu.getInstance().centerFrame();
+					panel.putBackground(FrameMenu.getInstance());
+					break;
+				}
+				case "1366x768":
+				{
+					FrameMenu.getInstance().setSize(1366, 768);
+					FrameMenu.getInstance().centerFrame();
+					panel.putBackground(FrameMenu.getInstance());
+					break;
+				}
+				case "1920x1080":
+				{
+					FrameMenu.getInstance().setSize(1920, 1080);
+					FrameMenu.getInstance().centerFrame();
+					panel.putBackground(FrameMenu.getInstance());
+					break;
+				}
+				default:
+					break;
+				}
 		}
 	}
 
@@ -255,7 +257,6 @@ public class PanelConfig extends JPanel
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		if (isFullscreen)
 		{
-			pastScreenSize = FrameMenu.getInstance().getSize();
 			FrameMenu.getInstance().setFullscreen(true);
 			FrameMenu.getInstance().setSize(screenSize);
 			panel.putBackground(FrameMenu.getInstance());
@@ -269,8 +270,15 @@ public class PanelConfig extends JPanel
 		}
 		else
 		{
+			String dim = (String) resolutionBox.getSelectedItem();
+			String dimWidth = dim.substring(0, dim.indexOf('x'));
+			String dimHeight = dim.substring(dim.indexOf('x') + 1);
+			int width = Integer.parseInt(dimWidth);
+			int height = Integer.parseInt(dimHeight);
+			Dimension frameSize = new Dimension(width, height);
+			
 			FrameMenu.getInstance().setFullscreen(false);
-			FrameMenu.getInstance().setSize(pastScreenSize);
+			FrameMenu.getInstance().setSize(frameSize);
 			panel.putBackground(FrameMenu.getInstance());
 			FrameMenu.getInstance().setExtendedState(JFrame.NORMAL);
 			FrameMenu.getInstance().dispose();
@@ -278,7 +286,8 @@ public class PanelConfig extends JPanel
 			FrameMenu.getInstance().pack();
 			FrameMenu.getInstance().setVisible(true);
 			FrameMenu.getInstance().setAlwaysOnTop(false);
-			FrameMenu.getInstance().setLocationRelativeTo(null);
+			FrameMenu.getInstance().setSize(frameSize);
+			FrameMenu.getInstance().centerFrame();
 		}
 	}
 }

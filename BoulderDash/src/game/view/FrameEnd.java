@@ -83,6 +83,7 @@ public class FrameEnd extends JFrame
 		button.addActionListener(new ActionListener()
 		{
 
+			@SuppressWarnings("unlikely-arg-type")
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{

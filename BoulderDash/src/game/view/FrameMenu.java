@@ -64,8 +64,14 @@ public class FrameMenu extends JFrame
 	 */
 	private void configFrameSize()
 	{
-		PanelConfig.getInstance().setFrameResolution(Config.getInstance().getResolution());
-		PanelConfig.getInstance().setFrameFullscreen(Boolean.valueOf(Config.getInstance().getFullscreen()));
+		if(Boolean.valueOf(Config.getInstance().getFullscreen()))
+		{
+			PanelConfig.getInstance().setFrameFullscreen(Boolean.valueOf(Config.getInstance().getFullscreen()));
+		}
+		else
+		{
+			PanelConfig.getInstance().setFrameResolution(Config.getInstance().getResolution());
+		}
 		centerFrame();
 	}
 
