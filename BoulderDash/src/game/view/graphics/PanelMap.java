@@ -53,16 +53,16 @@ public class PanelMap extends JPanel
 
 			// magic =
 			// Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/magic.gif"));
-			firefly = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/firefly.gif"));
-			butterfly = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/butterfly.gif"));
-			amoeba = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/amoeba.gif"));
-			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/rockford.gif"));
-			rockfordleft = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/rockfordleft.gif"));
-			rockfordright = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/rockfordright.gif"));
-			rockfordup = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/rockfordup.gif"));
-			rockforddown = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/rockforddown.gif"));
-			exit = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/exit.gif"));
-			diamond = Toolkit.getDefaultToolkit().createImage(this.getClass().getClassLoader().getResource("./res/Element/diamond.gif"));
+			firefly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/firefly.gif"));
+			butterfly = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/butterfly.gif"));
+			amoeba = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/amoeba.gif"));
+			rockford = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockford.gif"));
+			rockfordleft = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockfordleft.gif"));
+			rockfordright = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockfordright.gif"));
+			rockfordup = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockfordup.gif"));
+			rockforddown = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockforddown.gif"));
+			exit = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/exit.gif"));
+			diamond = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("f/res/Element/diamond.gif"));
 		}
 		catch (IOException e)
 		{

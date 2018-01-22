@@ -24,12 +24,9 @@ public class ScoreBoard
 	private File folder;
 	private File file;
 	private String path;
-	// private URL fileurl;
 
 	private ScoreBoard()
 	{
-		// this.fileurl =
-		// this.getClass().getResource("./res/Menu/Scoreboard.dat");
 		this.filename = "scoreboard.dat";
 		this.foldername = "Boulder Dash";
 

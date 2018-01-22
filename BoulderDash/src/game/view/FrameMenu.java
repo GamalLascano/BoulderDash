@@ -149,9 +149,9 @@ public class FrameMenu extends JFrame
 		Image buttonimg2;
 		try
 		{
-			buttonimg0 = ImageIO.read(FrameMenu.class.getClassLoader().getResource("./res/Menu/button0.png"));
-			buttonimg1 = ImageIO.read(FrameMenu.class.getClassLoader().getResource("./res/Menu/button1.png"));
-			buttonimg2 = ImageIO.read(FrameMenu.class.getClassLoader().getResource("./res/Menu/button2.png"));
+			buttonimg0 = ImageIO.read(FrameMenu.class.getResource("/res/Menu/button0.png"));
+			buttonimg1 = ImageIO.read(FrameMenu.class.getResource("/res/Menu/button1.png"));
+			buttonimg2 = ImageIO.read(FrameMenu.class.getResource("/res/Menu/button2.png"));
 		}
 		catch (Exception ex)
 		{

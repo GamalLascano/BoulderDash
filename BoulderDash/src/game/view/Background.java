@@ -20,7 +20,7 @@ public class Background extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = -477222138070292249L;
-	private String dirwallpaper = "./res/Menu/wallpaper.png";
+	private String dirwallpaper = "/res/Menu/wallpaper.png";
 	private Image wallpaperimg;
 	private Image img;
 	private URL imgUrl;
@@ -32,7 +32,7 @@ public class Background extends JPanel
 	 */
 	public Background(GridBagLayout gridBagLayout)
 	{
-		imgUrl = Background.class.getClassLoader().getResource(dirwallpaper);
+		imgUrl = Background.class.getResource(dirwallpaper);
 		this.setLayout(gridBagLayout);
 	}
 
@@ -76,7 +76,7 @@ public class Background extends JPanel
 		{
 			try
 			{
-				wallpaperimg = ImageIO.read(this.getClass().getClassLoader().getResource(dirwallpaper));
+				wallpaperimg = ImageIO.read(Background.class.getResource(dirwallpaper));
 				wallpaperimg = wallpaperimg.getScaledInstance(frame.getSize().width, frame.getSize().height, Image.SCALE_DEFAULT);
 			}
 			catch (IOException ex)
