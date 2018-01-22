@@ -12,7 +12,7 @@ game.model.element.entity.item
 game.model.map
 game.model.map.bdlevel
 game.view
+game.view.config
 game.view.graphics
 game.view.scoreboard
 game.view.sound
-utility
