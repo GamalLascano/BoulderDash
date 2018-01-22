@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -17,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.controller.access.MapAccess;
+import game.view.config.Config;
+import game.view.config.ConfigFile;
 import game.view.sound.Sound;
 
 /**
@@ -32,16 +36,16 @@ public class PanelConfig extends JPanel
 	private static PanelConfig configpanel;
 	private JButton button;
 	private Background panel;
-	private static JComboBox<String> resoluciones;
-	private static JCheckBox fullScr;
-	private static JComboBox<String> top;
-	private static JComboBox<String> levelsel;
+	private static JComboBox<String> resolutionBox;
+	private static JCheckBox fullscreenBox;
+	private static JComboBox<String> topBox;
+	private static JComboBox<String> levelBox;
 	private static JLabel label;
-	private static String[] levels =
+	private static String[] levelArray =
 	{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-	private static String[] resolutions =
+	private static String[] resolutionArray =
 	{ "800x600", "1024x768", "1366x768", "1920x1080" };
-	private static String[] tops =
+	private static String[] topArray =
 	{ "5", "10", "15", "20" };
 	private Dimension pastScreenSize = new Dimension(800, 600);
 
@@ -88,16 +92,17 @@ public class PanelConfig extends JPanel
 	{
 		initialize(frame);
 
-		top = new JComboBox<>(tops);
-		resoluciones = new JComboBox<>(resolutions);
-		fullScr = new JCheckBox("Pantalla Completa");
-		levelsel = new JComboBox<>(levels);
-		top.setSelectedIndex(0);
-		resoluciones.setSelectedIndex(0);
-		fullScr.setSelected(false);
-		levelsel.setSelectedItem(0);
+		topBox = new JComboBox<>(topArray);
+		resolutionBox = new JComboBox<>(resolutionArray);
+		fullscreenBox = new JCheckBox("Pantalla Completa");
+		levelBox = new JComboBox<>(levelArray);
+		
+		topBox.setSelectedItem(Config.getInstance().getTop());
+		resolutionBox.setSelectedItem(Config.getInstance().getResolution());
+		levelBox.setSelectedItem(Config.getInstance().getInitialLevel());
+		fullscreenBox.setSelected(Boolean.valueOf(Config.getInstance().getFullscreen()));
 
-		MapAccess.setSelectedLevel(Integer.parseInt((String) levelsel.getSelectedItem()));
+		MapAccess.setSelectedLevel(Integer.parseInt((String) levelBox.getSelectedItem()));
 	}
 
 	/**
@@ -107,10 +112,10 @@ public class PanelConfig extends JPanel
 	{
 		framemenu.refreshPanel(framemenu.getPanel());
 
-		top.setPreferredSize(new Dimension(250, 40));
+		topBox.setPreferredSize(new Dimension(250, 40));
 
-		resoluciones.setPreferredSize(new Dimension(250, 40));
-		resoluciones.addActionListener(new ActionListener()
+		resolutionBox.setPreferredSize(new Dimension(250, 40));
+		resolutionBox.addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -120,75 +125,20 @@ public class PanelConfig extends JPanel
 				@SuppressWarnings("rawtypes")
 				JComboBox cb = (JComboBox) e.getSource();
 				String res = (String) cb.getSelectedItem();
-				switch (res)
-				{
-					case "800x600":
-					{
-						FrameMenu.getInstance().setSize(800, 600);
-						panel.putBackground(FrameMenu.getInstance());
-						break;
-					}
-					case "1024x768":
-					{
-						FrameMenu.getInstance().setSize(1024, 768);
-						panel.putBackground(FrameMenu.getInstance());
-						break;
-					}
-					case "1366x768":
-					{
-						FrameMenu.getInstance().setSize(1366, 768);
-						panel.putBackground(FrameMenu.getInstance());
-						break;
-					}
-					case "1920x1080":
-					{
-						FrameMenu.getInstance().setSize(1920, 1080);
-						panel.putBackground(FrameMenu.getInstance());
-						break;
-					}
-					default:
-						break;
-				}
+				setFrameResolution(res);
 			}
 		});
-		fullScr.addItemListener(new ItemListener()
+		fullscreenBox.addItemListener(new ItemListener()
 		{
 			@Override
 			public void itemStateChanged(ItemEvent e)
 			{
-				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-				if (e.getStateChange() == ItemEvent.SELECTED)
-				{
-					pastScreenSize = FrameMenu.getInstance().getSize();
-					FrameMenu.getInstance().setFullscreen(true);
-					FrameMenu.getInstance().setSize(screenSize);
-					panel.putBackground(FrameMenu.getInstance());
-					FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
-					FrameMenu.getInstance().dispose();
-					FrameMenu.getInstance().setUndecorated(true);
-					FrameMenu.getInstance().pack();
-					FrameMenu.getInstance().setVisible(true);
-					FrameMenu.getInstance().setAlwaysOnTop(true);
-					FrameMenu.getInstance().setLocationRelativeTo(null);
-				}
-				else
-				{
-					FrameMenu.getInstance().setFullscreen(false);
-					FrameMenu.getInstance().setSize(pastScreenSize);
-					panel.putBackground(FrameMenu.getInstance());
-					FrameMenu.getInstance().setExtendedState(JFrame.NORMAL);
-					FrameMenu.getInstance().dispose();
-					FrameMenu.getInstance().setUndecorated(false);
-					FrameMenu.getInstance().pack();
-					FrameMenu.getInstance().setVisible(true);
-					FrameMenu.getInstance().setAlwaysOnTop(false);
-					FrameMenu.getInstance().setLocationRelativeTo(null);
-				}
+				setFrameFullscreen(e.getStateChange() == ItemEvent.SELECTED);
 			}
 		});
-		fullScr.setPreferredSize(new Dimension(250, 40));
-		levelsel.setPreferredSize(new Dimension(250, 40));
-		levelsel.addActionListener(new ActionListener()
+		fullscreenBox.setPreferredSize(new Dimension(250, 40));
+		levelBox.setPreferredSize(new Dimension(250, 40));
+		levelBox.addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -198,7 +148,7 @@ public class PanelConfig extends JPanel
 			}
 		});
 
-		button.setText("Back");
+		button.setText("Guardar");
 		button.addActionListener(new ActionListener()
 		{
 
@@ -206,6 +156,19 @@ public class PanelConfig extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				Sound.button();
+				Config.getInstance().setTop((String) topBox.getSelectedItem());
+				Config.getInstance().setResolution((String) resolutionBox.getSelectedItem());
+				Config.getInstance().setInitialLevel((String) levelBox.getSelectedItem());
+				Config.getInstance().setFullscreen((String) Boolean.toString(fullscreenBox.isSelected()));
+				try
+				{
+					ConfigFile.getInstance().writeConfig();
+				}
+				catch (ClassNotFoundException | IOException | URISyntaxException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				FrameMenu.showMenu();
 			}
 		});
@@ -217,7 +180,7 @@ public class PanelConfig extends JPanel
 		panel.add(label, Constraint.get());
 		
 		Constraint.setup(0, 1, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
-		panel.add(top, Constraint.get());
+		panel.add(topBox, Constraint.get());
 
 		label = new JLabel("Resolucion");
 		label.setForeground(Color.WHITE);
@@ -225,7 +188,7 @@ public class PanelConfig extends JPanel
 		panel.add(label, Constraint.get());
 		
 		Constraint.setup(0, 3, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
-		panel.add(resoluciones, Constraint.get());
+		panel.add(resolutionBox, Constraint.get());
 
 		label = new JLabel("Nivel Inicial");
 		label.setForeground(Color.WHITE);
@@ -233,29 +196,89 @@ public class PanelConfig extends JPanel
 		panel.add(label, Constraint.get());
 		
 		Constraint.setup(0, 5, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
-		panel.add(levelsel, Constraint.get());
+		panel.add(levelBox, Constraint.get());
 		
 		Constraint.setup(0, 6, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
-		panel.add(fullScr, Constraint.get());
+		panel.add(fullscreenBox, Constraint.get());
 
 		Constraint.setup(0, 7, 1, 1, 1, 0.2, GridBagConstraints.CENTER, GridBagConstraints.CENTER);
 		panel.add(button, Constraint.get());
 	}
-
+	
 	/**
-	 * Devuelve el valor del nivel inicial de la configuracion que fue eligido.
+	 * Setea la resolution del frame.
+	 * @param res
 	 */
-	public Object getConfigLevel()
+	public void setFrameResolution(String res)
 	{
-		return levelsel.getSelectedItem();
+		switch (res)
+		{
+			case "800x600":
+			{
+				FrameMenu.getInstance().setSize(800, 600);
+				FrameMenu.getInstance().centerFrame();
+				panel.putBackground(FrameMenu.getInstance());
+				break;
+			}
+			case "1024x768":
+			{
+				FrameMenu.getInstance().setSize(1024, 768);
+				FrameMenu.getInstance().centerFrame();
+				panel.putBackground(FrameMenu.getInstance());
+				break;
+			}
+			case "1366x768":
+			{
+				FrameMenu.getInstance().setSize(1366, 768);
+				FrameMenu.getInstance().centerFrame();
+				panel.putBackground(FrameMenu.getInstance());
+				break;
+			}
+			case "1920x1080":
+			{
+				FrameMenu.getInstance().setSize(1920, 1080);
+				FrameMenu.getInstance().centerFrame();
+				panel.putBackground(FrameMenu.getInstance());
+				break;
+			}
+			default:
+				break;
+		}
 	}
 
 	/**
-	 * Devuelve el valor de top X de la configuracion que fue eligido.
+	 * Setea el frame en pantalla completa o en pantalla normal.
+	 * @param isFullscreen
 	 */
-	public Object getConfigTop()
+	public void setFrameFullscreen(boolean isFullscreen)
 	{
-		return top.getSelectedItem();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		if (isFullscreen)
+		{
+			pastScreenSize = FrameMenu.getInstance().getSize();
+			FrameMenu.getInstance().setFullscreen(true);
+			FrameMenu.getInstance().setSize(screenSize);
+			panel.putBackground(FrameMenu.getInstance());
+			FrameMenu.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
+			FrameMenu.getInstance().dispose();
+			FrameMenu.getInstance().setUndecorated(true);
+			FrameMenu.getInstance().pack();
+			FrameMenu.getInstance().setVisible(true);
+			FrameMenu.getInstance().setAlwaysOnTop(true);
+			FrameMenu.getInstance().setLocationRelativeTo(null);
+		}
+		else
+		{
+			FrameMenu.getInstance().setFullscreen(false);
+			FrameMenu.getInstance().setSize(pastScreenSize);
+			panel.putBackground(FrameMenu.getInstance());
+			FrameMenu.getInstance().setExtendedState(JFrame.NORMAL);
+			FrameMenu.getInstance().dispose();
+			FrameMenu.getInstance().setUndecorated(false);
+			FrameMenu.getInstance().pack();
+			FrameMenu.getInstance().setVisible(true);
+			FrameMenu.getInstance().setAlwaysOnTop(false);
+			FrameMenu.getInstance().setLocationRelativeTo(null);
+		}
 	}
-
 }

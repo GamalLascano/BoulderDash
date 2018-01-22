@@ -23,8 +23,7 @@ public class ScoreBoard
 	private String foldername;
 	private File folder;
 	private File file;
-	private String pathfolder;
-	private String pathfile;
+	private String path;
 	// private URL fileurl;
 
 	private ScoreBoard()
@@ -33,11 +32,10 @@ public class ScoreBoard
 		// this.getClass().getResource("./res/Menu/Scoreboard.dat");
 		this.filename = "scoreboard.dat";
 		this.foldername = "Boulder Dash";
-		this.pathfolder = System.getProperty("user.home") + File.separator + "Documents";
-		pathfolder += File.separator + foldername;
-		this.folder = new File(pathfolder);
-		this.pathfile = this.pathfolder;
-		this.file = new File(pathfile, filename);
+
+		this.path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + foldername;
+		this.folder = new File(path);
+		this.file = new File(path, filename);
 	}
 
 	public static ScoreBoard getInstance() throws FileNotFoundException, URISyntaxException
@@ -52,8 +50,6 @@ public class ScoreBoard
 	/**
 	 * Trata de leer el archivo, si no existe lo crea, si existe lo lee.
 	 * 
-	 * @param scorenamelist
-	 *            : la lista scorename
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -62,22 +58,22 @@ public class ScoreBoard
 		checkIfFolderExists();
 		if (file.exists())
 		{
-			System.out.println(pathfile + "\\" + filename + " already exists");
+			System.out.println(path + "\\" + filename + " already exists");
 			readScorenames();
 		}
 		else if (!file.exists())
 		{
-			System.out.println(pathfile + "\\" + filename + " doesn't exist");
+			System.out.println(path + "\\" + filename + " doesn't exist");
 		}
 		else
 		{
-			System.out.println(pathfile + "\\" + filename + " was not created");
+			System.out.println(path + "\\" + filename + " was not created");
 		}
 	}
 
 	/**
-	 * Lee el archivo y pone los datos en una lista de scorenames. tambien
-	 * ordenada la lista.
+	 * Lee el archivo y pone los datos en una lista de scorenames. tambien ordenada
+	 * la lista.
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
@@ -164,15 +160,15 @@ public class ScoreBoard
 	{
 		if (folder.exists())
 		{
-			System.out.println(pathfolder + " already exists");
+			System.out.println(path + " already exists");
 		}
 		else if (folder.mkdirs())
 		{
-			System.out.println(pathfolder + " was created");
+			System.out.println(path + " was created");
 		}
 		else
 		{
-			System.out.println(pathfolder + " was not created");
+			System.out.println(path + " was not created");
 		}
 	}
 

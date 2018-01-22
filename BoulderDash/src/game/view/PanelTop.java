@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import game.view.config.Config;
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.Scorename;
 import game.view.sound.Sound;
@@ -69,10 +70,10 @@ public class PanelTop extends JPanel
 
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
-		Integer rowx = Integer.parseInt((String) PanelConfig.getInstance().getConfigTop());
+		Integer rowx = Integer.parseInt((String) Config.getInstance().getTop());
 		showXrow(rowx);
 
-		button.setText("Back");
+		button.setText("Menu");
 		button.addActionListener(new ActionListener()
 		{
 

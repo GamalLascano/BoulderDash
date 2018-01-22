@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import game.controller.access.GameAccess;
 import game.controller.access.MapAccess;
+import game.view.config.Config;
 import game.view.sound.Sound;
 
 /**
@@ -40,7 +41,7 @@ public class PanelMenu extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				Sound.button();
-				MapAccess.setSelectedLevel(Integer.parseInt((String) PanelConfig.getInstance().getConfigLevel()));
+				MapAccess.setSelectedLevel(Integer.parseInt((String) Config.getInstance().getInitialLevel()));
 				FrameMenu.getInstance().setVisible(false);
 				GameAccess.launch();
 				FrameMap.getInstance().setSize(FrameMenu.getInstance().getSize());

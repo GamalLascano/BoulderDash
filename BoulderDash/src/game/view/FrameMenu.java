@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import game.view.config.Config;
+import game.view.config.ConfigFile;
 import game.view.scoreboard.ListOfScorename;
 import game.view.scoreboard.ScoreBoard;
 import game.view.sound.Sound;
@@ -33,7 +35,6 @@ public class FrameMenu extends JFrame
 
 	private FrameMenu()
 	{
-		Sound.getInstance();
 		buildFrame();
 		PanelConfig.defaultConfig(this);
 	}
@@ -53,7 +54,28 @@ public class FrameMenu extends JFrame
 	private void start()
 	{
 		FrameMenu.getInstance();
+		configFrameSize();
 		showMenu();
+		setVisible(true);
+	}
+
+	/**
+	 * Saca de la configuracion le tamanio del frame.
+	 */
+	private void configFrameSize()
+	{
+		PanelConfig.getInstance().setFrameResolution(Config.getInstance().getResolution());
+		PanelConfig.getInstance().setFrameFullscreen(Boolean.valueOf(Config.getInstance().getFullscreen()));
+		centerFrame();
+	}
+
+	/**
+	 * Positiona el frame al centro de la pantalla.
+	 */
+	public void centerFrame()
+	{
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	/**
@@ -66,8 +88,7 @@ public class FrameMenu extends JFrame
 		add(panel);
 		setPreferredSize(new Dimension(panel.getImage().getWidth(null), panel.getImage().getHeight(null)));
 		pack();
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		centerFrame();
 	}
 	
 	/**
@@ -75,10 +96,10 @@ public class FrameMenu extends JFrame
 	 */
 	private void setupFrameMenu()
 	{
+		setVisible(false);
 		setTitle("Boulder Dash Menu");
 		setResizable(false);
 		setSize(800, 600);
-		setVisible(true);
 	}
 
 	/**
@@ -86,21 +107,30 @@ public class FrameMenu extends JFrame
 	 */
 	private void setupPanelMenu()
 	{
+		Sound.getInstance();
 		panel = new Background(new GridBagLayout());
 		panel.putBackground(this);
 		putButtons();
+		loadUserFiles();
+	}
+
+	/**
+	 * Carga el scoreboard y config.
+	 */
+	private void loadUserFiles()
+	{
 		ListOfScorename.getInstance().start();
 
 		try
 		{
 			ScoreBoard.getInstance().findFileAndRead();
+			ConfigFile.getInstance().findFileAndRead();
 		}
 		catch (ClassNotFoundException | IOException | URISyntaxException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	/**

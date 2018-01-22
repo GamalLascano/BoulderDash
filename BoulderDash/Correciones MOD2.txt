@@ -23,6 +23,7 @@ Gráfica y funcionamiento
 
 *El jar no persiste el nivel y el ranking.
 - el ranking ahora persiste, se guarda el ranking en un archivo en una carpeta en usuarios.
+- el nivel, resolucion y top tambien persiste esta en el archivo config.txt
 
 *en la ventana de configuración indicar a qué corresponde cada selector.
 - arreglado

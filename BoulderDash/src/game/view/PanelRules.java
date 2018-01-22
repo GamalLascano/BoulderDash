@@ -65,7 +65,7 @@ public class PanelRules extends JPanel
 		}
 		instructions = new JLabel(new ImageIcon(instructionsImg));
 
-		button.setText("Back");
+		button.setText("Menu");
 		button.addActionListener(new ActionListener()
 		{
 

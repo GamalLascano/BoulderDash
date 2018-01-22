@@ -40,14 +40,14 @@ public class FrameEnd extends JFrame
 	private FrameEnd()
 	{
 		setLayout(new FlowLayout());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setLocationRelativeTo(null);
 		buildPanelEnd();
 		add(panelend);
 		pack();
 		setSize(250, 150);
 		setVisible(true);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	public static FrameEnd getInstance()
