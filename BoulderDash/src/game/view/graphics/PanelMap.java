@@ -62,7 +62,7 @@ public class PanelMap extends JPanel
 			rockfordup = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockfordup.gif"));
 			rockforddown = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/rockforddown.gif"));
 			exit = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/exit.gif"));
-			diamond = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("f/res/Element/diamond.gif"));
+			diamond = Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/res/Element/diamond.gif"));
 		}
 		catch (IOException e)
 		{
