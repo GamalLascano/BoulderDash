@@ -1,7 +1,7 @@
 package game.model.element.cell;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapInstance;
 
@@ -22,7 +22,7 @@ public class Exit extends Cell
 	private Exit()
 	{
 		super(new Position(0, 0));
-		this.setSpritechar(ElementChar.E);
+		this.setElementType(ElementTypes.ExitClosed);
 		this.isOpen = false;
 	}
 
@@ -45,7 +45,7 @@ public class Exit extends Cell
 	 */
 	public void close()
 	{
-		this.setSpritechar(ElementChar.E);
+		this.setElementType(ElementTypes.ExitClosed);
 		this.isOpen = false;
 	}
 
@@ -57,7 +57,7 @@ public class Exit extends Cell
 		Rockford player = Rockford.getInstance();
 		if (player.getDiamonds() >= MapInstance.getInstance().getDiamondsneeded())
 		{
-			this.setSpritechar(ElementChar.e);
+			this.setElementType(ElementTypes.ExitOpen);
 			this.isOpen = true;
 		}
 	}

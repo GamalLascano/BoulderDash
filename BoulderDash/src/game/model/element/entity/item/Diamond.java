@@ -2,7 +2,7 @@ package game.model.element.entity.item;
 
 import game.model.element.Position;
 import game.model.map.MapElement;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 
 /**
  * Clase del diamante.
@@ -18,7 +18,7 @@ public class Diamond extends Fallable
 	public Diamond(Position pos)
 	{
 		super(pos, true, false, true, StatusFallableEnum.IDLE);
-		this.setSpritechar(ElementChar.X);
+		this.setElementType(ElementTypes.Diamond);
 		this.putPassables();
 	}
 
@@ -31,7 +31,7 @@ public class Diamond extends Fallable
 	public Diamond(Position pos, StatusFallableEnum state)
 	{
 		super(pos, true, false, true, state);
-		this.setSpritechar(ElementChar.X);
+		this.setElementType(ElementTypes.Diamond);
 		this.putPassables();
 	}
 
@@ -129,8 +129,8 @@ public class Diamond extends Fallable
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
-		this.getPassable().put(ElementChar.R.hashCode(), ElementChar.R);
+		this.getPassable().put(ElementTypes.Empty.hashCode(), ElementTypes.Empty);
+		this.getPassable().put(ElementTypes.Rockford.hashCode(), ElementTypes.Rockford);
 	}
 
 }

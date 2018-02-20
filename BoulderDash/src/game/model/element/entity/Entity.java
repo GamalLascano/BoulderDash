@@ -4,10 +4,7 @@ import java.util.HashMap;
 
 import game.model.element.Element;
 import game.model.element.Position;
-import game.model.element.ElementChar;
-import game.model.element.entity.actor.Actor;
-import game.model.element.entity.actor.Rockford;
-import game.model.element.entity.item.Item;
+import game.model.element.ElementTypes;
 import game.model.map.MapChar;
 import game.model.map.MapElement;
 
@@ -17,7 +14,7 @@ import game.model.map.MapElement;
  */
 public abstract class Entity extends Element
 {
-	private HashMap<Integer, ElementChar> passable = new HashMap<>();
+	private HashMap<Integer, ElementTypes> passable = new HashMap<>();
 
 	/**
 	 * Genera una entidad en una posicion.
@@ -34,7 +31,7 @@ public abstract class Entity extends Element
 	 * 
 	 * @return El hashmap de los elementos passables
 	 */
-	public HashMap<Integer, ElementChar> getPassable()
+	public HashMap<Integer, ElementTypes> getPassable()
 	{
 		return passable;
 	}
@@ -44,7 +41,7 @@ public abstract class Entity extends Element
 	 * 
 	 * @param passable
 	 */
-	public void setPassable(HashMap<Integer, ElementChar> passable)
+	public void setPassable(HashMap<Integer, ElementTypes> passable)
 	{
 		this.passable = passable;
 	}
@@ -66,7 +63,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean isActor()
 	{
-		if (this instanceof Actor)
+		if (this.getElementType().getKind().equals("Actor"))
 		{
 			return true;
 		}
@@ -83,7 +80,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean isRockford()
 	{
-		if (this instanceof Rockford)
+		if (this.getElementType() == ElementTypes.Rockford)
 		{
 			return true;
 		}
@@ -100,7 +97,7 @@ public abstract class Entity extends Element
 	 */
 	public boolean isItem()
 	{
-		if (this instanceof Item)
+		if (this.getElementType().getKind().equals("Item"))
 		{
 			return true;
 		}
@@ -123,7 +120,7 @@ public abstract class Entity extends Element
 	 */
 	public void putEmptyPassable()
 	{
-		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
+		this.getPassable().put(ElementTypes.Empty.hashCode(), ElementTypes.Empty);
 	}
 
 	/**

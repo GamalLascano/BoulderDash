@@ -1,23 +1,12 @@
 package game.model.element;
 
-import game.model.element.cell.Dirt;
-import game.model.element.cell.Exit;
-import game.model.element.cell.Titanium;
-import game.model.element.cell.Wall;
-import game.model.element.entity.actor.Actor;
-import game.model.element.entity.actor.Rockford;
-import game.model.element.entity.item.Diamond;
-import game.model.element.entity.item.Empty;
-import game.model.element.entity.item.Item;
-import game.model.element.entity.item.Rock;
-
 /**
  * Elemento del juego. Celda, item o actor.
  * Tiene posicion y un caracter de identificacion.
  */
 public class Element
 {
-	private ElementChar spritechar;
+	private ElementTypes type;
 	private Position pos;
 
 	/**
@@ -36,9 +25,9 @@ public class Element
 	 * 
 	 * @return caracter de identificacion
 	 */
-	public ElementChar getSpritechar()
+	public ElementTypes getElementType()
 	{
-		return spritechar;
+		return type;
 	}
 
 	/**
@@ -46,9 +35,9 @@ public class Element
 	 * 
 	 * @param spritechar
 	 */
-	public void setSpritechar(ElementChar spritechar)
+	public void setElementType(ElementTypes type)
 	{
-		this.spritechar = spritechar;
+		this.type = type;
 	}
 
 	/**
@@ -88,7 +77,7 @@ public class Element
 	 */
 	public boolean isDiamond()
 	{
-		if (this instanceof Diamond)
+		if (this.getElementType() == ElementTypes.Diamond)
 		{
 			return true;
 		}
@@ -105,7 +94,7 @@ public class Element
 	 */
 	public boolean isRock()
 	{
-		if (this instanceof Rock)
+		if (this.getElementType() == ElementTypes.Rock)
 		{
 			return true;
 		}
@@ -122,7 +111,7 @@ public class Element
 	 */
 	public boolean isEmpty()
 	{
-		if (this instanceof Empty)
+		if (this.getElementType() == ElementTypes.Empty)
 		{
 			return true;
 		}
@@ -138,7 +127,7 @@ public class Element
 	 */
 	public boolean isDirt()
 	{
-		if (this instanceof Dirt)
+		if (this.getElementType() == ElementTypes.Dirt)
 		{
 			return true;
 		}
@@ -154,7 +143,7 @@ public class Element
 	 */
 	public boolean isWall()
 	{
-		if (this instanceof Wall)
+		if (this.getElementType() == ElementTypes.Wall)
 		{
 			return true;
 		}
@@ -170,7 +159,7 @@ public class Element
 	 */
 	public boolean isTitanium()
 	{
-		if (this instanceof Titanium)
+		if (this.getElementType() == ElementTypes.Titanium)
 		{
 			return true;
 		}
@@ -186,7 +175,8 @@ public class Element
 	 */
 	public boolean isExit()
 	{
-		if (this instanceof Exit)
+		if (this.getElementType() == ElementTypes.ExitOpen
+				|| this.getElementType() == ElementTypes.ExitClosed)
 		{
 			return true;
 		}
@@ -203,7 +193,7 @@ public class Element
 	 */
 	public boolean isActor()
 	{
-		if (this instanceof Actor)
+		if (this.getElementType().getKind().equals("Actor"))
 		{
 			return true;
 		}
@@ -220,7 +210,11 @@ public class Element
 	 */
 	public boolean isRockford()
 	{
-		if (this instanceof Rockford)
+		if (this.getElementType() == ElementTypes.Rockford
+				|| this.getElementType() == ElementTypes.RockfordUp
+				|| this.getElementType() == ElementTypes.RockfordDown
+				|| this.getElementType() == ElementTypes.RockfordRight
+				|| this.getElementType() == ElementTypes.RockfordLeft)
 		{
 			return true;
 		}
@@ -237,7 +231,7 @@ public class Element
 	 */
 	public boolean isItem()
 	{
-		if (this instanceof Item)
+		if (this.getElementType().getKind().equals("Item"))
 		{
 			return true;
 		}

@@ -1,7 +1,7 @@
 package game.model.map;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 import game.model.element.entity.actor.Rockford;
 
 /**
@@ -11,7 +11,7 @@ import game.model.element.entity.actor.Rockford;
 public class MapChar extends Map
 {
 	private static MapChar mapvisual;
-	private static ElementChar[][] map;
+	private static ElementTypes[][] map;
 
 	/**
 	 * Constructor de MapVisual.
@@ -70,7 +70,7 @@ public class MapChar extends Map
 	 * @param y
 	 * @return
 	 */
-	public static ElementChar getChar(int x, int y)
+	public static ElementTypes getChar(int x, int y)
 	{
 		return map[x][y];
 	}
@@ -79,7 +79,7 @@ public class MapChar extends Map
 	public void start()
 	{
 		MapChar.getInstance();
-		map = new ElementChar[mapWidth()][mapHeight()];
+		map = new ElementTypes[mapWidth()][mapHeight()];
 		fill();
 	}
 
@@ -89,7 +89,7 @@ public class MapChar extends Map
 		for (int x = 0; x < mapWidth(); x++)
 			for (int y = 0; y < mapHeight(); y++)
 			{
-				map[x][y] = ElementChar.D;
+				map[x][y] = ElementTypes.Dirt;
 			}
 	}
 	
@@ -111,15 +111,15 @@ public class MapChar extends Map
 		Position pos = new Position(x, y);
 		if (MapElement.getElement(pos).isActor())
 		{
-			map[x][y] = MapElement.getElement(pos).getSpritechar();
+			map[x][y] = MapElement.getElement(pos).getElementType();
 		}
 		else if (!MapElement.getElement(pos).isEmpty())
 		{
-			map[x][y] = MapElement.getElement(pos).getSpritechar();
+			map[x][y] = MapElement.getElement(pos).getElementType();
 		}
 		else
 		{
-			map[x][y] = MapElement.getElement(pos).getSpritechar();
+			map[x][y] = MapElement.getElement(pos).getElementType();
 		}
 	}
 	
@@ -166,7 +166,7 @@ public class MapChar extends Map
 		{
 			for (int x = 0; x < mapWidth(); x++)
 			{
-				System.out.print(map[x][y]);
+				System.out.print(map[x][y].getLetter());
 				System.out.print(" ");
 			}
 			System.out.println();

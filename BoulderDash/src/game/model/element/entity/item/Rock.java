@@ -1,7 +1,7 @@
 package game.model.element.entity.item;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 import game.model.element.entity.actor.Rockford;
 import game.model.map.MapElement;
 
@@ -21,8 +21,8 @@ public class Rock extends Fallable
 	public Rock(Position pos)
 	{
 		super(pos, false, true, true, StatusFallableEnum.IDLE);
-		this.setSpritechar(ElementChar.O);
-		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
+		this.setElementType(ElementTypes.Rock);
+		this.getPassable().put(ElementTypes.Empty.hashCode(), ElementTypes.Empty);
 	}
 
 	/**
@@ -34,8 +34,8 @@ public class Rock extends Fallable
 	public Rock(Position pos, StatusFallableEnum state)
 	{
 		super(pos, false, true, true, state);
-		this.setSpritechar(ElementChar.O);
-		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
+		this.setElementType(ElementTypes.Rock);
+		this.getPassable().put(ElementTypes.Empty.hashCode(), ElementTypes.Empty);
 	}
 
 	/**
@@ -171,13 +171,13 @@ public class Rock extends Fallable
 	 */
 	private void putFallingPassables()
 	{
-		this.getPassable().put(ElementChar.R.hashCode(), ElementChar.R);
-		this.getPassable().put(ElementChar.n.hashCode(), ElementChar.n);
-		this.getPassable().put(ElementChar.u.hashCode(), ElementChar.u);
-		this.getPassable().put(ElementChar.d.hashCode(), ElementChar.d);
-		this.getPassable().put(ElementChar.b.hashCode(), ElementChar.b);
-		this.getPassable().put(ElementChar.B.hashCode(), ElementChar.B);
-		this.getPassable().put(ElementChar.F.hashCode(), ElementChar.F);
+		this.getPassable().put(ElementTypes.Rockford.hashCode(), ElementTypes.Rockford);
+		this.getPassable().put(ElementTypes.RockfordUp.hashCode(), ElementTypes.RockfordUp);
+		this.getPassable().put(ElementTypes.RockfordDown.hashCode(), ElementTypes.RockfordDown);
+		this.getPassable().put(ElementTypes.RockfordLeft.hashCode(), ElementTypes.RockfordLeft);
+		this.getPassable().put(ElementTypes.RockfordRight.hashCode(), ElementTypes.RockfordRight);
+		this.getPassable().put(ElementTypes.Butterfly.hashCode(), ElementTypes.Butterfly);
+		this.getPassable().put(ElementTypes.Firefly.hashCode(), ElementTypes.Firefly);
 	}
 
 	/**
@@ -185,13 +185,13 @@ public class Rock extends Fallable
 	 */
 	private void removeFallingPassables()
 	{
-		this.getPassable().remove(ElementChar.R.hashCode(), ElementChar.R);
-		this.getPassable().remove(ElementChar.n.hashCode(), ElementChar.n);
-		this.getPassable().remove(ElementChar.u.hashCode(), ElementChar.u);
-		this.getPassable().remove(ElementChar.d.hashCode(), ElementChar.d);
-		this.getPassable().remove(ElementChar.b.hashCode(), ElementChar.b);
-		this.getPassable().remove(ElementChar.B.hashCode(), ElementChar.B);
-		this.getPassable().remove(ElementChar.F.hashCode(), ElementChar.F);
+		this.getPassable().remove(ElementTypes.Rockford.hashCode(), ElementTypes.Rockford);
+		this.getPassable().remove(ElementTypes.RockfordUp.hashCode(), ElementTypes.RockfordUp);
+		this.getPassable().remove(ElementTypes.RockfordDown.hashCode(), ElementTypes.RockfordDown);
+		this.getPassable().remove(ElementTypes.RockfordLeft.hashCode(), ElementTypes.RockfordLeft);
+		this.getPassable().remove(ElementTypes.RockfordRight.hashCode(), ElementTypes.RockfordRight);
+		this.getPassable().remove(ElementTypes.Butterfly.hashCode(), ElementTypes.Butterfly);
+		this.getPassable().remove(ElementTypes.Firefly.hashCode(), ElementTypes.Firefly);
 	}
 
 }

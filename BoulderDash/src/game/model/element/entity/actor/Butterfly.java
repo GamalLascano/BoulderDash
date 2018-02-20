@@ -1,7 +1,7 @@
 package game.model.element.entity.actor;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 
 /**
  * Enemigo Mariposa. Hace la rotacion de manera Horaria.
@@ -17,7 +17,7 @@ public class Butterfly extends Enemy
 	public Butterfly(Position pos)
 	{
 		super(pos);
-		this.setSpritechar(ElementChar.B);
+		this.setElementType(ElementTypes.Butterfly);
 		this.state = StatusActorEnum.MOVINGUP;
 	}
 

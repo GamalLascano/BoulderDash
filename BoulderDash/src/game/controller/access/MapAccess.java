@@ -1,6 +1,5 @@
 package game.controller.access;
 
-import game.model.element.ElementChar;
 import game.model.map.MapInstance;
 import game.model.map.MapChar;
 
@@ -84,9 +83,9 @@ public class MapAccess
 	 * 
 	 * @return caracter de un elemento
 	 */
-	public static ElementChar getCell(int x, int y)
+	public static char getCellChar(int x, int y)
 	{
-		return MapChar.getChar(x, y);
+		return MapChar.getChar(x, y).getLetter();
 	}
 
 	/**

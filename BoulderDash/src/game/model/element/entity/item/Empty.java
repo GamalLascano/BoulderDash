@@ -1,7 +1,7 @@
 package game.model.element.entity.item;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 
 /**
  * Clase que representa una item vacio.
@@ -17,7 +17,7 @@ public class Empty extends Item
 	public Empty(Position pos)
 	{
 		super(pos, false, false, false);
-		this.setSpritechar(ElementChar.C);
+		this.setElementType(ElementTypes.Empty);
 	}
 
 	@Override

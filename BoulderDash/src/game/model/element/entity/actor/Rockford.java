@@ -2,7 +2,7 @@ package game.model.element.entity.actor;
 
 import game.controller.PlaySound;
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 import game.model.element.cell.Dirt;
 import game.model.element.cell.Exit;
 import game.model.element.entity.item.Diamond;
@@ -51,7 +51,7 @@ public class Rockford extends Actor
 	 */
 	public void reset()
 	{
-		this.setSpritechar(ElementChar.R);
+		this.setElementType(ElementTypes.Rockford);
 		this.lives = 3;
 		this.score = 0;
 		this.diamonds = 0;
@@ -205,23 +205,23 @@ public class Rockford extends Actor
 		{
 			case MOVINGUP:
 				makeMoveUp();
-				this.setSpritechar(ElementChar.n);
+				this.setElementType(ElementTypes.RockfordUp);
 				break;
 			case MOVINGDOWN:
 				makeMoveDown();
-				this.setSpritechar(ElementChar.u);
+				this.setElementType(ElementTypes.RockfordDown);
 				break;
 			case MOVINGRIGHT:
 				makeMoveRight();
-				this.setSpritechar(ElementChar.b);
+				this.setElementType(ElementTypes.RockfordRight);
 				break;
 			case MOVINGLEFT:
 				makeMoveLeft();
-				this.setSpritechar(ElementChar.d);
+				this.setElementType(ElementTypes.RockfordLeft);
 				break;
 			case IDLE:
 				this.collect(MapElement.getDiamond(getPosition()));
-				this.setSpritechar(ElementChar.R);
+				this.setElementType(ElementTypes.Rockford);
 				break;
 			default:
 				break;
@@ -343,10 +343,10 @@ public class Rockford extends Actor
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
-		this.getPassable().put(ElementChar.D.hashCode(), ElementChar.D);
-		this.getPassable().put(ElementChar.X.hashCode(), ElementChar.X);
-		this.getPassable().put(ElementChar.e.hashCode(), ElementChar.e);
+		this.getPassable().put(ElementTypes.Empty.hashCode(), ElementTypes.Empty);
+		this.getPassable().put(ElementTypes.Dirt.hashCode(), ElementTypes.Dirt);
+		this.getPassable().put(ElementTypes.Diamond.hashCode(), ElementTypes.Diamond);
+		this.getPassable().put(ElementTypes.ExitOpen.hashCode(), ElementTypes.ExitOpen);
 	}
 	
 	/**

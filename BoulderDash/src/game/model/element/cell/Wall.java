@@ -1,7 +1,7 @@
 package game.model.element.cell;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 import game.model.element.entity.item.Diamond;
 import game.model.element.entity.item.Fallable;
 import game.model.element.entity.item.Rock;
@@ -26,7 +26,7 @@ public class Wall extends Cell
 	{
 		super(pos);
 		this.magicTimer = 0;
-		this.setSpritechar(ElementChar.W);
+		this.setElementType(ElementTypes.Wall);
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Wall extends Cell
 	{
 		super(pos);
 		this.magicTimer = magicTime;
-		this.setSpritechar(ElementChar.W);
+		this.setElementType(ElementTypes.Wall);
 	}
 
 	/**
@@ -62,13 +62,13 @@ public class Wall extends Cell
 		if (canConvert(stone))
 		{
 
-			this.setSpritechar(ElementChar.w);
+			this.setElementType(ElementTypes.WallMagic);
 			rockToDiamond(stone);
 			this.magicTimer--;
 		}
 		else
 		{
-			this.setSpritechar(ElementChar.W);
+			this.setElementType(ElementTypes.Wall);
 		}
 
 	}
@@ -82,13 +82,13 @@ public class Wall extends Cell
 	{
 		if (canConvert(diamond))
 		{
-			this.setSpritechar(ElementChar.w);
+			this.setElementType(ElementTypes.WallMagic);
 			diamondToRock(diamond);
 			this.magicTimer--;
 		}
 		else
 		{
-			this.setSpritechar(ElementChar.W);
+			this.setElementType(ElementTypes.Wall);
 		}
 
 	}

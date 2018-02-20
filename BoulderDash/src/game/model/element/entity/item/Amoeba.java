@@ -1,7 +1,7 @@
 package game.model.element.entity.item;
 
 import game.model.element.Position;
-import game.model.element.ElementChar;
+import game.model.element.ElementTypes;
 import game.model.element.entity.ListOfEntities;
 import game.model.element.entity.Moveable;
 import game.model.element.entity.item.Diamond;
@@ -30,7 +30,7 @@ public class Amoeba extends Item implements Moveable
 	public Amoeba(Position pos)
 	{
 		super(pos, false, false, false);
-		this.setSpritechar(ElementChar.A);
+		this.setElementType(ElementTypes.Amoeba);
 		this.expanding = true;
 		this.expandtime = 0;
 		this.state = StatusAmoebaEnum.EXPANDUP;
@@ -45,7 +45,7 @@ public class Amoeba extends Item implements Moveable
 	private Amoeba(Position pos, int expandtime)
 	{
 		super(pos, false, false, false);
-		this.setSpritechar(ElementChar.A);
+		this.setElementType(ElementTypes.Amoeba);
 		this.expanding = true;
 		this.expandtime = expandtime;
 		this.state = StatusAmoebaEnum.EXPANDUP;
@@ -228,11 +228,11 @@ public class Amoeba extends Item implements Moveable
 	 */
 	private void putPassables()
 	{
-		this.getPassable().put(ElementChar.C.hashCode(), ElementChar.C);
-		this.getPassable().put(ElementChar.D.hashCode(), ElementChar.D);
-		this.getPassable().put(ElementChar.X.hashCode(), ElementChar.X);
-		this.getPassable().put(ElementChar.F.hashCode(), ElementChar.F);
-		this.getPassable().put(ElementChar.B.hashCode(), ElementChar.B);
+		this.getPassable().put(ElementTypes.Empty.hashCode(), ElementTypes.Empty);
+		this.getPassable().put(ElementTypes.Dirt.hashCode(), ElementTypes.Dirt);
+		this.getPassable().put(ElementTypes.Diamond.hashCode(), ElementTypes.Diamond);
+		this.getPassable().put(ElementTypes.Firefly.hashCode(), ElementTypes.Firefly);
+		this.getPassable().put(ElementTypes.Butterfly.hashCode(), ElementTypes.Butterfly);
 	}
 	
 	/**

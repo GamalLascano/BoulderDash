@@ -79,7 +79,7 @@ public class PanelMap extends JPanel
 			for (int x = 0; x < MapAccess.getWidth() * FrameMap.getCellsizex(); x += FrameMap.getCellsizex())
 			{
 
-				String cellChar = MapAccess.getCell(x / FrameMap.getCellsizex(), y / FrameMap.getCellsizey()).toString();
+				char cellChar = MapAccess.getCellChar(x / FrameMap.getCellsizex(), y / FrameMap.getCellsizey());
 				drawCell(cellChar, x, y, graphic);
 
 			}
@@ -94,9 +94,9 @@ public class PanelMap extends JPanel
 	 * @param y
 	 * @param graphic
 	 */
-	private void drawCell(String s, int x, int y, Graphics graphic)
+	private void drawCell(char c, int x, int y, Graphics graphic)
 	{
-		switch (s.charAt(0))
+		switch (c)
 		{
 			case 'D':
 				graphic.drawImage(dirt, x, y, null);
